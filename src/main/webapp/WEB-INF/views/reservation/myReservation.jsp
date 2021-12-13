@@ -200,59 +200,41 @@ th {
 								<!--Second slide-->
 								<div class="carousel-item">
 
-									<div class="col-md-3" style="float: left">
-										<div class="card mb-2">
-											<img class="card-img-top"
-												src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
-												alt="Card image cap">
-											<div class="card-body">
-												<h4 class="card-title">Card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
-												<a class="btn btn-primary">Button</a>
-											</div>
+									<div class="card" style="width: 18rem;">
+										<img class="card-img-top" src="resources/image/about_bg.jpg"
+											alt="Card image cap">
+										<div class="card-body">
+											<h5 class="card-title">예약된 여행</h5>
+											<p class="card-text">Some quick example text to build on
+												the card title and make up the bulk of the card's content.</p>
+
+											<a href="simpleInfo.do" class="btn btn-primary"
+												data-toggle="modal" data-target="#exampleModalCenter">예약
+												상세 정보 ></a>
+										</div>
+									</div>
+									<div class="card" style="width: 18rem;">
+										<img class="card-img-top" src="resources/image/about_bg.jpg"
+											alt="Card image cap">
+										<div class="card-body">
+											<h5 class="card-title">Card title</h5>
+											<p class="card-text">Some quick example text to build on
+												the card title and make up the bulk of the card's content.</p>
+											<a href="#" class="btn btn-primary">예약 상세 정보 ></a>
 										</div>
 									</div>
 
-									<div class="col-md-3" style="float: left">
-										<div class="card mb-2">
-											<img class="card-img-top"
-												src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
-												alt="Card image cap">
-											<div class="card-body">
-												<h4 class="card-title">Card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
-												<a class="btn btn-primary">Button</a>
-											</div>
-										</div>
-									</div>
+									<div class="card" style="width: 18rem;">
+										<img class="card-img-top" src="resources/image/about_bg.jpg"
+											alt="Card image cap">
+										<div class="card-body">
+											<h5 class="card-title">예약된 여행</h5>
+											<p class="card-text">Some quick example text to build on
+												the card title and make up the bulk of the card's content.</p>
 
-									<div class="col-md-3" style="float: left">
-										<div class="card mb-2">
-											<img class="card-img-top"
-												src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
-												alt="Card image cap">
-											<div class="card-body">
-												<h4 class="card-title">Card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
-												<a class="btn btn-primary">Button</a>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-md-3" style="float: left">
-										<div class="card mb-2">
-											<img class="card-img-top"
-												src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
-												alt="Card image cap">
-											<div class="card-body">
-												<h4 class="card-title">Card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
-												<a class="btn btn-primary">Button</a>
-											</div>
+											<a href="simpleInfo.do" class="btn btn-primary"
+												data-toggle="modal" data-target="#exampleModalCenter">예약
+												상세 정보 ></a>
 										</div>
 									</div>
 								</div>
@@ -261,9 +243,9 @@ th {
 						</div>
 						<!--/.Slides-->
 					</div>
-					
-					
-					
+
+
+
 					<div class="cardWrapper" id="traveled">
 						<div id="multi-item-example"
 							class="carousel slide carousel-multi-item" data-ride="carousel">
@@ -275,7 +257,7 @@ th {
 									class="btn-floating" href="#multi-item-example"
 									data-slide="next"><i class="fas fa-chevron-right"></i></a>
 							</div>
-							<!--/.Controls-->
+							<!--/..Controls-->
 
 							<!--Indicators-->
 							<ol class="carousel-indicators">
@@ -294,7 +276,7 @@ th {
 										<img class="card-img-top" src="resources/image/about_bg.jpg"
 											alt="Card image cap">
 										<div class="card-body">
-											<h5 class="card-title">예약된 여행</h5>
+											<h5 class="card-title">여행 간 곳</h5>
 											<p class="card-text">Some quick example text to build on
 												the card title and make up the bulk of the card's content.</p>
 
@@ -394,10 +376,10 @@ th {
 						</div>
 						<!--/.Slides-->
 					</div>
-					
-					
-					
-					
+
+
+
+
 					<div class="cardWrapper" id="cancelTrip">
 						<div id="multi-item-example"
 							class="carousel slide carousel-multi-item" data-ride="carousel">
@@ -428,7 +410,7 @@ th {
 										<img class="card-img-top" src="resources/image/about_bg.jpg"
 											alt="Card image cap">
 										<div class="card-body">
-											<h5 class="card-title">예약된 여행</h5>
+											<h5 class="card-title">취소취소취소</h5>
 											<p class="card-text">Some quick example text to build on
 												the card title and make up the bulk of the card's content.</p>
 
@@ -528,23 +510,12 @@ th {
 						</div>
 						<!--/.Slides-->
 					</div>
-					
-					
+
+
 				</div>
 			</div>
 		</div>
 	</section>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -621,9 +592,9 @@ th {
     let btn2 = document.getElementById("btn2");
     let btn3 = document.getElementById("btn3");
     
-    let reservation =document.getElementById('reservation')
-    let traveled =document.getElementById('traveled')
-    let cancelTrip =document.getElementById('cancelTrip')
+    let reservation = document.getElementById("reservation");
+    let traveled = document.getElementById("traveled");
+    let cancelTrip = document.getElementById("cancelTrip");
     
     reservation.style.display='inline-block';
     traveled.style.display='none';
