@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+<!-- 일반 서비스 페이지 -->
+<definition name="layout" template="/WEB-INF/views/layout/layout.jsp">
+	<put-attribute name="title" value="SYbnb"/>
+	<put-attribute name="header" value="/WEB-INF/views/layout/header.jsp"/>
+	<put-attribute name="body" value=""/>
+	<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp"/>
+</definition>
+
+<definition name="*/*" extends="layout">
+	<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"/>
+</definition>
+
+
+<!-- 관리자 페이지 -->
+<definition name="layout.admin" template="/WEB-INF/views/admin/layout/adminlayout.jsp">
+	<put-attribute name="title" value="SYbnbAdmin"/>
+	<put-attribute name="header" value="/WEB-INF/views/admin/layout/adminheader.jsp"/>
+	<put-attribute name="side" value="/WEB-INF/views/admin/layout/adminside.jsp"/>
+	<put-attribute name="body" value=""/>
+	<put-attribute name="footer" value="/WEB-INF/views/admin/layout/adminfooter.jsp"/>
+</definition>
+
+<definition name="admin/*/*" extends="layout.admin">
+	<put-attribute name="body" value="/WEB-INF/views/admin/{1}/{2}.jsp"/>
+</definition>
+  
+</tiles-definitions>
