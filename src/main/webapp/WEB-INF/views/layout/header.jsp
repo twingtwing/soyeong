@@ -1,72 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-#loginModal {
-	display: none;
-	position: fixed; /* Stay in place */
-	z-index: 3; /* Sit on top */
-	left: 0;
-	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
-	background-color: rgb(0, 0, 0); /* Fallback color */
-	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
-
-#box {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border: 2px solid black;
-	padding: 1.5rem;
-	flex-direction: column;
-	margin: 5rem;
-	width: 35rem;
-	height: 45rem;
-	justify-content: space-evenly;
-	background-color: white;
-	transition: all 1s;
-}
-
-#box input, #box button {
-	width: 25rem;
-	border: solid #04091e 1px;
-	border-radius: 5px;
-	padding: 10px;
-}
-
-#box button {
-	background-color: #04091e;
-	color: lightgrey;
-	font-weight: bold;
-	cursor: pointer;
-}
-
-.findPw {
-	border-bottom: darkslategrey 1px solid;
-	width: 15rem;
-	font-weight: bold;
-	margin: 15px 0px;
-	cursor: pointer;
-}
-
-.close {
-	margin-left: 25rem;
-	font-size: 1.5rem;
-	cursor: pointer;
-}
-
-#login {
-	cursor: pointer;
-}
-</style>
 </head>
 <body>
 	<!--================Header Area =================-->
@@ -99,7 +37,7 @@
 						</c:if>
 						<c:if test="${author eq 'ADMIN'}">
 							<li class="nav-item"><a class="nav-link" href="admin.do">관리자
-									모드(임시)</a></li>
+									모드</a></li>
 						</c:if>
 						<li class="nav-item submenu dropdown"><a href="#"
 							class="nav-link dropdown-toggle" data-toggle="dropdown"
@@ -143,46 +81,12 @@
 				type="password" placeholder="Password" id="password" name="password">
 			<button type="button" id="login">로그인</button>
 			<div align="center" class="findPw">비밀번호 찾기</div>
-			<a href="javascript:void(0)"><span onclick="kakaoLogin();">카카오 로그인</span></a>
+			<button type="button">페이스북으로 로그인하기~여기부터는 api찾기</button>
+      <button type="button">페이스북으로 로그인하기~여기부터는 api찾기</button>
 			<button type="button">페이스북으로 로그인하기~여기부터는 api찾기</button>
 		</div>
 	</div>
-	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-	<script>
-  //카카오로그인
-  function kakaoLogin() {
-    $.ajax({
-        url: 'kakaoLogin.do',
-        type: 'get',
-        async: false,
-        dataType: 'text',
-        success: function (res) {
-            location.href = res;
-        }
-    });
-
-  }
-
-  $(document).ready(function() {
-
-      var kakaoInfo = '${kakaoInfo}';
-
-      if(kakaoInfo != ""){
-          var data = JSON.parse(kakaoInfo);
-
-          alert("카카오로그인 성공 \n accessToken : " + data['accessToken']);
-          alert(
-          "user : \n" + "email : "
-          + data['email']  
-          + "\n nickname : " 
-          + data['nickname']);
-      }
-  });  
-
-  </script>
-
-
-
+	
 	<script type="text/javascript">
 
 	// login
