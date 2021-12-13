@@ -1,10 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#loginModal {
+	display: none;
+	position: fixed; /* Stay in place */
+	z-index: 3; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+#box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid black;
+	padding: 1.5rem;
+	flex-direction: column;
+	margin: 5rem;
+	width: 35rem;
+	height: 45rem;
+	justify-content: space-evenly;
+	background-color: white;
+	transition: all 1s;
+}
+
+#box input, #box button {
+	width: 25rem;
+	border: solid #04091e 1px;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+#box button {
+	background-color: #04091e;
+	color: lightgrey;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.findPw {
+	border-bottom: darkslategrey 1px solid;
+	width: 15rem;
+	font-weight: bold;
+	margin: 15px 0px;
+	cursor: pointer;
+}
+
+.close {
+	margin-left: 25rem;
+	font-size: 1.5rem;
+	cursor: pointer;
+}
+
+#login {
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
 	<!--================Header Area =================-->
