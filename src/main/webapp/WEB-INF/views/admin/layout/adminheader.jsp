@@ -29,11 +29,11 @@
 	<div class="nav-header">
 		<div class="brand-logo">
 			<a href="admin.do"> <b class="logo-abbr"><img
-					src="resources/admin/images/logo.png" alt=""> </b> <span
+					src="resources/img/Logo_white.png" alt=""> </b> <span
 				class="logo-compact"><img
-					src="resources/admin/images/logo-compact.png" alt=""></span> <span
+					src="resources/img/logo-2.png" alt=""></span> <span
 				class="brand-title"> <img
-					src="resources/admin/images/logo-text.png" alt="">
+					src="resources/img/logo-2.png" alt="">
 			</span>
 			</a>
 		</div>
