@@ -143,7 +143,7 @@ $('#grid').on('click',(event)=>{
 			*/
 		}
 		$('#rpno').val(rpno);
-		//$('#frm').submit();
+		$('#frm').submit();
 	})
 	
   
