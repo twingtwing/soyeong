@@ -91,7 +91,7 @@
 							href="home.do">메인화면</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="accomodation.html">고객센터</a></li>
+							href="question.do">고객센터</a></li>
 						<!-- 로그인 되어 있을시 -->
 						<c:if test="${not empty id}">
 							<li class="nav-item"><a class="nav-link" href="#">호스트
