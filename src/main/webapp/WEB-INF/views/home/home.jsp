@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div>
+<img src="resources/img/img/undraw_profile.svg" alt="">
+이미지?
 
+</div>
 </body>
 </html>

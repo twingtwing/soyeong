@@ -15,4 +15,9 @@ public class AdminController {
 	public String whitepage() {
 		return "admin/testmain/whitepage";
 	}
+	
+	@RequestMapping("/adminMemberList.do")
+	public String adminMemberList() {
+		return "admin/testmain/memberList";
+	}
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.kids.prj.member.service.MemberMapper">
+	<select id="memberSelectList" parameterType="String"
+		resultType="co.kids.prj.member.service.MemberVO">
+		SELECT * FROM MEMBER WHERE
+		STATUS NOT IN('D')
+		ORDER BY
+		JOINDATE
+	</select>
+	<select id="memberSelect"
+		parameterType="co.kids.prj.member.service.MemberVO" resultType="co.kids.prj.member.service.MemberVO">
+		SELECT * FROM MEMBER WHERE
+		ID = #{id}
+		<if test="password !=null">
+			AND PASSWORD = #{password}
+		</if>
+	</select>
+	<insert id="memberInsert"
+		parameterType="co.kids.prj.member.service.MemberVO">
+		INSERT INTO
+		MEMBER(ID,PASSWORD,TEL,AUTHOR,GENDER,JOINDATE,STATUS,NAME) VALUES(
+		#{id},#{password},#{tel},default,#{gender},default,default,#{name}
+		)
+	</insert>
+	<update id="memberUpdate"
+		parameterType="co.kids.prj.member.service.MemberVO">
+		UPDATE MEMBER SET PASSWORD = #{password}, TEL =
+		#{tel}, NAME = #{name},
+		STATUS='U' WHERE ID=#{id}
+	</update>
+
+	<update id="memberDelete"
+		parameterType="co.kids.prj.member.service.MemberVO">
+		UPDATE MEMBER SET
+		STATUS = 'D' WHERE ID = #{id} AND PASSWORD = #{password}
+	</update>
+	
+	<update id="memberAuthorUpdate" parameterType="co.kids.prj.member.service.MemberVO">
+		UPDATE MEMBER SET AUTHOR = #{author} WHERE ID = #{id}
+	</update>
+	
+	
+</mapper>
