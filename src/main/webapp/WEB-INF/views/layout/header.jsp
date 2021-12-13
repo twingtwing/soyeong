@@ -184,7 +184,9 @@
 
 	// 비밀번호 찾기 클릭시
 	$('.findPw').click(()=>pwForm())
+	
 	function pwForm(){
+		// 근데 여기서하는것보다 아싸리 새 창을 띄우는게 좋을것같기도해요....너무 한데 때려박는거같아서
 		$('#box').children().not('.close').css('display','none');
 		$('#box').css('justify-content','left');
 		$('#box').append($('<h4>').text('비밀번호 찾기'));

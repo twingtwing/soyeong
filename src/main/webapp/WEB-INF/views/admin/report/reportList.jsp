@@ -78,16 +78,6 @@ h3 {
 		<input type="hidden" id="rpno" name="rpno">
 	</form>
 
-	<script type="text/javascript">	
-	
-	$("tbody").click('tr',(event)=>{
-			let rpno = event.target.parentNode.className;
-			console.log(rpno)
-			$('#rpno').val(rpno);
-			$('#frm').submit();
-		})
-		
-</script>
 
 <script type="text/javascript">
 (function(){
@@ -139,7 +129,14 @@ const grid = new tui.Grid({
      ]
   });
   
-  
+
+gird.on('click',(event)=>{
+		let rpno = event.target.parentNode.className;
+		console.log(rpno)
+		$('#rpno').val(rpno);
+		$('#frm').submit();
+	})
+	
   
   
 </script>
