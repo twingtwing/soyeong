@@ -84,5 +84,18 @@ public class MemberController {
 	public String findPasswordForm() {
 		return "member/findPasswordForm";
 	}
+	
+	//멤버 프로필
+	@GetMapping("/memberProfile.do")
+	public String memberProfile() {
+		//멤버 프로필 + host권한 가지고 와야함
+		return "member/memberProfile";
+	}
+	
+	@GetMapping("/memberSales.do")
+	public String memberSales() {
+		//멤버 프로필 + host권한 가지고 와야함
+		return "member/memberSales";
+	}
 
 }

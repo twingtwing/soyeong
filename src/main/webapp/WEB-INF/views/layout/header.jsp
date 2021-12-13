@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,26 +40,26 @@
 							<li class="nav-item"><a class="nav-link" href="admin.do">관리자
 									모드</a></li>
 						</c:if>
-						<li class="nav-item submenu dropdown"><a href="#"
-							class="nav-link dropdown-toggle" data-toggle="dropdown"
-							role="button" aria-haspopup="true" aria-expanded="false"> <c:if
-									test="${empty id}">
-								로그인
-							</c:if> <c:if test="${not empty id}">
-								마이페이지
-							</c:if>
-						</a>
+						<li class="nav-item submenu dropdown">
+							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
+								<c:if test="${not empty id}">
+									로그인
+								</c:if> 
+								<c:if test="${empty id}">
+									마이페이지
+								</c:if>
+							</a>
 							<ul class="dropdown-menu">
 								<!-- 권한에 따라 보여지는게 다름 -->
-								<c:if test="${empty id}">
+								<c:if test="${not empty id}">
 									<li class="nav-item" id="loginBtn"><a class="nav-link"
 										href="#">로그인</a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="joinForm.do">회원가입</a></li>
 								</c:if>
-								<c:if test="${not empty id}">
+								<c:if test="${empty id}">
 									<li class="nav-item"><a class="nav-link"
-										href="memberUpdateForm.do">회원정보 수정</a></li>
+										href="memberProfile.do">상세 정보</a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="detailVisit.do">나의 예약 정보</a></li>
 									<li class="nav-item"><a class="nav-link" href="logout.do"
