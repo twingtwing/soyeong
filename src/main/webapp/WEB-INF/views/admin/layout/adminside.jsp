@@ -20,15 +20,14 @@
 				</a>
 					<ul aria-expanded="false">
 						<li><a href="whitepage.do">Home 1</a></li>
-						<li><a href="reportPage.do">신고관리</a></li>
-					</ul>
-				</li>
+						<!-- <li><a href="./index-2.html">Home 2</a></li> -->
+					</ul></li>
 				<li class="mega-menu mega-menu-sm"><a class="has-arrow"
 					href="javascript:void()" aria-expanded="false"> <i
 						class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>
 				</a>
 					<ul aria-expanded="false">
-						<li><a href="./layout-blank.html">Blank</a></li>
+						<li><a href="adminMemberList.do">Blank</a></li>
 						<li><a href="./layout-one-column.html">One Column</a></li>
 						<li><a href="./layout-two-column.html">Two column</a></li>
 						<li><a href="./layout-compact-nav.html">Compact Nav</a></li>
