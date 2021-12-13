@@ -1,13 +1,19 @@
 ;(function($){
 
- //목록 버튼 클릭 시 레이아웃 전환
+    //목록 버튼 클릭 시 레이아웃 전환
             $('.btn-Pay').on('click','div:not(.active-btn-Pay)',function () {
                 //목록 변경
                 $('.active-btn-Pay').toggleClass('active-btn-Pay');
                 this.classList.toggle('active-btn-Pay');
+
+                //원상복귀
+                $('.active-Pay-date').attr("class", 'genric-btn default');
+                $('.active-div-Pay .pay-date-detail').addClass('d-print-block');
+                
                 //내용 변경
                 $('.active-div-Pay').toggleClass('active-div-Pay').toggleClass('d-none');
                 $('.div-Pay > div').eq($(this).index()).toggleClass('active-div-Pay').toggleClass('d-none');
+
             });
 
             //collapse
@@ -25,7 +31,7 @@
                 console.log( this.closest('tr').children[0].innerHTML);
             });
             
-            //버튼 클릭 시 버튼 변경
+            //버튼 클릭 시 버튼 변경 toggle을 remove로 수정 필요
             $('.btn-Pay-date').on('click',function(event){
                 if(event.target.nodeName === 'BUTTON' && !event.target.classList.contains('active-Pay-date')){
                     if($('.active-Pay-date')) $('.active-Pay-date').attr("class", 'genric-btn default');
@@ -39,7 +45,7 @@
                 }
             })
 
-            //datatime어찌고 id 어떻게 할지 정하기
+            //id해서 수정해야함 
             $('.active-div-Pay .btn-Pay-ajax').on('click',function(){
                 //카테고리에 따라 ajax경로 다르게 설정하거나 혹으 serviceimpl 메서드를 다르게 해야함
 
@@ -55,15 +61,15 @@
                     endDate = now.toISOString().substring(0,10);
                     startDate = new Date(now.setMonth(now.getMonth() - $('.active-Pay-date').val())).toISOString().substring(0,10);
                 }else{
-                    startDate = $('#datetimepicker-pay-start > input').val();
-                    endDate = $('#datetimepicker-pay-end > input').val();
+                    startDate = $('.active-Pay-date .datetimepicker-pay-start > input').val();
+                    endDate = $('.active-Pay-date .datetimepicker-pay-end > input').val();
                 }
                 console.log(startDate);
                 console.log(endDate);
             });
 
-	//달력 설정
-	    $('.datetimepicker-pay-start').datetimepicker({
+	//id수정해야함
+   $('.datetimepicker-pay-start').datetimepicker({
         format: 'yyyy-mm-dd',
         minView: 'month',
         startDate: new Date((new Date).setDate((new Date).getDate() + 1)),
@@ -72,7 +78,7 @@
         let startDate = $('.datetimepicker-pay-start > input').val();
         let end = Number(startDate.substring(startDate.length-1))+1;
         startDate = startDate.substring(0,startDate.length-1) + `${end}`;
-        $('#datetimepicker-pay-end').datetimepicker('setStartDate', startDate);
+        $('.datetimepicker-pay-end').datetimepicker('setStartDate', startDate);
     });
 
     $('.datetimepicker-pay-end').datetimepicker({
