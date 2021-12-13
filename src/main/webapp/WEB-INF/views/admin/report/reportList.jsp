@@ -80,7 +80,7 @@ h3 {
 
 	<script type="text/javascript">	
 	
-	$("tbody").click($('tr'),(event)=>{
+	$("tbody").click('tr',(event)=>{
 			let rpno = event.target.parentNode.className;
 			console.log(rpno)
 			$('#rpno').val(rpno);
@@ -127,8 +127,8 @@ const grid = new tui.Grid({
         header : '신고사유',
         name : 'rptype'
      }, {
-        header : '신고된 호스트명',
-        name : 'repr'
+        header : '신고된 유저',
+        name : 'blackuser'
      }, {
         header : '신고된 게시글',
         name : 'rptype'
