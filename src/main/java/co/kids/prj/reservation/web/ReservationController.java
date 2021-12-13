@@ -1,6 +1,7 @@
 package co.kids.prj.reservation.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -19,6 +20,11 @@ public class ReservationController {
 	@RequestMapping("houseList.do")
 	public String houseList() {
 		return "reservation/houseList";
+	}
+	
+	@GetMapping("/booking.do")
+	public String booking() {
+		return "reservation/booking";
 	}
 
 	

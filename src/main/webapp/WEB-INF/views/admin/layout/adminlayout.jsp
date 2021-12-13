@@ -37,9 +37,16 @@
 	<script src="resources/admin/js/settings.js"></script>
 	<script src="resources/admin/js/gleek.js"></script>
 	<script src="resources/admin/js/styleSwitcher.js"></script>
+	
+	<!-- main -->
+	<script src="resources/admin/js/main.js"></script>
+	
+	<!-- service -->
+	<script src="resources/admin/js/customerService.js"></script>
 
 	<!-- Chartjs -->
 	<script src="resources/admin/plugins/chart.js/Chart.bundle.min.js"></script>
+	
 	<!-- Circle progress -->
 	<script
 		src="resources/admin/plugins/circle-progress/circle-progress.min.js"></script>
@@ -62,5 +69,6 @@
 
 
 	<script src="resources/admin/js/dashboard/dashboard-1.js"></script>
+	
 </body>
 </html>

@@ -146,7 +146,7 @@ text-align : right;
 											<div class="w-100"></div>
 											<div class="col-md-12">
 												<div class="book_tabel_item">
-													<a class="book_now_btn button_hover" href="#">Book Now</a>
+													<a class="book_now_btn button_hover" href="booking.do">Book Now</a>
 												</div>
 											</div>
 											<div class="dataWrapper">
