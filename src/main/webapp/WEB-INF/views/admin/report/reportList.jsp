@@ -85,6 +85,7 @@ h3 {
 			console.log(rpno)
 			$('#rpno').val(rpno);
 			$('#frm').submit();
+			console.log('커밋되냥')
 		})
 		
 </script>
