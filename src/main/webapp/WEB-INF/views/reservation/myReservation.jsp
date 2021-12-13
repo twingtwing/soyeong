@@ -257,7 +257,7 @@ th {
 									class="btn-floating" href="#multi-item-example"
 									data-slide="next"><i class="fas fa-chevron-right"></i></a>
 							</div>
-							<!--/.Controls-->
+							<!--/..Controls-->
 
 							<!--Indicators-->
 							<ol class="carousel-indicators">
