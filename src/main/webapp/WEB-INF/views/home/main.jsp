@@ -74,7 +74,8 @@
 									<div class="col-md-4">
 										<div class="book_tabel_item">
 											<div class="form-group">
-												<div class='input-group date' id='datetimepicker11'>
+												<!-- 일까지만 선택하도록 수정했어요 -->
+												<div class='input-group date' id='datetimepicker-in'>
 													<input type='text' class="form-control"
 														placeholder="Check in" /> <span
 														class="input-group-addon"> <i
@@ -83,7 +84,7 @@
 												</div>
 											</div>
 											<div class="form-group">
-												<div class='input-group date' id='datetimepicker1'>
+												<div class='input-group date' id='datetimepicker-out'>
 													<input type='text' class="form-control"
 														placeholder="Check out" /> <span
 														class="input-group-addon"> <i

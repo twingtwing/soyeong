@@ -60,10 +60,25 @@
     
     
     $('select').niceSelect();
-    $('#datetimepicker11,#datetimepicker1').datetimepicker({
-        daysOfWeekDisabled: [0, 6]
+
+	$('#datetimepicker-in').datetimepicker({
+        format: 'yyyy-mm-dd',
+        minView: 'month',
+        startDate: new Date((new Date).setDate((new Date).getDate() + 1)),
+        endDate: new Date((new Date).setDate((new Date).getFullYear() + 1))
+    }).on('changeDate ', function(){
+        let startDate = $('#datetimepicker-in > input').val();
+        let end = Number(startDate.substring(startDate.length-1))+1;
+        startDate = startDate.substring(0,startDate.length-1) + `${end}`;
+        $('#datetimepicker-out').datetimepicker('setStartDate', startDate);
     });
-    
+
+    $('#datetimepicker-out').datetimepicker({
+        format: 'yyyy-mm-dd',
+        minView: 'month',
+        endDate: new Date((new Date).setDate((new Date).getFullYear() + 1))
+    });
+
      /*---------gallery isotope js-----------*/
     function galleryMasonry(){
         if ( $('#gallery').length ){

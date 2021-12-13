@@ -97,28 +97,28 @@
 							<li class="nav-item"><a class="nav-link" href="#">호스트
 									모드</a></li>
 						</c:if>
-						<c:if test="${author eq 'ADMIN'}">
 							<li class="nav-item"><a class="nav-link" href="admin.do">관리자
 									모드</a></li>
+						<c:if test="${author eq 'ADMIN'}">
 						</c:if>
 						<li class="nav-item submenu dropdown">
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
-								<c:if test="${not empty id}">
+								<c:if test="${empty id}">
 									로그인
 								</c:if> 
-								<c:if test="${empty id}">
+								<c:if test="${not empty id}">
 									마이페이지
 								</c:if>
 							</a>
 							<ul class="dropdown-menu">
 								<!-- 권한에 따라 보여지는게 다름 -->
-								<c:if test="${not empty id}">
+								<c:if test="${empty id}">
 									<li class="nav-item" id="loginBtn"><a class="nav-link"
 										href="#">로그인</a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="joinForm.do">회원가입</a></li>
 								</c:if>
-								<c:if test="${empty id}">
+								<c:if test="${not empty id}">
 									<li class="nav-item"><a class="nav-link"
 										href="memberProfile.do">상세 정보</a></li>
 									<li class="nav-item"><a class="nav-link"

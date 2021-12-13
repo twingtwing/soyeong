@@ -16,7 +16,6 @@
 
     //admin chart
     var mct = document.getElementById('admin-chart');
-    mct.height = 200;
 
     var adminMonth = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"

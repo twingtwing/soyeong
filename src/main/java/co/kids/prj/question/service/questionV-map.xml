@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.kids.prj.question.service.QuestionVMapper">
+
+	<insert id="questionVInsert" parameterType="co.kids.prj.question.service.QuestionVVO">
+		<selectKey keyProperty="qNo" order="BEFORE">
+			SELECT MAX(QNO)+1 FROM QUERY
+		</selectKey>
+		INSERT INTO QUERY(QNO,ID,QTITLE,QANSWER,QEMAIL,QFILE,QPFILE,QCATEGORY,QPROCESS)
+		VALUES(#{qNo},#{Id},#{qTitle},#{qAnswer},#{qEmail},#{qFile},#{qPFile},#{qCategory},#{qProcess})
+	</insert>
+
+</mapper>

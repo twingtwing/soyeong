@@ -245,11 +245,13 @@
       console.log(event.rowKey);
       //rowkey값으로 pk값을 통해 location.href을 한다
       console.log(dataQnA[event.rowKey].id);
+		location.href = "questionA.do";
     });
 
     gridCV.on('click',function(event){
       console.log(event.rowKey);
       console.log(dataCV[event.rowKey].id);
+		location.href = "questionV.do";
     });
 
     tui.Grid.applyTheme('clean');

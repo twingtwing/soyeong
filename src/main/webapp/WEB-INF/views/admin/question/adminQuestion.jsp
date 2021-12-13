@@ -8,12 +8,14 @@
 </head>
 <body>
 	<div class="content-body">
+	
+			<!-- customerSerivce.js에 있음 -->
 
             <div class="row page-titles mx-0">
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="adminMain.html">Main</a></li>
-                        <li class="breadcrumb-item active"><a href="adminCS.html">Customer Service</a></li>
+                        <li class="breadcrumb-item"><a href="admin.do">Main</a></li>
+                        <li class="breadcrumb-item active"><a href="adminQuestion.do">Customer Service</a></li>
                     </ol>
                 </div>
             </div>
@@ -50,7 +52,7 @@
                                     </div>
                                     <div id="cs-table-1" class="table-responsive"></div>
                                     <div class="row d-flex justify-content-end">
-                                        <button type="button" class="btn mb-1 btn-rounded btn-outline-dark">글쓰기</button>
+                                        <a type="button" href="qeustionAInsert.do" class="btn mb-1 btn-rounded btn-outline-dark">글쓰기</a>
                                     </div>
                                 </div>
                                 <div id="cs-nav-2" class="tab-pane">
@@ -58,9 +60,6 @@
                                         <h4>The Sound of Customers</h4>
                                     </div>
                                     <div id="cs-table-2" class="table-responsive">
-                                    </div>
-                                    <div class="row d-flex justify-content-end">
-                                        <button type="button" class="btn mb-1 btn-rounded btn-outline-dark">글쓰기</button>
                                     </div>
                                 </div>
                             </div>
