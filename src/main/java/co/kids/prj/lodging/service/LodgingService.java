@@ -9,6 +9,4 @@ public interface LodgingService {
 	int LodgingUpdateInfo(LodgingVO vo);
 	int LodgingDelete(int rno);
 	int LodgingInsert(LodgingVO vo);
-	List<LodgingVO> LodgingListByTag(LodgingVO vo);
-
 }

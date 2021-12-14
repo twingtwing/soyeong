@@ -34,11 +34,6 @@ public class LodgingServiceImpl implements LodgingService {
 		return map.LodgingDelete(rno);
 	}
 
-	@Override
-	public List<LodgingVO> LodgingListByTag(LodgingVO vo) {
-		
-		return map.LodgingListByTag(vo);
-	}
 
 	@Override
 	public int LodgingInsert(LodgingVO vo) {
