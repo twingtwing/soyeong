@@ -20,10 +20,24 @@
 		<result column="rcheckout" property="rcheckout" />
 		<result column="rname" property="rname" />
 	</resultMap>
+	<resultMap type="co.kids.prj.reservation.service.ReservationVO" id="reservationMap">
+		<result column="bookno" property="bookno"/>
+		<result column="rno" property="rno"/>
+		<result column="bookdate" property="bookdate"/>
+		<result column="bookno" property="bookno"/>
+		<result column="checkin" property="checkin"/>
+		<result column="checkout" property="checkout"/>
+		<result column="bookadult" property="bookadult"/>
+		<result column="bookkid" property="bookkid"/>
+		<result column="ispaid" property="ispaid"/>
+		<result column="bookcancel" property="bookcancel"/>
+		<result column="bookrefund" property="bookrefund"/>
+		<collection property="id" resultMap="lodgingMap"/>
+	</resultMap>
 
 	<select id="reservSelectList" resultMap="lodgingMap">
 		SELECT * FROM BOOKING B
-		INNER JOIN LODGING L
+		LEFT OUTER JOIN LODGING L
 		ON B.RNO = L.RNO
 		WHERE B.ID = #{id}
 	</select>
