@@ -8,4 +8,5 @@ public interface LodgingService {
 	int LodgingUpdateState(String state); // 사용중인지 아닌지 Y, N으로
 	int LodgingUpdateInfo(LodgingVO vo);
 	int LodgingDelete(int rno);
+	int LodgingInsert(LodgingVO vo);
 }

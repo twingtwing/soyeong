@@ -34,4 +34,9 @@ public class LodgingServiceImpl implements LodgingService {
 		return 0;
 	}
 
+	@Override
+	public int LodgingInsert(LodgingVO vo) {
+		// TODO Auto-generated method stub
+		return map.LodgingInsert(vo);
+	}
 }

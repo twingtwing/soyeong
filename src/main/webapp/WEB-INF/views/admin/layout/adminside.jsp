@@ -19,7 +19,7 @@
 						class="nav-text">Dashboard</span>
 				</a>
 					<ul aria-expanded="false">
-						<li><a href="whitepage.do">Home 1</a></li>
+						<li><a href="#">Home 1</a></li>
 						<li><a href="reportPage.do">신고관리</a></li>
 						<li><a href="adminQuestion.do">고객센터</a></li>
 					</ul>
@@ -29,7 +29,7 @@
 						class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>
 				</a>
 					<ul aria-expanded="false">
-						<li><a href="./layout-blank.html">Blank</a></li>
+						<li><a href="adminMemberList.do">Blank</a></li>
 						<li><a href="./layout-one-column.html">One Column</a></li>
 						<li><a href="./layout-two-column.html">Two column</a></li>
 						<li><a href="./layout-compact-nav.html">Compact Nav</a></li>
