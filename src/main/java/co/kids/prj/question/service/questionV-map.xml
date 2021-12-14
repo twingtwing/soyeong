@@ -3,11 +3,12 @@
 <mapper namespace="co.kids.prj.question.service.QuestionVMapper">
 
 	<insert id="questionVInsert" parameterType="co.kids.prj.question.service.QuestionVVO">
-		<selectKey keyProperty="qNo" order="BEFORE">
-			SELECT MAX(QNO)+1 FROM QUERY
+		<selectKey keyProperty="qNo" resultType="int" order="BEFORE">
+			SELECT MAX(QNO)+1 
+			FROM QUERY
 		</selectKey>
 		INSERT INTO QUERY(QNO,ID,QTITLE,QANSWER,QEMAIL,QFILE,QPFILE,QCATEGORY,QPROCESS)
-		VALUES(#{qNo},#{Id},#{qTitle},#{qAnswer},#{qEmail},#{qFile},#{qPFile},#{qCategory},#{qProcess})
+		VALUES(#{qNo},#{Id},#{qTitle},#{qAnswer},#{qEmail},#{qFile},#{qPFile},#{qCategory},default)
 	</insert>
 
 </mapper>
