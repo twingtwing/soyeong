@@ -64,9 +64,6 @@
 	<!-- main -->
 	<script src="resources/admin/js/main.js"></script>
 	
-	<!-- service -->
-	<script src="resources/admin/js/adminQuestion.js"></script>
-	
 	<!-- validation -->
 	<script src="resources/admin/plugins/validation/jquery.validate.min.js"></script>
 	<script src="resources/admin/js/adminValidation.js"></script>

@@ -28,22 +28,24 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="card-title ml-3">
-                                        <h3 class="gradient-3-text">Q & A Insert</h3>
+                                        <h3 class="gradient-3-text">Q &amp; A INSERT</h3>
                                     </div>
                                 </div>
                                 <div class="basic-form">
                                 	<!-- 값이 value에 들어가 있어야함 -->
-                                    <form id="CS-frm-Insert" action="#" method ="post" class="CS-valide">
+                                    <form id="CS-frm-Insert" action="qeustionAInsertForm.do" method ="post" class="CS-valide">
                                         <!-- 말머리,제목,내용 -->
                                         <div class="row">
                                             <div class="form-group col-md-3 pl-0">
-                                                <label class="col-lg-4 col-form-label">말머리</label>
+                                                <label class="col-lg-6 col-form-label">말머리</label>
                                                 <div class="col-lg-12">
-                                                    <select id="??" class="form-control">
-                                                        <option selected="selected">말머리 1</option>
-                                                        <option>말머리 2</option>
-                                                        <option>말머리 3</option>
-                                                        <option>말머리 4</option>
+                                                    <select id="fCategory" name="fCategory" class="form-control">
+                                                        <option value="결제 및 환불" selected="selected">결제 및 환불</option>
+                                                        <option value="계정">계정</option>
+                                                        <option value="후기">후기</option>
+                                                        <option value="숙소 및 호스팅">숙소 및 호스팅</option>
+                                                        <option value="예약 및 여행">예약 및 여행</option>
+                                                        <option value="코로나19">코로나19</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -63,7 +65,7 @@
                                             </div>
                                         </div>
                                         <div class="row d-flex justify-content-end mr-1">
-                                            <button type="submit" class="btn btn-rounded btn-outline-dark">글쓰기</button>
+                                            <button type="submit" class="btn btn-rounded btn-outline-dark">INSERT</button>
                                         </div>
                                     </form>
                                 </div>

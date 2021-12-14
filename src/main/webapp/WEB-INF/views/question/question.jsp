@@ -141,29 +141,29 @@
 			<!-- 고객의 소리 div -->
 			<div class="btn-Q-div d-none">
 				<!-- input박스 border색 고민됨 -->
-				<form id="frm-Q" class="contact_form" action="ajaxQuestion.do" method="post" novalidate="novalidate" enctype="multipart/form-data" >
+				<form id="frm-Q" class="contact_form" action="ajaxQuestion.do" method="post" novalidate="novalidate" enctype="multipart/form-data">
 					<div class="blog_right_sidebar border-warning m-1 mt-5 p-5">
 						<div class="form-row col-md-12 mb-4">
 							<div class="form-group col-md-3">
 								<h6>말머리</h6>
 								<div class="default-select" id="default-select">
 									<select style="display: none;" id="qCategory" name="qCategory">
-										<option value="1">예약 및 여행</option>
-										<option value="1">숙소 및 호스팅</option>
-										<option value="1">후기</option>
-										<option value="1">계정</option>
-										<option value="1">결제 및 환불</option>
-										<option value="1">코로나19</option>
+										<option value="예약 및 여행">예약 및 여행</option>
+										<option value="숙소 및 호스팅">숙소 및 호스팅</option>
+										<option value="후기">후기</option>
+										<option value="계정">계정</option>
+										<option value="결제 및 환불">결제 및 환불</option>
+										<option value="코로나19">코로나19</option>
 									</select>
 									<div class="nice-select bg-warning" tabindex="0">
 										<span class="current">예약 및 여행</span>
 										<ul class="list bg-light">
-											<li data-value="1" class="option selected focus">예약 및 여행</li>
-											<li data-value="1" class="option">숙소 및 호스팅</li>
-											<li data-value="1" class="option">후기</li>
-											<li data-value="1" class="option">계정</li>
-											<li data-value="1" class="option">결제 및 환불</li>
-											<li data-value="1" class="option">코로나19</li>
+											<li data-value="예약 및 여행" class="option selected focus">예약 및 여행</li>
+											<li data-value="숙소 및 호스팅" class="option">숙소 및 호스팅</li>
+											<li data-value="후기" class="option">후기</li>
+											<li data-value="계정" class="option">계정</li>
+											<li data-value="결제 및 환불" class="option">결제 및 환불</li>
+											<li data-value="코로나19" class="option">코로나19</li>
 										</ul>
 									</div>
 								</div>
@@ -234,6 +234,12 @@
 		</div>
 	</div>
 	<!--================End Contact Success and Error message Area =================-->
-
+	
+	<!-- question -->
+	<script src="resources/js/question.js"></script>
+	
+	<!-- chart.js -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	
 </body>
 </html>
