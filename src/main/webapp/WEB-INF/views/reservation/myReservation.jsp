@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <style>
 #myReservationName {
 	text-align: left;
@@ -130,7 +131,7 @@ th {
 						<button type="button" id="btn3">취소 내역</button>
 					</div>
 
-
+<!-- 예약된 여행 -->
 					<div class="cardWrapper" id="reservation">
 						<div id="multi-item-example"
 							class="carousel slide carousel-multi-item" data-ride="carousel">
@@ -146,9 +147,12 @@ th {
 
 							<!--Indicators-->
 							<ol class="carousel-indicators">
-								<li data-target="#multi-item-example" data-slide-to="0"
-									class="active"></li>
-								<li data-target="#multi-item-example" data-slide-to="1"></li>
+								<c:forEach items="${cards }" var="reserv" varStatus="status">
+									<c:if test="${(status.index % 3) == 0}">
+										<li data-target="#multi-item-example"
+											data-slide-to="${status.index/3 }" class="active"></li>
+									</c:if>
+								</c:forEach>
 							</ol>
 							<!--/.Indicators-->
 
@@ -156,364 +160,335 @@ th {
 							<div class="carousel-inner" role="listbox">
 								<!--First slide-->
 								<div class="carousel-item active">
+									<c:forEach items="${cards }" var="reserv" varStatus="status">
+										<c:if test="${status == null }">
+											<div>
+												<h4>예약된 숙소가 없습니다.</h4>
+											</div>
+										</c:if>
 
-									<div class="card" style="width: 18rem;">
-										<img class="card-img-top" src="resources/image/about_bg.jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h5 class="card-title">예약된 여행</h5>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-
-											<a href="simpleInfo.do" class="btn btn-primary"
-												data-toggle="modal" data-target="#exampleModalCenter">예약
-												상세 정보 ></a>
-										</div>
-									</div>
-									<div class="card" style="width: 18rem;">
-										<img class="card-img-top" src="resources/image/about_bg.jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h5 class="card-title">Card title</h5>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-											<a href="#" class="btn btn-primary">예약 상세 정보 ></a>
-										</div>
-									</div>
-
-									<div class="card" style="width: 18rem;">
-										<img class="card-img-top" src="resources/image/about_bg.jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h5 class="card-title">예약된 여행</h5>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-
-											<a href="simpleInfo.do" class="btn btn-primary"
-												data-toggle="modal" data-target="#exampleModalCenter">예약
-												상세 정보 ></a>
-										</div>
-									</div>
+										<c:if test="${status.count <= 3}">
+											<div class="card" style="width: 18rem;">
+												<img class="card-img-top" src="${reserv.rphoto}"
+													alt="Card image cap">
+												<div class="card-body">
+													<h5 class="card-title">${reserv.rname }</h5>
+													<p class="card-text">${reserv.rcontent }</p>
+													
+													<a href="#" class="btn btn-primary"
+														data-toggle="modal" data-target="#exampleModalCenter">예약
+														상세 정보 ></a>
+												</div>
+											</div>
+										</c:if>
+									</c:forEach>
 								</div>
 								<!--/.First slide-->
 
-								<!--Second slide-->
-								<div class="carousel-item">
+								<!--other slide-->
 
-									<div class="card" style="width: 18rem;">
-										<img class="card-img-top" src="resources/image/about_bg.jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h5 class="card-title">예약된 여행</h5>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-
-											<a href="simpleInfo.do" class="btn btn-primary"
-												data-toggle="modal" data-target="#exampleModalCenter">예약
-												상세 정보 ></a>
+								<c:forEach items="${cards }" var="reserv" varStatus="status">
+									<c:if test="${(status.count) > 3 && (status.count % 3) == 1 }">
+										<div class="carousel-item">
+									</c:if>
+									<c:if test="${status.count > 3}">
+										<div class="card" style="width: 18rem;">
+											<img class="card-img-top" src="${reserv.rphoto}"
+												alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title">${reserv.rname }</h5>
+												<p class="card-text">${reserv.rcontent }</p>
+												<a href="#" class="btn btn-primary"
+													data-toggle="modal" data-target="#exampleModalCenter">예약
+													상세 정보 ></a>
+											</div>
 										</div>
-									</div>
-									<div class="card" style="width: 18rem;">
-										<img class="card-img-top" src="resources/image/about_bg.jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h5 class="card-title">Card title</h5>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-											<a href="#" class="btn btn-primary">예약 상세 정보 ></a>
-										</div>
-									</div>
-
-									<div class="card" style="width: 18rem;">
-										<img class="card-img-top" src="resources/image/about_bg.jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h5 class="card-title">예약된 여행</h5>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-
-											<a href="simpleInfo.do" class="btn btn-primary"
-												data-toggle="modal" data-target="#exampleModalCenter">예약
-												상세 정보 ></a>
-										</div>
-									</div>
-								</div>
-								<!--/.Second slide-->
+									</c:if>
+									<c:if test="${(status.count) > 3 && (status.count % 3) == 1 }">
 							</div>
+							</c:if>
+							</c:forEach>
+
+
+
+
+
+							<!--/.Second slide-->
 						</div>
-						<!--/.Slides-->
 					</div>
-
-
-
-					<div class="cardWrapper" id="traveled">
-						<div id="multi-item-example"
-							class="carousel slide carousel-multi-item" data-ride="carousel">
-
-							<!--Controls-->
-							<div class="controls-top">
-								<a class="btn-floating" href="#multi-item-example"
-									data-slide="prev"><i class="fas fa-chevron-left"></i></a> <a
-									class="btn-floating" href="#multi-item-example"
-									data-slide="next"><i class="fas fa-chevron-right"></i></a>
-							</div>
-							<!--/..Controls-->
-
-							<!--Indicators-->
-							<ol class="carousel-indicators">
-								<li data-target="#multi-item-example" data-slide-to="0"
-									class="active"></li>
-								<li data-target="#multi-item-example" data-slide-to="1"></li>
-							</ol>
-							<!--/.Indicators-->
-
-							<!--reservation Slides-->
-							<div class="carousel-inner" role="listbox">
-								<!--First slide-->
-								<div class="carousel-item active">
-
-									<div class="card" style="width: 18rem;">
-										<img class="card-img-top" src="resources/image/about_bg.jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h5 class="card-title">여행 간 곳</h5>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-
-											<a href="simpleInfo.do" class="btn btn-primary"
-												data-toggle="modal" data-target="#exampleModalCenter">예약
-												상세 정보 ></a>
-										</div>
-									</div>
-									<div class="card" style="width: 18rem;">
-										<img class="card-img-top" src="resources/image/about_bg.jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h5 class="card-title">Card title</h5>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-											<a href="#" class="btn btn-primary">예약 상세 정보 ></a>
-										</div>
-									</div>
-
-									<div class="card" style="width: 18rem;">
-										<img class="card-img-top" src="resources/image/about_bg.jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h5 class="card-title">예약된 여행</h5>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-
-											<a href="simpleInfo.do" class="btn btn-primary"
-												data-toggle="modal" data-target="#exampleModalCenter">예약
-												상세 정보 ></a>
-										</div>
-									</div>
-								</div>
-								<!--/.First slide-->
-
-								<!--Second slide-->
-								<div class="carousel-item">
-
-									<div class="col-md-3" style="float: left">
-										<div class="card mb-2">
-											<img class="card-img-top"
-												src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
-												alt="Card image cap">
-											<div class="card-body">
-												<h4 class="card-title">Card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
-												<a class="btn btn-primary">Button</a>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-md-3" style="float: left">
-										<div class="card mb-2">
-											<img class="card-img-top"
-												src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
-												alt="Card image cap">
-											<div class="card-body">
-												<h4 class="card-title">Card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
-												<a class="btn btn-primary">Button</a>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-md-3" style="float: left">
-										<div class="card mb-2">
-											<img class="card-img-top"
-												src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
-												alt="Card image cap">
-											<div class="card-body">
-												<h4 class="card-title">Card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
-												<a class="btn btn-primary">Button</a>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-md-3" style="float: left">
-										<div class="card mb-2">
-											<img class="card-img-top"
-												src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
-												alt="Card image cap">
-											<div class="card-body">
-												<h4 class="card-title">Card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
-												<a class="btn btn-primary">Button</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!--/.Second slide-->
-							</div>
-						</div>
-						<!--/.Slides-->
-					</div>
-
-
-
-
-					<div class="cardWrapper" id="cancelTrip">
-						<div id="multi-item-example"
-							class="carousel slide carousel-multi-item" data-ride="carousel">
-
-							<!--Controls-->
-							<div class="controls-top">
-								<a class="btn-floating" href="#multi-item-example"
-									data-slide="prev"><i class="fas fa-chevron-left"></i></a> <a
-									class="btn-floating" href="#multi-item-example"
-									data-slide="next"><i class="fas fa-chevron-right"></i></a>
-							</div>
-							<!--/.Controls-->
-
-							<!--Indicators-->
-							<ol class="carousel-indicators">
-								<li data-target="#multi-item-example" data-slide-to="0"
-									class="active"></li>
-								<li data-target="#multi-item-example" data-slide-to="1"></li>
-							</ol>
-							<!--/.Indicators-->
-
-							<!--reservation Slides-->
-							<div class="carousel-inner" role="listbox">
-								<!--First slide-->
-								<div class="carousel-item active">
-
-									<div class="card" style="width: 18rem;">
-										<img class="card-img-top" src="resources/image/about_bg.jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h5 class="card-title">취소취소취소</h5>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-
-											<a href="simpleInfo.do" class="btn btn-primary"
-												data-toggle="modal" data-target="#exampleModalCenter">예약
-												상세 정보 ></a>
-										</div>
-									</div>
-									<div class="card" style="width: 18rem;">
-										<img class="card-img-top" src="resources/image/about_bg.jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h5 class="card-title">Card title</h5>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-											<a href="#" class="btn btn-primary">예약 상세 정보 ></a>
-										</div>
-									</div>
-
-									<div class="card" style="width: 18rem;">
-										<img class="card-img-top" src="resources/image/about_bg.jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h5 class="card-title">예약된 여행</h5>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-
-											<a href="simpleInfo.do" class="btn btn-primary"
-												data-toggle="modal" data-target="#exampleModalCenter">예약
-												상세 정보 ></a>
-										</div>
-									</div>
-								</div>
-								<!--/.First slide-->
-
-								<!--Second slide-->
-								<div class="carousel-item">
-
-									<div class="col-md-3" style="float: left">
-										<div class="card mb-2">
-											<img class="card-img-top"
-												src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
-												alt="Card image cap">
-											<div class="card-body">
-												<h4 class="card-title">Card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
-												<a class="btn btn-primary">Button</a>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-md-3" style="float: left">
-										<div class="card mb-2">
-											<img class="card-img-top"
-												src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
-												alt="Card image cap">
-											<div class="card-body">
-												<h4 class="card-title">Card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
-												<a class="btn btn-primary">Button</a>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-md-3" style="float: left">
-										<div class="card mb-2">
-											<img class="card-img-top"
-												src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
-												alt="Card image cap">
-											<div class="card-body">
-												<h4 class="card-title">Card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
-												<a class="btn btn-primary">Button</a>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-md-3" style="float: left">
-										<div class="card mb-2">
-											<img class="card-img-top"
-												src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
-												alt="Card image cap">
-											<div class="card-body">
-												<h4 class="card-title">Card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
-												<a class="btn btn-primary">Button</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!--/.Second slide-->
-							</div>
-						</div>
-						<!--/.Slides-->
-					</div>
-
-
+					<!--/.Slides-->
 				</div>
+
+
+
+				<div class="cardWrapper" id="traveled">
+					<div id="multi-item-example"
+						class="carousel slide carousel-multi-item" data-ride="carousel">
+
+						<!--Controls-->
+						<div class="controls-top">
+							<a class="btn-floating" href="#multi-item-example"
+								data-slide="prev"><i class="fas fa-chevron-left"></i></a> <a
+								class="btn-floating" href="#multi-item-example"
+								data-slide="next"><i class="fas fa-chevron-right"></i></a>
+						</div>
+						<!--/..Controls-->
+
+						<!--Indicators-->
+						<ol class="carousel-indicators">
+							<li data-target="#multi-item-example" data-slide-to="0"
+								class="active"></li>
+							<li data-target="#multi-item-example" data-slide-to="1"></li>
+						</ol>
+						<!--/.Indicators-->
+
+						<!--reservation Slides-->
+						<div class="carousel-inner" role="listbox">
+							<!--First slide-->
+							<div class="carousel-item active">
+
+								<div class="card" style="width: 18rem;">
+									<img class="card-img-top" src="resources/image/about_bg.jpg"
+										alt="Card image cap">
+									<div class="card-body">
+										<h5 class="card-title">여행 간 곳</h5>
+										<p class="card-text">Some quick example text to build on
+											the card title and make up the bulk of the card's content.</p>
+
+										<a href="simpleInfo.do" class="btn btn-primary"
+											data-toggle="modal" data-target="#exampleModalCenter">예약
+											상세 정보 ></a>
+									</div>
+								</div>
+								<div class="card" style="width: 18rem;">
+									<img class="card-img-top" src="resources/image/about_bg.jpg"
+										alt="Card image cap">
+									<div class="card-body">
+										<h5 class="card-title">Card title</h5>
+										<p class="card-text">Some quick example text to build on
+											the card title and make up the bulk of the card's content.</p>
+										<a href="#" class="btn btn-primary">예약 상세 정보 ></a>
+									</div>
+								</div>
+
+								<div class="card" style="width: 18rem;">
+									<img class="card-img-top" src="resources/image/about_bg.jpg"
+										alt="Card image cap">
+									<div class="card-body">
+										<h5 class="card-title">예약된 여행</h5>
+										<p class="card-text">Some quick example text to build on
+											the card title and make up the bulk of the card's content.</p>
+
+										<a href="simpleInfo.do" class="btn btn-primary"
+											data-toggle="modal" data-target="#exampleModalCenter">예약
+											상세 정보 ></a>
+									</div>
+								</div>
+							</div>
+							<!--/.First slide-->
+
+							<!--Second slide-->
+							<div class="carousel-item">
+
+								<div class="col-md-3" style="float: left">
+									<div class="card mb-2">
+										<img class="card-img-top"
+											src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
+											alt="Card image cap">
+										<div class="card-body">
+											<h4 class="card-title">Card title</h4>
+											<p class="card-text">Some quick example text to build on
+												the card title and make up the bulk of the card's content.</p>
+											<a class="btn btn-primary">Button</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-3" style="float: left">
+									<div class="card mb-2">
+										<img class="card-img-top"
+											src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
+											alt="Card image cap">
+										<div class="card-body">
+											<h4 class="card-title">Card title</h4>
+											<p class="card-text">Some quick example text to build on
+												the card title and make up the bulk of the card's content.</p>
+											<a class="btn btn-primary">Button</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-3" style="float: left">
+									<div class="card mb-2">
+										<img class="card-img-top"
+											src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
+											alt="Card image cap">
+										<div class="card-body">
+											<h4 class="card-title">Card title</h4>
+											<p class="card-text">Some quick example text to build on
+												the card title and make up the bulk of the card's content.</p>
+											<a class="btn btn-primary">Button</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-3" style="float: left">
+									<div class="card mb-2">
+										<img class="card-img-top"
+											src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
+											alt="Card image cap">
+										<div class="card-body">
+											<h4 class="card-title">Card title</h4>
+											<p class="card-text">Some quick example text to build on
+												the card title and make up the bulk of the card's content.</p>
+											<a class="btn btn-primary">Button</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--/.Second slide-->
+						</div>
+					</div>
+					<!--/.Slides-->
+				</div>
+
+
+
+
+				<div class="cardWrapper" id="cancelTrip">
+					<div id="multi-item-example"
+						class="carousel slide carousel-multi-item" data-ride="carousel">
+
+						<!--Controls-->
+						<div class="controls-top">
+							<a class="btn-floating" href="#multi-item-example"
+								data-slide="prev"><i class="fas fa-chevron-left"></i></a> <a
+								class="btn-floating" href="#multi-item-example"
+								data-slide="next"><i class="fas fa-chevron-right"></i></a>
+						</div>
+						<!--/.Controls-->
+
+						<!--Indicators-->
+						<ol class="carousel-indicators">
+							<li data-target="#multi-item-example" data-slide-to="0"
+								class="active"></li>
+							<li data-target="#multi-item-example" data-slide-to="1"></li>
+						</ol>
+						<!--/.Indicators-->
+
+						<!--reservation Slides-->
+						<div class="carousel-inner" role="listbox">
+							<!--First slide-->
+							<div class="carousel-item active">
+
+								<div class="card" style="width: 18rem;">
+									<img class="card-img-top" src="resources/image/about_bg.jpg"
+										alt="Card image cap">
+									<div class="card-body">
+										<h5 class="card-title">취소취소취소</h5>
+										<p class="card-text">Some quick example text to build on
+											the card title and make up the bulk of the card's content.</p>
+
+										<a href="simpleInfo.do" class="btn btn-primary"
+											data-toggle="modal" data-target="#exampleModalCenter">예약
+											상세 정보 ></a>
+									</div>
+								</div>
+								<div class="card" style="width: 18rem;">
+									<img class="card-img-top" src="resources/image/about_bg.jpg"
+										alt="Card image cap">
+									<div class="card-body">
+										<h5 class="card-title">Card title</h5>
+										<p class="card-text">Some quick example text to build on
+											the card title and make up the bulk of the card's content.</p>
+										<a href="#" class="btn btn-primary">예약 상세 정보 ></a>
+									</div>
+								</div>
+
+								<div class="card" style="width: 18rem;">
+									<img class="card-img-top" src="resources/image/about_bg.jpg"
+										alt="Card image cap">
+									<div class="card-body">
+										<h5 class="card-title">예약된 여행</h5>
+										<p class="card-text">Some quick example text to build on
+											the card title and make up the bulk of the card's content.</p>
+
+										<a href="simpleInfo.do" class="btn btn-primary"
+											data-toggle="modal" data-target="#exampleModalCenter">예약
+											상세 정보 ></a>
+									</div>
+								</div>
+							</div>
+							<!--/.First slide-->
+
+							<!--Second slide-->
+							<div class="carousel-item">
+
+								<div class="col-md-3" style="float: left">
+									<div class="card mb-2">
+										<img class="card-img-top"
+											src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
+											alt="Card image cap">
+										<div class="card-body">
+											<h4 class="card-title">Card title</h4>
+											<p class="card-text">Some quick example text to build on
+												the card title and make up the bulk of the card's content.</p>
+											<a class="btn btn-primary">Button</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-3" style="float: left">
+									<div class="card mb-2">
+										<img class="card-img-top"
+											src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
+											alt="Card image cap">
+										<div class="card-body">
+											<h4 class="card-title">Card title</h4>
+											<p class="card-text">Some quick example text to build on
+												the card title and make up the bulk of the card's content.</p>
+											<a class="btn btn-primary">Button</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-3" style="float: left">
+									<div class="card mb-2">
+										<img class="card-img-top"
+											src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
+											alt="Card image cap">
+										<div class="card-body">
+											<h4 class="card-title">Card title</h4>
+											<p class="card-text">Some quick example text to build on
+												the card title and make up the bulk of the card's content.</p>
+											<a class="btn btn-primary">Button</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-3" style="float: left">
+									<div class="card mb-2">
+										<img class="card-img-top"
+											src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
+											alt="Card image cap">
+										<div class="card-body">
+											<h4 class="card-title">Card title</h4>
+											<p class="card-text">Some quick example text to build on
+												the card title and make up the bulk of the card's content.</p>
+											<a class="btn btn-primary">Button</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--/.Second slide-->
+						</div>
+					</div>
+					<!--/.Slides-->
+				</div>
+
+
 			</div>
+		</div>
 		</div>
 	</section>
 
@@ -548,7 +523,7 @@ th {
 					<table class="table">
 
 						<tr>
-							<th>체크인</th>
+							<th>체크인 가능시간</th>
 							<td>체크인 DATA</td>
 							<th>체크아웃</th>
 							<td>체크아웃 DATA</td>
@@ -576,7 +551,8 @@ th {
 
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">메세지 보내기</button>
+					<button type="button" class="btn btn-primary"
+						onclick="location.href=#">상세정보 페이지</button>
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
 				</div>
@@ -586,6 +562,9 @@ th {
 
 
 	<!--================Banner Area =================-->
+
+
+
 
 	<script>
 	let btn1 = document.getElementById("btn1");

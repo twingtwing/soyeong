@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.kids.prj.lodging.service.LodgingMapper">
+	<select id="LodgingSelectList"
+		parameterType="co.kids.prj.lodging.service.LodgingVO"
+		resultType="co.kids.prj.lodging.service.LodgingVO">
+
+		SELECT * FROM LODGING WHERE RCHECKIN <![CDATA[>]]> #{rcheckin} AND RCHECKOUT <![CDATA[<]]> #{rcheckout} AND RGUEST <![CDATA[>=]]> #{rguest}
+
+				<if test='rcategory != "A"'>
+					AND RCATEGORY=#{rcategory}
+				</if>
+				AND RUSE NOT IN('Y') ORDER BY RCHECKIN
+	</select>
+	<insert id="LodgingInsert" parameterType="co.kids.prj.lodging.service.LodgingVO">
+		insert into lodging values(
+		rno = #{rno},
+		id = #{id},
+		rcategory = #{rcategory},
+		rtype = #{rtype},
+		rguest = #{rguest},
+		rbed = #{rbed},
+		rbath = #{rbath},
+		rcontent = #{rcontent},
+		fee = #{fee},
+		am1 = #{am1},
+		am2 = #{am2},
+		am3 = #{am3},
+		rphoto = #{rphoto},
+		ruse = #{ruse},
+		rcheckin = #{rcheckin},
+		rcheckout = #{rcheckout},
+		rname = #{rname}
+		)
+		
+	</insert>
+</mapper>
