@@ -14,13 +14,14 @@
 		<div class="nk-nav-scroll">
 			<ul class="metismenu" id="menu">
 				<li class="nav-label">Dashboard</li>
-				<li><a class="has-arrow" href="javascript:void()"
+				<li><a class="has-arrow" href="admin.do"
 					aria-expanded="false"> <i class="icon-speedometer menu-icon"></i><span
 						class="nav-text">Dashboard</span>
 				</a>
 					<ul aria-expanded="false">
 						<li><a href="#">Home 1</a></li>
 						<li><a href="reportPage.do">신고관리</a></li>
+						<li><a href="adminQuestion.do">고객센터</a></li>
 					</ul>
 				</li>
 				<li class="mega-menu mega-menu-sm"><a class="has-arrow"
@@ -153,38 +154,5 @@
 			</ul>
 		</div>
 	</div>
-	<!--**********************************
-            Sidebar end
-        ***********************************-->
-	<script src="resources/admin/plugins/common/common.min.js"></script>
-	<script src="resources/admin/js/custom.min.js"></script>
-	<script src="resources/admin/js/settings.js"></script>
-	<script src="resources/admin/js/gleek.js"></script>
-	<script src="resources/admin/js/styleSwitcher.js"></script>
-
-	<!-- Chartjs -->
-	<script src="resources/admin/plugins/chart.js/Chart.bundle.min.js"></script>
-	<!-- Circle progress -->
-	<script
-		src="resources/admin/plugins/circle-progress/circle-progress.min.js"></script>
-	<!-- Datamap -->
-	<script src="resources/admin/plugins/d3v3/index.js"></script>
-	<script src="resources/admin/plugins/topojson/topojson.min.js"></script>
-	<script src="resources/admin/plugins/datamaps/datamaps.world.min.js"></script>
-	<!-- Morrisjs -->
-	<script src="resources/admin/plugins/raphael/raphael.min.js"></script>
-	<script src="resources/admin/plugins/morris/morris.min.js"></script>
-	<!-- Pignose Calender -->
-	<script src="resources/admin/plugins/moment/moment.min.js"></script>
-	<script
-		src="resources/admin/plugins/pg-calendar/js/pignose.calendar.min.js"></script>
-	<!-- ChartistJS -->
-	<script src="resources/admin/plugins/chartist/js/chartist.min.js"></script>
-	<script
-		src="resources/admin/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
-
-
-
-	<script src="resources/admin/js/dashboard/dashboard-1.js"></script>
 </body>
 </html>

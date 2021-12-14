@@ -3,7 +3,6 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
 <html>
-<html>
 <head>
 	<!-- Required meta tags -->
     <meta charset="utf-8">
@@ -27,7 +26,7 @@
     <link rel="stylesheet" href="resources/css/responsive.css">
     
 	<style type="text/css">
-		.active-Q {
+		.active-Q,.active-btn-Pay{
             font-weight: bold;
             color: #f3c300;
             border-bottom: 3px solid #f3c300;
@@ -62,8 +61,15 @@
 	<!-- validation -->
 	<script src="resources/js/jquery.form.js"></script>
 	<script src="resources/js/jquery.validate.min.js"></script>
+	
+	<!-- chart.js -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 	<!-- question -->
 	<script src="resources/js/question.js"></script>
+	
+	<!-- memberSales -->
+	<script src="resources/js/memberSales.js"></script>
+	
 </body>
 </html>

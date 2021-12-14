@@ -39,5 +39,4 @@ public class LodgingServiceImpl implements LodgingService {
 		// TODO Auto-generated method stub
 		return map.LodgingInsert(vo);
 	}
-
 }

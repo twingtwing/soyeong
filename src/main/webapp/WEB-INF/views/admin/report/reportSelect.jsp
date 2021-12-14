@@ -16,7 +16,7 @@ body{
 	justify-content: center;
 	margin: 3rem;
 }
-#all, .contentBox,.title,h3,.content,.writeInfo{
+#all, .contentBox,.title,h3,.content,.writeInfo,.backDiv{
 	width: 45vw;
 }
 h3{
@@ -47,18 +47,26 @@ div>button{
 	font-weight: bold;
 	cursor: pointer;
 }
+.backDiv button{
+	background-color: #FB8696;
+	border : 1px solid #FB8696;
+	margin: 2rem 0;
+}
 </style>
 </head>
 <body>
 <div align="center">
 	<div id="all">
+	<div class="backDiv" align="left">
+	<button>돌아가기</button>
+	</div>
         <h3>신고내역</h3>
 		<div class="contentBox" id="${report.rpno}">
-			<div class="title">사기를 치네요${report.rptitle}</div>
+			<div class="title">${report.rptitle}</div>
 			<div class="writeInfo">
 				<span class="writer">작성자: ${report.reporter}</span><span class="date">작성일: ${report.rpdate }</span>
 			</div>
-			<div class="content">돈다냇늗데 가보니까 없는 곳이내요 하${report.rpcontent }</div>
+			<div class="content">${report.rpcontent }</div>
 		</div>
 		<div>
             <button class="clear">처리완료</button>
@@ -79,12 +87,14 @@ div>button{
 			console.log(response)
 			if(response=='ok'){
 				window.alert('처리가 완료되었습니다.');
-				location.href='reportList.do';
+				location.href='reportPage.do';
 			} else{
 				window.alert('에러가 발생하였습니다.');
 			}
 		})
 	})
+	
+	$('.backDiv button').click(()=>{history.back();})
 </script>
 </body>
 </html>

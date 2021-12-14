@@ -8,21 +8,6 @@
 
 </head>
 <body>
-	<!--*******************
-        Preloader start
-    ********************-->
-	<div id="preloader">
-		<div class="loader">
-			<svg class="circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="20" fill="none"
-					stroke-width="3" stroke-miterlimit="10" />
-            </svg>
-		</div>
-	</div>
-	<!--*******************
-        Preloader end
-    ********************-->
-
 	<!--**********************************
             Nav header start
         ***********************************-->
@@ -229,37 +214,6 @@
 	<!--**********************************
             Header end ti-comment-alt
         ***********************************-->
-
-	<script src="resources/admin/plugins/common/common.min.js"></script>
-	<script src="resources/admin/js/custom.min.js"></script>
-	<script src="resources/admin/js/settings.js"></script>
-	<script src="resources/admin/js/gleek.js"></script>
-	<script src="resources/admin/js/styleSwitcher.js"></script>
-
-	<!-- Chartjs -->
-	<script src="resources/admin/plugins/chart.js/Chart.bundle.min.js"></script>
-	<!-- Circle progress -->
-	<script
-		src="resources/admin/plugins/circle-progress/circle-progress.min.js"></script>
-	<!-- Datamap -->
-	<script src="resources/admin/plugins/d3v3/index.js"></script>
-	<script src="resources/admin/plugins/topojson/topojson.min.js"></script>
-	<script src="resources/admin/plugins/datamaps/datamaps.world.min.js"></script>
-	<!-- Morrisjs -->
-	<script src="resources/admin/plugins/raphael/raphael.min.js"></script>
-	<script src="resources/admin/plugins/morris/morris.min.js"></script>
-	<!-- Pignose Calender -->
-	<script src="resources/admin/plugins/moment/moment.min.js"></script>
-	<script
-		src="resources/admin/plugins/pg-calendar/js/pignose.calendar.min.js"></script>
-	<!-- ChartistJS -->
-	<script src="resources/admin/plugins/chartist/js/chartist.min.js"></script>
-	<script
-		src="resources/admin/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
-
-
-
-	<script src="resources/admin/js/dashboard/dashboard-1.js"></script>
 
 </body>
 </html>

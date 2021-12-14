@@ -4,9 +4,17 @@ $(document).ready(function(){
         "use strict";
 
 		//목록 버튼 클릭 시 레이아웃 전환
-        $('.btn-Q').on('click', function () {
-            $('.btn-Q').toggleClass('active-Q');
-            $('.btn-Q-div').toggleClass('d-none');
+        $('.btn-Q').on('click',function () {
+			if(!$(this).hasClass('active-Q')){
+           		$('.btn-Q').toggleClass('active-Q');
+            	$('.btn-Q-div').toggleClass('d-none');
+				if($(this).index() === 1){
+					$('.collapse.collapse-Q').collapse('hide');
+					$('.collapse.collapse-Q-more').collapse('hide');
+				}else{
+					$('.more-collapse').show();
+				}
+			}
         });
 
         //접기 펼치기
@@ -21,9 +29,8 @@ $(document).ready(function(){
 
         //더보기 접기 펼치기
         $('.collapse.collapse-Q-more').on("show.bs.collapse", function () {
-            $('a[href="#' + $(this).attr('id') + '"]').remove();
+            $('a[href="#' + $(this).attr('id') + '"]').hide();
         });
-
     
         jQuery.validator.addMethod('answercheck', function (value, element) {
             return this.optional(element) || /^\bcat\b$/.test(value)
@@ -59,20 +66,40 @@ $(document).ready(function(){
                 },
                 //ajax
                 submitHandler: function (form) {
-                    $(form).ajaxSubmit({
-                        type: form.method,
-                        data: $(form).serialize(),
+					var formData;
+					if($('#fileQ').files.length != 0){
+						formData = new FormData($(form)[0]);
+					}else{
+						formData = new FormData();
+					}
+					formData.append('qCategory',$('#qCategory').val());
+					formData.append('qTitle',$('#qTitle').val());
+					formData.append('qAnswer',$('#qAnswer').val());
+					formData.append('qEmail',$('#qEmail').val());
+					
+                    $(form).ajaxSubmit ({
                         url: form.action,
-                        success: function () {
-                            $('#frm-Q :input').attr('disabled', 'disabled');
-                            $('#frm-Q').fadeTo("slow", 1, function () {
-                                $(this).find(':input').attr('disabled', 'disabled');
-                                $(this).find('label').css('cursor', 'default');
-                                $('#success').fadeIn()
-                                $('.modal').modal('hide');
-                                $('#success').modal('show');
+						processData: false,
+    					contentType: false,
+						data: formData,
+                        type: form.method,
+						dataType : "text",
+                        success: function(result) {
+							if(result =='T') {
+								alert("입력이 성공 했다....");
+								return;	
+							}
+							//Y해야함							
+							//수정필요함
+                            //$('#frm-Q :input').attr('disabled', 'disabled');
+                           // $('#frm-Q').fadeTo("slow", 1, function () {
+                             //   $(this).find(':input').attr('disabled', 'disabled');
+                           //     $(this).find('label').css('cursor', 'default');
+                            //    $('#success').fadeIn()
+                           //     $('.modal').modal('hide');
+                           //     $('#success').modal('show');
                                 //값 모두 사라지는지 확인하기
-                            })
+                          //  })
                         },
                         error: function () {
                             $('#frm-Q').fadeTo("slow", 1, function () {

@@ -50,6 +50,9 @@ h3 {
 	text-align: left;
 	margin:2rem;
 }
+#grid td{
+	cursor: pointer;
+}
 </style>
 <link rel="stylesheet"
 	href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
@@ -130,14 +133,19 @@ const grid = new tui.Grid({
   });
   
 
-gird.on('click',(event)=>{
-		let rpno = event.target.parentNode.className;
-		console.log(rpno)
+$('#grid').on('click',(event)=>{
+		let rpno = event.target.parentNode.parentNode.firstChild.textContent;
+		let state = event.target.parentNode.parentNode.lastChild.textContent;
+		console.log(event.target.parentNode.parentNode)
+		if(state == '처리완료'){
+			/*
+			색깔 초록색으로 바꾸고, 나중에 클릭못하게 막아버리기.
+			*/
+		}
 		$('#rpno').val(rpno);
 		$('#frm').submit();
 	})
 	
-  
   
 </script>
 </body>

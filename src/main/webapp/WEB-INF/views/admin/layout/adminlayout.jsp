@@ -4,25 +4,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title><tiles:getAsString name="title" /></title>
-<!-- Favicon icon -->
-<link rel="icon" type="image/png" sizes="16x16"
-	href="resources/admin/images/favicon.png">
-<!-- Pignose Calender -->
-<link
-	href="resources/admin/plugins/pg-calendar/css/pignose.calendar.min.css"
-	rel="stylesheet">
-<!-- Chartist -->
-<link rel="stylesheet"
-	href="resources/admin/plugins/chartist/css/chartist.min.css">
-<link rel="stylesheet"
-	href="resources/admin/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
-<!-- Custom Stylesheet -->
-<link href="resources/admin/css/style.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+	<title><tiles:getAsString name="title" /></title>
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" href="resources/admin/images/favicon.png">
+	<!-- Pignose Calender -->
+	<link href="resources/admin/plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+	<!-- Chartist -->
+	<link rel="stylesheet" href="resources/admin/plugins/chartist/css/chartist.min.css">
+	<link rel="stylesheet" href="resources/admin/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+	<!-- Custom Stylesheet -->
+	<link href="resources/admin/css/style.css" rel="stylesheet">
+
+	<script src="https://kit.fontawesome.com/00b1224df3.js"	crossorigin="anonymous"></script>
+
+   <!-- toast.ui -->
+    <link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
+    <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
+    <script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
 </head>
 
 <body>
+	
+	<!--*******************
+        Preloader start
+    ********************-->
+	<div id="preloader">
+		<div class="loader">
+			<svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none"
+					stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+		</div>
+	</div>
+	<!--*******************
+        Preloader end
+    ********************-->
+    
 	<div id="main-wrapper">
 		<tiles:insertAttribute name="header" />
 		<tiles:insertAttribute name="side" />
@@ -30,7 +51,6 @@
 		<tiles:insertAttribute name="body" />
 		<tiles:insertAttribute name="footer" />
 	</div>
-
 
 	<script src="resources/admin/plugins/common/common.min.js"></script>
 	<script src="resources/admin/js/custom.min.js"></script>
@@ -40,27 +60,16 @@
 
 	<!-- Chartjs -->
 	<script src="resources/admin/plugins/chart.js/Chart.bundle.min.js"></script>
-	<!-- Circle progress -->
-	<script
-		src="resources/admin/plugins/circle-progress/circle-progress.min.js"></script>
-	<!-- Datamap -->
-	<script src="resources/admin/plugins/d3v3/index.js"></script>
-	<script src="resources/admin/plugins/topojson/topojson.min.js"></script>
-	<script src="resources/admin/plugins/datamaps/datamaps.world.min.js"></script>
-	<!-- Morrisjs -->
-	<script src="resources/admin/plugins/raphael/raphael.min.js"></script>
-	<script src="resources/admin/plugins/morris/morris.min.js"></script>
-	<!-- Pignose Calender -->
-	<script src="resources/admin/plugins/moment/moment.min.js"></script>
-	<script
-		src="resources/admin/plugins/pg-calendar/js/pignose.calendar.min.js"></script>
-	<!-- ChartistJS -->
-	<script src="resources/admin/plugins/chartist/js/chartist.min.js"></script>
-	<script
-		src="resources/admin/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
-
-
-
-	<script src="resources/admin/js/dashboard/dashboard-1.js"></script>
+	
+	<!-- main -->
+	<script src="resources/admin/js/main.js"></script>
+	
+	<!-- service -->
+	<script src="resources/admin/js/adminQuestion.js"></script>
+	
+	<!-- validation -->
+	<script src="resources/admin/plugins/validation/jquery.validate.min.js"></script>
+	<script src="resources/admin/js/adminValidation.js"></script>
+	
 </body>
 </html>

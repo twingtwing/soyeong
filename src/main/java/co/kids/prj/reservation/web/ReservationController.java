@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.velocity.runtime.directive.Parse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.kids.prj.reservation.service.ReservationService;
@@ -34,6 +35,7 @@ public class ReservationController {
 	public String houseList() {
 		return "reservation/houseList";
 	}
+
 	@RequestMapping("hostManage.do")
 	public String hostManage() {
 		return "host/hostManage";
@@ -46,6 +48,13 @@ public class ReservationController {
 		request.setAttribute("thisBook", rDao.reservSelect(vo));
 	}
 	
+
+	
+	@GetMapping("/booking.do")
+	public String booking() {
+		return "reservation/booking";
+	}
+
 
 	
 }

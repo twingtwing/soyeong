@@ -9,4 +9,5 @@ public interface LodgingMapper {
 	int LodgingUpdateInfo(LodgingVO vo);
 	int LodgingDelete(int rno);
 	int LodgingInsert(LodgingVO vo);
+
 }
