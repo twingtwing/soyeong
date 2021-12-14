@@ -17,12 +17,12 @@
             <div class="container" style="width: 70%;">
                 <div class="section-top-border">
 	                <form id="noticeReadForm" name="noticeReadForm" method="post">
-	                    <h3 class="mb-30 title_color"><c:out value="${notice.title}"/></h3>
+	                    <h3 class="mb-30 title_color">${notice.btitle }</h3>
 	                
 	                    <div class="col-lg-12">
-	                        <h6 class="typo-list row m-2 d-flex justify-content-end">"작성자 : "<c:out value="${notice.id}"/></h6>
+	                        <h6 class="typo-list row m-2 d-flex justify-content-end">작성자 : ${notice.id }&nbsp; &nbsp; &nbsp; 작성일 : ${notice.bdate }</h6>
 	                        <blockquote class="generic-blockquote">
-	                            <c:out value="${notice.bcontent}"/>
+	                            ${notice.bcontent }
 	                        </blockquote>
 	                    </div>
 	                    <div class="row m-2 d-flex justify-content-end">
