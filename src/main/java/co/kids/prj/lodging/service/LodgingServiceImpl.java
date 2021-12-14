@@ -10,8 +10,8 @@ public class LodgingServiceImpl implements LodgingService {
 	@Autowired LodgingMapper map;
 	
 	@Override
-	public List<LodgingVO> LodgingSelectList() {
-		return map.LodgingSelectList();
+	public List<LodgingVO> LodgingSelectList(LodgingVO vo) {
+		return map.LodgingSelectList(vo);
 	}
 
 	@Override

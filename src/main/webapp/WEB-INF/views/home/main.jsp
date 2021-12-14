@@ -112,13 +112,6 @@
 													<option value="2">2</option>
 													<option value="3">3</option>
 												</select>
-											</div><div class="input-group">
-												<select class="wide">
-													<option data-display="안넣어도될듯?">몬가..</option>
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-												</select>
 											</div>
 										</div>
 									</div>
@@ -126,7 +119,7 @@
 										<div class="book_tabel_item">
 											<div class="input-group">
 												<select class="wide" id="rcategory">
-													<option data-display="숙소유형">숙소유형</option>
+													<option data-display="숙소유형" value="A">숙소유형</option>
 													<option value="게스트하우스">게스트하우스</option>
 													<option value="호텔">호텔</option>
 													<option value="한옥">한옥</option>
@@ -143,10 +136,10 @@
 			</div>
 		</section><br>
 		<form action="quickBook.do" method="post" id="frm">
-		<input type="hidden" name="checkin">
-		<input type="hidden" name="checkout">
-		<input type="hidden" name="rguest">
-		<input type="hidden" name="rcategory">
+			<input type="hidden" name="rcheckin">
+			<input type="hidden" name="rcheckout">
+			<input type="hidden" name="rguest">
+			<input type="hidden" name="rcategory">
 		</form>
 		<!--================Banner Area =================-->
 
@@ -171,14 +164,11 @@
 				return;
 			}
 			
-			$('form>input:nth-child(1)').val($('#checkin').val());
-			$('form>input:nth-child(2)').val($('#checkout').val()); 
-			$('form>input:nth-child(3)').val(parseInt($('#bookadult').val())+parseInt($('#bookkid').val()));
-			$('form>input:nth-child(4)').val($('#rcategory').val());
-			
+			$('#frm>input:nth-child(1)').val($('#checkin').val());
+			$('#frm>input:nth-child(2)').val($('#checkout').val()); 
+			$('#frm>input:nth-child(3)').val(parseInt($('#bookadult').val())+parseInt($('#bookkid').val()));
+			$('#frm>input:nth-child(4)').val($('#rcategory').val());
 			$('#frm').submit();	
-			
-			// lodging과 booking을 뷰로 만드는게 더 꼬일거같아서 그냥 lodging에 체크인,체크아웃 칼럼추가하겠습니다..
 
 		})
 	

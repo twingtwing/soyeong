@@ -97,9 +97,9 @@
 							<li class="nav-item"><a class="nav-link" href="#">호스트
 									모드</a></li>
 						</c:if>
+						<c:if test="${author eq 'ADMIN'}">
 							<li class="nav-item"><a class="nav-link" href="admin.do">관리자
 									모드</a></li>
-						<c:if test="${author eq 'ADMIN'}">
 						</c:if>
 						<li class="nav-item submenu dropdown">
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
