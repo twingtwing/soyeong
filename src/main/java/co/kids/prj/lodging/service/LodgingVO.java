@@ -22,6 +22,7 @@ public class LodgingVO {
 	private String am3;
 	private String rphoto;
 	private String ruse;
-	private Date checkin;
-	private Date checkout;
+	private Date rcheckin;
+	private Date rcheckout;
+	private String rname;
 }
