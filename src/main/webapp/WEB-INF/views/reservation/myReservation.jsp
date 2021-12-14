@@ -131,7 +131,7 @@ th {
 						<button type="button" id="btn3">취소 내역</button>
 					</div>
 
-<!-- 예약된 여행 -->
+					<!-- 예약된 여행 -->
 					<div class="cardWrapper" id="reservation">
 						<div id="multi-item-example"
 							class="carousel slide carousel-multi-item" data-ride="carousel">
@@ -160,13 +160,8 @@ th {
 							<div class="carousel-inner" role="listbox">
 								<!--First slide-->
 								<div class="carousel-item active">
-									<c:forEach items="${cards }" var="reserv" varStatus="status">
-										<c:if test="${status == null }">
-											<div>
-												<h4>예약된 숙소가 없습니다.</h4>
-											</div>
-										</c:if>
 
+									<c:forEach items="${cards }" var="reserv" varStatus="status">
 										<c:if test="${status.count <= 3}">
 											<div class="card" style="width: 18rem;">
 												<img class="card-img-top" src="${reserv.rphoto}"
@@ -174,10 +169,10 @@ th {
 												<div class="card-body">
 													<h5 class="card-title">${reserv.rname }</h5>
 													<p class="card-text">${reserv.rcontent }</p>
-													
-													<a href="#" class="btn btn-primary"
-														data-toggle="modal" data-target="#exampleModalCenter">예약
-														상세 정보 ></a>
+
+													<a href="#" class="btn btn-primary" data-toggle="modal"
+														data-target="#exampleModalCenter">예약 상세
+														정보 ></a>
 												</div>
 											</div>
 										</c:if>
@@ -198,9 +193,8 @@ th {
 											<div class="card-body">
 												<h5 class="card-title">${reserv.rname }</h5>
 												<p class="card-text">${reserv.rcontent }</p>
-												<a href="#" class="btn btn-primary"
-													data-toggle="modal" data-target="#exampleModalCenter">예약
-													상세 정보 ></a>
+												<a href="#" class="btn btn-primary" data-toggle="modal"
+													data-target="#exampleModalCenter">예약 상세 정보 ></a>
 											</div>
 										</div>
 									</c:if>
@@ -524,9 +518,9 @@ th {
 
 						<tr>
 							<th>체크인 가능시간</th>
-							<td>체크인 DATA</td>
+							<td>checkin</td>
 							<th>체크아웃</th>
-							<td>체크아웃 DATA</td>
+							<td>checkout</td>
 						</tr>
 						<tr>
 							<th>인원</th>
@@ -562,7 +556,21 @@ th {
 
 
 	<!--================Banner Area =================-->
-
+<!-- 
+	data-checkin='${reserv.rcheckin }' data-checkout='${reserv.rcheckout }'
+	data-adult='${reserv.bookadult }' data-kid='${reserv.bookkid }'
+	data-pay='${reserv.fee }' data-addr='${reserv.raddress }'
+	<script>
+	$('#exampleModalCenter').on('show.bs.modal', function(e){
+		var checkin = $(e.relatedTarget).data('checkin');
+		var checkout = $(e.relatedTarget).data('checkout');
+		var adult = $(e.relatedTarget).data('adult');
+		var kid = $(e.relatedTarget).data('kid');
+		var pay = $(e.relatedTarget).data('pay');
+		var addr = $(e.relatedTarget).data('addr');
+	})
+</script>
+ -->
 
 
 

@@ -24,6 +24,12 @@
 		AND RUSE NOT IN('Y') ORDER BY RCHECKIN, RGUEST ASC
 	</select>
 	
+	<insert id="LodgingInsert" parameterType="co.kids.prj.lodging.service.LodgingVO">	
+		INSERT INTO LODGING VALUES(RNO,ID,RCATEGORY,RTYPE,RGUEST,RBED,RBATH,RADDRESS,RCONTENT,FEE,AM1,AM2,AM3,RPHOTO,RUSE,RCHECKIN,RCHECKOUT,RNAME)(
+		(SELECT MAX(RNO) FROM LODGING)+1,#{id},#{rcategory},#{rtype},#{rguest},#{rbed},#{rbath},#{raddress},#{rcontent}, #{fee},#{am1},#{am2}, #{am3},#{rphoto},default,#{rcheckin},#{rcheckout},#{rname}
+		)
+	</insert>
+	
 	<select id="LodgingSelect" resultType="co.kids.prj.lodging.service.LodgingVO">
 		SELECT * FROM LODGING WHERE RNO = #{rno}
 	</select>
@@ -37,27 +43,6 @@
 		update lodging 
 	</update>
 
-	<insert id="LodgingInsert" parameterType="co.kids.prj.lodging.service.LodgingVO">
-		insert into lodging values(
-		rno = #{rno},
-		id = #{id},
-		rcategory = #{rcategory},
-		rtype = #{rtype},
-		rguest = #{rguest},
-		rbed = #{rbed},
-		rbath = #{rbath},
-		rcontent = #{rcontent},
-		fee = #{fee},
-		am1 = #{am1},
-		am2 = #{am2},
-		am3 = #{am3},
-		rphoto = #{rphoto},
-		ruse = #{ruse},
-		rcheckin = #{rcheckin},
-		rcheckout = #{rcheckout},
-		rname = #{rname}
-		)
-		
-	</insert>
+
 
 </mapper>
