@@ -4,7 +4,7 @@ public class QuestionAVO {
 	private int fNo;
 	private String fTitle;
 	private String fAnswer;
-	private String fCategorey;
+	private String fCategory;
 	
 	public int getfNo() {
 		return fNo;
@@ -29,13 +29,13 @@ public class QuestionAVO {
 	public void setfAnswer(String fAnswer) {
 		this.fAnswer = fAnswer;
 	}
-	
-	public String getfCategorey() {
-		return fCategorey;
+
+	public String getfCategory() {
+		return fCategory;
 	}
-	
-	public void setfCategorey(String fCategorey) {
-		this.fCategorey = fCategorey;
+
+	public void setfCategory(String fCategory) {
+		this.fCategory = fCategory;
 	}
-	
+
 }

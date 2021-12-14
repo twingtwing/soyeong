@@ -23,7 +23,6 @@ public class QuestionVServiceImpl implements QuestionVService{
 
 	@Override
 	public int questionVInsert(QuestionVVO vo) {
-		// TODO Auto-generated method stub
 		return mapper.questionVInsert(vo);
 	}
 
