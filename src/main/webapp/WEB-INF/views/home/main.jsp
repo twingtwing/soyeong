@@ -165,9 +165,13 @@
 				return;
 			}
 			
-			$('#frm>input:nth-child(1)').val($('#checkin').val());
+			let num = Number(parseInt($('#bookadult').val())+parseInt($('#bookkid').val()));
+			let date = $('#checkin').val();
+			date = date.replace(date[9],date[9]-1);
+			
+			$('#frm>input:nth-child(1)').val(date);
 			$('#frm>input:nth-child(2)').val($('#checkout').val()); 
-			$('#frm>input:nth-child(3)').val(parseInt($('#bookadult').val())+parseInt($('#bookkid').val()));
+			$('#frm>input:nth-child(3)').val(num);
 			$('#frm>input:nth-child(4)').val($('#rcategory').val());
 			$('#frm').submit();	
 

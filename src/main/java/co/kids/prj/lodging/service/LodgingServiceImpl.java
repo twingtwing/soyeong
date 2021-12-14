@@ -16,27 +16,34 @@ public class LodgingServiceImpl implements LodgingService {
 
 	@Override
 	public LodgingVO LodgingSelect(LodgingVO vo) {
-		return null;
+		return map.LodgingSelect(vo);
 	}
 
 	@Override
-	public int LodgingUpdateState(String state) {
-		return 0;
+	public int LodgingUpdateState(String ruse) {
+		return map.LodgingUpdateState(ruse);
 	}
 
 	@Override
 	public int LodgingUpdateInfo(LodgingVO vo) {
-		return 0;
+		return map.LodgingUpdateInfo(vo);
 	}
 
 	@Override
 	public int LodgingDelete(int rno) {
-		return 0;
+		return map.LodgingDelete(rno);
+	}
+
+	@Override
+	public List<LodgingVO> LodgingListByTag(LodgingVO vo) {
+		
+		return map.LodgingListByTag(vo);
 	}
 
 	@Override
 	public int LodgingInsert(LodgingVO vo) {
-		// TODO Auto-generated method stub
 		return map.LodgingInsert(vo);
 	}
+
+
 }
