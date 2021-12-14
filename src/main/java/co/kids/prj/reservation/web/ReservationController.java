@@ -31,11 +31,6 @@ public class ReservationController {
 		return "reservation/detailedInfo";
 	}
 
-	@RequestMapping("houseList.do")
-	public String houseList() {
-		return "reservation/houseList";
-	}
-
 	@RequestMapping("hostManage.do")
 	public String hostManage() {
 		return "host/hostManage";

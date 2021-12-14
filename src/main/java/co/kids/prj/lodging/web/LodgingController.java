@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,7 +36,7 @@ public class LodgingController {
 	public void hotelSort(LodgingVO vo, HttpServletResponse response) {
 		Gson gson = new GsonBuilder().create();
 		try {
-			response.getWriter().write(gson.toJson(lodgingDao.LodgingListByTag(vo)));
+			response.getWriter().write(gson.toJson(lodgingDao.LodgingSelectList(vo)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -46,5 +47,9 @@ public class LodgingController {
 		return "host/hostInsertForm";
 	}
 
-
+	@PostMapping("/houseList.do")
+	public String houseList(LodgingVO vo, Model model) {
+		model.addAttribute("lists",lodgingDao.LodgingSelectList(vo));
+		return "reservation/houseList";
+	}
 }

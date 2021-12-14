@@ -4,38 +4,25 @@
 	<select id="LodgingSelectList"
 		parameterType="co.kids.prj.lodging.service.LodgingVO"
 		resultType="co.kids.prj.lodging.service.LodgingVO">
-		SELECT * FROM LODGING WHERE RCHECKIN<![CDATA[>]]> #{rcheckin} AND RCHECKOUT <![CDATA[<]]>
-		#{rcheckout} AND RGUEST<![CDATA[>=]]>#{rguest}
+		SELECT * FROM LODGING WHERE RCHECKIN<![CDATA[>]]> TO_DATE(#{rcheckin},'yyyy-mm-dd') AND RCHECKOUT <![CDATA[<]]>
+		TO_DATE(#{rcheckout},'yyyy-mm-dd') AND RGUEST<![CDATA[>=]]>#{rguest}
 		<if test='rcategory != "A"'>
-			AND RCATEGORY=#{rcategory}
+		AND RCATEGORY=#{rcategory}
 		</if>
-		AND RUSE NOT IN('Y') ORDER BY RCHECKIN
-	</select>
-
-
-	<select id="LodgingListByTag"
-		parameterType="co.kids.prj.lodging.service.LodgingVO"
-		resultType="co.kids.prj.lodging.service.LodgingVO">
-		SELECT * FROM LODGING WHERE RCHECKIN <![CDATA[>]]> #{rcheckin}
-		AND RCHECKOUT <![CDATA[<]]> #{rcheckout}
-		AND RGUEST <![CDATA[>=]]> #{rguest}
 		<if test='am1=="Y"'>
 		AND AM1 in(#{am1})
 		</if>
 		<if test='am2=="Y"'>
-		OR AM2 in(#{am2})
+		AND AM2 in(#{am2})
 		</if>
 		<if test='am3=="Y"'>
-		OR AM3 in(#{am3})
+		AND AM3 in(#{am3})
 		</if>
-		AND RUSE NOT IN('Y') ORDER BY RCHECKIN
+		<if test='am1=="N" and am2=="N" and am3=="N"'>
+		AND RCATEGORY=RCATEGORY
+		</if>
+		AND RUSE NOT IN('Y') ORDER BY RCHECKIN, RGUEST ASC
 	</select>
-	
-	<insert id="LodgingInsert" parameterType="co.kids.prj.lodging.service.LodgingVO">	
-		INSERT INTO LODGING VALUES(RNO,ID,RCATEGORY,RTYPE,RGUEST,RBED,RBATH,RADDRESS,RCONTENT,FEE,AM1,AM2,AM3,RPHOTO,RUSE,RCHECKIN,RCHECKOUT,RNAME)(
-		(SELECT MAX(RNO) FROM LODGING)+1,#{id}#{rcategory},#{rtype},#{rguest},#{rbed},#{rbath},#{raddress},#{rcontent}, #{fee},#{am1},#{am2}, #{am3},#{rphoto},default,#{rcheckin},#{rcheckout},#{rname}
-		)
-	</insert>
 	
 	<select id="LodgingSelect" resultType="co.kids.prj.lodging.service.LodgingVO">
 		SELECT * FROM LODGING WHERE RNO = #{rno}

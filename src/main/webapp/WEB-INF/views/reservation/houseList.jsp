@@ -117,8 +117,9 @@ footer {
 							<span class="rguest">${list.rguest}</span>
 							</a>
 							<span class="fee">${list.fee}</span>
-							<span class="checkin">${list.rcheckin}</span>
-							<span class="checkout">${list.rcheckout}</span>
+							<span class="rcheckin">${list.rcheckin}</span>
+							<span class="rcheckout">${list.rcheckout}</span>
+							<span class="rcategory">${list.rcategory}</span>
 						</div>
 							<div>${list.rphoto}</div>
 						</div>
@@ -161,7 +162,47 @@ footer {
 		}
 		
 		
-		// 분류태그 클릭시 스타일, isChecked 클래스 추가
+		
+		// ajax에 실어보낼 데이터. 전역변수여야 작동함
+	 	let date = new Date($('.rcheckin').first().text());
+	 	date.setDate(date.getDate()-1);
+	 	date = date.toISOString().substring(0,10);
+		
+	 	let endDate = new Date($('.rcheckout').first().text());
+	 	endDate.setDate(endDate.getDate()+1);
+	 	endDate = endDate.toISOString().substring(0,10);
+	 	 	
+	 	
+	 	let checkDiff = function(elements){
+	 		let arr = [];
+	 		for(let e of elements){
+	 			arr.push(e.textContent);
+	 		}
+	 		arr = new Set(arr);
+	 		if(arr.size<=1){
+	 			return false;
+	 		} else{
+	 			return true;
+	 		}
+	 	}
+	 	 	
+	 	let category = document.getElementsByClassName('rcategory');
+		if(checkDiff(category)){
+			category = 'A';
+		} else{
+			category = $('.rcategory').first().text();
+		}
+			console.log(category)
+				
+	 	let guest = document.getElementsByClassName('rguest');
+	 	let arr = [];
+	 	for(let g of guest){
+	 		arr.push(+g.textContent)
+	 	}
+	 	guest = Math.min(...arr);
+	 	
+	 	
+		// 분류태그 클릭시 스타일, isChecked 클래스 추가, ajax함수호출
 		let am1, am2, am3;
  		$('#tags').on('click','a',(event)=>{
 			$(event.target).toggleClass('isChecked');
@@ -169,31 +210,16 @@ footer {
 			am1 = document.getElementById('am1').dataset.am;
 			am2 = document.getElementById('am2').dataset.am;
 			am3 = document.getElementById('am3').dataset.am;
-			if(am1=='N'&&am2=='N'&&am3=='N'){
-				am1='Y';
-				am2='Y';
-				am3='Y';
-			}
-			sortByTag(am1,am2,am3);
+			sortByTag(am1,am2,am3); //ajax호출
 		})
 		
-		
-		
-		// 분류태그 여러개 선택하면 ajax
- 		let date = new Date($('.checkin').first().text());
- 		date.setDate(date.getDate()-1);
- 		date = date.toISOString().substring(0,10);
- 			
- 		let endDate = new Date($('.checkout').first().text());
- 		endDate.setDate(endDate.getDate()+1);
- 		endDate = endDate.toISOString().substring(0,10);
- 		
- 		// 태그별 ajax 호출
+ 		// 태그별 ajax 호출 함수
 		let sortByTag = function(am1, am2, am3){		
 			let data = {
 				rcheckin : date,
 				rcheckout : endDate,
-				rguest : +$('.rguest').first().text(),
+				rguest : guest,
+				rcategory : category,
 				am1 : am1,
 				am2 : am2,
 				am3 : am3 
@@ -206,7 +232,7 @@ footer {
 				dataType : 'json'
 			})
 			.done((result)=>{
-				changeList(result);
+				changeList(result); // 화면바뀜
 			})
 		}
 		
@@ -219,35 +245,32 @@ footer {
 				a.addClass('button_hover');
 				a.addClass('theme_btn_two');
 				a.text('빠른 비용계산\n');
+				a.attr('href','#');
 				a.append($('<span>').attr('class','rguest').text(hotel.rguest));
 				$('#houseList').append($('<div>').append($('<div>').attr('class','about_content')
 												.append($('<div>').attr('class','hotelInfo')
 												.append($('<h2>').attr('class','title title_color').css('margin-top','1.5rem').text(hotel.rname),$('<p>').text(hotel.rcontent),
-												a,$('<span>').attr('class','fee').text(hotel.fee),$('<span>').attr('class','checkin').text(hotel.checkin),$('<span>').attr('class','checkout').text(hotel.checkout)
+												a,$('<span>').attr('class','fee').text(hotel.fee),$('<span>').attr('class','checkin').text(hotel.rcheckin),$('<span>').attr('class','checkout').text(hotel.rcheckout)
 												),$('<div>').text(hotel.rphoto))))
 			}
 
  		}
 			
- 	// 버튼 클릭시 비용계산결과 나옴
+ 		// 버튼 클릭시 비용계산결과 나옴
 		$('#row').on('click','.theme_btn_two',(event)=>{
-			if($(event.target.nextSibling.nextSibling).css('display')=='none'){
-				count(event);				
+			if($(event.target).next().css('display')=='none'){
+				let feeSpan = $(event.target).next();
+				let checkin = $(event.target).next().next();
+				let checkout = $(event.target).next().next().next();
+				checkin = new Date(checkin.text());
+				checkout = new Date(checkout.text());
+				let day = +(checkout.getTime()-checkin.getTime())/(1000*3600*24);
+				feeSpan.text(parseInt(feeSpan.text())*day+'원');
+				feeSpan.css('display','inline-block'); 	
 			}
 		})
-		let count = function(event){
-			let feeSpan = event.target.nextSibling.nextSibling;
-			let fee = +event.target.nextSibling.nextSibling.textContent;
-			let checkin = event.target.nextSibling.nextSibling.nextSibling.nextSibling;
-			let checkout = event.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
-			checkin = new Date(checkin.textContent);
-			checkout = new Date(checkout.textContent);
-			let day = +(checkout.getTime()-checkin.getTime())/(1000*3600*24);
-			fee = fee*day;
-			feeSpan.textContent = fee+'원';
-			feeSpan.style.display = 'inline-block'; 	
-		}
 	
+		// 코드가 너무 더럽네요..죄송..
 	</script>
 	
 	
