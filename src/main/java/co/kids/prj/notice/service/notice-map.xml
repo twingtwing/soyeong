@@ -3,11 +3,11 @@
 <mapper namespace="co.kids.prj.notice.service.NoticeMapper">
 
 	<select id="noticeSelectList" resultType="co.kids.prj.notice.service.NoticeVO">
-		SELECT * FROM NOTICE ORDER BY NO DESC
+		SELECT * FROM NOTICE
 	</select>
 	
 	<select id="noticeSelect" resultType="co.kids.prj.notice.service.NoticeVO">
-		SELECT * FROM NOTICE WHERE NO = #{no}
+		SELECT * FROM NOTICE WHERE BNO = #{bno}
 	</select>
 	
 	<insert id="noticeInsert" parameterType="co.kids.prj.notice.service.NoticeVO">

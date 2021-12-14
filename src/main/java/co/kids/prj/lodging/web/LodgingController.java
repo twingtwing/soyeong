@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 
 import co.kids.prj.lodging.service.LodgingServiceImpl;
 import co.kids.prj.lodging.service.LodgingVO;
@@ -27,6 +29,7 @@ public class LodgingController {
 		return "reservation/houseList";
 	}
 
+
 	@PostMapping("/hotelSort.do")
 	@ResponseBody
 	public void hotelSort(LodgingVO vo, HttpServletResponse response) {
@@ -37,4 +40,11 @@ public class LodgingController {
 			e.printStackTrace();
 		}
 	}
+
+	@RequestMapping("hostInsertForm.do")
+	public String hostInsertForm() {
+		return "host/hostInsertForm";
+	}
+
+
 }

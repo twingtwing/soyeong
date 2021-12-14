@@ -40,6 +40,7 @@
 	<select id="LodgingSelect" resultType="co.kids.prj.lodging.service.LodgingVO">
 		SELECT * FROM LODGING WHERE RNO = #{rno}
 	</select>
+
 	
 	<update id="LodgingUpdateState" parameterType="String">
 		UPDATE LODGING SET RUSE = #{ruse}
@@ -48,4 +49,28 @@
 	<update id="LodgingUpdateInfo" parameterType="co.kids.prj.lodging.service.LodgingVO">
 		update lodging 
 	</update>
+
+	<insert id="LodgingInsert" parameterType="co.kids.prj.lodging.service.LodgingVO">
+		insert into lodging values(
+		rno = #{rno},
+		id = #{id},
+		rcategory = #{rcategory},
+		rtype = #{rtype},
+		rguest = #{rguest},
+		rbed = #{rbed},
+		rbath = #{rbath},
+		rcontent = #{rcontent},
+		fee = #{fee},
+		am1 = #{am1},
+		am2 = #{am2},
+		am3 = #{am3},
+		rphoto = #{rphoto},
+		ruse = #{ruse},
+		rcheckin = #{rcheckin},
+		rcheckout = #{rcheckout},
+		rname = #{rname}
+		)
+		
+	</insert>
+
 </mapper>

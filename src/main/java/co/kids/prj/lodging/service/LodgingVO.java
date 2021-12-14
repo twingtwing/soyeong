@@ -1,6 +1,5 @@
 package co.kids.prj.lodging.service;
 
-import java.sql.Date;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +21,7 @@ public class LodgingVO {
 	private String am3;
 	private String rphoto;
 	private String ruse;
-	private Date rcheckin;
-	private Date rcheckout;
+	private String rcheckin;
+	private String rcheckout;
 	private String rname;
 }

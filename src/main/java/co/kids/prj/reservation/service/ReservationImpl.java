@@ -3,16 +3,18 @@ package co.kids.prj.reservation.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository("rDao")
 public class ReservationImpl implements ReservationService {
 	
 	@Autowired
 	private ReservationMapper map;
 
 	@Override
-	public List<ReservationVO> reservSelectList() {
+	public List<ReservationVO> reservSelectList(ReservationVO vo) {
 		// TODO Auto-generated method stub
-		return map.reservSelectList();
+		return map.reservSelectList(vo);
 	}
 
 	@Override
