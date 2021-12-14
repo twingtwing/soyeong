@@ -55,7 +55,7 @@
 						</p>
 						<a href="myReserv.do" class="btn theme_btn button_hover">내예약</a>
 						<a href="detailedInfo.do" class="btn theme_btn button_hover">상세정보</a>
-						<a href="houseList.do" class="btn theme_btn button_hover">리스트 보기</a>
+						<a href="#" class="btn theme_btn button_hover" id="listAll">리스트 보기</a>
 						<a href="hostManage.do" class="btn theme_btn button_hover">호스트 숙소관리 test</a>
 						<a href="admin.do" class="btn theme_btn button_hover">관리자 페이지 test</a>
 					</div>
@@ -99,7 +99,7 @@
 										<div class="book_tabel_item">
 											<div class="input-group">
 												<select class="wide" id="bookadult">
-													<option data-display="Adult" value="2">Adult</option>
+													<option data-display="Adult" value="1">Adult</option>
 													<option value="1">1</option>
 													<option value="2">2</option>
 													<option value="3">3</option>
@@ -158,26 +158,47 @@
 
 
 	<script>
+		// 빠른예약
 		$('.book_now_btn').click(()=>{		
-			let ok = $('#checkin').val()&&$('#checkout').val()&&$('#bookadult').val()&&$('#bookkid').val()&&$('#rcategory').val();
+			let ok = $('#checkin').val()&&$('#checkout').val();
 			if(!Boolean(ok)){
-				window.alert('시간과 인원을 선택해주세요.');
+				window.alert('날짜를 지정해주세요.');
 				return;
 			}
 			
 			let num = Number(parseInt($('#bookadult').val())+parseInt($('#bookkid').val()));
 			let date = $('#checkin').val();
-			date = date.replace(date[9],date[9]-1);
-			
-			$('#frm>input:nth-child(1)').val(date);
-			$('#frm>input:nth-child(2)').val($('#checkout').val()); 
-			$('#frm>input:nth-child(3)').val(num);
-			$('#frm>input:nth-child(4)').val($('#rcategory').val());
-			$('#frm').submit();	
-
+			date = new Date(date);
+			date.setDate(date.getDate()-1);
+			date = date.toISOString().substring(0,10);
+			sendForm(date,$('#checkout').val(),num,$('#rcategory').val(),'quickBook.do');
 		})
-	
-	
+		
+		
+		// 전체보기
+		$('#listAll').on('click',()=>{
+			// 오늘날짜부터 한달 사이에 있는 모든 방 보여줌
+			let today = new Date();
+			today = today.toISOString().substring(0,10);
+			
+			let checkout = new Date();
+			checkout.setMonth(checkout.getMonth()+1); 
+			checkout = checkout.toISOString().substring(0,10);
+			sendForm(today,checkout,1,'A','houseList.do');
+		})
+		
+		
+		// 메인화면에서 두개의 버튼으로 다른검색하는 함수
+		let sendForm = function(checkin,checkout,guest,category,action){
+			$('#frm').attr('action',action);
+			$('#frm>input:nth-child(1)').val(checkin);
+			$('#frm>input:nth-child(2)').val(checkout); 
+			$('#frm>input:nth-child(3)').val(guest);
+			$('#frm>input:nth-child(4)').val(category);
+			$('#frm').submit();
+		}
+		
+		// 구글 맵
 		function myMap() {
 			var mapOptions = {
 				center : new google.maps.LatLng(35.869103, 128.593390),
