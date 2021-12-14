@@ -11,14 +11,12 @@ public class QuestionVServiceImpl implements QuestionVService{
 
 	@Override
 	public List<QuestionVVO> questionVList() {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.questionVList();
 	}
 
 	@Override
-	public QuestionVVO questionVSelect(QuestionVVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public QuestionVVO questionVSelect(int qNo) {
+		return mapper.questionVSelect(qNo);
 	}
 
 	@Override

@@ -37,7 +37,6 @@ $(document).ready(function(){
         }, "type the correct answer -_-");
 
         // validate question.html(frm-Q) form
-        $(function () {
             $('#frm-Q').validate({
                 rules: {
                     qTitle: {
@@ -66,8 +65,10 @@ $(document).ready(function(){
                 },
                 //ajax
                 submitHandler: function (form) {
+					event.stopPropagation();
+                    event.preventDefault();
 					var formData;
-					if($('#fileQ').files.length != 0){
+					if($('#fileQ')[0].files.length != 0){
 						formData = new FormData($(form)[0]);
 					}else{
 						formData = new FormData();
@@ -77,29 +78,31 @@ $(document).ready(function(){
 					formData.append('qAnswer',$('#qAnswer').val());
 					formData.append('qEmail',$('#qEmail').val());
 					
-                    $(form).ajaxSubmit ({
+                    $.ajax({
                         url: form.action,
 						processData: false,
     					contentType: false,
 						data: formData,
                         type: form.method,
-						dataType : "text",
+						dataType : 'text',
                         success: function(result) {
-							if(result =='T') {
-								alert("입력이 성공 했다....");
-								return;	
-							}
-							//Y해야함							
-							//수정필요함
-                            //$('#frm-Q :input').attr('disabled', 'disabled');
-                           // $('#frm-Q').fadeTo("slow", 1, function () {
-                             //   $(this).find(':input').attr('disabled', 'disabled');
-                           //     $(this).find('label').css('cursor', 'default');
-                            //    $('#success').fadeIn()
-                           //     $('.modal').modal('hide');
-                           //     $('#success').modal('show');
-                                //값 모두 사라지는지 확인하기
-                          //  })
+							if(result.trim() === 'Y'){
+								$('#frm-Q').find(':input').not(':first').not(':last').val('');
+    	                        $('#frm-Q :input').attr('disabled', 'disabled');
+        	                    $('#frm-Q').fadeTo("slow", 1, function () {
+            	                    $(this).find(':input').attr('disabled', 'disabled');
+                	                $(this).find('label').css('cursor', 'default');
+                    	            $('#success').fadeIn()
+                        	        $('.modal').modal('hide');
+                            	    $('#success').modal('show');
+                           		})
+							}else if(result.trim() === 'N'){
+								$('#frm-Q').fadeTo("slow", 1, function () {
+	                                $('#error').fadeIn()
+    	                            $('.modal').modal('hide');
+        	                        $('#error').modal('show');
+            	                })
+							}						
                         },
                         error: function () {
                             $('#frm-Q').fadeTo("slow", 1, function () {
@@ -111,7 +114,6 @@ $(document).ready(function(){
                     })
                 }
             })
-        })
         
     })(jQuery);
 })

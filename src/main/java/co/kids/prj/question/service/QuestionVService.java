@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface QuestionVService {
 	List<QuestionVVO> questionVList();
-	QuestionVVO questionVSelect(QuestionVVO vo);
+	QuestionVVO questionVSelect(int qNo);
 	int questionVInsert(QuestionVVO vo);
 	//처리여부 수정
 	int questionChangeProcess(QuestionVVO vo);

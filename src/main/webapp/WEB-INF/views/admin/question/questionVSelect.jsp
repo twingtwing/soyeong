@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,36 +28,27 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="read-content">
+							<!--  처리상태,이메일,말머리 추가 -->
 								<div class="media">
 									<div class="media-body mt-3">
-										<h5 class="m-b-3">질문제목</h5>
-										<p class="m-b-2">작성자</p>
+										<h5 class="m-b-3">${voice.qTitle }</h5>
+										<p class="m-b-2">${voice.name }</p>
 									</div>
 								</div>
 								<hr>
 								<div class="mt-4 mb-4">
-									<p>Even the all-powerful Pointing has no control about the
-										blind texts it is an almost unorthographic life One day
-										however a small line of blind text by the name of Lorem Ipsum
-										decided to leave for the far World of Grammar.</p>
-									<p>Aenean vulputate eleifend tellus. Aenean leo ligula,
-										porttitor eu, consequat vitae, eleifend ac, enim. Aliquam
-										lorem ante, dapibus in, viverra quis, feugiat a, tellus.
-										Phasellus viverra nulla ut metus varius laoreet. Quisque
-										rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.
-										Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam
-										rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem
-										quam semper libero, sit amet adipiscing sem neque sed ipsum.
-										Nam quam nunc, blandit vel, luctus pulvinar</p>
+									<p>${voice.qAnswer }</p>
 								</div>
 								<hr>
 								<div class="mt-4">
-									<!-- 파일 첨부 여부 갯수 -->
-									<h6 class="p-t-15">
-										<i class="fa fa-download mb-2"></i> Attachments <span>(3)</span>
-									</h6>
+									<c:if test="${not empty voice.qFile}">
+										<h6 class="p-t-15">
+											<i class="fa fa-download mb-2"></i> Attachment
+										</h6>
+									</c:if>
 								</div>
 								<div class="mt-4">
+									<!-- 처리상태 변경 -->
 									 <a type="button" href="#" class="btn mb-1 btn-rounded btn-outline-dark">상태수정</a>
 								</div>
 							</div>

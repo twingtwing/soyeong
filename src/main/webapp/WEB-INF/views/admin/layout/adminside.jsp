@@ -21,7 +21,6 @@
 					<ul aria-expanded="false">
 						<li><a href="#">Home 1</a></li>
 						<li><a href="reportPage.do">신고관리</a></li>
-						<li><a href="adminQuestion.do">고객센터</a></li>
 					</ul>
 				</li>
 				<li class="mega-menu mega-menu-sm"><a class="has-arrow"
@@ -41,16 +40,16 @@
 
 						<li><a href="./layout-fixed-header.html">Fixed Header</a></li>
 						<li><a href="layout-fixed-sidebar.html">Fixed Sidebar</a></li>
-					</ul></li>
+					</ul>
+				</li>
 				<li class="nav-label">Apps</li>
 				<li><a class="has-arrow" href="javascript:void()"
 					aria-expanded="false"> <i class="icon-envelope menu-icon"></i>
-						<span class="nav-text">Email</span>
+						<span class="nav-text">Customer Service</span>
 				</a>
 					<ul aria-expanded="false">
-						<li><a href="./email-inbox.html">Inbox</a></li>
-						<li><a href="./email-read.html">Read</a></li>
-						<li><a href="./email-compose.html">Compose</a></li>
+						<li><a href="questionAList.do">Q &amp; A</a></li>
+						<li><a href="questionVList.do">고객의 소리</a></li>
 					</ul></li>
 				<li><a class="has-arrow" href="javascript:void()"
 					aria-expanded="false"> <i class="icon-screen-tablet menu-icon"></i><span

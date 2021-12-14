@@ -14,9 +14,8 @@
 			<div class="col p-md-0">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="admin.do">Main</a></li>
-					<li class="breadcrumb-item"><a href="adminQuestion.do">Customer
-							Service</a></li>
-					<li class="breadcrumb-item active">Q n A</li>
+					<li class="breadcrumb-item active"><a href="questionAList.do">Q &amp; A</a></li>
+					<li class="breadcrumb-item active">Q n A Detail page</li>
 				</ol>
 			</div>
 		</div>
@@ -30,21 +29,20 @@
 							<div class="read-content">
 								<div class="media">
 									<div class="media-body mt-3">
-										<h5 class="m-b-3 text-primary">title</h5>
-										<p class="text-muted">말머리</p>
+										<h5 class="m-b-3 text-primary"><strong>질문</strong></h5>
+										<h5 class="m-b-3 text-primary">${QnA.fTitle }</h5>
+										<h6 class="text-muted">${QnA.fCategory }</h6>
 									</div>
 								</div>
 								<hr>
 								<div class="mt-5">
-									<p>Even the all-powerful Pointing has no control about the
-										blind texts it is an almost unorthographic life One day
-										however a small line of blind text by the name of Lorem Ipsum
-										decided to leave for the far World of Grammar.</p>
+									<h5 class="mb-3"><strong>답변</strong></h5>
+									<h5 class="text-muted">${QnA.fAnswer }</h5>
 								</div>
 								<div class="row d-flex justify-content-end mt-5 mr-2">
-									<a type="button" href="qeustionAUpdate.do"
+									<a type="button" href="qeustionAUpdate.do?fNo=${QnA.fNo }"
 										class="btn btn-rounded btn-outline-dark">수정</a> <a
-										type="button" href="#"
+										type="button" href="qeustionADelete.do?fNo=${QnA.fNo }"
 										class="btn btn-rounded btn-outline-dark ml-3">삭제</a>
 								</div>
 							</div>
