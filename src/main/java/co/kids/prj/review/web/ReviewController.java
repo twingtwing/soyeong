@@ -13,12 +13,6 @@ import co.kids.prj.review.service.ReviewServiceImpl;
 @Controller
 public class ReviewController {
 	@Autowired private ReviewServiceImpl reviewDao;
-	
-	@GetMapping(value="/reviewList.do", produces = "application/text;charset=utf-8")
-	@ResponseBody
-	public String reviewList(int rno) {
-		Gson gson = new GsonBuilder().create();
-		return gson.toJson(reviewDao.reviewSelectList(rno));
-	}
+
 
 }

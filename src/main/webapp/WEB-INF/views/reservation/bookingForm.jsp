@@ -66,7 +66,10 @@
 						<hr class="border-warning my-1">
 						<div class="mt-4 mb-4 ml-1">
 							<h4 class="text-dark mb-3">결제 수단</h4>
-							<p>how?</p>
+							<p><button>카카오 페이</button></p>
+							<p><button>네이버 페이</button></p>
+							<p><button>무통장 입금</button></p>
+							<p><button>신용카드</button></p>
 						</div>
 						<hr class="border-warning my-1">
 						<div class="mt-4 mb-4 ml-1">
@@ -110,7 +113,7 @@
 								<hr class="my-1">
 								<div class="d-flex justify-content-between mt-3">
 									<p class="font-weight-bold">합계</p>
-									<p>₩ ${total}</p>
+									<p>₩ ${total} 원</p>
 								</div>
 								<a href="#" class="book_now_btn button_hover mt-2"> <strong>예약하기</strong>
 								</a>
@@ -122,7 +125,7 @@
 		</div>
 	</section>
 		<form action="booking.do" method="post" id="frm">
-		<input type="hidden" name="bno" value="${hotel.rno}">
+		<input type="hidden" name="rno" value="${hotel.rno}">
 		<!-- 세션값 아이디 -->
 		<input type="hidden" name="id" value="${id}">
 		<input type="hidden" name="checkin" value="${rcheckin}">
@@ -143,7 +146,7 @@
 						+ parseInt(checkout.getMonth() + 1) + '월 '
 						+ checkout.getDate() + '일');
 		
-		$('#refundTime').text((checkout.getMonth()+1)+'월 '+(checkout.getDate()-1)+'일 오후 03시')
+		$('#refundTime').text((checkout.getMonth()+1)+'월 '+(checkout.getDate()-3)+'일 오후 03시')
 		
 		
 		
@@ -155,7 +158,7 @@
 			}
 			$('#frm>input').last().val($('.single-textarea').text());
 			console.log($('#frm>input').last(),$('.single-textarea').text());
-			//$('#frm').submit();
+			$('#frm').submit();
 		})
 	</script>
 </body>

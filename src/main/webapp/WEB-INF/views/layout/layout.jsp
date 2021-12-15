@@ -41,8 +41,6 @@
 
 <body>
 	<tiles:insertAttribute name="header" />
-	<!-- body가 페이지 맨 위로 들어가는 문제.이 부트스트랩에서는 모두 breadcrumb를 사용하였기 때문.-->
-	<!-- 시각적으로 페이지 위치를 명확히 알도록 각 페이지 상단에 이미지 삽입하는 기법 -->
 	<tiles:insertAttribute name="body" />
 	<tiles:insertAttribute name="footer" />
 

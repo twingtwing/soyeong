@@ -101,7 +101,6 @@ footer {
 				data-stellar-vertical-offset="0" data-background=""></div>
 			<div class="container-fluid"
 				style="padding-top: 120px; text-align: center;" id="tags">
-				<a href="#" class="genric-btn primary-border circle">요금</a>
 				<a href="#" class="genric-btn primary-border circle">장소</a>
 				<a href="#" class="genric-btn primary-border circle" id="am1" data-am="N">와이파이</a>
 				<a href="#" class="genric-btn primary-border circle" id="am2" data-am="N">주방</a>
@@ -119,7 +118,7 @@ footer {
 						<div>
 						<div class="about_content">
 						<div class="hotelInfo">
-							<h2 class="title title_color" style="margin-top:1.5rem;" onclick="detailedInfo(${list.rno})">${list.rname}</h2>
+							<h2 class="title title_color" style="margin-top:1.5rem;" data-rno="${list.rno}">${list.rname}</h2>
 							<p>${list.rcontent}</p>
 							<a href="#" class="button_hover theme_btn_two">빠른 비용계산<br>
 							<span class="rguest">${list.rguest}</span>
@@ -149,6 +148,10 @@ footer {
 
 
 	<script>
+	$('#houseList').on('click','.hotelInfo .title',(e)=>{
+		detailedInfo(e.target.getAttribute('data-rno'));		
+	})
+	
 		// 구글 지도
 		function myMap() {
 			var mapOptions = {
@@ -209,7 +212,6 @@ footer {
 		} else{
 			category = $('.rcategory').first().text();
 		}
-			console.log(category)
 				
 	 	let guest = document.getElementsByClassName('rguest');
 	 	let arr = [];
@@ -241,7 +243,6 @@ footer {
 				am2 : am2,
 				am3 : am3 
 			}
-			console.log(data)
 			$.ajax({
 				url : 'hotelSort.do',
 				data : data,
@@ -266,7 +267,7 @@ footer {
 				a.append($('<span>').attr('class','rguest').text(hotel.rguest));
 				$('#houseList').append($('<div>').append($('<div>').attr('class','about_content')
 												.append($('<div>').attr('class','hotelInfo')
-												.append($('<h2>').attr('class','title title_color').css('margin-top','1.5rem').text(hotel.rname),$('<p>').text(hotel.rcontent),
+												.append($('<h2>').attr('class','title title_color').attr('data-rno',hotel.rno).css('margin-top','1.5rem').text(hotel.rname),$('<p>').text(hotel.rcontent),
 												a,$('<span>').attr('class','fee').text(hotel.fee),$('<span>').attr('class','checkin').text(hotel.rcheckin),$('<span>').attr('class','checkout').text(hotel.rcheckout)
 												),$('<div>').text(hotel.rphoto))))
 			}
@@ -275,6 +276,7 @@ footer {
 			
  		// 버튼 클릭시 비용계산결과 나옴
 		$('#row').on('click','.theme_btn_two',(event)=>{
+			event.preventDefault();
 			if($(event.target).next().css('display')=='none'){
 				let feeSpan = $(event.target).next();
 				let checkin = $(event.target).next().next();
