@@ -123,4 +123,13 @@ public class LodgingController {
 		return "reservation/houseList";
 	}
 	
+
+	@RequestMapping("/detailedInfo.do")
+	public String detailedInfo(LodgingVO vo, Model model) {
+		vo = lodgingDao.LodgingSelect(vo);
+		model.addAttribute("hotelDetail", vo);
+		return "reservation/detailedInfo";
+	}
+	
+
 }

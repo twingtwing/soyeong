@@ -6,6 +6,6 @@ public interface QuestionVMapper {
 	List<QuestionVVO> questionVList();
 	QuestionVVO questionVSelect(int qNo);
 	int questionVInsert(QuestionVVO vo);
-	//처리여부 수정
-	int questionChangeProcess(QuestionVVO vo);
+	int questionChangeProcess(int qNo);
+	List<QuestionVVO> questionVSearch(QuestionVVO vo);
 }

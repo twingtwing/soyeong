@@ -152,8 +152,8 @@
 		
 		</section><br>
 		<section>
-			<div style="text-align: center">회사 설명 ? ? ? 회사 설명 ? ? ? 회사 설명 ? ? ?</div>
-		</section>
+			<div style="text-align: center">소영과 아이들에서 가족 같이 편안한 시간 보내세요.</div>
+		</section><br>
 	</div>
 
 
@@ -164,14 +164,17 @@
 			if(!Boolean(ok)){
 				window.alert('날짜를 지정해주세요.');
 				return;
-			}
-			
+			}			
 			let num = Number(parseInt($('#bookadult').val())+parseInt($('#bookkid').val()));
 			let date = $('#checkin').val();
 			date = new Date(date);
 			date.setDate(date.getDate()-1);
 			date = date.toISOString().substring(0,10);
-			sendForm(date,$('#checkout').val(),num,$('#rcategory').val(),'quickBook.do');
+			let endDate = $('#checkout').val();
+			endDate = new Date(endDate);
+			endDate.setDate(endDate.getDate()-1);
+			endDate = endDate.toISOString().substring(0,10);
+			sendForm(date,endDate,num,$('#rcategory').val(),'quickBook.do');
 		})
 		
 		

@@ -77,7 +77,7 @@ public class QuestionController {
 			if(r == 0) { result = "N"; }
 		}
 
-			return result;
+		return result;
 	}
 
 }

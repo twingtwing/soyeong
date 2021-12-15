@@ -2,17 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.kids.prj.reservation.service.ReservationMapper">
 	<select id="reservSelectList" resultType="co.kids.prj.reservation.service.ReservLodVO">
+
 		SELECT * FROM BOOKING B
 		LEFT OUTER JOIN LODGING L
 		ON B.RNO = L.RNO
 		WHERE B.ID = #{id}
 	</select>
 
-	<select id="reservSelect" parameterType="co.kids.prj.reservation.service.ReservationVO">
-		SELECT * FROM BOOKING WHERE BOOKNO = ${bookno}
+	<select id="reservSelect"
+		parameterType="co.kids.prj.reservation.service.ReservationVO">
+		SELECT * FROM BOOKING WHERE BOOKNO = #{bookno}
 	</select>
 
-	<insert id="reservInsert">
+	<insert id="reservInsert"
+		parameterType="co.kids.prj.reservation.service.ReservationVO">
+		INSERT INTO
+		BOOKING(BOOKNO,RNO,ID,BOOKDATE,CHECKIN,CHECKOUT,BOOKADULT,BOOKKID,ISPAID,BOOKCANCEL,BOOKREFUND,BOKREQUEST)
+		VALUES((SELECT MAX(BOOKNO) FROM BOOKING)+1,#{rno},#{id},DEFAULT,#{checkin},#{checkout},#{bookadult},#{bookkid},DEFAULT,DEFAULT,null,#{bookrequest}
+		)
 
 	</insert>
 
