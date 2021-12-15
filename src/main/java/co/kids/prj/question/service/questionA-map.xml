@@ -5,5 +5,36 @@
 	<select id="questionAList" resultType="co.kids.prj.question.service.QuestionAVO">
 		SELECT * FROM FAQ ORDER BY FCATEGORY
 	</select>
+	
+	<select id="questionASelect" resultType="co.kids.prj.question.service.QuestionAVO">
+		SELECT * FROM FAQ WHERE FNO = #{fNo}
+	</select>
+	
+	<insert id="questionAInsert" parameterType="co.kids.prj.question.service.QuestionAVO">
+		<selectKey keyProperty="fNo" resultType="int" order="BEFORE">
+			SELECT MAX(FNO)+1 FROM FAQ
+		</selectKey>
+		INSERT INTO FAQ(FNO,FTITLE,FANSWER,FCATEGORY)
+		VALUES(#{fNo},#{fTitle},#{fAnswer},#{fCategory})
+	</insert>
 
+	<update id="questionAUpdate" parameterType="co.kids.prj.question.service.QuestionAVO">
+		UPDATE FAQ
+		SET FTITLE = #{fTitle}, FANSWER = #{fAnswer}, FCATEGORY = #{fCategory}
+		WHERE FNO = #{fNo}
+	</update>
+	
+	<delete id="questionADelete">
+		DELETE FROM FAQ WHERE FNO = #{fNo}
+	</delete>
+	
+	<select id="questionASearch" resultType="co.kids.prj.question.service.QuestionAVO">
+		SELECT * FROM FAQ 
+		<where>
+			<if test="fCategory != null">AND FCATEGORY = #{fCategory}</if>
+			<if test="fTitle != null">AND FTITLE LIKE '%' || #{fTitle} || '%'</if>
+		</where>
+		ORDER BY FCATEGORY 
+	</select>
+	
 </mapper>

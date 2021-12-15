@@ -10,5 +10,32 @@
 		INSERT INTO QUERY(QNO,ID,QTITLE,QANSWER,QEMAIL,QFILE,QPFILE,QCATEGORY,QPROCESS)
 		VALUES(#{qNo},#{Id},#{qTitle},#{qAnswer},#{qEmail},#{qFile},#{qPFile},#{qCategory},default)
 	</insert>
+	
+	<select id="questionVList" resultType="co.kids.prj.question.service.QuestionVVO">
+		SELECT QUERY.* , NAME 
+		FROM QUERY 
+		INNER JOIN MEMBER ON QUERY.ID = MEMBER.ID
+		ORDER BY QCATEGORY
+	</select>
+	
+	<select id="questionVSelect" resultType="co.kids.prj.question.service.QuestionVVO">
+		SELECT QUERY.* , NAME 
+		FROM QUERY 
+		INNER JOIN MEMBER ON QUERY.ID = MEMBER.ID
+		WHERE QNO = #{qNo}
+	</select>
+	
+	<update id="questionChangeProcess" parameterType="co.kids.prj.question.service.QuestionVVO">
+		UPDATE QUERY SET QPROCESS = 'Y' WHERE QNO = #{qNo}
+	</update>
+	
+	<select id="questionVSearch" resultType="co.kids.prj.question.service.QuestionVVO" parameterType="co.kids.prj.question.service.QuestionVVO">
+		SELECT * FROM QUERY 
+		<where>
+			<if test="qCategory != null">AND QCATEGORY = #{qCategory}</if>
+			<if test="qTitle != null">AND QTITLE LIKE '%' || #{qTitle} || '%'</if>
+		</where>
+		ORDER BY QCATEGORY 		
+	</select>
 
 </mapper>

@@ -3,6 +3,7 @@ package co.kids.prj.question.service;
 public class QuestionVVO {
 	private int qNo;
 	private String Id;
+	private String name;
 	private String qTitle;
 	private String qAnswer;
 	private String qEmail;
@@ -81,6 +82,14 @@ public class QuestionVVO {
 
 	public void setqProcess(String qProcess) {
 		this.qProcess = qProcess;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

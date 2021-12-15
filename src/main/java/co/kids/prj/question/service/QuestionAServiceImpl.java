@@ -15,27 +15,28 @@ public class QuestionAServiceImpl implements QuestionAService {
 	}
 
 	@Override
-	public QuestionAVO questionASelect(QuestionAVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public QuestionAVO questionASelect(int fNo) {
+		return mapper.questionASelect(fNo);
 	}
 
 	@Override
 	public int questionAInsert(QuestionAVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mapper.questionAInsert(vo);
 	}
 
 	@Override
 	public int questionAUpdate(QuestionAVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mapper.questionAUpdate(vo);
 	}
 
 	@Override
-	public int questionADelete(QuestionAVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int questionADelete(int fNo) {
+		return mapper.questionADelete(fNo);
+	}
+
+	@Override
+	public List<QuestionAVO> questionASearch(QuestionAVO vo) {
+		return mapper.questionASearch(vo);
 	}
 
 }

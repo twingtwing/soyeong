@@ -1,6 +1,11 @@
 package co.kids.prj.reservation.service;
 
 import java.sql.Date;
+import java.util.List;
+
+import co.kids.prj.lodging.service.LodgingVO;
+import lombok.Getter;
+import lombok.Setter;
 
 public class ReservationVO {
 	private int bookno;
@@ -14,7 +19,14 @@ public class ReservationVO {
 	private boolean ispaid;
 	private boolean bookcancel;
 	private String bookrefund;
+	private String bookrequest;
 	
+	public String getBookrequest() {
+		return bookrequest;
+	}
+	public void setBookrequest(String bookrequest) {
+		this.bookrequest = bookrequest;
+	}
 	@Override
 	public String toString() {
 		return "ReservationVO [bookno=" + bookno + ", rno=" + rno + ", id=" + id + ", bookdate=" + bookdate

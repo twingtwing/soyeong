@@ -3,20 +3,28 @@ package co.kids.prj.reservation.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.velocity.runtime.directive.Parse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+import co.kids.prj.reservation.service.ReservationImpl;
+
+import co.kids.prj.lodging.service.LodgingServiceImpl;
+import co.kids.prj.lodging.service.LodgingVO;
 import co.kids.prj.reservation.service.ReservationService;
+
 import co.kids.prj.reservation.service.ReservationVO;
 
 @Controller
 public class ReservationController {
-
+	@Autowired 
+	private LodgingServiceImpl lodgingDao;
 	@Autowired
-	private ReservationService rDao;
+	private ReservationImpl rDao;
 	
 	@RequestMapping("myReserv.do")
 	public String myReserv(HttpServletRequest request, HttpSession session, ReservationVO vo) {
@@ -30,16 +38,6 @@ public class ReservationController {
 	public String detailedInfo() {
 		return "reservation/detailedInfo";
 	}
-
-	@RequestMapping("houseList.do")
-	public String houseList() {
-		return "reservation/houseList";
-	}
-
-	@RequestMapping("hostManage.do")
-	public String hostManage() {
-		return "host/hostManage";
-	}
 	
 	@RequestMapping("simpleInfo.do")
 	public void simpleInfo(HttpServletRequest request, ReservationVO vo) {
@@ -49,12 +47,30 @@ public class ReservationController {
 	}
 	
 
-	
-	@GetMapping("/booking.do")
-	public String booking() {
-		return "reservation/booking";
+	@GetMapping("/bookingForm.do")
+	public String booking(HttpServletRequest request,Model model) {
+		LodgingVO lodgingVO = new LodgingVO();
+		int day = Integer.parseInt(request.getParameter("day"));
+		int rno = Integer.parseInt(request.getParameter("rno"));
+		lodgingVO.setRno(rno);
+		lodgingVO = lodgingDao.LodgingSelect(lodgingVO);
+		model.addAttribute("hotel", lodgingVO);
+		int fee = lodgingVO.getFee();
+		model.addAttribute("price",fee*day);
+		model.addAttribute("serviceFee", (int)(fee*0.1));
+		model.addAttribute("serviceTax",(int)(fee*0.01));
+		model.addAttribute("total", (int)(fee*day+fee*0.1+fee*0.01));
+		model.addAttribute("rcheckin",request.getParameter("rcheckin"));
+		model.addAttribute("rcheckout",request.getParameter("rcheckout"));
+		model.addAttribute("bookkid",request.getParameter("bookkid"));
+		model.addAttribute("bookadult",request.getParameter("bookadult"));
+		return "reservation/bookingForm";
 	}
 
-
+	@PostMapping("/booking.do")
+	public String booking(ReservationVO vo) {
+		rDao.reservInsert(vo);
+		return "reservation/myReservation";
+	}
 	
 }

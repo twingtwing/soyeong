@@ -34,15 +34,16 @@ public class LodgingServiceImpl implements LodgingService {
 		return map.LodgingDelete(rno);
 	}
 
-	@Override
-	public List<LodgingVO> LodgingListByTag(LodgingVO vo) {
-		
-		return map.LodgingListByTag(vo);
-	}
 
 	@Override
 	public int LodgingInsert(LodgingVO vo) {
 		return map.LodgingInsert(vo);
+	}
+
+	@Override
+	public LodgingVO LodgingNum() {
+		// TODO Auto-generated method stub
+		return map.LodgingNum();
 	}
 
 

@@ -1,38 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.kids.prj.reservation.service.ReservationMapper">
-	<resultMap type="co.kids.prj.lodging.service.LodgingVO" id="lodgingMap">
-		<result column="rno" property="rno" />
-		<result column="id" property="id" />
-		<result column="rcategory" property="rcategory" />
-		<result column="rtype" property="rtype" />
-		<result column="rguest" property="rguest" />
-		<result column="rbed" property="rbed" />
-		<result column="rbath" property="rbath" />
-		<result column="rcontent" property="rcontent" />
-		<result column="fee" property="fee" />
-		<result column="am1" property="am1" />
-		<result column="am2" property="am2" />
-		<result column="am3" property="am3" />
-		<result column="rphoto" property="rphoto" />
-		<result column="ruse" property="ruse" />
-		<result column="rcheckin" property="rcheckin" />
-		<result column="rcheckout" property="rcheckout" />
-		<result column="rname" property="rname" />
-	</resultMap>
+	<select id="reservSelectList" resultType="co.kids.prj.reservation.service.ReservLodVO">
 
-	<select id="reservSelectList" resultMap="lodgingMap">
 		SELECT * FROM BOOKING B
-		INNER JOIN LODGING L
+		LEFT OUTER JOIN LODGING L
 		ON B.RNO = L.RNO
 		WHERE B.ID = #{id}
 	</select>
 
-	<select id="reservSelect" parameterType="co.kids.prj.reservation.service.ReservationVO">
-		SELECT * FROM BOOKING WHERE BOOKNO = ${bookno}
+	<select id="reservSelect"
+		parameterType="co.kids.prj.reservation.service.ReservationVO">
+		SELECT * FROM BOOKING WHERE BOOKNO = #{bookno}
 	</select>
 
-	<insert id="reservInsert">
+	<insert id="reservInsert"
+		parameterType="co.kids.prj.reservation.service.ReservationVO">
+		INSERT INTO
+		BOOKING(BOOKNO,RNO,ID,BOOKDATE,CHECKIN,CHECKOUT,BOOKADULT,BOOKKID,ISPAID,BOOKCANCEL,BOOKREFUND,BOKREQUEST)
+		VALUES((SELECT MAX(BOOKNO) FROM BOOKING)+1,#{rno},#{id},DEFAULT,#{checkin},#{checkout},#{bookadult},#{bookkid},DEFAULT,DEFAULT,null,#{bookrequest}
+		)
 
 	</insert>
 

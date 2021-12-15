@@ -61,15 +61,7 @@
 	<!-- validation -->
 	<script src="resources/js/jquery.form.js"></script>
 	<script src="resources/js/jquery.validate.min.js"></script>
-	
-	<!-- chart.js -->
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
-	<!-- question -->
-	<script src="resources/js/question.js"></script>
-	
-	<!-- memberSales -->
-	<script src="resources/js/memberSales.js"></script>
 	
 </body>
 </html>

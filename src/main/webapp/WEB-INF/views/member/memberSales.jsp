@@ -391,6 +391,9 @@
 		</div>
 	</section>
 	<!--================ body Area  =================-->
+		
+	<!-- memberSales -->
+	<script src="resources/js/memberSales.js"></script>
 
 </body>
 </html>
