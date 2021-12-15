@@ -36,9 +36,11 @@
 				<div class="btn-Q active-Q ml-3 mr-3">
 					<h5>Q n A</h5>
 				</div>
-				<div class="btn-Q ml-3">
-					<h5>고객의 소리</h5>
-				</div>
+				<c:if test="${not empty id}">
+					<div class="btn-Q ml-3">
+						<h5>고객의 소리</h5>
+					</div>
+				</c:if>
 			</div>
 			<!-- QnA div -->
 			<div class="btn-Q-div">

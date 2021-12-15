@@ -10,10 +10,4 @@ public class AdminController {
 	public String admin() {
 		return "admin/adminmain/main";
 	}
-
-	
-	@RequestMapping("/adminMemberList.do")
-	public String adminMemberList() {
-		return "admin/adminmain/memberList";
-	}
 }

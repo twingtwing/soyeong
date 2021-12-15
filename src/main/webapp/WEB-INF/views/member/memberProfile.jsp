@@ -35,9 +35,11 @@
                 </div>
                 <div class="row d-flex justify-content-between mb-20">
                     <div class="row ml-3">
-                        <h3 class="mb-0"><i class="fas fa-user-circle text-warning"></i> <b>홍길동</b>님 어서오세요!!</h3>
+                        <h3 class="mb-0"><i class="fas fa-user-circle text-warning"></i> <b>${name}</b>님 어서오세요!!</h3>
                     </div>
                     <!-- host여야 입장가능 -->
+                    <c:if test="${author eq 'HOST'}">
+					</c:if>
                     <div class="d-flex align-items-end">
                         <a href="memberSales.do" class="genric-btn warning medium pb-0"><strong>결제 및 환불 처리</strong></a>
                     </div>
@@ -47,35 +49,35 @@
                     <table class="table text-center ">
                         <tr>
                             <th class="p-4 align-middle">ID</th>
-                            <td class="align-middle" colspan="2">abcd123@yedam.kr</td>
+                            <td class="align-middle" colspan="2">${id}</td>
                         </tr>
                         <tr>
                             <th class="p-4 align-middle">이름</th>
-                            <td class="align-middle" colspan="2">홍길동</td>
+                            <td class="align-middle" colspan="2">${name}</td>
                         </tr>
                         <tr>
                             <th class="align-middle" rowspan="2">전화번호/성별</th>
                             <th class="p-4 align-middle" >전화번호</th>
-                            <td class="align-middle">010-1111-2222</td>
+                            <td class="align-middle">${member.tel }</td>
                         </tr>
                         <tr>
                             <th class="p-4 align-middle">성별</th>
-                            <td class="align-middle">여자</td>
+                            <td class="align-middle">${member.gender }</td>
                         </tr>
                         <tr>
                             <th class="align-middle" rowspan="2">권한/가입날짜</th>
                             <th class="p-4 align-middle">권한</th>
-                            <td class="align-middle">UESR</td>
+                            <td class="align-middle">${author}</td>
                         </tr>
                         <tr>
-                            <th class="p-4 align-middle">권한</th>
-                            <td class="align-middle">2021-10-10</td>
+                            <th class="p-4 align-middle">가입날짜</th>
+                            <td class="align-middle">${member.joinDate }</td>
                         </tr>
                     </table>
                 </div>
                 <div class="row d-flex justify-content-around">
                     <a href="memberUpdateForm.do" class="button_hover theme_btn_two">회원정보 수정</a>
-                    <a href="#" class="button_hover theme_btn_two">회원 탈퇴</a>
+                    <a href="memberDelete.do" class="button_hover theme_btn_two">회원 탈퇴</a>
                 </div>
             </div>
         </section>

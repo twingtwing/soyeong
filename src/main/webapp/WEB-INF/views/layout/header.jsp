@@ -66,6 +66,13 @@
 #login {
 	cursor: pointer;
 }
+#pwShow-S {
+	display: inline-block;
+	position: absolute;
+	margin-left: 350px;
+	margin-top: -180px;
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -139,8 +146,11 @@
 
 		<div id="box">
 			<span class="close">&times;</span> <span>소영과 아이들에 오신 것을 환영합니다.</span>
-			<input type="text" placeholder="ID" id="id" name="id"> <input
-				type="password" placeholder="Password" id="password" name="password">
+			<input type="text" placeholder="ID" id="id" name="id"> 
+			<input type="password" placeholder="Password" id="password" name="password">
+			<div id="pwShow-S">
+            	<i class="far fa-eye-slash"></i>
+            </div>
 			<button type="button" id="login">로그인</button>
 			<div align="center" class="findPw">비밀번호 찾기</div>
 			<button type="button">페이스북으로 로그인하기~여기부터는 api찾기</button>
@@ -201,6 +211,14 @@
 	})
 	
 	$('.close').on('click',()=>{
+		//창을 닫아도 비밀번호 찾기가 유지 되는 오류땜에 코드 수정
+		const boxChildren = $('#box').children()
+		if(boxChildren.length > 9){
+			for(var i = 9; i < boxChildren.length;i++){
+				boxChildren[i].remove();
+			}
+			$('#box').children().not('.close').css('display','');
+		}
 		$('#loginModal').css('display','none');
 	})
 
@@ -209,6 +227,18 @@
 			$('#login').click();
 		}
 	})
+	
+	//비밀번호 보이도록 설정
+    document.getElementById('pwShow-S').addEventListener('click',function(){
+        let pw = document.getElementById('password');
+        if(pw.getAttribute('type')=="password"){
+            pw.setAttribute('type','text');
+	        this.innerHTML = '<i class="far fa-eye"></i>';
+   	    }else {
+       	    pw.setAttribute('type','password');
+           	this.innerHTML = '<i class="far fa-eye-slash"></i>';
+       	}
+    });	
 </script>
 </body>
 </html>

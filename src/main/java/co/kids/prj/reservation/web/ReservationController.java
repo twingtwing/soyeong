@@ -15,7 +15,6 @@ import co.kids.prj.reservation.service.ReservationImpl;
 
 import co.kids.prj.lodging.service.LodgingServiceImpl;
 import co.kids.prj.lodging.service.LodgingVO;
-import co.kids.prj.reservation.service.ReservationService;
 
 import co.kids.prj.reservation.service.ReservationVO;
 
@@ -34,10 +33,10 @@ public class ReservationController {
 		return "reservation/myReservation";
 	}
 
-	@RequestMapping("detailedInfo.do")
-	public String detailedInfo() {
-		return "reservation/detailedInfo";
-	}
+//	@RequestMapping("detailedInfo.do")
+//	public String detailedInfo() {
+//		return "reservation/detailedInfo";
+//	}
 	
 	@RequestMapping("simpleInfo.do")
 	public void simpleInfo(HttpServletRequest request, ReservationVO vo) {
