@@ -23,9 +23,9 @@
 		BSTATUS='U' WHERE ID=#{id}
 	</update>
 	
-	<update id="noticeDelete" parameterType="co.kids.prj.notice.service.NoticeVO">
-		UPDATE NOTICE SET
-		BSTATUS = 'D' WHERE ID = #{id}
-	</update>
+	<delete id="noticeDelete" parameterType="co.kids.prj.notice.service.NoticeVO">
+		DELETE FROM NOTICE
+		WHERE BNO = #{bno}
+	</delete>
 
 </mapper>

@@ -25,22 +25,22 @@
                 <input type="text" class="form-control w-25" >
                 <button class="genric-btn primary small font-weight-bold">Search</button>
             </div>
-            <div id="grid"></div>
+            <div id="noticegrid"></div>
             <br>
 
-            <div class="form-row float-right">
+            <!-- <div class="form-row float-right">
                 <button type="button" class="genric-btn primary" onclick = "location.href = 'noticeForm.do' ">글쓰기</button>
-            </div>
+            </div> -->
         </div>
     </section>
     
-    <script>
+    <script type="text/javascript">
     
     (function() {
     var dataNotice = JSON.parse('${notices}');
     
-    const grid = new tui.Grid({
-        el: document.getElementById('grid'),
+    const noticeGrid = new tui.Grid({
+        el: document.getElementById('noticegrid'),
         data: dataNotice,
         scrollX: false,
         scrollY: false,
@@ -68,12 +68,12 @@
     });
 
     // 셀 클릭했을 때 글 상세 조회 페이지로 이동
-    grid.on('click', function(event){
+    noticeGrid.on('click', function(event){
     	console.log(event.rowKey);
     	console.log()
     	// rowKey값으로 pk값을 통해 location.href
     	console.log(dataNotice[event.rowKey].id);
-    	location.href = "noticeRead.do";
+    	location.href = "noticeRead.do?bno="+dataNotice[event.rowKey].bno;
     });
 
     // 표 테마

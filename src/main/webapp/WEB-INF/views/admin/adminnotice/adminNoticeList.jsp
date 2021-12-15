@@ -25,9 +25,13 @@
                     <div class="card">
                         <div class="card-body">
                             <h2>공지사항</h2>
-                            <div id="grid" class="m-5"></div>
+                            <div class="row m-2 justify-content-end">
+                                <input type="text" class="form-control w-25">
+                                <button type="button" class="btn btn-dark">search</button>
+                            </div>
+                            <div id="admingrid" class="m-5"></div>
                             <div class="row justify-content-end">
-                                <button type="button" class="btn mb-1 btn-primary">글쓰기</button>
+                                <button type="button" class="btn mb-1 btn-primary" onclick = "location.href = 'adminNoticeForm.do' ">글쓰기</button>
                             </div>
                         </div>
                     </div>
@@ -38,20 +42,16 @@
             <!-- #/ container -->
         </div>
         
-    <script src="plugins/common/common.min.js"></script>
-    <script src="js/custom.min.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/gleek.js"></script>
-    <script src="js/styleSwitcher.js"></script>
+    
 
     <script>
     
     (function() {
-    	var dataNotice = Json.parse('${notices}');
+    	var dataNotice = JSON.parse('${notices}');
 
-        const grid = new tui.Grid({
-            el: document.getElementById('grid'),
-            data: gridData,
+        const adminGrid = new tui.Grid({
+            el: document.getElementById('admingrid'),
+            data: dataNotice,
             scrollX: false,
             scrollY: false,
             minBodyHeight: 30,
@@ -78,18 +78,19 @@
         });
 
      // 셀 클릭했을 때 글 상세 조회 페이지로 이동
-        grid.on('click', function(event){
+        adminGrid.on('click', function(event){
         	console.log(event.rowKey);
         	console.log()
         	// rowKey값으로 pk값을 통해 location.href
         	console.log(dataNotice[event.rowKey].id);
-        	location.href = "noticeRead.do";
+        	location.href = "adminNoticeRead.do?bno="+dataNotice[event.rowKey].bno;
         });
 
         // 표 테마
         tui.Grid.applyTheme('clean');
     })();
     </script>
+    
 
 </body>
 </html>
