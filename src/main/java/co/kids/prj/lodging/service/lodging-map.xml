@@ -25,8 +25,8 @@
 	</select>
 	
 	<insert id="LodgingInsert" parameterType="co.kids.prj.lodging.service.LodgingVO">	
-		INSERT INTO LODGING VALUES(RNO,ID,RCATEGORY,RTYPE,RGUEST,RBED,RBATH,RADDRESS,RCONTENT,FEE,AM1,AM2,AM3,RPHOTO,RUSE,RCHECKIN,RCHECKOUT,RNAME)(
-		(SELECT MAX(RNO) FROM LODGING)+1,#{id},#{rcategory},#{rtype},#{rguest},#{rbed},#{rbath},#{raddress},#{rcontent}, #{fee},#{am1},#{am2}, #{am3},#{rphoto},default,#{rcheckin},#{rcheckout},#{rname}
+		INSERT INTO LODGING(RNO,ID,RCATEGORY,RTYPE,RGUEST,RBED,RBATH,RADDRESS,RCONTENT,FEE,AM1,AM2,AM3,RPHOTO,RUSE,RCHECKIN,RCHECKOUT,RNAME,RTEL) VALUES(
+		(SELECT MAX(RNO) FROM LODGING)+1,#{id},#{rcategory},#{rtype},#{rguest},#{rbed},#{rbath},#{raddress},#{rcontent}, #{fee},#{am1},#{am2}, #{am3},#{rphoto},default,#{rcheckin},#{rcheckout},#{rname}, #{rtel}
 		)
 	</insert>
 	
@@ -42,5 +42,11 @@
 	<update id="LodgingUpdateInfo" parameterType="co.kids.prj.lodging.service.LodgingVO">
 		update lodging 
 	</update>
+	
+	<select id="LodgingNum" resultType="co.kids.prj.lodging.service.LodgingVO">
+		SELECT MAX(RNO)+1 AS RNO FROM LODGING
+	</select>
+	
+	
 
 </mapper>

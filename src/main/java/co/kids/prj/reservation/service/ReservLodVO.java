@@ -1,11 +1,13 @@
-package co.kids.prj.lodging.service;
+package co.kids.prj.reservation.service;
+
+import java.sql.Date;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class LodgingVO {
+public class ReservLodVO {
 	private int rno;
 	private String id;
 	private String rcategory;
@@ -25,7 +27,17 @@ public class LodgingVO {
 	private String rcheckout;
 	private String rname;
 	private String rtel;
-	
-	
-	
+	private int bookno;
+	private Date bookdate;
+	private Date checkin;
+	private Date checkout;
+	private int bookadult;
+	private int bookkid;
+	private boolean ispaid;
+	private boolean bookcancel;
+	private String bookrefund;
+	private String bookrequest;
+	private int imgno;
+	private String orifile;
+	private String pfile;
 }

@@ -115,6 +115,7 @@ th {
 </head>
 
 <body>
+
 	<!--================Banner Area =================-->
 	<section class="banner_area">
 		<div class="booking_table d_flex align-items-center">
@@ -150,7 +151,7 @@ th {
 								<c:forEach items="${cards }" var="reserv" varStatus="status">
 									<c:if test="${(status.index % 3) == 0}">
 										<li data-target="#multi-item-example"
-											data-slide-to="${status.index/3 }" class="active"></li>
+											data-slide-to="${status.index/3 }"></li>
 									</c:if>
 								</c:forEach>
 							</ol>
@@ -171,8 +172,14 @@ th {
 													<p class="card-text">${reserv.rcontent }</p>
 
 													<a href="#" class="btn btn-primary" data-toggle="modal"
-														data-target="#exampleModalCenter">예약 상세
-														정보 ></a>
+														data-target="#exampleModalCenter"
+														data-checkin='${reserv.rcheckin }'
+														data-checkout='${reserv.rcheckout }'
+														data-adult='${reserv.bookadult }'
+														data-kid='${reserv.bookkid }' data-pay='${reserv.fee }'
+														data-addr='${reserv.raddress }'
+														data-request='${reserv.bookrequest }'
+														data-photo='${reserv.rphoto }'>예약 상세 정보 ></a>
 												</div>
 											</div>
 										</c:if>
@@ -181,9 +188,8 @@ th {
 								<!--/.First slide-->
 
 								<!--other slide-->
-
 								<c:forEach items="${cards }" var="reserv" varStatus="status">
-									<c:if test="${(status.count) > 3 && (status.count % 3) == 1 }">
+									<c:if test="${(status.count % 3) == 1 && status.count > 3}">
 										<div class="carousel-item">
 									</c:if>
 									<c:if test="${status.count > 3}">
@@ -194,14 +200,22 @@ th {
 												<h5 class="card-title">${reserv.rname }</h5>
 												<p class="card-text">${reserv.rcontent }</p>
 												<a href="#" class="btn btn-primary" data-toggle="modal"
-													data-target="#exampleModalCenter">예약 상세 정보 ></a>
+													data-target="#exampleModalCenter"
+													data-checkin='${reserv.rcheckin }'
+													data-checkout='${reserv.rcheckout }'
+													data-adult='${reserv.bookadult }'
+													data-kid='${reserv.bookkid }' data-pay='${reserv.fee }'
+													data-addr='${reserv.raddress }'
+													data-request='${reserv.bookrequest }'
+													data-photo='${reserv.rphoto }'>예약 상세 정보 ></a>
 											</div>
 										</div>
 									</c:if>
-									<c:if test="${(status.count) > 3 && (status.count % 3) == 1 }">
+									<c:if test="${(status.count % 3) == 1 && status.count > 3}">
 							</div>
 							</c:if>
 							</c:forEach>
+
 
 
 
@@ -507,36 +521,32 @@ th {
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-body" id="modal1">
-
 					<img src="resources/image/about_bg.jpg">
-
 				</div>
 				<div class="modal-body">
 					<h3>예약 정보 확인</h3>
-
 					<table class="table">
-
 						<tr>
 							<th>체크인 가능시간</th>
-							<td>checkin</td>
+							<td id="mdCheckin"></td>
 							<th>체크아웃</th>
-							<td>checkout</td>
+							<td id="mdCheckout">checkout</td>
 						</tr>
 						<tr>
 							<th>인원</th>
-							<td colspan=3>인원수 DATA</td>
+							<td colspan=3 id="mdCnum">${adult }</td>
 						</tr>
 						<tr>
 							<th>금액</th>
-							<td colspan=3>금액 DATA</td>
+							<td colspan=3 id="mdPay">금액 DATA</td>
 						</tr>
 						<tr>
 							<th>요청사항</th>
-							<td colspan=3>요청사항 DATA</td>
+							<td colspan=3 id="mdRequest">요청사항 DATA</td>
 						</tr>
 						<tr>
 							<th>위치</th>
-							<td colspan=3>위치 DATA</td>
+							<td colspan=3 id="mdAddr">위치 DATA</td>
 						</tr>
 
 
@@ -556,10 +566,7 @@ th {
 
 
 	<!--================Banner Area =================-->
-<!-- 
-	data-checkin='${reserv.rcheckin }' data-checkout='${reserv.rcheckout }'
-	data-adult='${reserv.bookadult }' data-kid='${reserv.bookkid }'
-	data-pay='${reserv.fee }' data-addr='${reserv.raddress }'
+
 	<script>
 	$('#exampleModalCenter').on('show.bs.modal', function(e){
 		var checkin = $(e.relatedTarget).data('checkin');
@@ -568,9 +575,19 @@ th {
 		var kid = $(e.relatedTarget).data('kid');
 		var pay = $(e.relatedTarget).data('pay');
 		var addr = $(e.relatedTarget).data('addr');
+		var request = $(e.relatedTarget).data('request');
+		var photo = $(e.relatedTarget).data('photo');
+		
+		$('#mdCheckin').html(checkin+'시');
+		$('#mdCheckout').html(checkout+'시');
+		$('#mdCnum').html('어른 : '+adult+'명, 아이 : '+kid+'명');
+		$('#mdPay').html(pay+'원');
+		$('#mdRequest').html(request);
+		$('#mdAddr').html(addr);
+		
 	})
 </script>
- -->
+
 
 
 
