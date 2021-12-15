@@ -15,7 +15,6 @@ import co.kids.prj.reservation.service.ReservationImpl;
 
 import co.kids.prj.lodging.service.LodgingServiceImpl;
 import co.kids.prj.lodging.service.LodgingVO;
-import co.kids.prj.reservation.service.ReservationService;
 
 import co.kids.prj.reservation.service.ReservationVO;
 

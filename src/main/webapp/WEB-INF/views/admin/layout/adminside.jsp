@@ -28,7 +28,7 @@
 						class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>
 				</a>
 					<ul aria-expanded="false">
-						<li><a href="adminMemberList.do">Blank</a></li>
+						<li><a href="#">Blank</a></li>
 						<li><a href="./layout-one-column.html">One Column</a></li>
 						<li><a href="./layout-two-column.html">Two column</a></li>
 						<li><a href="./layout-compact-nav.html">Compact Nav</a></li>
@@ -43,6 +43,10 @@
 					</ul>
 				</li>
 				<li class="nav-label">Apps</li>
+				<li><a href="adminMemberList.do"> 
+				<i class="icon-user menu-icon"></i><span
+						class="nav-text">User Management</span>
+				</a></li>
 				<li><a class="has-arrow" href="javascript:void()"
 					aria-expanded="false"> <i class="icon-envelope menu-icon"></i>
 						<span class="nav-text">Customer Service</span>
@@ -50,14 +54,6 @@
 					<ul aria-expanded="false">
 						<li><a href="questionAList.do">Q &amp; A</a></li>
 						<li><a href="questionVList.do">고객의 소리</a></li>
-					</ul></li>
-				<li><a class="has-arrow" href="javascript:void()"
-					aria-expanded="false"> <i class="icon-screen-tablet menu-icon"></i><span
-						class="nav-text">Apps</span>
-				</a>
-					<ul aria-expanded="false">
-						<li><a href="./app-profile.html">Profile</a></li>
-						<li><a href="./app-calender.html">Calender</a></li>
 					</ul></li>
 				<li><a class="has-arrow" href="javascript:void()"
 					aria-expanded="false"> <i class="icon-graph menu-icon"></i> <span

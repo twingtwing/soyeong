@@ -33,7 +33,7 @@
 				<div>
 					<div class="row">
 						<div class="card">
-							<div class="card-body">
+							<div class="card-body pl-5 pr-5">
 								<h4 class="d-inline">Customer Service</h4>
 								<p class="text-muted">고객과 관련된 서비스를 관리하는 페이지 입니다.</p>
 								<p class="text-muted">The Voice of Customer page</p>
@@ -44,7 +44,7 @@
 				<div class="d-flex align-items-end justify-content-end">
 					<div class="row">
 						<div class="card">
-							<div class="card-body">
+							<div class="card-body p-3">
 								<div class="input-group icons">
 									<div class="input-group icons">
 										<div class="input-group-prepend">
