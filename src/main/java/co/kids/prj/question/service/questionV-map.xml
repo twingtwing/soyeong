@@ -24,5 +24,18 @@
 		INNER JOIN MEMBER ON QUERY.ID = MEMBER.ID
 		WHERE QNO = #{qNo}
 	</select>
+	
+	<update id="questionChangeProcess" parameterType="co.kids.prj.question.service.QuestionVVO">
+		UPDATE QUERY SET QPROCESS = 'Y' WHERE QNO = #{qNo}
+	</update>
+	
+	<select id="questionVSearch" resultType="co.kids.prj.question.service.QuestionVVO" parameterType="co.kids.prj.question.service.QuestionVVO">
+		SELECT * FROM QUERY 
+		<where>
+			<if test="qCategory != null">AND QCATEGORY = #{qCategory}</if>
+			<if test="qTitle != null">AND QTITLE LIKE '%' || #{qTitle} || '%'</if>
+		</where>
+		ORDER BY QCATEGORY 		
+	</select>
 
 </mapper>
