@@ -34,10 +34,10 @@ public class ReservationController {
 		return "reservation/myReservation";
 	}
 
-	@RequestMapping("detailedInfo.do")
-	public String detailedInfo() {
-		return "reservation/detailedInfo";
-	}
+//	@RequestMapping("detailedInfo.do")
+//	public String detailedInfo() {
+//		return "reservation/detailedInfo";
+//	}
 	
 	@RequestMapping("simpleInfo.do")
 	public void simpleInfo(HttpServletRequest request, ReservationVO vo) {
@@ -70,7 +70,7 @@ public class ReservationController {
 	@PostMapping("/booking.do")
 	public String booking(ReservationVO vo) {
 		rDao.reservInsert(vo);
-		return "reservation/myReservation";
+		return "redirect:home.do"; // 예약하고 마이페이지로 가면되나?
 	}
 	
 }

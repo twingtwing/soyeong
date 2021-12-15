@@ -24,6 +24,8 @@ import co.kids.prj.lodging.service.LodgingServiceImpl;
 import co.kids.prj.lodging.service.LodgingVO;
 import co.kids.prj.lodgingPhoto.service.LodgingPhotoServiceImpl;
 import co.kids.prj.lodgingPhoto.service.LodgingPhotoVO;
+import co.kids.prj.review.service.ReviewServiceImpl;
+import co.kids.prj.review.service.ReviewVO;
 
 @Controller
 public class LodgingController {
@@ -32,8 +34,11 @@ public class LodgingController {
 	@Autowired 
 	private LodgingPhotoServiceImpl lodPhotoDao;
 	@Autowired
+	private ReviewServiceImpl reviewDao;
+	
+	@Autowired
 	private String saveDir;
-
+	
 	@PostMapping("/quickBook.do")
 	public String quickBook(LodgingVO vo, Model model) {
 		model.addAttribute("lists", lodgingDao.LodgingSelectList(vo));
@@ -120,6 +125,7 @@ public class LodgingController {
 	@PostMapping("/houseList.do")
 	public String houseList(LodgingVO vo, Model model) {
 		model.addAttribute("lists",lodgingDao.LodgingSelectList(vo));
+		
 		return "reservation/houseList";
 	}
 	
@@ -128,6 +134,7 @@ public class LodgingController {
 	public String detailedInfo(LodgingVO vo, Model model) {
 		vo = lodgingDao.LodgingSelect(vo);
 		model.addAttribute("hotelDetail", vo);
+		model.addAttribute("reviews",reviewDao.reviewSelectList(vo.getRno()));
 		return "reservation/detailedInfo";
 	}
 	
