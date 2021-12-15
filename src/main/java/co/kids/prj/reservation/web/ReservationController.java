@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+import co.kids.prj.reservation.service.ReservationImpl;
+
 import co.kids.prj.lodging.service.LodgingServiceImpl;
 import co.kids.prj.lodging.service.LodgingVO;
 import co.kids.prj.reservation.service.ReservationService;
+
 import co.kids.prj.reservation.service.ReservationVO;
 
 @Controller
@@ -20,7 +24,7 @@ public class ReservationController {
 	@Autowired 
 	private LodgingServiceImpl lodgingDao;
 	@Autowired
-	private ReservationService rDao;
+	private ReservationImpl rDao;
 	
 	@RequestMapping("myReserv.do")
 	public String myReserv(HttpServletRequest request, HttpSession session, ReservationVO vo) {
@@ -30,9 +34,9 @@ public class ReservationController {
 		return "reservation/myReservation";
 	}
 
-	@RequestMapping("hostManage.do")
-	public String hostManage() {
-		return "host/hostManage";
+	@RequestMapping("detailedInfo.do")
+	public String detailedInfo() {
+		return "reservation/detailedInfo";
 	}
 	
 	@RequestMapping("simpleInfo.do")
