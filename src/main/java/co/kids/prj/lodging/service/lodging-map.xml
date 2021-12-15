@@ -25,12 +25,12 @@
 	</select>
 	
 	<insert id="LodgingInsert" parameterType="co.kids.prj.lodging.service.LodgingVO">	
-		INSERT INTO LODGING VALUES(RNO,ID,RCATEGORY,RTYPE,RGUEST,RBED,RBATH,RADDRESS,RCONTENT,FEE,AM1,AM2,AM3,RPHOTO,RUSE,RCHECKIN,RCHECKOUT,RNAME)(
-		(SELECT MAX(RNO) FROM LODGING)+1,#{id},#{rcategory},#{rtype},#{rguest},#{rbed},#{rbath},#{raddress},#{rcontent}, #{fee},#{am1},#{am2}, #{am3},#{rphoto},default,#{rcheckin},#{rcheckout},#{rname}
+		INSERT INTO LODGING VALUES(RNO,ID,RCATEGORY,RTYPE,RGUEST,RBED,RBATH,RADDRESS,RCONTENT,FEE,AM1,AM2,AM3,RPHOTO,RUSE,RCHECKIN,RCHECKOUT,RNAME,RTEL)(
+		(SELECT MAX(RNO) FROM LODGING)+1,#{id},#{rcategory},#{rtype},#{rguest},#{rbed},#{rbath},#{raddress},#{rcontent}, #{fee},#{am1},#{am2}, #{am3},#{rphoto},default,#{rcheckin},#{rcheckout},#{rname},#{rtel}
 		)
 	</insert>
 	
-	<select id="LodgingSelect" resultType="co.kids.prj.lodging.service.LodgingVO">
+	<select id="LodgingSelect" resultType="co.kids.prj.lodging.service.LodgingVO" parameterType="co.kids.prj.lodging.service.LodgingVO">
 		SELECT * FROM LODGING WHERE RNO = #{rno}
 	</select>
 

@@ -83,6 +83,14 @@ footer {
 	background-color: #F8B600;
 	color: white;
 }
+.hotelInfo>h2{
+	cursor: pointer;
+}
+.hotelInfo>h2:hover{
+	background-color: #F8B100;
+	color:white;
+	transition : all 0.3s;
+}
 </style>
 </head>
 <body>
@@ -111,7 +119,7 @@ footer {
 						<div>
 						<div class="about_content">
 						<div class="hotelInfo">
-							<h2 class="title title_color" style="margin-top:1.5rem;">${list.rname}</h2>
+							<h2 class="title title_color" style="margin-top:1.5rem;" onclick="detailedInfo(${list.rno})">${list.rname}</h2>
 							<p>${list.rcontent}</p>
 							<a href="#" class="button_hover theme_btn_two">빠른 비용계산<br>
 							<span class="rguest">${list.rguest}</span>
@@ -134,7 +142,9 @@ footer {
 			</div>
 		</div>
 	</section>
-
+<form action="detailedInfo.do" id = "frm">
+<input type="hidden" name="rno">
+</form>
 	<!--=================List Area ==================-->
 
 
@@ -160,6 +170,13 @@ footer {
 			});
 
 		}
+		
+		// detailInfo.do
+		function detailedInfo(rno){
+			$('#frm>input').val(rno);
+			$('#frm').submit();
+		}
+		
 		
 		
 		

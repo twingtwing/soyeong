@@ -9,6 +9,7 @@ public class LodgingVO {
 	private int rguest;
 	private int rbed;
 	private int rbath;
+	private String raddress;
 	private String rcontent;
 	private int fee;
 	private String am1;
@@ -19,6 +20,21 @@ public class LodgingVO {
 	private String rcheckin;
 	private String rcheckout;
 	private String rname;
+	private String rtel;
+	
+	
+	public String getRtel() {
+		return rtel;
+	}
+	public void setRtel(String rtel) {
+		this.rtel = rtel;
+	}
+	public String getRaddress() {
+		return raddress;
+	}
+	public void setRaddress(String raddress) {
+		this.raddress = raddress;
+	}
 	public int getRno() {
 		return rno;
 	}
