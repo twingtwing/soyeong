@@ -43,11 +43,12 @@
 	<update id="LodgingUpdateInfo" parameterType="co.kids.prj.lodging.service.LodgingVO">
 		update lodging 
 	</update>
+
 	
 	<select id="LodgingNum" resultType="co.kids.prj.lodging.service.LodgingVO">
 		SELECT MAX(RNO)+1 AS RNO FROM LODGING
 	</select>
 	
-	
+
 
 </mapper>

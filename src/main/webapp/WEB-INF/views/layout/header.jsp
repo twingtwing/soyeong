@@ -89,7 +89,7 @@
 					<ul class="nav navbar-nav menu_nav ml-auto">
 						<li class="nav-item active"><a class="nav-link"
 							href="home.do">메인화면</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+						<li class="nav-item"><a class="nav-link" href="noticeList.do">공지사항</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="question.do">고객센터</a></li>
 						<!-- 로그인 되어 있을시 -->
