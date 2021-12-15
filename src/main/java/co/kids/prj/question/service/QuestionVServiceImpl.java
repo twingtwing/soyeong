@@ -25,9 +25,13 @@ public class QuestionVServiceImpl implements QuestionVService{
 	}
 
 	@Override
-	public int questionChangeProcess(QuestionVVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int questionChangeProcess(int qNo) {
+		return mapper.questionChangeProcess(qNo);
+	}
+
+	@Override
+	public List<QuestionVVO> questionVSearch(QuestionVVO vo) {
+		return mapper.questionVSearch(vo);
 	}
 
 

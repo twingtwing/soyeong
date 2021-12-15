@@ -34,4 +34,9 @@ public class QuestionAServiceImpl implements QuestionAService {
 		return mapper.questionADelete(fNo);
 	}
 
+	@Override
+	public List<QuestionAVO> questionASearch(QuestionAVO vo) {
+		return mapper.questionASearch(vo);
+	}
+
 }

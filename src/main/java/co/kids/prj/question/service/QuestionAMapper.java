@@ -8,4 +8,5 @@ public interface QuestionAMapper {
 	int questionAInsert(QuestionAVO vo);
 	int questionAUpdate(QuestionAVO vo);
 	int questionADelete(int fNo);
+	List<QuestionAVO> questionASearch(QuestionAVO vo);
 }
