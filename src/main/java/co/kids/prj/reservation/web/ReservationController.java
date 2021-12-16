@@ -9,8 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import co.kids.prj.reservation.service.ReservLodVO;
 import co.kids.prj.reservation.service.ReservationImpl;
 
 import co.kids.prj.lodging.service.LodgingServiceImpl;
@@ -26,10 +31,10 @@ public class ReservationController {
 	private ReservationImpl rDao;
 	
 	@RequestMapping("myReserv.do")
-	public String myReserv(HttpServletRequest request, HttpSession session, ReservationVO vo) {
+	public String myReserv(HttpServletRequest request, HttpSession session, ReservLodVO vo,Model model) {
 		session = request.getSession();
 		vo.setId((String) session.getAttribute("id"));
-		request.setAttribute("cards",  rDao.reservSelectList(vo));
+		request.setAttribute("cards", rDao.reservSelectList(vo));			
 		return "reservation/myReservation";
 	}
 
@@ -78,11 +83,24 @@ public class ReservationController {
 	
 	@PostMapping("/myReservDetail.do")
 	public String myReservDetail(ReservationVO vo, Model model) {
-		System.out.println(vo.getBookno());
 		model.addAttribute("reservInfo", rDao.reservSelect(vo));
 		// 예약정보랑 같이 숙소정보 필요하니까
 		// join을 하든 아님 vo.getRno()로 lodging select 하든 선택
 		return "reservation/myReservationDetail";
+	}
+	
+	@GetMapping("/endedJourney.do")
+	@ResponseBody
+	public String endedJourney(ReservLodVO vo) {
+		Gson gson = new GsonBuilder().create();
+		return gson.toJson(rDao.reservSortList(vo));
+	}
+	
+	@GetMapping("/canceledJourney.do")
+	@ResponseBody
+	public String canceledJourney(ReservLodVO vo) {
+		Gson gson = new GsonBuilder().create();
+		return gson.toJson(rDao.reservSortList(vo));
 	}
 	
 }

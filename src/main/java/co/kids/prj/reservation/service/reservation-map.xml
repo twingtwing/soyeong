@@ -7,8 +7,26 @@
 		SELECT * FROM BOOKING B
 		LEFT OUTER JOIN LODGING L
 		ON B.RNO = L.RNO
-		WHERE B.ID = #{id} ORDER BY ISPAID ASC, CHECKIN DESC
+		WHERE B.ID = #{id}
+		ORDER BY ISPAID ASC, RCHECKIN DESC
 	</select>
+
+	<select id="reservSortList" parameterType="co.kids.prj.reservation.service.ReservLodVO" resultType="co.kids.prj.reservation.service.ReservLodVO">
+		SELECT * FROM BOOKING B
+		LEFT OUTER JOIN LODGING L
+		ON B.RNO = L.RNO
+		WHERE B.ID = #{id}
+		<if test='ispaid.equals("E")'>
+		AND CHECKOUT<![CDATA[<]]>SYSDATE
+        AND ISPAID = 'Y'
+        AND BOOKCANCEL NOT IN('Y')
+		</if>
+		<if test='ispaid.equals("X")'>
+		AND BOOKCANCEL = 'Y'
+		</if>
+		ORDER BY RCHECKIN DESC
+	</select>
+
 
 	<select id="reservSelect"
 		parameterType="co.kids.prj.reservation.service.ReservationVO" resultType="co.kids.prj.reservation.service.ReservationVO">
