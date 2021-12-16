@@ -25,6 +25,19 @@
 		AND RUSE NOT IN('Y') ORDER BY RCHECKIN, RGUEST ASC
 	</select>
 
+	
+	<select id="LodgingSelectMyList" parameterType="co.kids.prj.lodging.service.LodgingVO" resultType="co.kids.prj.lodging.service.LodgingVO">
+		SELECT * FROM LODGING WHERE ID = #{id}
+	</select>
+	
+	<select id="LodgingSelect" resultType="co.kids.prj.lodging.service.LodgingVO" parameterType="co.kids.prj.lodging.service.LodgingVO">
+		SELECT * FROM LODGING WHERE RNO = #{rno}
+	</select>
+	
+	<update id="LodgingUpdateState" parameterType="String">
+		UPDATE LODGING SET RUSE = #{ruse}
+
+
 	<insert id="LodgingInsert"
 		parameterType="co.kids.prj.lodging.service.LodgingVO">
 		INSERT INTO
@@ -48,12 +61,27 @@
 	<update id="LodgingUpdateState"
 		parameterType="co.kids.prj.lodging.service.LodgingVO">
 		UPDATE LODGING SET RUSE = #{ruse} WHERE RNO = #{rno}
+
 	</update>
 
 	<update id="LodgingUpdateInfo"
 		parameterType="co.kids.prj.lodging.service.LodgingVO">
 
 	</update>
+
+	<delete id="LodgingDelete">
+		DELETE FROM LODGING WHERE RNO = #{rno}
+	</delete>
+	
+	<insert id="LodgingInsert" parameterType="co.kids.prj.lodging.service.LodgingVO">	
+		INSERT INTO LODGING(RNO,ID,RCATEGORY,RTYPE,RGUEST,RBED,RBATH,RADDRESS,RCONTENT,FEE,AM1,AM2,AM3,RPHOTO,RUSE,RCHECKIN,RCHECKOUT,RNAME,RTEL) VALUES(
+		(SELECT MAX(RNO) FROM LODGING)+1,#{id},#{rcategory},#{rtype},#{rguest},#{rbed},#{rbath},#{raddress},#{rcontent}, #{fee},#{am1},#{am2}, #{am3},#{rphoto},default,#{rcheckin},#{rcheckout},#{rname}, #{rtel}
+		)
+	</insert>
+	
+	
+	<select id="LodgingNum" resultType="co.kids.prj.lodging.service.LodgingVO">
+
 
 	<select id="LodgingSearchList"
 		parameterType="co.kids.prj.lodging.service.LodgingVO" resultType="co.kids.prj.lodging.service.LodgingVO">
