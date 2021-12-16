@@ -7,6 +7,7 @@ public interface NoticeService {
 	NoticeVO noticeSelect(NoticeVO vo);
 	int noticeInsert(NoticeVO vo);
 	int noticeUpdate(NoticeVO vo);
-	int noticeDelete(NoticeVO vo);
+	int noticeDelete(int bno);
+	List<NoticeVO> noticeSearch(NoticeVO vo);
 
 }

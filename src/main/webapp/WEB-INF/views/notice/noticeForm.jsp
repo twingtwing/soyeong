@@ -18,7 +18,7 @@
                     <textarea class="single-textarea h-25 m-3" style="background-color: #f9f9ff;" rows="7" placeholder="내용을 입력해주세요" onfocus="this.placeholder = ''" onblur="this.placeholder = '내용을 입력해주세요'" required=""></textarea>
                     <input type="file" class="single-input">
                     <div class="col text-center">
-                        <button type="submit" class="genric-btn primary radius m-5" onclick="fn_addtoNotice()">제출</button>
+                        <button type="submit" class="genric-btn primary radius m-5" onclick="fn_addtoNotice()">등록</button>
                         </div>
                     </div>
                 </form>

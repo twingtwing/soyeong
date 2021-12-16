@@ -20,8 +20,14 @@ public class LodgingVO {
 	private String rcheckout;
 	private String rname;
 	private String rtel;
+	private String searchKey;
 	
-	
+	public String getSearchKey() {
+		return searchKey;
+	}
+	public void setSearchKey(String searchKey) {
+		this.searchKey = searchKey;
+	}
 	public String getRtel() {
 		return rtel;
 	}

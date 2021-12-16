@@ -27,6 +27,17 @@ public class NoticeController {
 		return "notice/noticeList";
 	}
 	
+	/* 글 조회 */
+	@RequestMapping("/noticeRead.do")
+	public String noticeRead(Model model, @Param("bno") int bno){
+		NoticeVO vo = new NoticeVO();
+		vo.setBno(bno);
+		vo = noticeDao.noticeSelect(vo);
+		model.addAttribute("notice", vo);
+		return "notice/noticeRead";
+		
+	}
+	
 	/* 글 등록 폼 */
 	@RequestMapping("noticeForm.do")
 	public String noticeForm() { 
@@ -40,17 +51,6 @@ public class NoticeController {
 		return "redirect:/notice/noticeList";
 	}
 	
-	/* 글 조회 */
-	@RequestMapping("/noticeRead.do")
-	public String noticeRead(Model model, @Param("id") String id){
-		NoticeVO vo = new NoticeVO();
-		vo.setBno(0);
-		vo = noticeDao.noticeSelect(vo);
-		model.addAttribute("notice", vo);
-		
-		return "notice/noticeRead";
-		
-	}
 	
 
 }

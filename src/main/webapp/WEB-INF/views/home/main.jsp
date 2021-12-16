@@ -36,6 +36,12 @@
 	margin: 0px auto;
 	display: inline-block;
 }
+#selectKey{
+	height: 40px;
+	width:  25rem;
+	padding : 0px 10px;
+}
+		
 </style>
 </head>
 
@@ -53,10 +59,14 @@
 						<p>
 							저희 소영과 아이들은<br>최고의 서비스를 자랑합니다.
 						</p>
+						
 						<a href="myReserv.do" class="btn theme_btn button_hover">내예약</a>
-						<a href="detailedInfo.do" class="btn theme_btn button_hover">상세정보</a>
-						<a href="#" class="btn theme_btn button_hover" id="listAll">리스트 보기</a>
+						<a href="#" class="btn theme_btn button_hover">상세정보</a>
 						<a href="hostManage.do" class="btn theme_btn button_hover">호스트 숙소관리 test</a>
+					</div>
+					<div align="center">
+						<input type="text" id="selectKey">
+						<a href="#" class="btn theme_btn button_hover" id="listAll">검색</a>
 					</div>
 				</div>
 			</div>
@@ -140,6 +150,7 @@
 			<input type="hidden" name="rcheckout">
 			<input type="hidden" name="rguest">
 			<input type="hidden" name="rcategory">
+			<input type="hidden" name="searchKey" id="searchKey">
 		</form>
 		<!--================Banner Area =================-->
 
@@ -157,6 +168,9 @@
 
 
 	<script>
+	$()
+	
+	
 		// 빠른예약
 		$('.book_now_btn').click(()=>{		
 			let ok = $('#checkin').val()&&$('#checkout').val();
@@ -177,26 +191,36 @@
 		})
 		
 		
-		// 전체보기
+		$('#selectKey').on('keypress',(e)=>{
+			if(e.keyCode=='13'){
+				$('#listAll').click();
+			}
+		})
+		
+		
+		// 제목/내용으로 검색해서 일주일 내에 있는 것들만 추림.
 		$('#listAll').on('click',()=>{
-			// 오늘날짜부터 한달 사이에 있는 모든 방 보여줌
 			let today = new Date();
+			today.setDate(today.getDate()-1);
 			today = today.toISOString().substring(0,10);
 			
 			let checkout = new Date();
-			checkout.setMonth(checkout.getMonth()+1); 
+			checkout.setDate(checkout.getDate()+7); 
 			checkout = checkout.toISOString().substring(0,10);
 			sendForm(today,checkout,1,'A','houseList.do');
 		})
 		
 		
-		// 메인화면에서 두개의 버튼으로 다른검색하는 함수
+		// 메인화면에서 검색하는 함수
 		let sendForm = function(checkin,checkout,guest,category,action){
 			$('#frm').attr('action',action);
 			$('#frm>input:nth-child(1)').val(checkin);
 			$('#frm>input:nth-child(2)').val(checkout); 
 			$('#frm>input:nth-child(3)').val(guest);
 			$('#frm>input:nth-child(4)').val(category);
+			if($('#searchKey').val() !=null){
+				$('#frm>input:nth-child(5)').val($('#selectKey').val());				
+			}
 			$('#frm').submit();
 		}
 		

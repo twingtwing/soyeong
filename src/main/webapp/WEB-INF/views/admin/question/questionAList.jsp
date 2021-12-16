@@ -29,7 +29,7 @@
 				<div>
 					<div class="row">
 						<div class="card">
-							<div class="card-body">
+							<div class="card-body pl-5 pr-5">
 								<h4 class="d-inline">Customer Service</h4>
 								<p class="text-muted">고객과 관련된 서비스를 관리하는 페이지 입니다.</p>
 								<p class="text-muted">Q &amp; A management page</p>
@@ -40,7 +40,7 @@
 				<div class="d-flex align-items-end justify-content-end">
 					<div class="row">
 						<div class="card">
-							<div class="card-body">
+							<div class="card-body p-3">
 								<div class="input-group icons">
 									<div class="input-group icons">
 										<div class="input-group-prepend">
@@ -132,9 +132,9 @@
 		}
 		    
 		  document.getElementById('searchQnA').addEventListener('click',function(){
+			  event.stopPropagation();
 				let c = document.getElementById('fCategory').value;
 				let t = document.getElementById('fTitle').value;
-				console.log(c)
 				let path = 'questionASearch.do?fCategory='+c+'&fTitle='+t;
 				fetch(path)
 				.then(response => response.json())

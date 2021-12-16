@@ -4,19 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,9 +33,13 @@ public class AdminQuestionController {
 	
 	//QnA 리스트 
 	@GetMapping("/questionAList.do")
-	public String questionAList(Model model) throws JsonProcessingException {
+	public String questionAList(Model model) {
 		ObjectMapper ob = new ObjectMapper();
-		model.addAttribute("QnAs", ob.writeValueAsString(questionADao.questionAList()));
+		try {
+			model.addAttribute("QnAs", ob.writeValueAsString(questionADao.questionAList()));
+		} catch (JsonProcessingException e) {
+			model.addAttribute("QnAs", "");
+		}
 		return "admin/question/questionAList";
 	}
 
@@ -104,8 +101,6 @@ public class AdminQuestionController {
 	@GetMapping("/questionASearch.do")
 	@ResponseBody
 	public List<QuestionAVO> questionASearch(QuestionAVO vo) {
-		if(vo.getfCategory().length() == 0) {vo.setfCategory(null);}
-		if(vo.getfTitle().length() == 0) {vo.setfTitle(null);}
 		return questionADao.questionASearch(vo);
 	}
 	
@@ -113,9 +108,13 @@ public class AdminQuestionController {
 	
 	//고객의 소리 리스트
 	@GetMapping("/questionVList.do")
-	public String questionVList(Model model) throws JsonProcessingException {
+	public String questionVList(Model model) {
 		ObjectMapper ob = new ObjectMapper();
-		model.addAttribute("voices", ob.writeValueAsString(questionVDao.questionVList()));
+		try {
+			model.addAttribute("voices", ob.writeValueAsString(questionVDao.questionVList()));
+		} catch (JsonProcessingException e) {
+			model.addAttribute("voices", "");
+		}
 		return "admin/question/questionVList";
 	}
 	
@@ -130,8 +129,6 @@ public class AdminQuestionController {
 	@GetMapping("/questionVSearch.do")
 	@ResponseBody
 	public List<QuestionVVO> questionVSearch(QuestionVVO vo) {
-		if(vo.getqCategory().length() == 0) {vo.setqCategory(null);}
-		if(vo.getqTitle().length() == 0) {vo.setqTitle(null);}
 		return questionVDao.questionVSearch(vo);
 	}
 	
@@ -148,7 +145,6 @@ public class AdminQuestionController {
 	
 	//파일 다운로드
 	@GetMapping("/questionDownload.do")
-	//@ResponseBody
 	public void questionDownload(@Param("qPFile") String qPFile,HttpServletResponse response) {
 		String filePath = saveDir + qPFile;
 		

@@ -90,11 +90,6 @@
 					}
 				})
 			});
-			
-			/* document.getElementById('download-SC').addEventListener('click',function(){
-				let path = 'questionDownload.do?qPFile='+'${voice.qPFile }'
-				fetch(path);
-			}) */
 		</script>
 	</div>
 </body>

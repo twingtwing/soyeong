@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +67,10 @@
 						<hr class="border-warning my-1">
 						<div class="mt-4 mb-4 ml-1">
 							<h4 class="text-dark mb-3">결제 수단</h4>
-							<p>how?</p>
+							<p><button>카카오 페이</button></p>
+							<p><button>네이버 페이</button></p>
+							<p><button>무통장 입금</button></p>
+							<p><button>신용카드</button></p>
 						</div>
 						<hr class="border-warning my-1">
 						<div class="mt-4 mb-4 ml-1">
@@ -97,22 +101,22 @@
 								<h4 class="card-title text-center mb-4 mt-2">요금 세부 정보</h4>
 								<div class="d-flex justify-content-between">
 									<p class="font-weight-bold">숙소 요금</p>
-									<p>₩ ${price}</p>
+									<p>₩ <fmt:formatNumber>${price}</fmt:formatNumber></p>
 								</div>
 								<div class="d-flex justify-content-between">
 									<p class="font-weight-bold">서비스 수수료</p>
-									<p class="text-primary">₩ ${serviceFee}</p>
+									<p class="text-primary">₩ <fmt:formatNumber>${serviceFee}</fmt:formatNumber></p>
 								</div>
 								<div class="d-flex justify-content-between">
 									<p class="font-weight-bold">부가세</p>
-									<p class="text-primary">₩ ${serviceTax}</p>
+									<p class="text-primary">₩ <fmt:formatNumber>${serviceTax}</fmt:formatNumber></p>
 								</div>
 								<hr class="my-1">
 								<div class="d-flex justify-content-between mt-3">
 									<p class="font-weight-bold">합계</p>
-									<p>₩ ${total}</p>
+									<p>₩ <fmt:formatNumber>${total}</fmt:formatNumber> 원</p>
 								</div>
-								<a href="#" class="book_now_btn button_hover mt-2"> <strong>예약하기</strong>
+								<a href="#" class="book_now_btn button_hover mt-2"> <strong data-id="${id}">예약하기</strong>
 								</a>
 							</div>
 						</div>
@@ -122,8 +126,7 @@
 		</div>
 	</section>
 		<form action="booking.do" method="post" id="frm">
-		<input type="hidden" name="bno" value="${hotel.rno}">
-		<!-- 세션값 아이디 -->
+		<input type="hidden" name="rno" value="${hotel.rno}">
 		<input type="hidden" name="id" value="${id}">
 		<input type="hidden" name="checkin" value="${rcheckin}">
 		<input type="hidden" name="checkout" value="${rcheckout}">
@@ -143,7 +146,7 @@
 						+ parseInt(checkout.getMonth() + 1) + '월 '
 						+ checkout.getDate() + '일');
 		
-		$('#refundTime').text((checkout.getMonth()+1)+'월 '+(checkout.getDate()-1)+'일 오후 03시')
+		$('#refundTime').text((checkout.getMonth()+1)+'월 '+(checkout.getDate()-3)+'일 오후 03시')
 		
 		
 		
@@ -153,9 +156,14 @@
 				window.alert('소영과 아이들의 환불정책에 동의해주시기 바랍니다.');
 				return;
 			}
-			$('#frm>input').last().val($('.single-textarea').text());
-			console.log($('#frm>input').last(),$('.single-textarea').text());
-			//$('#frm').submit();
+			$('#frm>input').last().val($('.single-textarea').val());
+			if($('.book_now_btn>strong')[0].dataset.id==''){
+				window.alert('로그인을 해주세요.');
+				location.href='home.do';
+				return;
+			}
+			$('#frm').submit();
+			window.alert('예약이 완료되었습니다. 마이페이지에서 결제를 진행해주세요.');
 		})
 	</script>
 </body>

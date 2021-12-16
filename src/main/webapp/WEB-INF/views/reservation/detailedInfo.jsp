@@ -49,7 +49,6 @@
 .dataWrapper div {
 	margin: 0.5rem;
 }
-
 </style>
 </head>
 <body>
@@ -85,8 +84,8 @@
 
 					<!--================Booking Tabel Area =================-->
 					<div class="hotel_booking_area position">
-						<div class="container" align="center">
-							<h3>지금 바로 예약하기</h3>
+						<div class="container">
+							<h3 style="text-align: center;">지금 바로 예약하기</h3>
 							<div class="hotel_booking_table">
 								<div class="w-100"></div>
 								<div class="col-md-11">
@@ -186,7 +185,7 @@
 	<!--================ About History Area  =================-->
 	<section class="about_history_area section_gap">
 		<div class="container" align="center">
-			<img src="#"/>
+			<img src="#" />
 			<div align="center">${hotelDetail.rphoto}</div>
 		</div>
 	</section>
@@ -197,9 +196,7 @@
 			<div class="row">
 				<div class="col-md-6 d_flex align-items-center">
 					<div class="about_content ">
-						<h2 class="title title_color">
-							상세정보 및 편의시설
-						</h2>
+						<h2 class="title title_color">상세정보 및 편의시설</h2>
 						<div class="single-sidebar-widget tag_cloud_widget">
 							<h4 class="widget_title">${hotelDetail.rcontent}</h4>
 							<span class="badge badge-warning" data-am="${hotelDetail.am1}">와이파이</span>
@@ -224,47 +221,30 @@
 		<div class="container">
 			<div class="section_title text-center">
 				<!--  반복문 사용해서 등록할때마다 추가 -->
+				<!--  ajax 대신에 그냥 jstl 사용하는게 나을듯하다.(내일해야지..) -->
 				<h3 class="title_color">후기 / 별점</h3>
 			</div>
 			<div class="testimonial_slider owl-carousel">
-
+				<c:forEach items="${reviews}" var="review">
 				<div class="media testimonial_item">
 					<img class="rounded-circle" src="image/testtimonial-1.jpg" alt="">
-					<div class="media-body">
-						<p>후기 내용 DATA</p>
-						<a href="#"><h4 class="sec_h4">후기 작성자 DATA</h4></a>
-						<div class="star">
-							<a href="#"><i class="fa fa-star"></i></a> <a href="#"><i
-								class="fa fa-star"></i></a> <a href="#"><i class="fa fa-star"></i></a>
-							<a href="#"><i class="fa fa-star"></i></a> <a href="#"><i
-								class="fa fa-star-half-o"></i></a>
-						</div>
+					<div class="media-body" data-star="${review.rvstar}">
+						<p>${review.rvcontent}</p>
+						<a href="#"><h4 class="sec_h4">${review.id}</h4></a>
 					</div>
 				</div>
+				</c:forEach>
 
-				<div class="media testimonial_item">
-					<img class="rounded-circle" src="image/testtimonial-1.jpg" alt="">
-					<div class="media-body">
-						<p>부트스트랩에잇던 클래스랑 태그 똑같이 맞췃는데 안된다 js파일을 건드려야하나 정말 두렵다;;</p>
-						<a href="#"><h4 class="sec_h4">Fanny Spencer</h4></a>
-						<div class="star">
-							<a href="#"><i class="fa fa-star"></i></a> <a href="#"><i
-								class="fa fa-star"></i></a> <a href="#"><i class="fa fa-star"></i></a>
-							<a href="#"><i class="fa fa-star"></i></a> <a href="#"><i
-								class="fa fa-star-half-o"></i></a>
-						</div>
-					</div>
-				</div>
+
 			</div>
 		</div>
 	</section>
 	<form action="bookingForm.do" id="frm">
-	<input type="hidden" value="${hotelDetail.rno}" name="rno">
-	<input type="hidden" name="rcheckin" id="cki">
-	<input type="hidden" name="rcheckout" id="cko">
-	<input type="hidden" name="bookkid" id="bkid">
-	<input type="hidden" name="bookadult" id="badult">
-	<input type="hidden"name="day">
+		<input type="hidden" value="${hotelDetail.rno}" name="rno"> <input
+			type="hidden" name="rcheckin" id="cki"> <input type="hidden"
+			name="rcheckout" id="cko"> <input type="hidden"
+			name="bookkid" id="bkid"> <input type="hidden"
+			name="bookadult" id="badult"> <input type="hidden" name="day">
 	</form>
 
 
@@ -280,37 +260,36 @@
 		
 	})();
 	
-	// ajax로 후기 데이터 가져오기
-	let data = {rno:${hotelDetail.rno}};
-	$.ajax({
-		url : 'reviewList.do',
-		data : data
-	})
-	.done((result)=>{
-		result = JSON.parse(result);
-		let outerDiv;
-		for(let data of result){
-			outerDiv = $('<div>').addClass('media testimonial_item');
-			let innerDiv = $('<div>').addClass('media-body');
-			innerDiv.append($('<p>').text(data.rvcontent),
-					$('<a>').append($('<h4>').addClass('sec_h4').text(data.id)),
-					makeStar(data.rvstar));
-			outerDiv.append($('<img>').addClass('rounded-circle'),innerDiv);
-			
-			$('.container .testimonial_slider').append(outerDiv);
-			}
-	})
+	
+	
 	
 	let makeStar = function(rvstar){
+		rvstar = Number(rvstar)
 		let fullstar = Math.floor(rvstar);
-		let star = $('<div>').addClass('star');
-		for(let i=0;i<fullstar;i++){
-			star.append($('<a>').append($('<i>').addClass('fa fa-star')));
+		console.log(rvstar,fullstar)
+		let star = document.createElement('div')
+		star.className = 'star';
+		let a, i;
+		for(let j=0;j<fullstar;j++){
+			a = document.createElement('a');
+			i = document.createElement('i');
+			i.className='fa fa-star';
+			a.append(i);
+			star.append(a);
 		}
 		if(rvstar-fullstar>0){
-			star.append($('<a>').append($('<i>').addClass('fa fa-star-half-o')));
+			a = document.createElement('a');
+			i = document.createElement('i');
+			i.className = 'fa fa-star-half-o';
+			a.append(i);
+			star.append(a);
 		}
 		return star;
+	}
+	
+	for(let i=0; i<document.getElementsByClassName('media-body').length;i++){
+		let rvstar = +document.getElementsByClassName('media-body')[i].getAttribute('data-star');
+		document.getElementsByClassName('media-body')[i].append(makeStar(rvstar));
 	}
 	
 	

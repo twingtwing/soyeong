@@ -36,9 +36,11 @@
 				<div class="btn-Q active-Q ml-3 mr-3">
 					<h5>Q n A</h5>
 				</div>
-				<div class="btn-Q ml-3">
-					<h5>고객의 소리</h5>
-				</div>
+				<c:if test="${not empty id}">
+					<div class="btn-Q ml-3">
+						<h5>고객의 소리</h5>
+					</div>
+				</c:if>
 			</div>
 			<!-- QnA div -->
 			<div class="btn-Q-div">
@@ -181,7 +183,7 @@
 						</div>
 						<div class="form-row col-md-12 mb-4">
 							<div class="form-group col-md-3">
-								<h6>첨부파일</h6>
+								<h6><i class="fa fa-paperclip"></i>첨부파일</h6>
 								<input type="file" id="fileQ" name="fileQ" class="form-control-file">
 							</div>
 							<div class="form-group col-md-9">

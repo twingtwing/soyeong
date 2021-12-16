@@ -66,6 +66,13 @@
 #login {
 	cursor: pointer;
 }
+#pwShow-S {
+	display: inline-block;
+	position: absolute;
+	margin-left: 350px;
+	margin-top: -200px;
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -89,17 +96,17 @@
 					<ul class="nav navbar-nav menu_nav ml-auto">
 						<li class="nav-item active"><a class="nav-link"
 							href="home.do">메인화면</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+						<li class="nav-item"><a class="nav-link" href="noticeList.do">공지사항</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="question.do">고객센터</a></li>
 						<!-- 로그인 되어 있을시 -->
-						<c:if test="${not empty id}">
-							<li class="nav-item"><a class="nav-link" href="#">호스트
-									모드</a></li>
+						<c:if test="${author eq 'USER'}">
+							<li class="nav-item"><a class="nav-link" href="memberAuthor.do">호스트
+									신청</a></li>
 						</c:if>
+						<c:if test="${author eq 'ADMIN'}">
 							<li class="nav-item"><a class="nav-link" href="admin.do">관리자
 									모드</a></li>
-						<c:if test="${author eq 'ADMIN'}">
 						</c:if>
 						<li class="nav-item submenu dropdown">
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
@@ -137,10 +144,13 @@
 	<!-- login modal -->
 	<div align="center" id="loginModal">
 
-		<div id="box">
+		<div id="box" class="pb-5">
 			<span class="close">&times;</span> <span>소영과 아이들에 오신 것을 환영합니다.</span>
-			<input type="text" placeholder="ID" id="id" name="id"> <input
-				type="password" placeholder="Password" id="password" name="password">
+			<input type="text" placeholder="ID" id="id" name="id"> 
+			<input type="password" placeholder="Password" id="password" name="password">
+			<div id="pwShow-S">
+            	<i class="far fa-eye-slash"></i>
+            </div>
 			<button type="button" id="login">로그인</button>
 			<div align="center" class="findPw">비밀번호 찾기</div>
 			<button type="button">페이스북으로 로그인하기~여기부터는 api찾기</button>
@@ -183,18 +193,10 @@
 	
 
 	// 비밀번호 찾기 클릭시
-	$('.findPw').click(()=>pwForm())
-	
-	function pwForm(){
-		// 근데 여기서하는것보다 아싸리 새 창을 띄우는게 좋을것같기도해요....너무 한데 때려박는거같아서
-		$('#box').children().not('.close').css('display','none');
-		$('#box').css('justify-content','left');
-		$('#box').append($('<h4>').text('비밀번호 찾기'));
-		$('#box').append($('<input>').attr('placeholder','이메일 주소 입력'),
-				$('<button>').html('인증번호 받기'),
-				$('<input>').attr('placeholder','인증번호'),$('<button>').html('확인'));
-		$('#box').children().not('.close').css('margin','1rem');
-	}
+	$('.findPw').click(()=>{
+		$('#loginModal').css('display','none');
+		location.href="findPw.do"
+	})
 
 	$('#loginBtn').on('click',()=>{
 		$('#loginModal').css('display','block');
@@ -209,6 +211,18 @@
 			$('#login').click();
 		}
 	})
+	
+	//비밀번호 보이도록 설정
+    document.getElementById('pwShow-S').addEventListener('click',function(){
+        let pw = document.getElementById('password');
+        if(pw.getAttribute('type')=="password"){
+            pw.setAttribute('type','text');
+	        this.innerHTML = '<i class="far fa-eye"></i>';
+   	    }else {
+       	    pw.setAttribute('type','password');
+           	this.innerHTML = '<i class="far fa-eye-slash"></i>';
+       	}
+    });	
 </script>
 </body>
 </html>

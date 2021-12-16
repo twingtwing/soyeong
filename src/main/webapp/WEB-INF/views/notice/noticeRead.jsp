@@ -25,10 +25,10 @@
 	                            ${notice.bcontent }
 	                        </blockquote>
 	                    </div>
-	                    <div class="row m-2 d-flex justify-content-end">
+	                    <!-- <div class="row m-2 d-flex justify-content-end">
 	                        <button class="genric-btn primary small font-weight-bold m-2" onclick="fn_update()">수정</button>
 	                        <button class="genric-btn primary small font-weight-bold m-2" onclick="fn_delete()">삭제</button>
-	                    </div>
+	                    </div> -->
 	                </form>
                 </div>    
             </div>
@@ -50,7 +50,7 @@
 		  
 		  var form = document.getElementById("noticeReadForm");
 		  
-		  form.action = "<c:url value='/notice/noticeDelete.do'/>";
+		  form.action = "<c:url value='admin/adminnotice/adminNoticeDelete.do'/>";
 		  form.submit();
 	  }
     </script>

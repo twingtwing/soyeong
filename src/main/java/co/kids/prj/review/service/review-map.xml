@@ -4,4 +4,5 @@
 <select id="reviewSelectList" resultType="co.kids.prj.review.service.ReviewVO" parameterType="Integer">
 	SELECT * FROM REVIEW WHERE RNO = #{rno}
 </select>
+
 </mapper>
