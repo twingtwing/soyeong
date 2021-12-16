@@ -130,6 +130,22 @@
 		}
 		
 		
+		#scroll ::-webkit-scrollbar{
+			width: 30px;
+			height: 30px;
+		}
+		#scroll ::-webkit-scrollbar-thumb:hover{
+			background-color: #0069D9;
+		}
+		
+		#scroll ::-webkit-scrollbar-track{
+			background-color: #817958;
+			border-radius: 10rem;
+		}
+		#scroll ::-webkit-scrollbar-thumb{
+			background-color: #F3C300;
+			border-radius: 10rem;
+		}
 	</style>
 </head>
 
@@ -152,12 +168,15 @@
 					</div>
 
 					<!-- 예약된 여행 -->
+					<div id="scroll">
 					<div class="cardWrapper" id="reservation">
 						<div class="carousel-item active">
-								<div style="display: flex;">
+							<div style="display: flex;">
 							<c:forEach items="${cards }" var="reserv" varStatus="status">
 									<div class="card" style="width: 18rem;">
-										<img class="card-img-top" src="${reserv.rphoto}" alt="Card image cap">
+										<div align="center">
+										<img class="card-img-top" src="<%=request.getSession().getServletContext().getContextPath() %>/${reserv.rphoto}"alt="Card image cap">
+										</div>
 										<div class="card-body">
 											<h5 class="card-title">${reserv.rname }</h5>
 											<p class="card-text">${reserv.rcontent }</p>
@@ -166,14 +185,16 @@
 												data-checkin='${reserv.rcheckin }' data-checkout='${reserv.rcheckout }'
 												data-adult='${reserv.bookadult }' data-kid='${reserv.bookkid }' data-pay='${reserv.fee }'
 												data-addr='${reserv.raddress }' data-request='${reserv.bookrequest }'
-												data-photo='${reserv.rphoto }' data-state='${reserv.ispaid }' data-bookno='${reserv.bookno}'>예약
+												data-photo='${reserv.rphoto }' data-state='${reserv.ispaid }' data-bookno='${reserv.bookno}'
+												data-cancel='${reserv.bookcancel}'>예약
 												상세 정보>
 											</a>
 										</div>
 									</div>
 							</c:forEach>
-								</div>
+							</div>
 						</div>
+					</div>
 					</div>
 					<!-- 예약된 여행 -->
 				</div>
@@ -240,52 +261,29 @@
 
 	<script>
 		$('.dt')[0].addEventListener('click', (e) => {
-			let bookno = $('.dt')[0].dataset.no;
-			$('#frm>input').val(+bookno)
+			let bookno = +$('.dt')[0].dataset.no;
+			$('#frm>input').val(bookno)
 			$('#frm').submit();
 		})
 
 		// 현재 예약중
 		$('#btn1').on('click', (e) => {
-			location.href='myReserv.do';
+			$('#sortFrm>input').val(null);
+			$('#sortFrm').submit();
 		})
 
 
 		// 과거에 갔던 곳
 		$('#btn2').on('click', (e) => {
-			let param = {id : '${id}', ispaid : 'E'}
-			sortBookAjax('endedJourney.do',param);
+			$('#sortFrm>input').val('E')
+			$('#sortFrm').submit();
 		})
 
 		// 취소 목록
 		$('#btn3').on('click', (e) => {
-			let param = {
-				id: '${id}',
-				ispaid: 'X'
-			}
-			sortBookAjax('canceledJourney.do', param);
+			$('#sortFrm>input').val('X')
+			$('#sortFrm').submit();
 		})
-
-
-		// ajax 호출 함수
-		let sortBookAjax = function (action, param) {
-			$.ajax({
-					url: action,
-					data: param,
-					dataType: 'json'
-				})
-				.done((result) => {
-					console.log(result);
-				})
-		}
-
-
-		// ajax 호출 후 화면 바뀌는 함수.. 저걸 다붙인다고..?
-		let makeList = function (datas) {
-			for (let data of datas) {
-
-			}
-		}
 
 
 
@@ -300,6 +298,7 @@
 			var request = $(e.relatedTarget).data('request');
 			var photo = $(e.relatedTarget).data('photo');
 			let bookno = $(e.relatedTarget).data('bookno');
+			
 			$('#mdCheckin').html(checkin + '시');
 			$('#mdCheckout').html(checkout + '시');
 			$('#mdCnum').html('어른 : ' + adult + '명, 아이 : ' + kid + '명');
@@ -309,12 +308,17 @@
 				$('#mdRequest').text('없음');
 			}
 			$('#mdAddr').html(addr);
-			// if문
-			if ($(e.relatedTarget).data('state')) {
+			//결제여부
+			if (e.relatedTarget.dataset.state=='Y') {
 				$('#state').text('결제완료').css('color', 'green').css('font-weight', 'bolder');
 			} else {
 				$('#state').text('결제 전').css('color', 'darkred').css('font-weight', 'bolder');
 			}
+			//취소여부
+			if(e.relatedTarget.dataset.cancel=='Y'){
+				$('#state').text('취소 처리됨').css('color', 'darkgray').css('font-weight', 'bolder');
+			}
+			
 			$('.dt')[0].dataset.no = bookno;
 		})
 	</script>

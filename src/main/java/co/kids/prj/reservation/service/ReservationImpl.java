@@ -42,9 +42,13 @@ public class ReservationImpl implements ReservationService {
 	}
 
 	@Override
-	public List<ReservationVO> reservSortList(ReservLodVO vo) {
-		
+	public List<ReservationVO> reservSortList(ReservLodVO vo) {	
 		return map.reservSortList(vo);
+	}
+
+	@Override
+	public ReservLodVO reservLodgSelect(ReservLodVO vo) {
+		return map.reservLodgSelect(vo);
 	}
 
 

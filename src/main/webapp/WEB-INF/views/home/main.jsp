@@ -60,7 +60,7 @@
 							저희 소영과 아이들은<br>최고의 서비스를 자랑합니다.
 						</p>
 						
-						<a href="myReserv.do" class="btn theme_btn button_hover">내예약</a>
+						<a href="#" class="btn theme_btn button_hover" id="myBook">내예약</a>
 						<a href="#" class="btn theme_btn button_hover">상세정보</a>
 						<a href="hostManage.do" class="btn theme_btn button_hover">호스트 숙소관리 test</a>
 					</div>
@@ -168,7 +168,14 @@
 
 
 	<script>
-	$()
+	$('#myBook').on('click',()=>{
+		if('${id}'==''){
+			window.alert('로그인이 필요합니다.');
+			return;
+		} else{
+			location.href='myReserv.do';						
+		}
+	})
 	
 	
 		// 빠른예약
