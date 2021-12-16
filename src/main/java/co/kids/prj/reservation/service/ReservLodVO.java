@@ -29,8 +29,8 @@ public class ReservLodVO {
 	private Date checkout;
 	private int bookadult;
 	private int bookkid;
-	private boolean ispaid;
-	private boolean bookcancel;
+	private String ispaid;
+	private String bookcancel;
 	private String bookrefund;
 	private String bookrequest;
 	private int imgno;
@@ -186,16 +186,17 @@ public class ReservLodVO {
 	public void setBookkid(int bookkid) {
 		this.bookkid = bookkid;
 	}
-	public boolean isIspaid() {
+
+	public String getIspaid() {
 		return ispaid;
 	}
-	public void setIspaid(boolean ispaid) {
+	public void setIspaid(String ispaid) {
 		this.ispaid = ispaid;
 	}
-	public boolean isBookcancel() {
+	public String getBookcancel() {
 		return bookcancel;
 	}
-	public void setBookcancel(boolean bookcancel) {
+	public void setBookcancel(String bookcancel) {
 		this.bookcancel = bookcancel;
 	}
 	public String getBookrefund() {

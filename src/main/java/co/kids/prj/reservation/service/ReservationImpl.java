@@ -12,7 +12,7 @@ public class ReservationImpl implements ReservationService {
 	private ReservationMapper map;
 
 	@Override
-	public List<ReservationVO> reservSelectList(ReservationVO vo) {
+	public List<ReservationVO> reservSelectList(ReservLodVO vo) {
 		// TODO Auto-generated method stub
 		return map.reservSelectList(vo);
 	}
@@ -39,6 +39,12 @@ public class ReservationImpl implements ReservationService {
 	public int reservUpdate(ReservationVO vo) {
 		// TODO Auto-generated method stub
 		return map.reservUpdate(vo);
+	}
+
+	@Override
+	public List<ReservationVO> reservSortList(ReservLodVO vo) {
+		
+		return map.reservSortList(vo);
 	}
 
 

@@ -23,7 +23,7 @@
 			padding-top: 35px;
 			text-align: left;
 			overflow: auto;
-			height: 700px;
+			height: 550px;
 			margin: 0px;
 			width: 987px;
 		}
@@ -117,12 +117,6 @@
 			margin-bottom: 30px;
 		}
 
-		.btn-floating i {
-			color: #F3C300;
-			font-size: 1.2rem;
-			margin: 0.5rem;
-		}
-
 		.container {
 			display: flex;
 			justify-content: center;
@@ -134,8 +128,9 @@
 			display: flex;
 
 		}
+		
+		
 	</style>
-	<script src="https://kit.fontawesome.com/8d99e6c8fb.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -158,81 +153,29 @@
 
 					<!-- 예약된 여행 -->
 					<div class="cardWrapper" id="reservation">
-						<div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+						<div class="carousel-item active">
+								<div style="display: flex;">
+							<c:forEach items="${cards }" var="reserv" varStatus="status">
+									<div class="card" style="width: 18rem;">
+										<img class="card-img-top" src="${reserv.rphoto}" alt="Card image cap">
+										<div class="card-body">
+											<h5 class="card-title">${reserv.rname }</h5>
+											<p class="card-text">${reserv.rcontent }</p>
 
-							<!--Controls-->
-							<div class="controls-top">
-								<a class="btn-floating" href="#multi-item-example" data-slide="prev"><i
-										class="fas fa-chevron-left"></i></a> <a class="btn-floating" href="#multi-item-example"
-									data-slide="next"><i class="fas fa-chevron-right"></i></a>
-							</div>
-							<!--/.Controls-->
-
-							<!--Indicators-->
-							<ol class="carousel-indicators">
-								<c:forEach items="${cards }" var="reserv" varStatus="status">
-									<c:if test="${(status.index % 3) == 0}">
-										<li data-target="#multi-item-example" data-slide-to="${status.index/3 }"></li>
-									</c:if>
-								</c:forEach>
-							</ol>
-							<!--/.Indicators-->
-
-							<!--reservation Slides-->
-							<div class="carousel-inner" role="listbox">
-								<!--First slide-->
-								<div class="carousel-item active">
-
-									<c:forEach items="${cards }" var="reserv" varStatus="status">
-										<c:if test="${status.count <= 3}">
-											<div class="card" style="width: 18rem;">
-												<img class="card-img-top" src="${reserv.rphoto}" alt="Card image cap">
-												<div class="card-body">
-													<h5 class="card-title">${reserv.rname }</h5>
-													<p class="card-text">${reserv.rcontent }</p>
-
-													<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
-														data-checkin='${reserv.rcheckin }' data-checkout='${reserv.rcheckout }'
-														data-adult='${reserv.bookadult }' data-kid='${reserv.bookkid }' data-pay='${reserv.fee }'
-														data-addr='${reserv.raddress }' data-request='${reserv.bookrequest }'
-														data-photo='${reserv.rphoto }' data-state='${reserv.ispaid }' data-bookno='${reserv.bookno}'>예약 상세 정보>
-													</a>
-												</div>
-											</div>
-										</c:if>
-									</c:forEach>
-								</div>
-								<!--/.First slide-->
-					
-					 
-								<!--other slide-->
-								<c:forEach items="${cards }" var="reserv" varStatus="status">
-									<c:if test="${(status.count % 3) == 1 && status.count > 3}">
-									
-										<div class="carousel-item">
-											<c:if test="${status.count > 3}"></c:if>
-											<div class="card" style="width: 18rem;">
-												<img class="card-img-top" src="${reserv.rphoto}" alt="Card image cap">
-												<div class="card-body">
-													<h5 class="card-title">${reserv.rname }</h5>
-													<p class="card-text">${reserv.rcontent }</p>
-													<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
-														data-checkin='${reserv.rcheckin }' data-checkout='${reserv.rcheckout }'
-														data-adult='${reserv.bookadult }' data-kid='${reserv.bookkid }' data-pay='${reserv.fee }'
-														data-addr='${reserv.raddress }' data-request='${reserv.bookrequest }'
-														data-photo='${reserv.rphoto }' data-bookno='${reserv.bookno}'>예약 상세 정보></a>
-												</div>
-											</div>
-											<c:if test="${(status.count % 3) == 1 && status.count > 3}">
-											</c:if>
+											<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+												data-checkin='${reserv.rcheckin }' data-checkout='${reserv.rcheckout }'
+												data-adult='${reserv.bookadult }' data-kid='${reserv.bookkid }' data-pay='${reserv.fee }'
+												data-addr='${reserv.raddress }' data-request='${reserv.bookrequest }'
+												data-photo='${reserv.rphoto }' data-state='${reserv.ispaid }' data-bookno='${reserv.bookno}'>예약
+												상세 정보>
+											</a>
 										</div>
-									</c:if>
-								</c:forEach>
-
-							
-							</div>
+									</div>
+							</c:forEach>
+								</div>
 						</div>
 					</div>
+					<!-- 예약된 여행 -->
 				</div>
 			</div>
 		</div>
@@ -286,17 +229,64 @@
 			</div>
 		</div>
 	</div>
-<form action="myReservDetail.do" method="post" id="frm">
-	<input type="hidden" name="bookno">
-</form>
+	<form action="myReservDetail.do" method="post" id="frm">
+		<input type="hidden" name="bookno">
+	</form>
+
+	<form action="myReserv.do" id="sortFrm">
+		<input type="hidden" name="ispaid">
+	</form>
 	<!--================Banner Area =================-->
 
 	<script>
 		$('.dt')[0].addEventListener('click', (e) => {
 			let bookno = $('.dt')[0].dataset.no;
-			$('#frm>input').val(bookno)
+			$('#frm>input').val(+bookno)
 			$('#frm').submit();
 		})
+
+		// 현재 예약중
+		$('#btn1').on('click', (e) => {
+			location.href='myReserv.do';
+		})
+
+
+		// 과거에 갔던 곳
+		$('#btn2').on('click', (e) => {
+			let param = {id : '${id}', ispaid : 'E'}
+			sortBookAjax('endedJourney.do',param);
+		})
+
+		// 취소 목록
+		$('#btn3').on('click', (e) => {
+			let param = {
+				id: '${id}',
+				ispaid: 'X'
+			}
+			sortBookAjax('canceledJourney.do', param);
+		})
+
+
+		// ajax 호출 함수
+		let sortBookAjax = function (action, param) {
+			$.ajax({
+					url: action,
+					data: param,
+					dataType: 'json'
+				})
+				.done((result) => {
+					console.log(result);
+				})
+		}
+
+
+		// ajax 호출 후 화면 바뀌는 함수.. 저걸 다붙인다고..?
+		let makeList = function (datas) {
+			for (let data of datas) {
+
+			}
+		}
+
 
 
 
