@@ -34,7 +34,6 @@ public class NoticeController {
 		vo.setBno(bno);
 		vo = noticeDao.noticeSelect(vo);
 		model.addAttribute("notice", vo);
-		
 		return "notice/noticeRead";
 		
 	}
