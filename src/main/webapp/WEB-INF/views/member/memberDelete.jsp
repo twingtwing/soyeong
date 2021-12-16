@@ -50,7 +50,7 @@
                                 </p>
                             </div>
                             <div class="row w-100 mt-3">
-                                <div class="card w-100">
+                                <div class="card border-danger w-100">
                                     <div class="card-body pl-5 pr-5 mt-4 mb-4">
                                         <h5 class="card-title mb-3">${name}님의 아이디 ${id}</h5>
                                         <!-- 중복 id걸려서 값을 제대로 안가져옴 그래서 일부러 id값을 passwrod를 안함 -->
@@ -58,7 +58,7 @@
                                         <div id="pwShow-D">
                                             <i class="far fa-eye-slash"></i>
                                         </div>
-                                        <a href="#" id="pwCheck" class="button_hover theme_btn_two w-100">확인</a>
+                                        <a href="javascript:void(0)" id="pwCheck" class="button_hover theme_btn_two w-100">확인</a>
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                                     <div class="card-body text-center pl-5 pr-5 mt-4 mb-4">
                                         <h5 class="card-title mb-3">탈퇴하시겠습니까?</h5>
                                         <div class="row d-flex justify-content-between pt-3">
-                                            <a href="#" id="mDelete" class="col-5 button_hover theme_btn_two w-100">탈퇴</a>
+                                            <a href="javascript:void(0)" id="mDelete" class="col-5 button_hover theme_btn_two w-100">탈퇴</a>
                                             <a href="home.do" class="col-5 button_hover theme_btn_two w-100">취소</a>
                                         </div>
                                     </div>
@@ -95,7 +95,9 @@
     	});
     	
     	document.getElementById('pwCheck').addEventListener('click',function(){
+    		event.stopPropagation();
     		let pwVal = document.getElementById('pwInput').value;
+    		if(pwVal.length != 0){
     	   	fetch("pwCheck.do",{
     	    	method : 'post',
     	    	headers :{"Content-type":"application/x-www-form-urlencoded"},
@@ -106,8 +108,17 @@
     	    	if(data.trim() === 'Y'){
     	    		document.getElementById('pwBox').classList.add('d-none');
     	    		document.getElementById('deleteBox').classList.remove('d-none');
+    	    		mDelete.focus();
+    	    	}else if(data.trim() === 'N'){
+    	    		alert('잘못된 비밀번호를 입력하셨습니다.\n다시 입력해주세요');
+    	    		pwInput.value = '';
+    	    		pwInput.focus();
     	    	}
     	    });
+    		}else{
+    			alert('비밀번호를 먼저 입력해주세요');
+    			pwInput.focus();
+    		}
     	});
     	
     	document.getElementById('pwInput').addEventListener('keypress',function(event){
@@ -117,6 +128,7 @@
     	});
     	
     	document.getElementById('mDelete').addEventListener('click',function(){
+    		event.stopPropagation();
     		let pwVal = document.getElementById('pwInput').value;
     		fetch("memberWithdraw.do",{
     	    	method : 'post',

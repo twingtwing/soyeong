@@ -101,8 +101,6 @@ public class AdminQuestionController {
 	@GetMapping("/questionASearch.do")
 	@ResponseBody
 	public List<QuestionAVO> questionASearch(QuestionAVO vo) {
-		if(vo.getfCategory().length() == 0) {vo.setfCategory(null);}
-		if(vo.getfTitle().length() == 0) {vo.setfTitle(null);}
 		return questionADao.questionASearch(vo);
 	}
 	
@@ -131,8 +129,6 @@ public class AdminQuestionController {
 	@GetMapping("/questionVSearch.do")
 	@ResponseBody
 	public List<QuestionVVO> questionVSearch(QuestionVVO vo) {
-		if(vo.getqCategory().length() == 0) {vo.setqCategory(null);}
-		if(vo.getqTitle().length() == 0) {vo.setqTitle(null);}
 		return questionVDao.questionVSearch(vo);
 	}
 	

@@ -8,5 +8,7 @@ public interface MemberMapper {
 	int memberInsert(MemberVO vo);
 	int memberUpdate(MemberVO vo);
 	int memberAuthorUpdate(MemberVO vo);
-	int memberDelete(MemberVO vo); // 비밀번호 확인 필요
+	int memberDelete(MemberVO vo); 
+	List<MemberVO> memberSearch(MemberVO vo);
+	int changePw(MemberVO vo);
 }

@@ -40,5 +40,22 @@
 		UPDATE MEMBER SET AUTHOR = #{author} WHERE ID = #{id}
 	</update>
 	
+	<select id="memberSearch" resultType="co.kids.prj.member.service.MemberVO" parameterType="co.kids.prj.member.service.MemberVO">
+		SELECT * FROM MEMBER 
+		<where>
+			<if test="status == ''">AND STATUS NOT IN('D')</if>
+			<if test="status != ''">AND STATUS NOT IN('D')</if>
+			<if test="author != ''">AND AUTHOR = #{author}</if>
+			<if test="id != ''">AND ID LIKE '%' || #{id} || '%'</if>
+			<if test="name != ''">AND NAME LIKE '%' || #{name} || '%'</if>
+		</where>
+		ORDER BY JOINDATE
+	</select>
+	
+	<update id="changePw" parameterType="co.kids.prj.member.service.MemberVO">
+		UPDATE MEMBER 
+		SET PASSWORD = #{password},STATUS='U' 
+		WHERE ID=#{id}
+	</update>
 	
 </mapper>
