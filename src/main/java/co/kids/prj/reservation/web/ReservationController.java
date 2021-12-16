@@ -31,10 +31,14 @@ public class ReservationController {
 	private ReservationImpl rDao;
 	
 	@RequestMapping("myReserv.do")
-	public String myReserv(HttpServletRequest request, HttpSession session, ReservLodVO vo,Model model) {
+	public String myReserv(HttpServletRequest request, HttpSession session, ReservLodVO vo) {
 		session = request.getSession();
 		vo.setId((String) session.getAttribute("id"));
-		request.setAttribute("cards", rDao.reservSelectList(vo));			
+		if(vo.getIspaid()==null) {
+			request.setAttribute("cards", rDao.reservSelectList(vo));						
+		} else {
+			request.setAttribute("cards", rDao.reservSortList(vo));
+		}		
 		return "reservation/myReservation";
 	}
 
@@ -78,25 +82,9 @@ public class ReservationController {
 	}
 	
 	@PostMapping("/myReservDetail.do")
-	public String myReservDetail(ReservationVO vo, Model model) {
-		model.addAttribute("reservInfo", rDao.reservSelect(vo));
-		// 예약정보랑 같이 숙소정보 필요하니까
-		// join을 하든 아님 vo.getRno()로 lodging select 하든 선택
+	public String myReservDetail(ReservLodVO vo, Model model,HttpServletRequest request) {
+		vo.setId((String) request.getSession().getAttribute("id"));
+		model.addAttribute("reservInfo", rDao.reservLodgSelect(vo));
 		return "reservation/myReservationDetail";
-	}
-	
-	@GetMapping("/endedJourney.do")
-	@ResponseBody
-	public String endedJourney(ReservLodVO vo) {
-		Gson gson = new GsonBuilder().create();
-		return gson.toJson(rDao.reservSortList(vo));
-	}
-	
-	@GetMapping("/canceledJourney.do")
-	@ResponseBody
-	public String canceledJourney(ReservLodVO vo) {
-		Gson gson = new GsonBuilder().create();
-		return gson.toJson(rDao.reservSortList(vo));
-	}
-	
+	}	
 }

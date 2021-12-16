@@ -129,7 +129,7 @@
 									<li class="nav-item"><a class="nav-link"
 										href="memberProfile.do">상세 정보</a></li>
 									<li class="nav-item"><a class="nav-link"
-										href="detailVisit.do">나의 예약 정보</a></li>
+										href="#">나의 예약 정보</a></li>
 									<li class="nav-item"><a class="nav-link" href="logout.do"
 										onclick="kakaoLogout();">로그아웃</a></li>
 								</c:if>
