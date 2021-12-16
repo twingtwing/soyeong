@@ -4,51 +4,72 @@
 	<select id="LodgingSelectList"
 		parameterType="co.kids.prj.lodging.service.LodgingVO"
 		resultType="co.kids.prj.lodging.service.LodgingVO">
-		SELECT * FROM LODGING WHERE RCHECKIN<![CDATA[>]]> TO_DATE(#{rcheckin},'yyyy-mm-dd') AND RCHECKOUT <![CDATA[<]]>
+		SELECT * FROM LODGING WHERE RCHECKIN<![CDATA[>]]>
+		TO_DATE(#{rcheckin},'yyyy-mm-dd') AND RCHECKOUT <![CDATA[<]]>
 		TO_DATE(#{rcheckout},'yyyy-mm-dd') AND RGUEST<![CDATA[>=]]>#{rguest}
 		<if test='rcategory != "A"'>
-		AND RCATEGORY=#{rcategory}
+			AND RCATEGORY=#{rcategory}
 		</if>
 		<if test='am1=="Y"'>
-		AND AM1 in(#{am1})
+			AND AM1 in(#{am1})
 		</if>
 		<if test='am2=="Y"'>
-		AND AM2 in(#{am2})
+			AND AM2 in(#{am2})
 		</if>
 		<if test='am3=="Y"'>
-		AND AM3 in(#{am3})
+			AND AM3 in(#{am3})
 		</if>
 		<if test='am1=="N" and am2=="N" and am3=="N"'>
-		AND RCATEGORY=RCATEGORY
+			AND RCATEGORY=RCATEGORY
 		</if>
 		AND RUSE NOT IN('Y') ORDER BY RCHECKIN, RGUEST ASC
 	</select>
-	
-	<insert id="LodgingInsert" parameterType="co.kids.prj.lodging.service.LodgingVO">	
-		INSERT INTO LODGING(RNO,ID,RCATEGORY,RTYPE,RGUEST,RBED,RBATH,RADDRESS,RCONTENT,FEE,AM1,AM2,AM3,RPHOTO,RUSE,RCHECKIN,RCHECKOUT,RNAME,RTEL) VALUES(
-		(SELECT MAX(RNO) FROM LODGING)+1,#{id},#{rcategory},#{rtype},#{rguest},#{rbed},#{rbath},#{raddress},#{rcontent}, #{fee},#{am1},#{am2}, #{am3},#{rphoto},default,#{rcheckin},#{rcheckout},#{rname}, #{rtel}
+
+	<insert id="LodgingInsert"
+		parameterType="co.kids.prj.lodging.service.LodgingVO">
+		INSERT INTO
+		LODGING(RNO,ID,RCATEGORY,RTYPE,RGUEST,RBED,RBATH,RADDRESS,RCONTENT,FEE,AM1,AM2,AM3,RPHOTO,RUSE,RCHECKIN,RCHECKOUT,RNAME,RTEL)
+		VALUES(
+		(SELECT MAX(RNO) FROM
+		LODGING)+1,#{id},#{rcategory},#{rtype},#{rguest},#{rbed},#{rbath},#{raddress},#{rcontent},
+		#{fee},#{am1},#{am2},
+		#{am3},#{rphoto},default,#{rcheckin},#{rcheckout},#{rname}, #{rtel}
 
 		)
 	</insert>
-	
-	<select id="LodgingSelect" resultType="co.kids.prj.lodging.service.LodgingVO" parameterType="co.kids.prj.lodging.service.LodgingVO">
+
+	<select id="LodgingSelect"
+		resultType="co.kids.prj.lodging.service.LodgingVO"
+		parameterType="co.kids.prj.lodging.service.LodgingVO">
 		SELECT * FROM LODGING WHERE RNO = #{rno}
 	</select>
 
-	
-	<update id="LodgingUpdateState" parameterType="String">
-		UPDATE LODGING SET RUSE = #{ruse}
-	</update>
-	
-	<update id="LodgingUpdateInfo" parameterType="co.kids.prj.lodging.service.LodgingVO">
-		update lodging 
+
+	<update id="LodgingUpdateState"
+		parameterType="co.kids.prj.lodging.service.LodgingVO">
+		UPDATE LODGING SET RUSE = #{ruse} WHERE RNO = #{rno}
 	</update>
 
-	
-	<select id="LodgingNum" resultType="co.kids.prj.lodging.service.LodgingVO">
+	<update id="LodgingUpdateInfo"
+		parameterType="co.kids.prj.lodging.service.LodgingVO">
+
+	</update>
+
+	<select id="LodgingSearchList"
+		parameterType="co.kids.prj.lodging.service.LodgingVO" resultType="co.kids.prj.lodging.service.LodgingVO">
+		SELECT * FROM LODGING WHERE RCHECKIN<![CDATA[>]]>
+		TO_DATE(#{rcheckin},'yyyy-mm-dd') AND RCHECKOUT <![CDATA[<]]>
+		TO_DATE(#{rcheckout},'yyyy-mm-dd') AND RGUEST<![CDATA[>=]]>#{rguest}
+		AND RCONTENT LIKE '%'||#{searchKey}||'%'
+		OR RNAME LIKE '%'||#{searchKey}||'%'
+	</select>
+
+
+	<select id="LodgingNum"
+		resultType="co.kids.prj.lodging.service.LodgingVO">
 		SELECT MAX(RNO)+1 AS RNO FROM LODGING
 	</select>
-	
+
 
 
 </mapper>

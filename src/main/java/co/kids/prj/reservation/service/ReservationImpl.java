@@ -41,4 +41,5 @@ public class ReservationImpl implements ReservationService {
 		return map.reservUpdate(vo);
 	}
 
+
 }

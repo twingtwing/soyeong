@@ -124,8 +124,9 @@ public class LodgingController {
 
 	@PostMapping("/houseList.do")
 	public String houseList(LodgingVO vo, Model model) {
-		model.addAttribute("lists",lodgingDao.LodgingSelectList(vo));
-		
+		vo.getSearchKey();
+		vo.getRcheckout();
+		model.addAttribute("lists",lodgingDao.LodgingSearchList(vo));
 		return "reservation/houseList";
 	}
 	

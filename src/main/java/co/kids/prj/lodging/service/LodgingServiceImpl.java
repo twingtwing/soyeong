@@ -20,8 +20,8 @@ public class LodgingServiceImpl implements LodgingService {
 	}
 
 	@Override
-	public int LodgingUpdateState(String ruse) {
-		return map.LodgingUpdateState(ruse);
+	public int LodgingUpdateState(LodgingVO vo) {
+		return map.LodgingUpdateState(vo);
 	}
 
 	@Override
@@ -44,6 +44,12 @@ public class LodgingServiceImpl implements LodgingService {
 	public LodgingVO LodgingNum() {
 		// TODO Auto-generated method stub
 		return map.LodgingNum();
+	}
+
+	@Override
+	public List<LodgingVO> LodgingSearchList(LodgingVO vo) {
+		
+		return map.LodgingSearchList(vo);
 	}
 
 
