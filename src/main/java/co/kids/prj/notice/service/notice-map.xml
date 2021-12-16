@@ -15,12 +15,12 @@
 			SELECT MAX(BNO) + 1 AS BNO FROM NOTICE
 		</selectKey>
 		INSERT INTO NOTICE 
-		VALUES(#{bno}, #{id}, #{btitle}, #{bcontent}, #{bdate}, #{bstatus}, #{blastdate})
+		VALUES(#{bno}, #{id}, #{btitle}, #{bcontent}, sysdate, #{bstatus}, sysdate)
 	</insert>
 	
 	<update id="noticeUpdate" parameterType="co.kids.prj.notice.service.NoticeVO">
 		UPDATE NOTICE SET BTITLE = #{btitle}, BCONTENT = #{bcontent}, BLASTDATE = #{blastdate}
-		BSTATUS='U' WHERE ID=#{id}
+		WHERE ID=#{id}
 	</update>
 	
 	<delete id="noticeDelete" parameterType="co.kids.prj.notice.service.NoticeVO">
