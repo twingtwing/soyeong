@@ -35,4 +35,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeMapper.noticeDelete(bno);
 	}
 
+	@Override
+	public List<NoticeVO> noticeSearch(NoticeVO vo) {
+		return noticeMapper.noticeSearch(vo);
+	}
+
 }
