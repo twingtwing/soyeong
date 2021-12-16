@@ -70,7 +70,7 @@
 	display: inline-block;
 	position: absolute;
 	margin-left: 350px;
-	margin-top: -180px;
+	margin-top: -200px;
 	cursor: pointer;
 }
 </style>
@@ -100,9 +100,9 @@
 						<li class="nav-item"><a class="nav-link"
 							href="question.do">고객센터</a></li>
 						<!-- 로그인 되어 있을시 -->
-						<c:if test="${not empty id}">
-							<li class="nav-item"><a class="nav-link" href="#">호스트
-									모드</a></li>
+						<c:if test="${author eq 'USER'}">
+							<li class="nav-item"><a class="nav-link" href="memberAuthor.do">호스트
+									신청</a></li>
 						</c:if>
 							<li class="nav-item"><a class="nav-link" href="admin.do">관리자
 									모드</a></li>
@@ -144,7 +144,7 @@
 	<!-- login modal -->
 	<div align="center" id="loginModal">
 
-		<div id="box">
+		<div id="box" class="pb-5">
 			<span class="close">&times;</span> <span>소영과 아이들에 오신 것을 환영합니다.</span>
 			<input type="text" placeholder="ID" id="id" name="id"> 
 			<input type="password" placeholder="Password" id="password" name="password">
@@ -193,32 +193,16 @@
 	
 
 	// 비밀번호 찾기 클릭시
-	$('.findPw').click(()=>pwForm())
-	
-	function pwForm(){
-		// 근데 여기서하는것보다 아싸리 새 창을 띄우는게 좋을것같기도해요....너무 한데 때려박는거같아서
-		$('#box').children().not('.close').css('display','none');
-		$('#box').css('justify-content','left');
-		$('#box').append($('<h4>').text('비밀번호 찾기'));
-		$('#box').append($('<input>').attr('placeholder','이메일 주소 입력'),
-				$('<button>').html('인증번호 받기'),
-				$('<input>').attr('placeholder','인증번호'),$('<button>').html('확인'));
-		$('#box').children().not('.close').css('margin','1rem');
-	}
+	$('.findPw').click(()=>{
+		$('#loginModal').css('display','none');
+		location.href="findPw.do"
+	})
 
 	$('#loginBtn').on('click',()=>{
 		$('#loginModal').css('display','block');
 	})
 	
 	$('.close').on('click',()=>{
-		//창을 닫아도 비밀번호 찾기가 유지 되는 오류땜에 코드 수정
-		const boxChildren = $('#box').children()
-		if(boxChildren.length > 9){
-			for(var i = 9; i < boxChildren.length;i++){
-				boxChildren[i].remove();
-			}
-			$('#box').children().not('.close').css('display','');
-		}
 		$('#loginModal').css('display','none');
 	})
 

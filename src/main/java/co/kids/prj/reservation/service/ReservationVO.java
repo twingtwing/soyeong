@@ -1,11 +1,6 @@
 package co.kids.prj.reservation.service;
 
 import java.sql.Date;
-import java.util.List;
-
-import co.kids.prj.lodging.service.LodgingVO;
-import lombok.Getter;
-import lombok.Setter;
 
 public class ReservationVO {
 	private int bookno;

@@ -26,9 +26,9 @@
 					<div class="card-body pl-5 pr-5">
 						<div class="row d-flex justify-content-between">
 							<div class="col-6 d-flex align-items-end">
-							<div class="row">
-							<h3 class="d-inline mt-1 mb-2">User Detail</h3>
-							</div>
+								<div class="row">
+									<h3 class="d-inline mt-1 mb-2">User Detail</h3>
+								</div>
 							</div>
 							<div class="col-6 d-flex justify-content-end">'
 								<div class="row">
@@ -86,10 +86,8 @@
 	
 		document.getElementById('authorChange').addEventListener('click',function(){
 			let author = document.getElementById('selectAuthor').value;
-			let myAuthor = '${member.author}';
-			console.log(author)
+			let myAuthor = document.getElementById('tdAuthor').innerHTML;
 			if(author != myAuthor){
-				console.log(author != myAuthor);
 				fetch('memberAuthorUpdate.do',{
 					method : 'post',
 					headers :{"Content-type":"application/x-www-form-urlencoded"},

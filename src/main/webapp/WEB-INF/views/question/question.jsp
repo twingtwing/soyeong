@@ -183,7 +183,7 @@
 						</div>
 						<div class="form-row col-md-12 mb-4">
 							<div class="form-group col-md-3">
-								<h6>첨부파일</h6>
+								<h6><i class="fa fa-paperclip"></i>첨부파일</h6>
 								<input type="file" id="fileQ" name="fileQ" class="form-control-file">
 							</div>
 							<div class="form-group col-md-9">

@@ -153,6 +153,7 @@
 		}
 		
 		document.getElementById('searchSC').addEventListener('click',function(){
+			event.stopPropagation();
 			let c = document.getElementById('qCategory').value;
 			let t = document.getElementById('qTitle').value;
 			console.log(c)

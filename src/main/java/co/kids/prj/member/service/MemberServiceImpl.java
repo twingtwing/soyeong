@@ -40,4 +40,14 @@ public class MemberServiceImpl implements MemberService {
 		return map.memberAuthorUpdate(vo);
 	}
 
+	@Override
+	public List<MemberVO> memberSearch(MemberVO vo) {
+		return map.memberSearch(vo);
+	}
+
+	@Override
+	public int changePw(MemberVO vo) {
+		return map.changePw(vo);
+	}
+
 }

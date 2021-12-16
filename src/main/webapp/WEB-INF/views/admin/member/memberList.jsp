@@ -54,8 +54,17 @@ table {
 										</div>
 										<div class="mr-2">
 											<select id="selectM" name="selectM" class="form-control">
-												<option value="name" selected="selected">이름</option>
+												<option value="" selected="selected">말머리</option>
+												<option value="name">이름</option>
 												<option value="id">아이디</option>
+											</select>
+										</div>
+										<div class="mr-2">
+											<select id="selectA" name="selectA" class="form-control">
+												<option value="" selected="selected">권한</option>
+												<option value="USER">USER</option>
+												<option value="HOST">HOST</option>
+												<option value="ADMIN">ADMIN</option>
 											</select>
 										</div>
 										<input type="text" id="inputM" name="inputM"
@@ -71,19 +80,8 @@ table {
 				<div class="col-lg-12">
 					<div class="card">
 						<div class="card-body">
-							<div class="dropdown-button mb-3 mt-2"
-								style="text-align: left; display: inline-block;">
-								<div class="btn-group" role="group">
-									<button type="button"
-										class="btn mb-1 btn-primary dropdown-toggle"
-										data-toggle="dropdown" aria-haspopup="true"
-										aria-expanded="false">정렬</button>
-									<div class="dropdown-menu">
-										<!-- 어떤 오름차순? 내림차순? -->
-										<a class="dropdown-item" href="#">오름차순</a> <a
-											class="dropdown-item" href="#">내림차순</a>
-									</div>
-								</div>
+							<div class="row ml-2 mb-2">
+								<h3 class="d-inline mt-1 mb-2">User List</h3>
 							</div>
 							<div class="active-member">
 								<div id="member-table" class="table-responsive" style="display: inline;"></div>
@@ -140,26 +138,28 @@ table {
 
 		    tui.Grid.applyTheme('clean');
 		}
-		
-        $("table").on('click', 'button', function () {
-           memberBan();
-        });
 
+		searchMBtn.addEventListener('click',function(){
+			event.stopPropagation();
+			let category = selectM.value;
+			let author = selectA.value;
+			let input = inputM.value;
+			if(category === ''){
+				alert('말머리를 선택해주세요');
+			}else{
+				let path = 'memberSearch.do?category='+category+'&input='+input+'&author='+author;
+				fetch(path)
+				.then(response => response.json())
+				.then(data => createM(data));
+			}
+		});
 
-        // 즉시 status 변경 가능하도록 >> update
-        function memberBan(){
-            $.ajax({
-                url:'',
-                data: {
-                    status : 'ban'
-                },
-                dataType:'',
-                method:'GET',
-                success: function(data){
-                    console.log('성공')
-                }
-            });
-        }
+		inputM.addEventListener("keypress",function(event){
+			if(event.keyCode === 13){
+				searchMBtn.click();
+			}
+		});
+
     </script>
 
 </body>
