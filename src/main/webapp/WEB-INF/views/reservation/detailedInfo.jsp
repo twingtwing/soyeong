@@ -228,12 +228,9 @@
 				<c:forEach items="${reviews}" var="review">
 				<div class="media testimonial_item">
 					<img class="rounded-circle" src="image/testtimonial-1.jpg" alt="">
-					<div class="media-body">
+					<div class="media-body" data-star="${review.rvstar}">
 						<p>${review.rvcontent}</p>
 						<a href="#"><h4 class="sec_h4">${review.id}</h4></a>
-						<script type="text/javascript">makeStar(${review.rvstar});</script>
-						<div class="star">
-						</div>
 					</div>
 				</div>
 				</c:forEach>
@@ -265,17 +262,34 @@
 	
 	
 	
+	
 	let makeStar = function(rvstar){
 		rvstar = Number(rvstar)
 		let fullstar = Math.floor(rvstar);
-		let star = $('<div>').attr('class','star');
-		for(let i=0;i<fullstar;i++){
-			star.append($('<a>').append($('<i>').addClass('fa fa-star')));
+		console.log(rvstar,fullstar)
+		let star = document.createElement('div')
+		star.className = 'star';
+		let a, i;
+		for(let j=0;j<fullstar;j++){
+			a = document.createElement('a');
+			i = document.createElement('i');
+			i.className='fa fa-star';
+			a.append(i);
+			star.append(a);
 		}
 		if(rvstar-fullstar>0){
-			star.append($('<a>').append($('<i>').addClass('fa fa-star-half-o')));
+			a = document.createElement('a');
+			i = document.createElement('i');
+			i.className = 'fa fa-star-half-o';
+			a.append(i);
+			star.append(a);
 		}
 		return star;
+	}
+	
+	for(let i=0; i<document.getElementsByClassName('media-body').length;i++){
+		let rvstar = +document.getElementsByClassName('media-body')[i].getAttribute('data-star');
+		document.getElementsByClassName('media-body')[i].append(makeStar(rvstar));
 	}
 	
 	

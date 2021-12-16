@@ -1,11 +1,6 @@
 package co.kids.prj.reservation.service;
 
 import java.sql.Date;
-import java.util.List;
-
-import co.kids.prj.lodging.service.LodgingVO;
-import lombok.Getter;
-import lombok.Setter;
 
 public class ReservationVO {
 	private int bookno;
@@ -16,8 +11,8 @@ public class ReservationVO {
 	private Date checkout;
 	private int bookadult;
 	private int bookkid;
-	private boolean ispaid;
-	private boolean bookcancel;
+	private String ispaid;
+	private String bookcancel;
 	private String bookrefund;
 	private String bookrequest;
 	
@@ -81,16 +76,17 @@ public class ReservationVO {
 	public void setBookkid(int bookkid) {
 		this.bookkid = bookkid;
 	}
-	public boolean isIspaid() {
+
+	public String getIspaid() {
 		return ispaid;
 	}
-	public void setIspaid(boolean ispaid) {
+	public void setIspaid(String ispaid) {
 		this.ispaid = ispaid;
 	}
-	public boolean isBookcancel() {
+	public String getBookcancel() {
 		return bookcancel;
 	}
-	public void setBookcancel(boolean bookcancel) {
+	public void setBookcancel(String bookcancel) {
 		this.bookcancel = bookcancel;
 	}
 	public String getBookrefund() {

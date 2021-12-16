@@ -8,5 +8,4 @@ public interface ReservationService {
 	int reservInsert(ReservationVO vo);
 	int reservDelete(ReservationVO vo);
 	int reservUpdate(ReservationVO vo);
-	
 }

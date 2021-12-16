@@ -69,7 +69,20 @@ public class ReservationController {
 	@PostMapping("/booking.do")
 	public String booking(ReservationVO vo) {
 		rDao.reservInsert(vo);
-		return "redirect:home.do"; // 예약하고 마이페이지로 가면되나?
+		LodgingVO lodgingVO = new LodgingVO();
+		lodgingVO.setRno(vo.getRno());
+		lodgingVO.setRuse("Y");
+		lodgingDao.LodgingUpdateState(lodgingVO); // 사용중으로 업데이트
+		return "redirect:home.do"; // 예약하고 마이페이지로
+	}
+	
+	@PostMapping("/myReservDetail.do")
+	public String myReservDetail(ReservationVO vo, Model model) {
+		System.out.println(vo.getBookno());
+		model.addAttribute("reservInfo", rDao.reservSelect(vo));
+		// 예약정보랑 같이 숙소정보 필요하니까
+		// join을 하든 아님 vo.getRno()로 lodging select 하든 선택
+		return "reservation/myReservationDetail";
 	}
 	
 }

@@ -1,8 +1,5 @@
 package co.kids.prj.lodging.service;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class LodgingVO {
 	private int rno;
 	private String id;
@@ -23,8 +20,14 @@ public class LodgingVO {
 	private String rcheckout;
 	private String rname;
 	private String rtel;
+	private String searchKey;
 	
-	
+	public String getSearchKey() {
+		return searchKey;
+	}
+	public void setSearchKey(String searchKey) {
+		this.searchKey = searchKey;
+	}
 	public String getRtel() {
 		return rtel;
 	}
