@@ -19,7 +19,7 @@
 	</insert>
 	
 	<update id="noticeUpdate" parameterType="co.kids.prj.notice.service.NoticeVO">
-		UPDATE NOTICE SET BTITLE = #{btitle}, BCONTENT = #{bcontent}, sysdate
+		UPDATE NOTICE SET BTITLE = #{btitle}, BCONTENT = #{bcontent}, BLASTDATE = sysdate
 		WHERE ID=#{id}
 	</update>
 	
