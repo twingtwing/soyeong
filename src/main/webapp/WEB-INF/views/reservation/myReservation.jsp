@@ -163,14 +163,13 @@ th {
 								<div class="carousel-item active">
 
 									<c:forEach items="${cards }" var="reserv" varStatus="status">
-										<c:if test="${status.count <= 3}">
+										<c:if test="${status.count <= 3 }">
 											<div class="card" style="width: 18rem;">
-												<img class="card-img-top" src="${reserv.rphoto}"
-													alt="Card image cap">
+												<img class="card-img-top" src="${reserv.rphoto}" alt="Card image cap">
+												
 												<div class="card-body">
 													<h5 class="card-title">${reserv.rname }</h5>
 													<p class="card-text">${reserv.rcontent }</p>
-
 													<a href="#" class="btn btn-primary" data-toggle="modal"
 														data-target="#exampleModalCenter"
 														data-checkin='${reserv.rcheckin }'
@@ -568,6 +567,7 @@ th {
 	<!--================Banner Area =================-->
 
 	<script>
+	
 	$('#exampleModalCenter').on('show.bs.modal', function(e){
 		var checkin = $(e.relatedTarget).data('checkin');
 		var checkout = $(e.relatedTarget).data('checkout');

@@ -57,7 +57,6 @@
 						<a href="detailedInfo.do" class="btn theme_btn button_hover">상세정보</a>
 						<a href="#" class="btn theme_btn button_hover" id="listAll">리스트 보기</a>
 						<a href="hostManage.do" class="btn theme_btn button_hover">호스트 숙소관리 test</a>
-						<a href="admin.do" class="btn theme_btn button_hover">관리자 페이지 test</a>
 					</div>
 				</div>
 			</div>

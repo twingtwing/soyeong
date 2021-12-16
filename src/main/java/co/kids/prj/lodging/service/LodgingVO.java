@@ -1,8 +1,5 @@
 package co.kids.prj.lodging.service;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class LodgingVO {
 	private int rno;
 	private String id;

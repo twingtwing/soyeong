@@ -9,10 +9,9 @@
 	
 	</select>
 	
-	<insert id="insertPhoto" parameterType="co.kids.prj.reservation.service.ReservLodVO">
-		INSERT INTO IMG(IMGNO, RNO, ID, ORIFILE, PFILE) VALUES(
-		(SELECT MAX(imgno) FROM img)+1, ${rno}, ${id}, ${orifile}, ${pfile}
-		)
+	<insert id="insertPhoto" parameterType="co.kids.prj.lodgingPhoto.service.LodgingPhotoVO">
+		INSERT INTO IMG(IMGNO, RNO, ID, ORIFILE, PFILE)
+		VALUES((SELECT NVL(MAX(IMGNO), 0)+1 AS IMGNO FROM IMG), #{rno}, #{id}, #{orifile}, #{pfile})
 		
 	</insert>
 	

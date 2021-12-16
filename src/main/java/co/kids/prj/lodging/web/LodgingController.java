@@ -3,9 +3,11 @@ package co.kids.prj.lodging.web;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,14 +55,21 @@ public class LodgingController {
 	}
 
 	@RequestMapping("hostManage.do")
-	public String hostManage() {
+	public String hostManage(LodgingVO vo, Model model, HttpSession session, HttpServletRequest request) {
+		session = request.getSession();
+		vo.setId((String) session.getAttribute("id"));
+		model.addAttribute("lodges", lodgingDao.LodgingSelectMyList(vo));
 		return "host/hostManage";
 	}
 	
 	@RequestMapping("hostInsertForm.do")
 	public String hostInsertForm(Model model, LodgingVO vo) {
 		vo = lodgingDao.LodgingNum();
-		model.addAttribute("lodNum", vo.getRno());
+		if(vo == null) {
+			model.addAttribute("lodNum", 1);
+		} else {
+			model.addAttribute("lodNum", vo.getRno());
+		}
 		return "host/hostInsertForm";
 	}
 	
@@ -83,25 +92,32 @@ public class LodgingController {
 		vo.setAm2(request.getParameter("am2"));
 		vo.setAm3(request.getParameter("am3"));
 		
+		//다중파일업로드
 		List<MultipartFile> fileList = multi.getFiles("image");
-		for(MultipartFile mf : fileList) {
-			String oriFileName = mf.getOriginalFilename();
-			
-			String safeFile = saveDir +  oriFileName;
+		
+		for(int i=0; i<fileList.size(); i++) {
+			String oriFileName = fileList.get(i).getOriginalFilename();
+			String safeFile = saveDir + UUID.randomUUID().toString() + oriFileName;
 			pvo.setOrifile(oriFileName);
 			pvo.setPfile(safeFile);
 			pvo.setRno(Integer.parseInt(request.getParameter("rno")));
 			pvo.setId(request.getParameter("id"));
+			
 			try {
-				mf.transferTo(new File(safeFile));
+				fileList.get(i).transferTo(new File(safeFile));
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			lodPhotoDao.insertPhoto(pvo);
+			if(i == 0) {
+				vo.setRphoto(safeFile);
+			}
 		}
+
 		
+		//단일파일업로드
 //		String fileName = file.getOriginalFilename();
 //		vo.setRphoto(fileName);
 //		int comma = fileName.lastIndexOf(".");
@@ -116,7 +132,7 @@ public class LodgingController {
 		lodgingDao.LodgingInsert(vo);
 		return "redirect:hostManage.do";
 	}
-
+	
 	@PostMapping("/houseList.do")
 	public String houseList(LodgingVO vo, Model model) {
 		model.addAttribute("lists",lodgingDao.LodgingSelectList(vo));
@@ -131,5 +147,26 @@ public class LodgingController {
 		return "reservation/detailedInfo";
 	}
 	
+	@RequestMapping("lodgingInfo.do")
+	public String lodgingInfo(LodgingVO vo, HttpServletRequest request) {
+		vo.setRno(Integer.parseInt(request.getParameter("rno")));
+		request.setAttribute("thislodge", lodgingDao.LodgingSelect(vo));
+		return "host/lodgingInfo";
+	}
+	
+	@RequestMapping("lodgingUpdateForm.do")
+	public String lodgingUpdateForm(LodgingVO vo, HttpServletRequest request) {
+		vo.setRno(Integer.parseInt(request.getParameter("rno")));
+		request.setAttribute("thislodge", lodgingDao.LodgingSelect(vo));
+		return "host/lodgingUpdateForm";
+	}
+	
+	@RequestMapping("lodgingDelete.do")
+	public String lodgingDelete(LodgingVO vo, HttpServletRequest request) {
+		vo.setRno(Integer.parseInt(request.getParameter("rno")));
+		int i = vo.getRno();
+		lodgingDao.LodgingDelete(i);
+		return "redirect:hostManage.do";
+	}
 
 }

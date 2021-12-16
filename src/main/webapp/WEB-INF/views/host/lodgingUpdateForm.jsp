@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <style>
-#hostFormName {
+#lodgingInfoUpdateName {
 	font-weight: bolder;
 	padding: 40px;
 	font-size: x-large;
@@ -50,24 +50,20 @@ form>input:hover {
 	color: white;
 }
 </style>
-
 </head>
 <body>
 
 	<div align="center">
-		<div id="hostFormName">숙소 등록</div>
+		<div id="lodgingInfoUpdateName">숙소 정보 수정</div>
 		<div>
-			<form id="frm" action="lodgingResister.do" method="post"
-				enctype="multipart/form-data">
+			<form id="frm" method="post" enctype="multipart/form-data">
 				<div>
 					<table>
 						<tr>
 							<th width="150">숙소번호</th>
-							<td width="150" style="text-align: left">${lodNum }</td>
+							<td width="150" style="text-align: left">${thislodge.rno }</td>
 							<th width="150">아이디</th>
-							<td width="150" style="text-align: left">${id }
-								<input type="hidden" id="id" name="id" value="${id }">
-							</td>
+							<td width="150" style="text-align: left">${thislodge.id }</td>
 						</tr>
 						<tr>
 							<th style="padding: 20px">숙소유형</th>
@@ -88,80 +84,109 @@ form>input:hover {
 						</tr>
 						<tr>
 							<th>숙소이름</th>
-							<td style="text-align: left"><input type="text" id="title"
-								name="title" size="25" placeholder="보여질 숙소 이름을 입력해주세요">
+							<td style="text-align: left">
+								<input type="text" id="title" name="title" size="25" value="${thislodge.rname }">
 							</td>
 							<th>숙소인원</th>
-							<td style="text-align: left"><input type="text" id="pnum"
-								name="pnum" size="25" placeholder="10명까지 입력가능합니다."></td>
+							<td style="text-align: left">
+								<input type="text" id="pnum" name="pnum" size="25" value="${thislodge.rguest }">
+							</td>
 						</tr>
 						<tr>
 							<th>체크인</th>
-							<td style="text-align: left"><input type="text" id="checkin"
-								name="checkin" size="25" placeholder="체크인 시간을 입력해주세요"></td>
+							<td style="text-align: left">
+								<input type="text" id="checkin" name="checkin" size="25" value="${thislodge.rcheckin }">
+							</td>
 							<th>체크아웃</th>
-							<td style="text-align: left"><input type="text"
-								id="checkout" name="checkout" size="25"
-								placeholder="체크아웃 시간을 입력해주세요"></td>
+							<td style="text-align: left">
+								<input type="text" id="checkout" name="checkout" size="25" value="${thislodge.rcheckout }">
+							</td>
 						</tr>
 						<tr>
 							<th style="padding: 20px">침대</th>
-							<td><select name="bed" id="bed">
+							<td>
+								<select name="bed" id="bed">
 									<option value="1">single</option>
 									<option value="2">double</option>
-							</select></td>
+								</select>
+							</td>
 							<th style="padding: 20px">욕실</th>
-							<td><select name="bath" id="bath">
+							<td>
+								<select name="bath" id="bath">
 									<option value="1">1</option>
 									<option value="2">2</option>
-							</select></td>
+								</select>
+							</td>
 						</tr>
 						<tr>
 							<th>숙소전화번호</th>
-							<td colspan="3" style="text-align: left"><input type="text"
-								id="tel" name="tel" size="95"
-								placeholder="전화번호를 입력해주세요(-를 빼고 입력해주세요)"
-								pattern="[0-9]{2,3}[0-9]{3,4}[0-9]{3,4}" maxlength="11">
+							<td colspan="3" style="text-align: left">
+								<input type="text" id="tel" name="tel" size="95" value="${thislodge.rtel }" pattern="[0-9]{2,3}[0-9]{3,4}[0-9]{3,4}" maxlength="11">
 							</td>
 						</tr>
 						<tr>
 							<th>숙소주소</th>
-							<td colspan="3" style="text-align: left"><input type="text"
-								id="address" name="address" size="95"></td>
+							<td colspan="3" style="text-align: left">
+								<input type="text" id="address" name="address" size="95" value="${thislodge.raddress }">
+							</td>
 						</tr>
 						<tr>
 							<th>숙소설명</th>
-							<td colspan="3"><textarea rows="6" cols="100" id="subject"
-									name="subject"></textarea></td>
+							<td colspan="3">
+								<textarea rows="6" cols="100" id="subject" name="subject">${thislodge.rcontent }</textarea>
+							</td>
 						</tr>
 						<tr>
 							<th>1박요금</th>
-							<td colspan="3" style="text-align: left"><input type="text"
-								id="onedayfee" name="onedayfee" size="25">&nbsp원</td>
+							<td colspan="3" style="text-align: left">
+								<input type="text" id="onedayfee" name="onedayfee" size="25" value="${thislodge.fee }">&nbsp원
+							</td>
 						</tr>
 						<tr>
 							<th>편의시설</th>
-							<td colspan="3" style="text-align: left"><label><input
-									type="checkbox" id="am1" name="am1" value="Y">&nbsp
-									wifi</label> <label><input type="checkbox" id="am2" name="am2"
-									value="Y">&nbsp 주방</label> <label><input
-									type="checkbox" id="am3" name="am3" value="Y">&nbsp 편의점</label>
+							<td colspan="3" style="text-align: left">
+									<label><input type="checkbox" id="am1" name="am" value="Y">&nbsp wifi</label>
+									<label><input type="checkbox" id="am2" name="am" value="Y">&nbsp 주방</label>
+									<label><input type="checkbox" id="am3" name="am" value="Y">&nbsp 편의점</label>
 							</td>
 						</tr>
 						<tr>
 							<th>숙소사진</th>
-							<td colspan="3" style="text-align: left"><input type="file"
-								multiple="multiple" id="image" name="image"></td>
+							<td colspan="3" style="text-align: left">
+								<input type="file" multiple="multiple" id="image" name="image">
+							</td>
 						</tr>
 					</table>
 				</div>
-				<br> <input type="submit" value="저 장">&nbsp;&nbsp;&nbsp; 
-					<input type="reset" onclick="history.back()" value="취 소"> 
-					<input type="hidden" id="rno" name="rno" value="${lodNum }">
+				<br> 
+				<div>
+					<button type="button" id="btn1">저장</button>
+					&nbsp;&nbsp;&nbsp;
+					<button type="button" id="btn2" onclick="history.back()">수정취소</button>
+				</div>
 			</form>
 		</div>
 	</div>
-	<script>
+
+<script>
+$('input:checkbox[name="am"]').each(function() {
+	if(${thislodge.am1} equal('Y')){
+	this.checked = true;
+	}
+
+	});
+
+
+$(function(){
+	$("#btn1").click(function(){
+		frm.action= "lodgingUpdate.do";
+		frm.submit();
+	});
+})
+
+
+
+
 		$('#pnum').on('keyup', function() {
 			if (/\D/.test(this.value)) {
 				this.value = this.value.replace(/\D/g, '')
@@ -202,7 +227,7 @@ form>input:hover {
 			}
 		});
 
-		var patt = new RegExp("[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}");
+		var patt = new RegExp("[0-9]{2,3}[0-9]{3,4}[0-9]{3,4}");
 		var res = patt.test($("#tel").val());
 		
 		$('#tel').on('keyup', function() {
@@ -210,6 +235,5 @@ form>input:hover {
 			this.value = inputValue.replace(/[^0-9]/gi, '');
 		})
 	</script>
-
 </body>
 </html>

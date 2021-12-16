@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.kids.prj.reservation.service.ReservationMapper">
 	<select id="reservSelectList" resultType="co.kids.prj.reservation.service.ReservLodVO">
-
 		SELECT * FROM BOOKING B
 		LEFT OUTER JOIN LODGING L
 		ON B.RNO = L.RNO
