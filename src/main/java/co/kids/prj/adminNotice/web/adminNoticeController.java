@@ -1,5 +1,6 @@
 package co.kids.prj.adminNotice.web;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -49,6 +50,9 @@ public class adminNoticeController {
 	public String adminNoticeFormInsert(NoticeVO vo, HttpSession session) {
 		
 		String id = (String) session.getAttribute("id");
+		vo.setId(id);
+		System.out.println("========" + id);
+		
 		int res = noticeDao.noticeInsert(vo);
 		
 		if(res>0) {
@@ -67,8 +71,14 @@ public class adminNoticeController {
 
 	/* 공지사항 수정 */
 	@RequestMapping("/adminNoticeUpdateForm.do")
-	public String adminNoticeUpdate(NoticeVO vo) {
-
+	public String adminNoticeUpdate(NoticeVO vo, HttpSession session) {
+		System.out.println(vo.getBtitle());
+		System.out.println(vo.getBcontent());
+		System.out.println(vo.getBdate());
+		
+		String id = (String) session.getAttribute("id");
+		vo.setId(id);
+		
 		int res = noticeDao.noticeInsert(vo);
 		
 		if(res>0) {

@@ -32,10 +32,11 @@
                                                 <span class="float-right">작성자 : ${notice.id }&nbsp;&nbsp;&nbsp;작성일 : ${notice.bdate }</span>
                                                 <h4 class="m-0 text-primary">${notice.btitle }</h4>
                                                 <hr>
-                                                <p class="my-3">내용</p>
+                                                <p class="my-3">${notice.bcontent }</p>
                                                 <div class="row justify-content-end">
                                                     <input type="button" class="btn mb-1 btn-primary m-1" onclick="location.href='adminNoticeUpdate.do?bno=${notice.bno}'" value="수정">
                                                     <input type="button" class="btn mb-1 btn-primary m-1" onclick="location.href='adminNoticeDelete.do?bno=${notice.bno}'" value="삭제">
+                                                    <input type="button" class="btn mb-1 btn-primary m-1" onclick="location.href='adminNoticeList.do'" value="목록보기">
                                                 </div>
                                            </div>
                                         </div>
