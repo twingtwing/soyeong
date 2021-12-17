@@ -1,5 +1,8 @@
 package co.kids.prj.member.web;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +42,16 @@ public class adminMemberController {
 	}
 	
 	//멤버검색
+	@GetMapping("/memberSearch.do")
+	@ResponseBody
+	public List<MemberVO> memberSearch(MemberVO vo,@Param("category") String category,@Param("input") String input){
+		if(category.equals("id")) {
+			vo.setId(input);
+		}else if(category.equals("name")) {
+			vo.setName(input);
+		}
+		return memberDao.memberSearch(vo);
+	}
 	
 	//멤버 권한 수정
 	@PostMapping("/memberAuthorUpdate.do")

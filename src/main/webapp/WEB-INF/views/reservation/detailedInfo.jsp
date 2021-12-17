@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,6 +116,7 @@
 																<i class="fa fa-calendar" aria-hidden="true"></i>
 															</span>
 														</div>
+														<!-- 여기는 date타입으로 들어가는거라서 시간도 선택할수있게 바꾸면 좋겠어요 -->
 													</div>
 												</div>
 											</div>
@@ -168,7 +170,8 @@
 												<div class="w-100"></div>
 											</div>
 											<div class="col-md-12" id="reportButton">
-												<a href="#" class="genric-btn danger circle">신고하기</a>
+												<a href="#" class="genric-btn danger circle">신고하기</a> 
+												<!-- 신고 insert 페이지로 이동 -->
 
 											</div>
 										</div>
@@ -220,20 +223,15 @@
 	<section class="testimonial_area section_gap">
 		<div class="container">
 			<div class="section_title text-center">
-				<!--  반복문 사용해서 등록할때마다 추가 -->
-				<!--  ajax 대신에 그냥 jstl 사용하는게 나을듯하다.(내일해야지..) -->
 				<h3 class="title_color">후기 / 별점</h3>
 			</div>
 			<div class="testimonial_slider owl-carousel">
 				<c:forEach items="${reviews}" var="review">
 				<div class="media testimonial_item">
 					<img class="rounded-circle" src="image/testtimonial-1.jpg" alt="">
-					<div class="media-body">
+					<div class="media-body" data-star="${review.rvstar}">
 						<p>${review.rvcontent}</p>
 						<a href="#"><h4 class="sec_h4">${review.id}</h4></a>
-						<script type="text/javascript">makeStar(${review.rvstar});</script>
-						<div class="star">
-						</div>
 					</div>
 				</div>
 				</c:forEach>
@@ -265,17 +263,34 @@
 	
 	
 	
+	
 	let makeStar = function(rvstar){
 		rvstar = Number(rvstar)
 		let fullstar = Math.floor(rvstar);
-		let star = $('<div>').attr('class','star');
-		for(let i=0;i<fullstar;i++){
-			star.append($('<a>').append($('<i>').addClass('fa fa-star')));
+		console.log(rvstar,fullstar)
+		let star = document.createElement('div')
+		star.className = 'star';
+		let a, i;
+		for(let j=0;j<fullstar;j++){
+			a = document.createElement('a');
+			i = document.createElement('i');
+			i.className='fa fa-star';
+			a.append(i);
+			star.append(a);
 		}
 		if(rvstar-fullstar>0){
-			star.append($('<a>').append($('<i>').addClass('fa fa-star-half-o')));
+			a = document.createElement('a');
+			i = document.createElement('i');
+			i.className = 'fa fa-star-half-o';
+			a.append(i);
+			star.append(a);
 		}
 		return star;
+	}
+	
+	for(let i=0; i<document.getElementsByClassName('media-body').length;i++){
+		let rvstar = +document.getElementsByClassName('media-body')[i].getAttribute('data-star');
+		document.getElementsByClassName('media-body')[i].append(makeStar(rvstar));
 	}
 	
 	

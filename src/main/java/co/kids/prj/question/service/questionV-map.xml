@@ -32,8 +32,8 @@
 	<select id="questionVSearch" resultType="co.kids.prj.question.service.QuestionVVO" parameterType="co.kids.prj.question.service.QuestionVVO">
 		SELECT * FROM QUERY 
 		<where>
-			<if test="qCategory != null">AND QCATEGORY = #{qCategory}</if>
-			<if test="qTitle != null">AND QTITLE LIKE '%' || #{qTitle} || '%'</if>
+			<if test="qCategory != ''">AND QCATEGORY = #{qCategory}</if>
+			<if test="qTitle != ''">AND QTITLE LIKE '%' || #{qTitle} || '%'</if>
 		</where>
 		ORDER BY QCATEGORY 		
 	</select>

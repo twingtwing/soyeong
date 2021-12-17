@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="co.kids.prj.reservation.service.ReservationMapper">
-	<select id="reservSelectList" resultType="co.kids.prj.reservation.service.ReservLodVO">
-
+<mapper
+	namespace="co.kids.prj.reservation.service.ReservationMapper">
+	<select id="reservSelectList"
+		resultType="co.kids.prj.reservation.service.ReservLodVO">
 		SELECT * FROM BOOKING B
 		LEFT OUTER JOIN LODGING L
 		ON B.RNO = L.RNO
 		WHERE B.ID = #{id}
+		AND BOOKCANCEL NOT IN('Y')
+		ORDER BY ISPAID ASC, RCHECKIN DESC
 	</select>
 
+	<select id="reservSortList" parameterType="co.kids.prj.reservation.service.ReservLodVO" resultType="co.kids.prj.reservation.service.ReservLodVO">
+		SELECT * FROM BOOKING B
+		LEFT OUTER JOIN LODGING L
+		ON B.RNO = L.RNO
+		WHERE B.ID = #{id}
+		<if test='ispaid eq "E"'>
+		AND CHECKOUT<![CDATA[<]]>SYSDATE
+        AND ISPAID = 'Y'
+        AND BOOKCANCEL NOT IN('Y')
+		</if>
+		<if test='ispaid eq "X"'>
+		AND BOOKCANCEL = 'Y'
+		</if>
+		<if test='ispaid==null'>
+		AND BOOKCANCEL NOT IN('Y')
+		</if>
+		ORDER BY ISPAID ASC, RCHECKIN DESC
+	</select>
+
+
 	<select id="reservSelect"
-		parameterType="co.kids.prj.reservation.service.ReservationVO">
+		parameterType="co.kids.prj.reservation.service.ReservationVO" resultType="co.kids.prj.reservation.service.ReservationVO">
 		SELECT * FROM BOOKING WHERE BOOKNO = #{bookno}
 	</select>
 
@@ -18,17 +41,19 @@
 		parameterType="co.kids.prj.reservation.service.ReservationVO">
 		INSERT INTO
 		BOOKING(BOOKNO,RNO,ID,BOOKDATE,CHECKIN,CHECKOUT,BOOKADULT,BOOKKID,ISPAID,BOOKCANCEL,BOOKREFUND,BOOKREQUEST)
-		VALUES((SELECT MAX(BOOKNO) FROM BOOKING)+1,#{rno},#{id},DEFAULT,#{checkin},#{checkout},#{bookadult},#{bookkid},DEFAULT,DEFAULT,null,#{bookrequest}
+		VALUES((SELECT MAX(BOOKNO) FROM
+		BOOKING)+1,#{rno},#{id},DEFAULT,#{checkin},#{checkout},#{bookadult},#{bookkid},DEFAULT,DEFAULT,null,#{bookrequest}
 		)
-
 	</insert>
-
-	<update id="reservUpdate">
-
-	</update>
 
 	<delete id="reservDelete">
 
 	</delete>
 
+	<select id="reservLodgSelect" parameterType="co.kids.prj.reservation.service.ReservLodVO" resultType="co.kids.prj.reservation.service.ReservLodVO">
+		SELECT * FROM BOOKING B
+		LEFT OUTER JOIN LODGING L
+		ON B.RNO = L.RNO
+		WHERE B.ID = #{id} AND BOOKNO = #{bookno}
+	</select>
 </mapper>

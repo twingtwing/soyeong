@@ -40,4 +40,6 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeMapper.noticeSearch(vo);
 	}
 
+
 }
+

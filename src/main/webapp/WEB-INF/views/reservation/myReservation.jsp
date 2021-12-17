@@ -1,117 +1,159 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<style>
-#myReservationName {
-	text-align: left;
-	padding-bottom: 20px;
-	font-size: x-large;
-	color: #f3c300;
-}
+	<style>
+		#myReservationName {
+			text-align: left;
+			padding-bottom: 20px;
+			font-size: x-large;
+			color: #f3c300;
+		}
 
-.cardWrapper {
-	padding-top: 35px;
-	text-align: left;
-	overflow: auto;
-	height: 700px;
-}
+		.cardWrapper {
+			padding-top: 35px;
+			text-align: left;
+			overflow: auto;
+			height: 550px;
+			margin: 0px;
+			width: 987px;
+		}
 
-.card-body {
-	border-top: 1px solid rgb(214, 214, 214);
-	text-align: center;
-}
+		.card-body {
+			border-top: 1px solid rgb(214, 214, 214);
+			text-align: center;
+		}
 
-.card {
-	border-radius: 10px;
-	background-color: white;
-	display: inline-block;
-	margin: 20px 30px;
-}
+		.card {
+			border-radius: 10px;
+			background-color: white;
+			display: inline-block;
+			margin: 20px 30px;
+		}
 
-.card-text, .card-title {
-	color: black;
-}
+		.card-text,
+		.card-title {
+			color: black;
+		}
 
-.text-center {
-	text-align: left !important;
-}
+		.text-center {
+			text-align: left !important;
+		}
 
-.buttonWrapper>button {
-	width: 15%;
-	height: 10%;
-	border: 1px solid #f3c300;
-	border-radius: 5px;
-	background-color: white;
-	color: black;
-	padding: 5px;
-	margin-top: 15px;
-	margin-right: 10px;
-}
+		.buttonWrapper>button {
+			width: 15%;
+			height: 10%;
+			border: 1px solid #f3c300;
+			border-radius: 5px;
+			background-color: white;
+			color: black;
+			padding: 5px;
+			margin-top: 15px;
+			margin-right: 10px;
+		}
 
-button:hover {
-	transition-duration: 0.5s;
-	color: white;
-	background-color: #007bff;
-	cursor: pointer;
-	border: 1px solid #007bff;
-}
+		button:hover {
+			transition-duration: 0.5s;
+			color: white;
+			background-color: #007bff;
+			cursor: pointer;
+			border: 1px solid #007bff;
+		}
 
-.buttonWrapper {
-	padding-bottom: 25px;
-	border-bottom: 2px solid rgb(214, 214, 214);
-	text-align: left;
-}
+		.buttonWrapper {
+			padding-bottom: 25px;
+			border-bottom: 2px solid rgb(214, 214, 214);
+			text-align: left;
+		}
 
-.btn {
-	background-Color: #f3c300;
-	border: 1px solid white;
-}
+		.btn {
+			background-Color: #f3c300;
+			border: 1px solid white;
+		}
 
-#reservation {
-	display: inline-block;
-}
+		#reservation,
+		.carousel slide carousel-multi-item {
+			display: inline-block;
+		}
 
-#traveled, #cancelTrip {
-	display: none;
-}
+		#traveled,
+		#cancelTrip {
+			display: none;
+		}
 
-.banner_content {
-	padding-top: 150px;
-}
+		.banner_content {
+			padding-top: 150px;
+		}
 
-#modal1 {
-	overflow: auto;
-	padding: 0;
-}
+		#modal1 {
+			overflow: auto;
+			padding: 0;
+		}
 
-#modal1>img {
-	max-width: 100%;
-}
+		#modal1>img {
+			max-width: 100%;
+		}
 
-th {
-	background-Color: black;
-	color: white;
-}
+		th {
+			background-Color: black;
+			color: white;
+		}
 
-.carousel-indicators {
-	bottom: -25px;
-}
+		.carousel-indicators {
+			bottom: -25px;
+		}
 
-.controls-top {
-	text-align: center;
-	margin-bottom: 30px;
-}
-</style>
+		.controls-top {
+			text-align: center;
+			margin-bottom: 30px;
+		}
+
+		.container {
+			display: flex;
+			justify-content: center;
+		}
+
+		.carousel-item.active,
+		.carousel-item-next,
+		.carousel-item-prev {
+			display: flex;
+
+		}
+		
+		
+		#scroll ::-webkit-scrollbar{
+			width: 30px;
+			height: 30px;
+		}
+		#scroll ::-webkit-scrollbar-thumb:hover{
+			background-color: #0069D9;
+		}
+		
+		#scroll ::-webkit-scrollbar-track{
+			background-color: #817958;
+			border-radius: 10rem;
+		}
+		#scroll ::-webkit-scrollbar-thumb{
+			background-color: #F3C300;
+			border-radius: 10rem;
+		}
+		.reviewBtn{
+			display: none;
+			font-weight: bold;
+			color:white;
+			background-color: #007BFF;
+		}
+	</style>
 </head>
 
 <body>
@@ -119,8 +161,8 @@ th {
 	<!--================Banner Area =================-->
 	<section class="banner_area">
 		<div class="booking_table d_flex align-items-center">
-			<div class="overlay bg-parallax" data-stellar-ratio="0.9"
-				data-stellar-vertical-offset="0" data-background=""></div>
+			<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background="">
+			</div>
 			<div class="container">
 				<div class="banner_content text-center">
 					<div id="myReservationName">
@@ -128,395 +170,49 @@ th {
 					</div>
 					<div class="buttonWrapper">
 						<button type="button" id="btn1">예약된 여행</button>
-						<button type="button" id="btn2">여행 간 곳</button>
+						<button type="button" id="btn2">지난 여행</button>
 						<button type="button" id="btn3">취소 내역</button>
 					</div>
 
 					<!-- 예약된 여행 -->
+					<div id="scroll">
 					<div class="cardWrapper" id="reservation">
-						<div id="multi-item-example"
-							class="carousel slide carousel-multi-item" data-ride="carousel">
-
-							<!--Controls-->
-							<div class="controls-top">
-								<a class="btn-floating" href="#multi-item-example"
-									data-slide="prev"><i class="fas fa-chevron-left"></i></a> <a
-									class="btn-floating" href="#multi-item-example"
-									data-slide="next"><i class="fas fa-chevron-right"></i></a>
-							</div>
-							<!--/.Controls-->
-
-							<!--Indicators-->
-							<ol class="carousel-indicators">
-								<c:forEach items="${cards }" var="reserv" varStatus="status">
-									<c:if test="${(status.index % 3) == 0}">
-										<li data-target="#multi-item-example"
-											data-slide-to="${status.index/3 }"></li>
-									</c:if>
-								</c:forEach>
-							</ol>
-							<!--/.Indicators-->
-
-							<!--reservation Slides-->
-							<div class="carousel-inner" role="listbox">
-								<!--First slide-->
-								<div class="carousel-item active">
-
-									<c:forEach items="${cards }" var="reserv" varStatus="status">
-										<c:if test="${status.count <= 3}">
-											<div class="card" style="width: 18rem;">
-												<img class="card-img-top" src="${reserv.rphoto}"
-													alt="Card image cap">
-												<div class="card-body">
-													<h5 class="card-title">${reserv.rname }</h5>
-													<p class="card-text">${reserv.rcontent }</p>
-
-													<a href="#" class="btn btn-primary" data-toggle="modal"
-														data-target="#exampleModalCenter"
-														data-checkin='${reserv.rcheckin }'
-														data-checkout='${reserv.rcheckout }'
-														data-adult='${reserv.bookadult }'
-														data-kid='${reserv.bookkid }' data-pay='${reserv.fee }'
-														data-addr='${reserv.raddress }'
-														data-request='${reserv.bookrequest }'
-														data-photo='${reserv.rphoto }'>예약 상세 정보 ></a>
-												</div>
-											</div>
-										</c:if>
-									</c:forEach>
-								</div>
-								<!--/.First slide-->
-
-								<!--other slide-->
-								<c:forEach items="${cards }" var="reserv" varStatus="status">
-									<c:if test="${(status.count % 3) == 1 && status.count > 3}">
-										<div class="carousel-item">
-									</c:if>
-									<c:if test="${status.count > 3}">
-										<div class="card" style="width: 18rem;">
-											<img class="card-img-top" src="${reserv.rphoto}"
-												alt="Card image cap">
-											<div class="card-body">
-												<h5 class="card-title">${reserv.rname }</h5>
-												<p class="card-text">${reserv.rcontent }</p>
-												<a href="#" class="btn btn-primary" data-toggle="modal"
-													data-target="#exampleModalCenter"
-													data-checkin='${reserv.rcheckin }'
-													data-checkout='${reserv.rcheckout }'
-													data-adult='${reserv.bookadult }'
-													data-kid='${reserv.bookkid }' data-pay='${reserv.fee }'
-													data-addr='${reserv.raddress }'
-													data-request='${reserv.bookrequest }'
-													data-photo='${reserv.rphoto }'>예약 상세 정보 ></a>
-											</div>
+						<div class="carousel-item active">
+							<div style="display: flex;">
+							<c:forEach items="${cards }" var="reserv" varStatus="status">
+									<div class="card" style="width: 18rem;">
+										<div align="center" style="margin-top: 5px;">
+										<img alt="" src="http://localhost/prj/resources/img/${reserv.rphoto}">
+												<!-- 임시사진 경로 -->
 										</div>
-									</c:if>
-									<c:if test="${(status.count % 3) == 1 && status.count > 3}">
-							</div>
-							</c:if>
+										<div class="card-body">
+											<h5 class="card-title">${reserv.rname }</h5>
+											<p class="card-text">${reserv.rcontent }</p>
+
+											<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+												data-checkin='${reserv.checkin }' data-checkout='${reserv.checkout }'
+												data-adult='${reserv.bookadult }' data-kid='${reserv.bookkid }' data-pay='${reserv.fee }'
+												data-addr='${reserv.raddress }' data-request='${reserv.bookrequest }'
+												data-photo='${reserv.rphoto }' data-state='${reserv.ispaid }' data-bookno='${reserv.bookno}'
+												data-cancel='${reserv.bookcancel}' data-rno='${reserv.rno}'>예약
+												상세 정보>
+											</a>
+										</div>
+									</div>
 							</c:forEach>
-
-
-
-
-
-
-							<!--/.Second slide-->
+							</div>
 						</div>
 					</div>
-					<!--/.Slides-->
-				</div>
-
-
-
-				<div class="cardWrapper" id="traveled">
-					<div id="multi-item-example"
-						class="carousel slide carousel-multi-item" data-ride="carousel">
-
-						<!--Controls-->
-						<div class="controls-top">
-							<a class="btn-floating" href="#multi-item-example"
-								data-slide="prev"><i class="fas fa-chevron-left"></i></a> <a
-								class="btn-floating" href="#multi-item-example"
-								data-slide="next"><i class="fas fa-chevron-right"></i></a>
-						</div>
-						<!--/..Controls-->
-
-						<!--Indicators-->
-						<ol class="carousel-indicators">
-							<li data-target="#multi-item-example" data-slide-to="0"
-								class="active"></li>
-							<li data-target="#multi-item-example" data-slide-to="1"></li>
-						</ol>
-						<!--/.Indicators-->
-
-						<!--reservation Slides-->
-						<div class="carousel-inner" role="listbox">
-							<!--First slide-->
-							<div class="carousel-item active">
-
-								<div class="card" style="width: 18rem;">
-									<img class="card-img-top" src="resources/image/about_bg.jpg"
-										alt="Card image cap">
-									<div class="card-body">
-										<h5 class="card-title">여행 간 곳</h5>
-										<p class="card-text">Some quick example text to build on
-											the card title and make up the bulk of the card's content.</p>
-
-										<a href="simpleInfo.do" class="btn btn-primary"
-											data-toggle="modal" data-target="#exampleModalCenter">예약
-											상세 정보 ></a>
-									</div>
-								</div>
-								<div class="card" style="width: 18rem;">
-									<img class="card-img-top" src="resources/image/about_bg.jpg"
-										alt="Card image cap">
-									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
-										<p class="card-text">Some quick example text to build on
-											the card title and make up the bulk of the card's content.</p>
-										<a href="#" class="btn btn-primary">예약 상세 정보 ></a>
-									</div>
-								</div>
-
-								<div class="card" style="width: 18rem;">
-									<img class="card-img-top" src="resources/image/about_bg.jpg"
-										alt="Card image cap">
-									<div class="card-body">
-										<h5 class="card-title">예약된 여행</h5>
-										<p class="card-text">Some quick example text to build on
-											the card title and make up the bulk of the card's content.</p>
-
-										<a href="simpleInfo.do" class="btn btn-primary"
-											data-toggle="modal" data-target="#exampleModalCenter">예약
-											상세 정보 ></a>
-									</div>
-								</div>
-							</div>
-							<!--/.First slide-->
-
-							<!--Second slide-->
-							<div class="carousel-item">
-
-								<div class="col-md-3" style="float: left">
-									<div class="card mb-2">
-										<img class="card-img-top"
-											src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h4 class="card-title">Card title</h4>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-											<a class="btn btn-primary">Button</a>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3" style="float: left">
-									<div class="card mb-2">
-										<img class="card-img-top"
-											src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h4 class="card-title">Card title</h4>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-											<a class="btn btn-primary">Button</a>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3" style="float: left">
-									<div class="card mb-2">
-										<img class="card-img-top"
-											src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h4 class="card-title">Card title</h4>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-											<a class="btn btn-primary">Button</a>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3" style="float: left">
-									<div class="card mb-2">
-										<img class="card-img-top"
-											src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h4 class="card-title">Card title</h4>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-											<a class="btn btn-primary">Button</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!--/.Second slide-->
-						</div>
 					</div>
-					<!--/.Slides-->
+					<!-- 예약된 여행 -->
 				</div>
-
-
-
-
-				<div class="cardWrapper" id="cancelTrip">
-					<div id="multi-item-example"
-						class="carousel slide carousel-multi-item" data-ride="carousel">
-
-						<!--Controls-->
-						<div class="controls-top">
-							<a class="btn-floating" href="#multi-item-example"
-								data-slide="prev"><i class="fas fa-chevron-left"></i></a> <a
-								class="btn-floating" href="#multi-item-example"
-								data-slide="next"><i class="fas fa-chevron-right"></i></a>
-						</div>
-						<!--/.Controls-->
-
-						<!--Indicators-->
-						<ol class="carousel-indicators">
-							<li data-target="#multi-item-example" data-slide-to="0"
-								class="active"></li>
-							<li data-target="#multi-item-example" data-slide-to="1"></li>
-						</ol>
-						<!--/.Indicators-->
-
-						<!--reservation Slides-->
-						<div class="carousel-inner" role="listbox">
-							<!--First slide-->
-							<div class="carousel-item active">
-
-								<div class="card" style="width: 18rem;">
-									<img class="card-img-top" src="resources/image/about_bg.jpg"
-										alt="Card image cap">
-									<div class="card-body">
-										<h5 class="card-title">취소취소취소</h5>
-										<p class="card-text">Some quick example text to build on
-											the card title and make up the bulk of the card's content.</p>
-
-										<a href="simpleInfo.do" class="btn btn-primary"
-											data-toggle="modal" data-target="#exampleModalCenter">예약
-											상세 정보 ></a>
-									</div>
-								</div>
-								<div class="card" style="width: 18rem;">
-									<img class="card-img-top" src="resources/image/about_bg.jpg"
-										alt="Card image cap">
-									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
-										<p class="card-text">Some quick example text to build on
-											the card title and make up the bulk of the card's content.</p>
-										<a href="#" class="btn btn-primary">예약 상세 정보 ></a>
-									</div>
-								</div>
-
-								<div class="card" style="width: 18rem;">
-									<img class="card-img-top" src="resources/image/about_bg.jpg"
-										alt="Card image cap">
-									<div class="card-body">
-										<h5 class="card-title">예약된 여행</h5>
-										<p class="card-text">Some quick example text to build on
-											the card title and make up the bulk of the card's content.</p>
-
-										<a href="simpleInfo.do" class="btn btn-primary"
-											data-toggle="modal" data-target="#exampleModalCenter">예약
-											상세 정보 ></a>
-									</div>
-								</div>
-							</div>
-							<!--/.First slide-->
-
-							<!--Second slide-->
-							<div class="carousel-item">
-
-								<div class="col-md-3" style="float: left">
-									<div class="card mb-2">
-										<img class="card-img-top"
-											src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h4 class="card-title">Card title</h4>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-											<a class="btn btn-primary">Button</a>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3" style="float: left">
-									<div class="card mb-2">
-										<img class="card-img-top"
-											src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h4 class="card-title">Card title</h4>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-											<a class="btn btn-primary">Button</a>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3" style="float: left">
-									<div class="card mb-2">
-										<img class="card-img-top"
-											src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h4 class="card-title">Card title</h4>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-											<a class="btn btn-primary">Button</a>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3" style="float: left">
-									<div class="card mb-2">
-										<img class="card-img-top"
-											src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
-											alt="Card image cap">
-										<div class="card-body">
-											<h4 class="card-title">Card title</h4>
-											<p class="card-text">Some quick example text to build on
-												the card title and make up the bulk of the card's content.</p>
-											<a class="btn btn-primary">Button</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!--/.Second slide-->
-						</div>
-					</div>
-					<!--/.Slides-->
-				</div>
-
-
 			</div>
-		</div>
 		</div>
 	</section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<br>
 	<!-- Modal -->
-	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalCenterTitle"
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
@@ -548,80 +244,155 @@ th {
 							<th>위치</th>
 							<td colspan=3 id="mdAddr">위치 DATA</td>
 						</tr>
-
-
-
+						<tr>
+							<th>결제 상태</th>
+							<td colspan=3 id="state"></td>
+						</tr>
 					</table>
 
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary"
-						onclick="location.href=#">상세정보 페이지</button>
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
+				<div class="modal-footer">	
+					<button type="button" class="btn reviewBtn">리뷰 작성하기</button>
+					<button type="button" class="btn btn-primary dt">상세정보 페이지</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	<form action="myReservDetail.do" method="post" id="frm">
+		<input type="hidden" name="bookno">
+	</form>
 
-
+	<form action="myReserv.do" id="sortFrm">
+		<input type="hidden" name="ispaid">
+	</form>
+	
+	<form action="reviewForm.do">
+		<input type="hidden" name="bookno">
+		<input type="hidden" name="id" value="${id}">
+	</form>
 	<!--================Banner Area =================-->
 
 	<script>
-	$('#exampleModalCenter').on('show.bs.modal', function(e){
-		var checkin = $(e.relatedTarget).data('checkin');
-		var checkout = $(e.relatedTarget).data('checkout');
-		var adult = $(e.relatedTarget).data('adult');
-		var kid = $(e.relatedTarget).data('kid');
-		var pay = $(e.relatedTarget).data('pay');
-		var addr = $(e.relatedTarget).data('addr');
-		var request = $(e.relatedTarget).data('request');
-		var photo = $(e.relatedTarget).data('photo');
-		
-		$('#mdCheckin').html(checkin+'시');
-		$('#mdCheckout').html(checkout+'시');
-		$('#mdCnum').html('어른 : '+adult+'명, 아이 : '+kid+'명');
-		$('#mdPay').html(pay+'원');
-		$('#mdRequest').html(request);
-		$('#mdAddr').html(addr);
-		
-	})
-</script>
+		$('.dt')[0].addEventListener('click', (e) => {
+			let bookno = +$('.dt')[0].dataset.no;
+			$('#frm>input').val(bookno)
+			$('#frm').submit();
+		})
+
+		// 현재 예약중
+		$('#btn1').on('click', (e) => {
+			$('#sortFrm>input').val(null);
+			$('#sortFrm').submit();
+		})
 
 
+		// 과거에 갔던 곳
+		$('#btn2').on('click', (e) => {
+			$('#sortFrm>input').val('E')
+			$('#sortFrm').submit();
+		})
+
+		// 취소 목록
+		$('#btn3').on('click', (e) => {
+			$('#sortFrm>input').val('X')
+			$('#sortFrm').submit();
+		})
+
+
+
+
+		$('#exampleModalCenter').on('show.bs.modal', function (e) {
+			var checkin = $(e.relatedTarget).data('checkin');
+			var checkout = $(e.relatedTarget).data('checkout');
+			var adult = $(e.relatedTarget).data('adult');
+			var kid = $(e.relatedTarget).data('kid');
+			var pay = $(e.relatedTarget).data('pay');
+			var addr = $(e.relatedTarget).data('addr');
+			var request = $(e.relatedTarget).data('request');
+			var photo = $(e.relatedTarget).data('photo');
+			let bookno = $(e.relatedTarget).data('bookno');
+			let rno = +$(e.relatedTarget).data('rno');
+			
+			$('#mdCheckin').html(checkin + '시');
+			$('#mdCheckout').html(checkout + '시');
+			$('#mdCnum').html('어른 : ' + adult + '명, 아이 : ' + kid + '명');
+			$('#mdPay').html(pay + '원');
+			$('#mdRequest').html(request);
+			if (request == '') {
+				$('#mdRequest').text('없음');
+			}
+			$('#mdAddr').html(addr);
+			//결제여부
+			if (e.relatedTarget.dataset.state=='Y') {
+				$('#state').text('결제완료').css('color', 'green').css('font-weight', 'bold');
+			} else {
+				$('#state').text('결제 전').css('color', 'darkred').css('font-weight', 'bold');
+			}
+			//취소여부
+			if(e.relatedTarget.dataset.cancel=='Y'){
+				$('#state').text('취소 처리됨').css('color', 'darkgray').css('font-weight', 'bold');
+			}
+			checkout = new Date(checkout)
+			checkout.setDate(checkout.getDate()+1);
+			$('form')[2].children[0].value = $(e.relatedTarget).data('bookno');
+			if(checkout < new Date() && e.relatedTarget.dataset.cancel!='Y'){
+				checkRv('reviewCheckdup.do','${id}',rno);
+				$('.reviewBtn').css('display','inline-block');
+			}
+			$('.dt')[0].dataset.no = bookno;
+		})
+		
+		// ajax로 이미 리뷰 작성했는지 체크
+		let checkRv = function(action,id,rno){
+			$.ajax({
+				url : action,
+				dataType : 'text',
+				data : {'id':id,'rno':rno}
+			})
+			.done((result)=>{
+				if(result=='ok'){
+					$('.reviewBtn').on('click',()=>$('form')[2].submit());
+				} else{
+					$('.reviewBtn').css('display','none');
+					return;
+				}
+			})
+		}
+	</script>
 
 
 	<script>
-	let btn1 = document.getElementById("btn1");
-    let btn2 = document.getElementById("btn2");
-    let btn3 = document.getElementById("btn3");
-    
-    let reservation = document.getElementById("reservation");
-    let traveled = document.getElementById("traveled");
-    let cancelTrip = document.getElementById("cancelTrip");
-    
-    reservation.style.display='inline-block';
-    traveled.style.display='none';
-    cancelTrip.style.display='none';
+		let btn1 = document.getElementById("btn1");
+		let btn2 = document.getElementById("btn2");
+		let btn3 = document.getElementById("btn3");
 
-    btn1.addEventListener('click', ()=>{
-	    reservation.style.display='inline-block';
-	    traveled.style.display='none';
-	    cancelTrip.style.display='none';
-    })
-    
-    btn2.addEventListener('click', ()=>{
-	    reservation.style.display='none';
-	    traveled.style.display='inline-block';
-	    cancelTrip.style.display='none';
-    })
-    
-    btn3.addEventListener('click', ()=>{
-	    reservation.style.display='none';
-	    traveled.style.display='none';
-	    cancelTrip.style.display='inline-block';
-    })
-</script>
+		let reservation = document.getElementById("reservation");
+		let traveled = document.getElementById("traveled");
+		let cancelTrip = document.getElementById("cancelTrip");
+
+		reservation.style.display = 'inline-block';
+		traveled.style.display = 'none';
+		cancelTrip.style.display = 'none';
+
+		btn1.addEventListener('click', () => {
+			reservation.style.display = 'inline-block';
+			traveled.style.display = 'none';
+			cancelTrip.style.display = 'none';
+		})
+
+		btn2.addEventListener('click', () => {
+			reservation.style.display = 'none';
+			traveled.style.display = 'inline-block';
+			cancelTrip.style.display = 'none';
+		})
+
+		btn3.addEventListener('click', () => {
+			reservation.style.display = 'none';
+			traveled.style.display = 'none';
+			cancelTrip.style.display = 'inline-block';
+		})
+	</script>
 
 </body>
 

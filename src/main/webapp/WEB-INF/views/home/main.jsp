@@ -26,7 +26,7 @@
 <style>
 #mapWrapper {
 	text-align: center;
-	
+	margin: 2rem;
 }
 
 #googleMap {
@@ -36,6 +36,12 @@
 	margin: 0px auto;
 	display: inline-block;
 }
+#selectKey{
+	height: 40px;
+	width:  25rem;
+	padding : 0px 10px;
+}
+		
 </style>
 </head>
 
@@ -53,94 +59,21 @@
 						<p>
 							저희 소영과 아이들은<br>최고의 서비스를 자랑합니다.
 						</p>
-						<a href="myReserv.do" class="btn theme_btn button_hover">내예약</a>
-						<a href="detailedInfo.do" class="btn theme_btn button_hover">상세정보</a>
-						<a href="#" class="btn theme_btn button_hover" id="listAll">리스트 보기</a>
+						
+						<a href="#" class="btn theme_btn button_hover" id="myBook">내예약</a>
+						<a href="#" class="btn theme_btn button_hover">상세정보</a>
 						<a href="hostManage.do" class="btn theme_btn button_hover">호스트 숙소관리 test</a>
-						<a href="admin.do" class="btn theme_btn button_hover">관리자 페이지 test</a>
+					</div>
+					<div align="center">
+						<input type="text" id="selectKey">
+						<a href="#" class="btn theme_btn button_hover" id="listAll">검색</a>
 					</div>
 				</div>
 			</div>
-			<div class="hotel_booking_area position">
-				<div class="container">
-					<div class="hotel_booking_table">
-						<div class="col-md-3">
-							<h2>
-								빠른 예약
-							</h2>
-						</div>
-						<div class="col-md-9">
-							<div class="boking_table">
-								<div class="row">
-									<div class="col-md-4">
-										<div class="book_tabel_item">
-											<div class="form-group">
-												<!-- 일까지만 선택하도록 수정했어요 -->
-												<div class='input-group date' id='datetimepicker-in'>
-													<input type='text' class="form-control"
-														placeholder="Check in" id="checkin"/> <span
-														class="input-group-addon"> <i
-														class="fa fa-calendar" aria-hidden="true"></i>
-													</span>
-												</div>
-											</div>
-											<div class="form-group">
-												<div class='input-group date' id='datetimepicker-out'>
-													<input type='text' class="form-control"
-														placeholder="Check out" id="checkout"/> <span
-														class="input-group-addon"> <i
-														class="fa fa-calendar" aria-hidden="true"></i>
-													</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-4">
-										<div class="book_tabel_item">
-											<div class="input-group">
-												<select class="wide" id="bookadult">
-													<option data-display="Adult" value="1">Adult</option>
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-												</select>
-											</div>
-											<div class="input-group">
-												<select class="wide" id="bookkid">
-													<option data-display="Child" value="0">Child</option>
-													<option value="0">0</option>
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-												</select>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-4">
-										<div class="book_tabel_item">
-											<div class="input-group">
-												<select class="wide" id="rcategory">
-													<option data-display="숙소유형" value="A">숙소유형</option>
-													<option value="게스트하우스">게스트하우스</option>
-													<option value="호텔">호텔</option>
-													<option value="한옥">한옥</option>
-												</select>
-											</div>
-											<a class="book_now_btn button_hover" href="#">Book Now</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+		
 		</section><br>
-		<form action="quickBook.do" method="post" id="frm">
-			<input type="hidden" name="rcheckin">
-			<input type="hidden" name="rcheckout">
-			<input type="hidden" name="rguest">
-			<input type="hidden" name="rcategory">
+		<form action="houseList.do" method="post" id="frm">
+			<input type="hidden" name="searchKey" id="searchKey">
 		</form>
 		<!--================Banner Area =================-->
 
@@ -158,48 +91,27 @@
 
 
 	<script>
-		// 빠른예약
-		$('.book_now_btn').click(()=>{		
-			let ok = $('#checkin').val()&&$('#checkout').val();
-			if(!Boolean(ok)){
-				window.alert('날짜를 지정해주세요.');
-				return;
-			}			
-			let num = Number(parseInt($('#bookadult').val())+parseInt($('#bookkid').val()));
-			let date = $('#checkin').val();
-			date = new Date(date);
-			date.setDate(date.getDate()-1);
-			date = date.toISOString().substring(0,10);
-			let endDate = $('#checkout').val();
-			endDate = new Date(endDate);
-			endDate.setDate(endDate.getDate()-1);
-			endDate = endDate.toISOString().substring(0,10);
-			sendForm(date,endDate,num,$('#rcategory').val(),'quickBook.do');
-		})
-		
-		
-		// 전체보기
-		$('#listAll').on('click',()=>{
-			// 오늘날짜부터 한달 사이에 있는 모든 방 보여줌
-			let today = new Date();
-			today = today.toISOString().substring(0,10);
-			
-			let checkout = new Date();
-			checkout.setMonth(checkout.getMonth()+1); 
-			checkout = checkout.toISOString().substring(0,10);
-			sendForm(today,checkout,1,'A','houseList.do');
-		})
-		
-		
-		// 메인화면에서 두개의 버튼으로 다른검색하는 함수
-		let sendForm = function(checkin,checkout,guest,category,action){
-			$('#frm').attr('action',action);
-			$('#frm>input:nth-child(1)').val(checkin);
-			$('#frm>input:nth-child(2)').val(checkout); 
-			$('#frm>input:nth-child(3)').val(guest);
-			$('#frm>input:nth-child(4)').val(category);
-			$('#frm').submit();
+	$('#myBook').on('click',()=>{
+		if('${id}'==''){
+			window.alert('로그인이 필요합니다.');
+			return;
+		} else{
+			location.href='myReserv.do';						
 		}
+	})
+		
+		$('#selectKey').on('keypress',(e)=>{
+			if(e.keyCode=='13'){
+				$('#listAll').click();
+			}
+		})
+		
+		
+		// 제목/내용으로 검색
+		$('#listAll').on('click',()=>{
+			$('#searchKey').val($('#selectKey').val());
+			$('#frm').submit();
+		})
 		
 		// 구글 맵
 		function myMap() {

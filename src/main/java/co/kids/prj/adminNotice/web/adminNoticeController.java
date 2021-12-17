@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -43,9 +44,10 @@ public class adminNoticeController {
 	}
 	
 	/* 관리자 페이지 공지사항 검색 */
-	@RequestMapping("/adminnoticeSearch.do")
+
+	@RequestMapping("/noticeSearch.do")
 	@ResponseBody
-	public List<NoticeVO> adminnoticeSearch(NoticeVO vo) {
+	public List<NoticeVO> noticeSearch(NoticeVO vo) {
 		if(vo.getBtitle().length() == 0) {vo.setBtitle(null);}
 		return noticeDao.noticeSearch(vo);
 	}
@@ -79,6 +81,7 @@ public class adminNoticeController {
 		return "admin/adminnotice/adminNoticeUpdate";
 	}
 
+
 	/* 관리자 페이지 공지사항 수정 처리 */
 	@RequestMapping("/adminNoticeUpdateForm.do")
 	@ResponseBody
@@ -87,6 +90,7 @@ public class adminNoticeController {
 		int res = noticeDao.noticeUpdate(vo);
 		if(res>0) {result = "Y";}
 		return result;
+
 
 	}
 

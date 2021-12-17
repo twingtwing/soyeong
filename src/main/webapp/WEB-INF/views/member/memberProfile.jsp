@@ -39,10 +39,10 @@
                     </div>
                     <!-- host여야 입장가능 -->
                     <c:if test="${author eq 'HOST'}">
+                    	<div class="d-flex align-items-end">
+                        	<a href="memberSales.do" class="genric-btn warning medium pb-0"><strong>결제 및 환불 처리</strong></a>
+                    	</div>
 					</c:if>
-                    <div class="d-flex align-items-end">
-                        <a href="memberSales.do" class="genric-btn warning medium pb-0"><strong>결제 및 환불 처리</strong></a>
-                    </div>
                     <!-- host여야 입장가능  -->
                 </div>
                 <div class="row mb-30">

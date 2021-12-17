@@ -75,6 +75,12 @@ button:hover {
 </style>
 </head>
 <body>
+<script>
+	function lodgeInfo(rno){
+			frm.rno.value = rno;
+			frm.submit();
+		}
+</script>
 	<section class="banner_area">
 		<div class="booking_table d_flex align-items-center">
 			<div class="overlay bg-parallax" data-stellar-ratio="0.9"
@@ -89,54 +95,34 @@ button:hover {
 						<button type="button" id="btn2">체크인 예정</button>
 						<button type="button" id="btn3">체크아웃 예정</button>
 						<button type="button" id="btn4">취소 내역</button>
-						<div style="text-align: right;">
-							<button type="button" onclick="location.href='hostInsertForm.do'">숙소등록</button>
-						</div>
+						<c:if test="${not empty id }">
+							<div style="text-align: right;">
+								<button type="button" onclick="location.href='hostInsertForm.do'">숙소등록</button>
+							</div>
+						</c:if>
+						
 					</div>
 
 				</div>
 
 				<!-- 현재 호스팅 중 -->
 				<div class="cardWrapper" id="hostingNow">
+					<c:forEach items="${lodges }" var="lodge" varStatus="status">
 					<div class="col-md-3" style="float: left">
 						<div class="card mb-2">
 							<img class="card-img-top"
-								src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
+								src="${lodge.rphoto }"
 								alt="Card image cap">
 							<div class="card-body">
-								<h4 class="card-title">Card title</h4>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-								<a class="btn btn-primary">Button</a>
+							<div>${lodge.rno }</div>
+								<h4 class="card-title">${lodge.rname }</h4>
+								<p class="card-text">${lodge.rcontent }</p>
+								<a class="btn btn-primary" onclick="lodgeInfo(${lodge.rno})">Button</a>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-3" style="float: left">
-						<div class="card mb-2">
-							<img class="card-img-top"
-								src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
-								alt="Card image cap">
-							<div class="card-body">
-								<h4 class="card-title">Card title</h4>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-								<a class="btn btn-primary">Button</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3" style="float: left">
-						<div class="card mb-2">
-							<img class="card-img-top"
-								src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
-								alt="Card image cap">
-							<div class="card-body">
-								<h4 class="card-title">Card title</h4>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-								<a class="btn btn-primary">Button</a>
-							</div>
-						</div>
-					</div>
+					</c:forEach>
+					
 				</div>
 
 				<!-- 체크인 예정 -->
@@ -193,10 +179,28 @@ button:hover {
 			</div>
 		</div>
 	</section>
-
+	
+	<div>
+		<form id="frm" action="lodgingInfo.do" method="post">
+			<input type="hidden" id="rno" name="rno">
+		</form>
+	</div>
 
 
 	<script>
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	let btn1 = document.getElementById("btn1");
     let btn2 = document.getElementById("btn2");
     let btn3 = document.getElementById("btn3");

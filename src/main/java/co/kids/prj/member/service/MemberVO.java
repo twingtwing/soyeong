@@ -12,6 +12,7 @@ public class MemberVO {
 	private Date joinDate;
 	private String status;
 	private String name;
+	
 	public String getId() {
 		return id;
 	}

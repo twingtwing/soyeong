@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.kids.prj.review.service.ReviewMapper">
-<select id="reviewSelectList" resultType="co.kids.prj.review.service.ReviewVO" parameterType="Integer">
-	SELECT * FROM REVIEW WHERE RNO = #{rno}
+	<select id="reviewSelectList"
+		resultType="co.kids.prj.review.service.ReviewVO"
+		parameterType="Integer">
+		SELECT * FROM REVIEW WHERE RNO = #{rno}
+	</select>
+	<insert id="reviewInsert" parameterType="co.kids.prj.review.service.ReviewVO">
+		INSERT INTO REVIEW VALUES(
+		(SELECT MAX(RVNO) FROM REVIEW)+1,#{rno},#{id},#{rvstar},#{rvcontent}
+		)
+	</insert>
+
+<select id="reviewCheckDup" resultType="co.kids.prj.review.service.ReviewVO" parameterType="co.kids.prj.review.service.ReviewVO">
+	SELECT * FROM REVIEW WHERE RNO =#{rno} AND ID=#{id}
 </select>
 </mapper>

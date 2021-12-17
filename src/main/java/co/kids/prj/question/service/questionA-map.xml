@@ -31,8 +31,8 @@
 	<select id="questionASearch" resultType="co.kids.prj.question.service.QuestionAVO">
 		SELECT * FROM FAQ 
 		<where>
-			<if test="fCategory != null">AND FCATEGORY = #{fCategory}</if>
-			<if test="fTitle != null">AND FTITLE LIKE '%' || #{fTitle} || '%'</if>
+			<if test="fCategory != ''">AND FCATEGORY = #{fCategory}</if>
+			<if test="fTitle != ''">AND FTITLE LIKE '%' || #{fTitle} || '%'</if>
 		</where>
 		ORDER BY FCATEGORY 
 	</select>

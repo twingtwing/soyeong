@@ -132,9 +132,9 @@
 		}
 		    
 		  document.getElementById('searchQnA').addEventListener('click',function(){
+			  event.stopPropagation();
 				let c = document.getElementById('fCategory').value;
 				let t = document.getElementById('fTitle').value;
-				console.log(c)
 				let path = 'questionASearch.do?fCategory='+c+'&fTitle='+t;
 				fetch(path)
 				.then(response => response.json())
