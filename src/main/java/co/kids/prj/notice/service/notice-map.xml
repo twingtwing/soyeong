@@ -15,17 +15,25 @@
 			SELECT MAX(BNO) + 1 AS BNO FROM NOTICE
 		</selectKey>
 		INSERT INTO NOTICE 
-		VALUES(#{bno}, #{id}, #{btitle}, #{bcontent}, #{bdate}, #{bstatus}, #{blastdate})
+		VALUES(#{bno}, #{id}, #{btitle}, #{bcontent}, sysdate, 'C', sysdate)
 	</insert>
 	
 	<update id="noticeUpdate" parameterType="co.kids.prj.notice.service.NoticeVO">
-		UPDATE NOTICE SET BTITLE = #{btitle}, BCONTENT = #{bcontent}, BLASTDATE = #{blastdate}
-		BSTATUS='U' WHERE ID=#{id}
+		UPDATE NOTICE SET BTITLE = #{btitle}, BCONTENT = #{bcontent}, BLASTDATE = sysdate, BSTATUS = 'U'
+		WHERE BNO=#{bno}
 	</update>
 	
 	<delete id="noticeDelete" parameterType="co.kids.prj.notice.service.NoticeVO">
-		DELETE FROM NOTICE
-		WHERE BNO = #{bno}
+		DELETE FROM NOTICE WHERE BNO = #{bno}
 	</delete>
+	
+	<!-- 검색 -->
+	<select id="noticeSearch" resultType="co.kids.prj.notice.service.NoticeVO">
+		SELECT * FROM NOTICE
+		<where>
+			<if test="btitle != null">BTITLE LIKE '%' || #{btitle} || '%'</if>
+		</where>
+		ORDER BY BNO
+	</select>
 
 </mapper>

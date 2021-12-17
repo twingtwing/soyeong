@@ -26,4 +26,9 @@ public class ReportServiceImpl implements ReportService {
 		return map.reportClear(rpno);
 	}
 
+	@Override
+	public List<ReportVO> reportSearch(ReportVO vo) {
+		return map.reportSearch(vo);
+	}
+
 }

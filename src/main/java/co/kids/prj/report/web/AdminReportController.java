@@ -1,6 +1,7 @@
 package co.kids.prj.report.web;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,9 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -34,7 +38,17 @@ public class AdminReportController {
 		Gson gson = new GsonBuilder().create();		 
 		response.getWriter().print(gson.toJson(reportDao.reportSelectList()));
 	}
+	
+	
+	/* 신고 검색 */
+	@RequestMapping("/reportSearch.do")
+	@ResponseBody
+	public List<ReportVO> reportSearch(ReportVO vo) {
+		if(vo.getRptitle().length() == 0) {vo.setRptitle(null);}
+		return reportDao.reportSearch(vo);
+	}
 
+	/* 신고 상세 보기 */
 	@GetMapping("/reportSelect.do")
 	public String reportSelect(ReportVO vo, @RequestParam(value = "rpno") int rpno, Model model) {
 		vo = reportDao.reportSelect(rpno);

@@ -2,13 +2,17 @@ package co.kids.prj.notice.service;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class NoticeVO {
 	private int bno;
 	private String id;
 	private String btitle;
 	private String bcontent;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date bdate;
 	private String bstatus;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date blastdate;
 	
 	public int getBno() {

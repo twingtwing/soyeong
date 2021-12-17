@@ -6,4 +6,5 @@ public interface ReportMapper {
 	List<ReportVO> reportSelectList();
 	ReportVO reportSelect(int rpno);
 	int reportClear(int rpno);
+	List<ReportVO> reportSearch(ReportVO vo);
 }

@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
     <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
     <script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
+    
+    <script src="resources/js/jquery-3.2.1.min.js"></script>
+    
 </head>
 
 <body>
