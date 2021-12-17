@@ -4,9 +4,7 @@
 	<select id="LodgingSelectList"
 		parameterType="co.kids.prj.lodging.service.LodgingVO"
 		resultType="co.kids.prj.lodging.service.LodgingVO">
-		SELECT * FROM LODGING WHERE RCHECKIN<![CDATA[>]]>
-		TO_DATE(#{rcheckin},'yyyy-mm-dd') AND RCHECKOUT <![CDATA[<]]>
-		TO_DATE(#{rcheckout},'yyyy-mm-dd') AND RGUEST<![CDATA[>=]]>#{rguest}
+		SELECT * FROM LODGING WHERE RGUEST<![CDATA[>=]]>#{rguest}
 		<if test='rcategory != "A"'>
 			AND RCATEGORY=#{rcategory}
 		</if>
@@ -22,7 +20,7 @@
 		<if test='am1=="N" and am2=="N" and am3=="N"'>
 			AND RCATEGORY=RCATEGORY
 		</if>
-		AND RUSE NOT IN('Y') ORDER BY RCHECKIN, RGUEST ASC
+		AND RUSE NOT IN('N') ORDER BY RCHECKIN, RGUEST ASC
 	</select>
 
 	
@@ -58,10 +56,7 @@
 	
 	<select id="LodgingSearchList"
 		parameterType="co.kids.prj.lodging.service.LodgingVO" resultType="co.kids.prj.lodging.service.LodgingVO">
-		SELECT * FROM LODGING WHERE RCHECKIN<![CDATA[>]]>
-		TO_DATE(#{rcheckin},'yyyy-mm-dd') AND RCHECKOUT <![CDATA[<]]>
-		TO_DATE(#{rcheckout},'yyyy-mm-dd') AND RGUEST<![CDATA[>=]]>#{rguest}
-		AND RCONTENT LIKE '%'||#{searchKey}||'%'
+		SELECT * FROM LODGING WHERE RCONTENT LIKE '%'||#{searchKey}||'%'
 		OR RNAME LIKE '%'||#{searchKey}||'%'
 	</select>
 
