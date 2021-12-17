@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
+.nice-select{
+	display : none !important;
+}
+
+#type1,#type2,#bed,#bath {
+	display : block !important;
+}
 #hostFormName {
 	font-weight: bolder;
 	padding: 40px;
@@ -73,9 +80,9 @@ form>input:hover {
 							<th style="padding: 20px">숙소유형</th>
 							<td>
 								<select name="type1" id="type1">
-									<option value="빌딩">빌딩</option>
-									<option value="아파트">아파트</option>
-									<option value="주택">주택</option>
+									<option value="한옥">한옥</option>
+									<option value="호텔">호텔</option>
+									<option value="게스트하우스">게스트하우스</option>
 								</select>
 							</td>
 							<th style="padding: 20px">숙소종류</th>

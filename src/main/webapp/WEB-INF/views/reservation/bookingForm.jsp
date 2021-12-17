@@ -7,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+ <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
-
 	<!--================Banner Area =================-->
 	<section class="banner_area">
 		<div class="booking_table d_flex align-items-center">
@@ -69,14 +69,18 @@
 									onblur="this.placeholder = '내용을 입력해주세요'"></textarea>
 							</div>
 						</div>
+						
+						<!-- 
 						<hr class="border-warning my-1">
 						<div class="mt-4 mb-4 ml-1">
 							<h4 class="text-dark mb-3">결제 수단</h4>
 							<p><button>카카오 페이</button></p>
 							<p><button>네이버 페이</button></p>
 							<p><button>무통장 입금</button></p>
-							<p><button>신용카드</button></p>
+							<p><button onclick="creditCard()">신용카드</button></p>
 						</div>
+						 -->
+						 
 						<hr class="border-warning my-1">
 						<div class="mt-4 mb-4 ml-1">
 							<h4 class="text-dark mb-3">환불 정책</h4>
@@ -131,6 +135,7 @@
 		</div>
 	</section>
 		<form action="booking.do" method="post" id="frm">
+
 		<input type="hidden" name="rno" value="${hotel.rno}">
 		<input type="hidden" name="id" value="${id}">
 		<input type="hidden" name="checkin" value="${checkin}">
@@ -163,16 +168,53 @@
 			if(!$('#primary-checkbox').is(':checked')){
 				window.alert('소영과 아이들의 환불정책에 동의해주시기 바랍니다.');
 				return;
-			}
+			} 
 			$('#frm>input').last().val($('.single-textarea').val());
+			
 			if($('.book_now_btn>strong')[0].dataset.id==''){
 				window.alert('로그인을 해주세요.');
 				location.href='home.do';
 				return;
-			}
+			} 
+			creditCard()
+			
 			$('#frm').submit();
 			window.alert('예약이 완료되었습니다. 마이페이지에서 결제를 진행해주세요.');
 		})
+		
+		
+		//결제페이지
+	var IMP = window.IMP;
+	IMP.init("imp47910912");
+		function creditCard(){
+			 IMP.request_pay({
+				   pg : 'html5_inicis', // 결제방식
+			       pay_method : 'card',	// 결제 수단
+			       merchant_uid : 'merchant_' + new Date().getTime(),
+			       name : '주문명: 결제 테스트',	// order 테이블에 들어갈 주문명 혹은 주문 번호
+			       amount : '100',	// 결제 금액
+			       buyer_email : 'email',	// 구매자 email
+			       buyer_name :  'name',	// 구매자 이름
+			       buyer_tel :  'tel',	// 구매자 전화번호
+			       buyer_addr :  'address',	// 구매자 주소
+			       buyer_postcode :  'postcode',	// 구매자 우편번호
+			       m_redirect_url : 'home.do'	// 결제 완료 후 보낼 컨트롤러의 메소드명
+			 }, function(rsp){
+				 if ( rsp.success ) { // 성공시
+						var msg = '결제가 완료되었습니다.';
+//						msg += '고유ID : ' + rsp.imp_uid;
+//						msg += '상점 거래ID : ' + rsp.merchant_uid;
+//						msg += '결제 금액 : ' + rsp.paid_amount;
+//						msg += '카드 승인번호 : ' + rsp.apply_num;
+						alert('msg');
+					} else { // 실패시
+						var msg = '결제에 실패하였습니다.';
+						msg += '에러내용 : ' + rsp.error_msg;
+					}
+			 });
+	}
+		
+		
 	</script>
 </body>
 </html>

@@ -31,7 +31,6 @@
 	<select id="LodgingSelect" resultType="co.kids.prj.lodging.service.LodgingVO" parameterType="co.kids.prj.lodging.service.LodgingVO">
 		SELECT * FROM LODGING WHERE RNO = #{rno}
 	</select>
-	
 
 
 	<insert id="LodgingInsert"
@@ -46,15 +45,42 @@
 		)
 	</insert>
 
+
 	<update id="LodgingUpdateState"
 		parameterType="co.kids.prj.lodging.service.LodgingVO">
 		UPDATE LODGING SET RUSE = #{ruse} WHERE RNO = #{rno}
 
 	</update>
 
+
+	<update id="LodgingUpdateInfo"
+		parameterType="co.kids.prj.lodging.service.LodgingVO">
+	update lodging set 
+	 rcategory = #{rcategory},
+	 rtype = #{rtype},
+	 rname = #{rname},
+	 rguest = #{rguest},
+	 rcheckin = #{rcheckin},
+	 rcheckout = #{rcheckout},
+	 rbed = #{rbed},
+	 rbath = #{rbath},
+	 rtel = #{rtel},
+	 raddress = #{raddress},
+	 rcontent = #{rcontent},
+	 fee = #{fee},
+	 am1 = #{am1},
+	 am2 = #{am2},
+	 am3 = #{am3}
+	 <if test="rphoto != null">
+	 ,rphoto = #{rphoto}
+	 </if>
+	 where rno = #{rno}
+	</update>
+
 	<delete id="LodgingDelete">
 		DELETE FROM LODGING WHERE RNO = #{rno}
 	</delete>
+	
 
 	<select id="LodgingSearchList"
 		parameterType="co.kids.prj.lodging.service.LodgingVO" resultType="co.kids.prj.lodging.service.LodgingVO">
