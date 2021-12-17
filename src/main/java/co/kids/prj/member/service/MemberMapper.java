@@ -11,4 +11,6 @@ public interface MemberMapper {
 	int memberDelete(MemberVO vo); 
 	List<MemberVO> memberSearch(MemberVO vo);
 	int changePw(MemberVO vo);
+	
+	int joinSNS(MemberVO vo);
 }

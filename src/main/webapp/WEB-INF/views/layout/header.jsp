@@ -41,6 +41,21 @@
 	border-radius: 5px;
 	padding: 10px;
 }
+#box #naverLogin{
+	width: 25rem;
+	border: solid #03C75A 1px;
+	border-radius: 5px;
+	background-color: #03C75A;
+	cursor: pointer;
+}
+
+#box #kakaoLogin{
+	width: 25rem;
+	border: solid #FEE500 1px;
+	border-radius: 5px;
+	background-color: #FEE500;
+	cursor: pointer;
+}
 
 #box button {
 	background-color: #04091e;
@@ -129,7 +144,7 @@
 									<li class="nav-item"><a class="nav-link"
 										href="memberProfile.do">상세 정보</a></li>
 									<li class="nav-item"><a class="nav-link"
-										href="detailVisit.do">나의 예약 정보</a></li>
+										href="#">나의 예약 정보</a></li>
 									<li class="nav-item"><a class="nav-link" href="logout.do"
 										onclick="kakaoLogout();">로그아웃</a></li>
 								</c:if>
@@ -153,8 +168,12 @@
             </div>
 			<button type="button" id="login">로그인</button>
 			<div align="center" class="findPw">비밀번호 찾기</div>
-			<button type="button">페이스북으로 로그인하기~여기부터는 api찾기</button>
-      <button type="button">페이스북으로 로그인하기~여기부터는 api찾기</button>
+			<a href="ajaxKakao.do" id="kakaoLogin">
+      			<img alt="kakao_login" src="resources/img/kakaoLogin.png" height ="50">
+      		</a>
+      		<a href="${naverUrl }" id="naverLogin">
+      			<img alt="naver_login" src="resources/img/naverLogin.png" height ="50">
+      		</a>
 			<button type="button">페이스북으로 로그인하기~여기부터는 api찾기</button>
 		</div>
 	</div>

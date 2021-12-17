@@ -8,6 +8,7 @@
 		LEFT OUTER JOIN LODGING L
 		ON B.RNO = L.RNO
 		WHERE B.ID = #{id}
+		AND BOOKCANCEL NOT IN('Y')
 		ORDER BY ISPAID ASC, RCHECKIN DESC
 	</select>
 
@@ -16,15 +17,18 @@
 		LEFT OUTER JOIN LODGING L
 		ON B.RNO = L.RNO
 		WHERE B.ID = #{id}
-		<if test='ispaid.equals("E")'>
+		<if test='ispaid eq "E"'>
 		AND CHECKOUT<![CDATA[<]]>SYSDATE
         AND ISPAID = 'Y'
         AND BOOKCANCEL NOT IN('Y')
 		</if>
-		<if test='ispaid.equals("X")'>
+		<if test='ispaid eq "X"'>
 		AND BOOKCANCEL = 'Y'
 		</if>
-		ORDER BY RCHECKIN DESC
+		<if test='ispaid==null'>
+		AND BOOKCANCEL NOT IN('Y')
+		</if>
+		ORDER BY ISPAID ASC, RCHECKIN DESC
 	</select>
 
 
@@ -40,11 +44,16 @@
 		VALUES((SELECT MAX(BOOKNO) FROM
 		BOOKING)+1,#{rno},#{id},DEFAULT,#{checkin},#{checkout},#{bookadult},#{bookkid},DEFAULT,DEFAULT,null,#{bookrequest}
 		)
-
 	</insert>
 
 	<delete id="reservDelete">
 
 	</delete>
 
+	<select id="reservLodgSelect" parameterType="co.kids.prj.reservation.service.ReservLodVO" resultType="co.kids.prj.reservation.service.ReservLodVO">
+		SELECT * FROM BOOKING B
+		LEFT OUTER JOIN LODGING L
+		ON B.RNO = L.RNO
+		WHERE B.ID = #{id} AND BOOKNO = #{bookno}
+	</select>
 </mapper>

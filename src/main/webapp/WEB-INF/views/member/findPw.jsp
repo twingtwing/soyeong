@@ -66,9 +66,9 @@
                                         required="required" placeholder=" Enter email . . .">
                                     <a href="javascript:void(0)" id="emailCheck" class="button_hover theme_btn_two mt-2 w-100">인증번호 전송</a>
                                     <h5 class="card-title mt-4 text-center">인증 번호</h5>
-                                    <input class="w-100 mb-3" type="number" name="nInput" id="nInput"
-                                        required="required" placeholder=" Enter number . . .">
-                                    <a href="javascript:void(0)" id="nCheck" class="button_hover theme_btn_two mt-2 w-100">인증번호 확인</a>
+                                    <input class="w-100 mb-3" type="text" name="nInput" id="nInput"
+                                        required="required" placeholder=" Enter number . . ." disabled>
+                                    <button type="button" id="nCheck" class="mt-2 w-100" disabled>인증번호 확인</button>
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,6 @@
     <!--================ body Area  =================-->
     
     <script>
-	document.body.appendChild(f);
     	document.getElementById('idCheck').addEventListener('click',function(){
     		event.stopPropagation();
             let emailReg =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -136,6 +135,9 @@
             }else{
                ajaxEamil(email);
                alert("인증번호를 전송하였습니다.");
+               nInput.disabled= false;
+               nCheck.disabled= false;
+               nCheck.classList.add('button_hover','theme_btn_two');
             }
         	
         });

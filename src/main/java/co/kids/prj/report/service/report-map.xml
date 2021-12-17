@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.kids.prj.report.service.ReportMapper">
-<select id="reportSelectList" resultType="co.kids.prj.report.service.ReportVO">
-SELECT * FROM REPORT
-</select>
-<select id="reportSelect" parameterType="Integer" resultType="co.kids.prj.report.service.ReportVO">
-SELECT * FROM REPORT WHERE RPNO = #{rpno} AND ISCLEARED NOT IN('TRUE')
-</select>
-<update id="reportClear" parameterType="Integer">
-UPDATE REPORT SET ISCLEARED = 'TRUE' WHERE RPNO = #{rpno}
-</update>
+	<select id="reportSelectList"
+		resultType="co.kids.prj.report.service.ReportVO">
+		SELECT * FROM REPORT
+	</select>
+	
+	<select id="reportSelect" parameterType="Integer"
+		resultType="co.kids.prj.report.service.ReportVO">
+		SELECT * FROM REPORT WHERE RPNO = #{rpno} AND ISCLEARED NOT IN('TRUE')
+	</select>
+	
+	<update id="reportClear" parameterType="Integer">
+		UPDATE REPORT SET ISCLEARED = 'TRUE' WHERE RPNO = #{rpno}
+	</update>
+
+	<!-- 검색 -->
+	<select id="reportSearch" 
+		resultType="co.kids.prj.report.service.ReportVO">
+		SELECT * FROM REPORT
+		<where>
+			<if test="rptitle != null">RPTITLE LIKE '%' || #{rptitle} || '%'</if>
+		</where>
+	</select>
 </mapper>

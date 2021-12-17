@@ -42,7 +42,7 @@
 						<li><a href="layout-fixed-sidebar.html">Fixed Sidebar</a></li>
 					</ul>
 				</li>
-				<li class="nav-label">Apps</li>
+				<li class="nav-label">Management</li>
 				<li><a href="adminMemberList.do"> 
 				<i class="icon-user menu-icon"></i><span
 						class="nav-text">User Management</span>
@@ -55,18 +55,10 @@
 						<li><a href="questionAList.do">Q &amp; A</a></li>
 						<li><a href="questionVList.do">고객의 소리</a></li>
 					</ul></li>
-				<li><a class="has-arrow" href="javascript:void()"
-					aria-expanded="false"> <i class="icon-graph menu-icon"></i> <span
-						class="nav-text">Charts</span>
-				</a>
-					<ul aria-expanded="false">
-						<li><a href="./chart-flot.html">Flot</a></li>
-						<li><a href="./chart-morris.html">Morris</a></li>
-						<li><a href="./chart-chartjs.html">Chartjs</a></li>
-						<li><a href="./chart-chartist.html">Chartist</a></li>
-						<li><a href="./chart-sparkline.html">Sparkline</a></li>
-						<li><a href="./chart-peity.html">Peity</a></li>
-					</ul></li>
+				<li><a href="adminNoticeList.do"> 
+				<i class="icon-note menu-icon"></i><span
+						class="nav-text">Notice Management</span>
+				</a></li>
 				<li class="nav-label">UI Components</li>
 				<li><a class="has-arrow" href="javascript:void()"
 					aria-expanded="false"> <i class="icon-grid menu-icon"></i><span

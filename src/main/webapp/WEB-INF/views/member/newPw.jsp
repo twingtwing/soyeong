@@ -5,6 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#pwShow-U-1 {
+	display: inline-block;
+	position: absolute;
+    margin-left: -25px;
+    margin-top: 3px;
+	cursor: pointer;
+}
+#pwShow-U-2 {
+	display: inline-block;
+	position: absolute;
+	margin-left: 245px;
+    margin-top: -43px;
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
     <!--================Banner Area =================-->
@@ -44,8 +60,14 @@
                                 <div class="card-body pl-5 pr-5 mt-4 mb-4">
                                     <h5 class="card-title text-center">새로운 비밀번호</h5>
                                     <input class="w-100 mb-3" type="password" name="newPasswrod" id="newPasswrod" required="required" placeholder=" Enter passwrod . . .">
+                                    <div id="pwShow-U-1">
+                                        <i class="far fa-eye-slash"></i>
+                                    </div>
                                     <h5 class="card-title text-center mt-2">비밀번호 확인</h5>
                                     <input class="w-100 mb-3" type="password" name="checkPasswrod" id="checkPasswrod" required="required" placeholder=" Check passwrod . . .">
+                                    <div id="pwShow-U-2">
+                                        <i class="far fa-eye-slash"></i>
+                                    </div>
                                     <a href="javascript:void(0)" id="pChange" class="button_hover theme_btn_two mt-2 w-100">비밀번호 변경</a>
                                 </div>
                             </div>
@@ -57,19 +79,41 @@
     </section>
     
     <script type="text/javascript">
+    	document.getElementById('pwShow-U-1').addEventListener('click',function(){
+	    	let pw = document.getElementById('newPasswrod');
+    		if(pw.getAttribute('type')=="password"){
+	        	pw.setAttribute('type','text');
+            	this.innerHTML = '<i class="far fa-eye"></i>';
+	    	}else {
+    		    pw.setAttribute('type','password');
+	        		this.innerHTML = '<i class="far fa-eye-slash"></i>';
+    		}
+		});
+    	
+    	document.getElementById('pwShow-U-2').addEventListener('click',function(){
+	    	let pw = document.getElementById('checkPasswrod');
+    		if(pw.getAttribute('type')=="password"){
+	        	pw.setAttribute('type','text');
+            	this.innerHTML = '<i class="far fa-eye"></i>';
+	    	}else {
+    		    pw.setAttribute('type','password');
+	        		this.innerHTML = '<i class="far fa-eye-slash"></i>';
+    		}
+		});
+    
 	    document.getElementById('pChange').addEventListener('click',function(){
 	    	let newP = newPasswrod.value;
 	    	let checkP = checkPasswrod.value;
 	    	if(newP.length === 0){
 	    		alert('새로 설정할 비밀번호를 입력해주세요.');
-	    		newP.focus();
+	    		newPasswrod.focus();
 	    	}else if(checkP.length === 0){
 	    		alert('비밀번호을 한 번 더 입력해주세요.');
-	    		checkP.focus();
+	    		checkPasswrod.focus();
 	    	}else if(checkP != newP){
 	    		alert('비밀번호가 서로 일치하지 않습니다. \n다시 입력해주세요.');
-	    		checkP.value ='';
-	    		checkP.focus();
+	    		checkPasswrod.value ='';
+	    		checkPasswrod.focus();
 	    	}else{
 	    		changePw();
 	    	}
@@ -77,16 +121,23 @@
     	});
 	    
 	    function changePw(){
-	    	let newP = newPasswrod.value;
 	    	fetch('changePw.do',{
             	method : 'post',
     	    	headers :{"Content-type":"application/x-www-form-urlencoded"},
-				body : "id="+'${newId}'+'&password'+newP
+				body : "id="+'${newId}'+'&password='+newPasswrod.value
             })
             .then(response => response.text())
             .then(data =>{
                 console.log(data);
-                
+                if(data.trim()==='Y'){
+                	alert('비밀번호 변경이 성공적으로 이루어졌습니다.');
+                	location.href='home.do';
+                }else if(data.trim()==='N'){
+                	alert('비밀번호 변경 중에 오류가 발생하였습니다.');
+                	newPasswrod.value ='';
+                	checkPasswrod.value ='';
+                	newPasswrod.focus();
+                }
             })
 	    }
     

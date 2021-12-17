@@ -11,4 +11,7 @@ public interface MemberService {
 	int memberDelete(MemberVO vo);
 	List<MemberVO> memberSearch(MemberVO vo);
 	int changePw(MemberVO vo);
+	
+	//sns로그인
+	int joinSNS(MemberVO vo);
 }
