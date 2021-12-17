@@ -28,7 +28,7 @@
 	<section class="section_gap">
 		<div class="container">
 			<div class="row mb-30">
-				<a href="history.back()"
+				<a href="home.do"
 					class="genric-btn warning-border circle arrow pl-4"><span
 					class="lnr lnr-arrow-left mr-2 ml-0 pl-0"></span>뒤로가기</a>
 			</div>
@@ -45,17 +45,22 @@
 							<div class="ml-1">
 								<h6 class="mb-0">날짜</h6>
 								<p>
-									<span id="checkin">${rcheckin}</span> ~ <span
-										id="checkout">${rcheckout}</span>
+								<!-- fmt 사용해야할듯 -->
+									<span id="checkin">
+										${checkin}
+									</span> ~ 
+									<span id="checkout">
+										${checkout}
+									</span>
 								</p>
 							</div>
 							<div class="ml-1">
-								<h6 class="mb-0">체크인 시간</h6>
-								<p>오전 8:00 – 오전 10:00</p>
+								<h6 class="mb-0">체크인-체크아웃</h6>
+								<p>${rcheckin} – ${rcheckout}</p>
 							</div>
 							<div class="ml-1">
-								<h6 class="mb-0">총 인원</h6>
-								<p>${hotel.rguest}명</p>
+								<h6 class="mb-0">총 인원(${hotel.rguest}인실)</h6>
+								<p>성인 ${bookadult}명 아동 ${bookkid}명</p>
 							</div>
 							<div>
 								<h6 class="mb-1 ml-1">요청사항</h6>
@@ -128,16 +133,18 @@
 		<form action="booking.do" method="post" id="frm">
 		<input type="hidden" name="rno" value="${hotel.rno}">
 		<input type="hidden" name="id" value="${id}">
-		<input type="hidden" name="checkin" value="${rcheckin}">
-		<input type="hidden" name="checkout" value="${rcheckout}">
+		<input type="hidden" name="checkin" value="${checkin}">
+		<input type="hidden" name="checkout" value="${checkout}">
 		<input type="hidden" name="bookadult" value="${bookadult}">
 		<input type="hidden" name="bookkid" value="${bookkid}">
 		<input type="hidden" name="bookrequest" value="">
 		</form>
 	<!--================ body Area  =================-->
 	<script type="text/javascript">
+		/*
 		let checkin = new Date($('#checkin').text());
 		let checkout = new Date($('#checkout').text());
+		// checkin, checkout nan뜨는거 고쳐오겠습니다 ,,
 		$('#checkin').text(
 				checkin.getFullYear() + '년 ' + parseInt(checkin.getMonth() + 1)
 						+ '월 ' + checkin.getDate() + '일');
@@ -147,6 +154,7 @@
 						+ checkout.getDate() + '일');
 		
 		$('#refundTime').text((checkout.getMonth()+1)+'월 '+(checkout.getDate()-3)+'일 오후 03시')
+		*/
 		
 		
 		

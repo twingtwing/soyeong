@@ -22,6 +22,8 @@ import co.kids.prj.lodging.service.LodgingServiceImpl;
 import co.kids.prj.lodging.service.LodgingVO;
 
 import co.kids.prj.reservation.service.ReservationVO;
+import co.kids.prj.review.service.ReviewServiceImpl;
+import co.kids.prj.review.service.ReviewVO;
 
 @Controller
 public class ReservationController {
@@ -76,9 +78,9 @@ public class ReservationController {
 		rDao.reservInsert(vo);
 		LodgingVO lodgingVO = new LodgingVO();
 		lodgingVO.setRno(vo.getRno());
-		lodgingVO.setRuse("Y");
-		lodgingDao.LodgingUpdateState(lodgingVO); // 사용중으로 업데이트
-		return "redirect:home.do"; // 예약하고 마이페이지로
+		lodgingVO.setRuse("N");
+		lodgingDao.LodgingUpdateState(lodgingVO); 
+		return "redirect:myReserv.do";
 	}
 	
 	@PostMapping("/myReservDetail.do")

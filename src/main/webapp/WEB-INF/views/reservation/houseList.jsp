@@ -101,7 +101,6 @@ footer {
 				data-stellar-vertical-offset="0" data-background=""></div>
 			<div class="container-fluid"
 				style="padding-top: 120px; text-align: center;" id="tags">
-				<a href="#" class="genric-btn primary-border circle">장소</a>
 				<a href="#" class="genric-btn primary-border circle" id="am1" data-am="N">와이파이</a>
 				<a href="#" class="genric-btn primary-border circle" id="am2" data-am="N">주방</a>
 				<a href="#" class="genric-btn primary-border circle" id="am3" data-am="N">편의점</a>
@@ -120,15 +119,15 @@ footer {
 						<div class="hotelInfo">
 							<h2 class="title title_color" style="margin-top:1.5rem;" data-rno="${list.rno}">${list.rname}</h2>
 							<p>${list.rcontent}</p>
-							<a href="#" class="button_hover theme_btn_two">빠른 비용계산<br>
 							<span class="rguest">${list.rguest}</span>
-							</a>
 							<span class="fee">${list.fee}</span>
 							<span class="rcheckin">${list.rcheckin}</span>
 							<span class="rcheckout">${list.rcheckout}</span>
 							<span class="rcategory">${list.rcategory}</span>
 						</div>
-							<div>${list.rphoto}</div>
+							<div>
+							<img alt="" src="http://localhost/prj/resources/img/${list.rphoto}">
+							</div>
 						</div>
 						</div>
 					</c:forEach>
@@ -274,22 +273,7 @@ footer {
 
  		}
 			
- 		// 버튼 클릭시 비용계산결과 나옴
-		$('#row').on('click','.theme_btn_two',(event)=>{
-			event.preventDefault();
-			if($(event.target).next().css('display')=='none'){
-				let feeSpan = $(event.target).next();
-				let checkin = $(event.target).next().next();
-				let checkout = $(event.target).next().next().next();
-				checkin = new Date(checkin.text());
-				checkout = new Date(checkout.text());
-				let day = +(checkout.getTime()-checkin.getTime())/(1000*3600*24);
-				feeSpan.text(parseInt(feeSpan.text())*day+'원');
-				feeSpan.css('display','inline-block'); 	
-			}
-		})
 	
-		// 코드가 너무 더럽네요..죄송..
 	</script>
 	
 	

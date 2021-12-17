@@ -26,7 +26,7 @@
 <style>
 #mapWrapper {
 	text-align: center;
-	
+	margin: 2rem;
 }
 
 #googleMap {
@@ -70,86 +70,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="hotel_booking_area position">
-				<div class="container">
-					<div class="hotel_booking_table">
-						<div class="col-md-3">
-							<h2>
-								빠른 예약
-							</h2>
-						</div>
-						<div class="col-md-9">
-							<div class="boking_table">
-								<div class="row">
-									<div class="col-md-4">
-										<div class="book_tabel_item">
-											<div class="form-group">
-												<!-- 일까지만 선택하도록 수정했어요 -->
-												<div class='input-group date' id='datetimepicker-in'>
-													<input type='text' class="form-control"
-														placeholder="Check in" id="checkin"/> <span
-														class="input-group-addon"> <i
-														class="fa fa-calendar" aria-hidden="true"></i>
-													</span>
-												</div>
-											</div>
-											<div class="form-group">
-												<div class='input-group date' id='datetimepicker-out'>
-													<input type='text' class="form-control"
-														placeholder="Check out" id="checkout"/> <span
-														class="input-group-addon"> <i
-														class="fa fa-calendar" aria-hidden="true"></i>
-													</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-4">
-										<div class="book_tabel_item">
-											<div class="input-group">
-												<select class="wide" id="bookadult">
-													<option data-display="Adult" value="1">Adult</option>
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-												</select>
-											</div>
-											<div class="input-group">
-												<select class="wide" id="bookkid">
-													<option data-display="Child" value="0">Child</option>
-													<option value="0">0</option>
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-												</select>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-4">
-										<div class="book_tabel_item">
-											<div class="input-group">
-												<select class="wide" id="rcategory">
-													<option data-display="숙소유형" value="A">숙소유형</option>
-													<option value="게스트하우스">게스트하우스</option>
-													<option value="호텔">호텔</option>
-													<option value="한옥">한옥</option>
-												</select>
-											</div>
-											<a class="book_now_btn button_hover" href="#">Book Now</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+		
 		</section><br>
-		<form action="quickBook.do" method="post" id="frm">
-			<input type="hidden" name="rcheckin">
-			<input type="hidden" name="rcheckout">
-			<input type="hidden" name="rguest">
-			<input type="hidden" name="rcategory">
+		<form action="houseList.do" method="post" id="frm">
 			<input type="hidden" name="searchKey" id="searchKey">
 		</form>
 		<!--================Banner Area =================-->
@@ -176,27 +99,6 @@
 			location.href='myReserv.do';						
 		}
 	})
-	
-	
-		// 빠른예약
-		$('.book_now_btn').click(()=>{		
-			let ok = $('#checkin').val()&&$('#checkout').val();
-			if(!Boolean(ok)){
-				window.alert('날짜를 지정해주세요.');
-				return;
-			}			
-			let num = Number(parseInt($('#bookadult').val())+parseInt($('#bookkid').val()));
-			let date = $('#checkin').val();
-			date = new Date(date);
-			date.setDate(date.getDate()-1);
-			date = date.toISOString().substring(0,10);
-			let endDate = $('#checkout').val();
-			endDate = new Date(endDate);
-			endDate.setDate(endDate.getDate()-1);
-			endDate = endDate.toISOString().substring(0,10);
-			sendForm(date,endDate,num,$('#rcategory').val(),'quickBook.do');
-		})
-		
 		
 		$('#selectKey').on('keypress',(e)=>{
 			if(e.keyCode=='13'){
@@ -205,31 +107,11 @@
 		})
 		
 		
-		// 제목/내용으로 검색해서 일주일 내에 있는 것들만 추림.
+		// 제목/내용으로 검색
 		$('#listAll').on('click',()=>{
-			let today = new Date();
-			today.setDate(today.getDate()-1);
-			today = today.toISOString().substring(0,10);
-			
-			let checkout = new Date();
-			checkout.setDate(checkout.getDate()+7); 
-			checkout = checkout.toISOString().substring(0,10);
-			sendForm(today,checkout,1,'A','houseList.do');
-		})
-		
-		
-		// 메인화면에서 검색하는 함수
-		let sendForm = function(checkin,checkout,guest,category,action){
-			$('#frm').attr('action',action);
-			$('#frm>input:nth-child(1)').val(checkin);
-			$('#frm>input:nth-child(2)').val(checkout); 
-			$('#frm>input:nth-child(3)').val(guest);
-			$('#frm>input:nth-child(4)').val(category);
-			if($('#searchKey').val() !=null){
-				$('#frm>input:nth-child(5)').val($('#selectKey').val());				
-			}
+			$('#searchKey').val($('#selectKey').val());
 			$('#frm').submit();
-		}
+		})
 		
 		// 구글 맵
 		function myMap() {

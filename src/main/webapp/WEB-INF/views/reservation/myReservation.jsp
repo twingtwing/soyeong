@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -146,6 +147,12 @@
 			background-color: #F3C300;
 			border-radius: 10rem;
 		}
+		.reviewBtn{
+			display: none;
+			font-weight: bold;
+			color:white;
+			background-color: #007BFF;
+		}
 	</style>
 </head>
 
@@ -163,7 +170,7 @@
 					</div>
 					<div class="buttonWrapper">
 						<button type="button" id="btn1">예약된 여행</button>
-						<button type="button" id="btn2">여행 간 곳</button>
+						<button type="button" id="btn2">지난 여행</button>
 						<button type="button" id="btn3">취소 내역</button>
 					</div>
 
@@ -174,19 +181,20 @@
 							<div style="display: flex;">
 							<c:forEach items="${cards }" var="reserv" varStatus="status">
 									<div class="card" style="width: 18rem;">
-										<div align="center">
-										<img class="card-img-top" src="<%=request.getSession().getServletContext().getContextPath() %>/${reserv.rphoto}"alt="Card image cap">
+										<div align="center" style="margin-top: 5px;">
+										<img alt="" src="http://localhost/prj/resources/img/${reserv.rphoto}">
+												<!-- 임시사진 경로 -->
 										</div>
 										<div class="card-body">
 											<h5 class="card-title">${reserv.rname }</h5>
 											<p class="card-text">${reserv.rcontent }</p>
 
 											<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
-												data-checkin='${reserv.rcheckin }' data-checkout='${reserv.rcheckout }'
+												data-checkin='${reserv.checkin }' data-checkout='${reserv.checkout }'
 												data-adult='${reserv.bookadult }' data-kid='${reserv.bookkid }' data-pay='${reserv.fee }'
 												data-addr='${reserv.raddress }' data-request='${reserv.bookrequest }'
 												data-photo='${reserv.rphoto }' data-state='${reserv.ispaid }' data-bookno='${reserv.bookno}'
-												data-cancel='${reserv.bookcancel}'>예약
+												data-cancel='${reserv.bookcancel}' data-rno='${reserv.rno}'>예약
 												상세 정보>
 											</a>
 										</div>
@@ -243,7 +251,8 @@
 					</table>
 
 				</div>
-				<div class="modal-footer">
+				<div class="modal-footer">	
+					<button type="button" class="btn reviewBtn">리뷰 작성하기</button>
 					<button type="button" class="btn btn-primary dt">상세정보 페이지</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 				</div>
@@ -256,6 +265,11 @@
 
 	<form action="myReserv.do" id="sortFrm">
 		<input type="hidden" name="ispaid">
+	</form>
+	
+	<form action="reviewForm.do">
+		<input type="hidden" name="bookno">
+		<input type="hidden" name="id" value="${id}">
 	</form>
 	<!--================Banner Area =================-->
 
@@ -298,6 +312,7 @@
 			var request = $(e.relatedTarget).data('request');
 			var photo = $(e.relatedTarget).data('photo');
 			let bookno = $(e.relatedTarget).data('bookno');
+			let rno = +$(e.relatedTarget).data('rno');
 			
 			$('#mdCheckin').html(checkin + '시');
 			$('#mdCheckout').html(checkout + '시');
@@ -310,17 +325,40 @@
 			$('#mdAddr').html(addr);
 			//결제여부
 			if (e.relatedTarget.dataset.state=='Y') {
-				$('#state').text('결제완료').css('color', 'green').css('font-weight', 'bolder');
+				$('#state').text('결제완료').css('color', 'green').css('font-weight', 'bold');
 			} else {
-				$('#state').text('결제 전').css('color', 'darkred').css('font-weight', 'bolder');
+				$('#state').text('결제 전').css('color', 'darkred').css('font-weight', 'bold');
 			}
 			//취소여부
 			if(e.relatedTarget.dataset.cancel=='Y'){
-				$('#state').text('취소 처리됨').css('color', 'darkgray').css('font-weight', 'bolder');
+				$('#state').text('취소 처리됨').css('color', 'darkgray').css('font-weight', 'bold');
 			}
-			
+			checkout = new Date(checkout)
+			checkout.setDate(checkout.getDate()+1);
+			$('form')[2].children[0].value = $(e.relatedTarget).data('bookno');
+			if(checkout < new Date() && e.relatedTarget.dataset.cancel!='Y'){
+				checkRv('reviewCheckdup.do','${id}',rno);
+				$('.reviewBtn').css('display','inline-block');
+			}
 			$('.dt')[0].dataset.no = bookno;
 		})
+		
+		// ajax로 이미 리뷰 작성했는지 체크
+		let checkRv = function(action,id,rno){
+			$.ajax({
+				url : action,
+				dataType : 'text',
+				data : {'id':id,'rno':rno}
+			})
+			.done((result)=>{
+				if(result=='ok'){
+					$('.reviewBtn').on('click',()=>$('form')[2].submit());
+				} else{
+					$('.reviewBtn').css('display','none');
+					return;
+				}
+			})
+		}
 	</script>
 
 
