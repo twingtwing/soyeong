@@ -22,6 +22,8 @@ import co.kids.prj.lodging.service.LodgingServiceImpl;
 import co.kids.prj.lodging.service.LodgingVO;
 
 import co.kids.prj.reservation.service.ReservationVO;
+import co.kids.prj.review.service.ReviewServiceImpl;
+import co.kids.prj.review.service.ReviewVO;
 
 @Controller
 public class ReservationController {
@@ -31,10 +33,14 @@ public class ReservationController {
 	private ReservationImpl rDao;
 	
 	@RequestMapping("myReserv.do")
-	public String myReserv(HttpServletRequest request, HttpSession session, ReservLodVO vo,Model model) {
+	public String myReserv(HttpServletRequest request, HttpSession session, ReservLodVO vo) {
 		session = request.getSession();
 		vo.setId((String) session.getAttribute("id"));
-		request.setAttribute("cards", rDao.reservSelectList(vo));			
+		if(vo.getIspaid()==null) {
+			request.setAttribute("cards", rDao.reservSelectList(vo));						
+		} else {
+			request.setAttribute("cards", rDao.reservSortList(vo));
+		}		
 		return "reservation/myReservation";
 	}
 
@@ -72,31 +78,15 @@ public class ReservationController {
 		rDao.reservInsert(vo);
 		LodgingVO lodgingVO = new LodgingVO();
 		lodgingVO.setRno(vo.getRno());
-		lodgingVO.setRuse("Y");
-		lodgingDao.LodgingUpdateState(lodgingVO); // 사용중으로 업데이트
-		return "redirect:home.do"; // 예약하고 마이페이지로
+		lodgingVO.setRuse("N");
+		lodgingDao.LodgingUpdateState(lodgingVO); 
+		return "redirect:myReserv.do";
 	}
 	
 	@PostMapping("/myReservDetail.do")
-	public String myReservDetail(ReservationVO vo, Model model) {
-		model.addAttribute("reservInfo", rDao.reservSelect(vo));
-		// 예약정보랑 같이 숙소정보 필요하니까
-		// join을 하든 아님 vo.getRno()로 lodging select 하든 선택
+	public String myReservDetail(ReservLodVO vo, Model model,HttpServletRequest request) {
+		vo.setId((String) request.getSession().getAttribute("id"));
+		model.addAttribute("reservInfo", rDao.reservLodgSelect(vo));
 		return "reservation/myReservationDetail";
-	}
-	
-	@GetMapping("/endedJourney.do")
-	@ResponseBody
-	public String endedJourney(ReservLodVO vo) {
-		Gson gson = new GsonBuilder().create();
-		return gson.toJson(rDao.reservSortList(vo));
-	}
-	
-	@GetMapping("/canceledJourney.do")
-	@ResponseBody
-	public String canceledJourney(ReservLodVO vo) {
-		Gson gson = new GsonBuilder().create();
-		return gson.toJson(rDao.reservSortList(vo));
-	}
-	
+	}	
 }

@@ -1,11 +1,14 @@
 package co.kids.prj.notice.web;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,6 +39,14 @@ public class NoticeController {
 		model.addAttribute("notice", vo);
 		return "notice/noticeRead";
 		
+	}
+	
+	/* 공지사항 검색 */
+	@RequestMapping("/noticeSearch.do")
+	@ResponseBody
+	public List<NoticeVO> noticeSearch(NoticeVO vo) {
+		if(vo.getBtitle().length() == 0) {vo.setBtitle(null);}
+		return noticeDao.noticeSearch(vo);
 	}
 	
 	/* 글 등록 폼 */

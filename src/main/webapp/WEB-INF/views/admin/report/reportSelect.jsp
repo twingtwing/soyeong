@@ -60,18 +60,20 @@ div>button{
 	<div class="backDiv" align="left">
 	<button>돌아가기</button>
 	</div>
-        <h3>신고내역</h3>
-		<div class="contentBox" id="${report.rpno}">
-			<div class="title">${report.rptitle}</div>
-			<div class="writeInfo">
-				<span class="writer">작성자: ${report.reporter}</span><span class="date">작성일: ${report.rpdate }</span>
-			</div>
-			<div class="content">${report.rpcontent }</div>
-		</div>
-		<div>
-            <button class="clear">처리완료</button>
-            <button class="hold">보류</button>
-        </div>
+		
+				<h3>신고내역</h3>
+				<div class="contentBox" id="${report.rpno}">
+					<div class="title">${report.rptitle}</div>
+					<div class="writeInfo">
+						<span class="writer">작성자: ${report.reporter}</span><span class="date">작성일: ${report.rpdate }</span>
+					</div>
+					<div class="content">${report.rpcontent }</div>
+				</div>
+				<div>
+					<button class="clear">처리완료</button>
+					<button class="hold">보류</button>
+				</div>
+			
     </div>
 </div>
 <script type="text/javascript">
@@ -95,6 +97,7 @@ div>button{
 	})
 	
 	$('.backDiv button').click(()=>{history.back();})
+	
 </script>
 </body>
 </html>

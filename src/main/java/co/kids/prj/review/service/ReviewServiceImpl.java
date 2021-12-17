@@ -14,6 +14,17 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return map.reviewSelectList(rno);
 	}
+
+	@Override
+	public int reviewInsert(ReviewVO vo) {
+		
+		return map.reviewInsert(vo);
+	}
+
+	@Override
+	public ReviewVO reviewCheckDup(ReviewVO vo) {
+		return map.reviewCheckDup(vo);
+	}
 	
 
 }

@@ -4,9 +4,7 @@
 	<select id="LodgingSelectList"
 		parameterType="co.kids.prj.lodging.service.LodgingVO"
 		resultType="co.kids.prj.lodging.service.LodgingVO">
-		SELECT * FROM LODGING WHERE RCHECKIN<![CDATA[>]]>
-		TO_DATE(#{rcheckin},'yyyy-mm-dd') AND RCHECKOUT <![CDATA[<]]>
-		TO_DATE(#{rcheckout},'yyyy-mm-dd') AND RGUEST<![CDATA[>=]]>#{rguest}
+		SELECT * FROM LODGING WHERE RGUEST<![CDATA[>=]]>#{rguest}
 		<if test='rcategory != "A"'>
 			AND RCATEGORY=#{rcategory}
 		</if>
@@ -22,7 +20,7 @@
 		<if test='am1=="N" and am2=="N" and am3=="N"'>
 			AND RCATEGORY=RCATEGORY
 		</if>
-		AND RUSE NOT IN('Y') ORDER BY RCHECKIN, RGUEST ASC
+		AND RUSE NOT IN('N') ORDER BY RCHECKIN, RGUEST ASC
 	</select>
 
 	
@@ -34,9 +32,7 @@
 		SELECT * FROM LODGING WHERE RNO = #{rno}
 	</select>
 	
-<!-- 	<update id="LodgingUpdateState" parameterType="String">
-		UPDATE LODGING SET RUSE = #{ruse}
-	</update> -->
+
 
 	<insert id="LodgingInsert"
 		parameterType="co.kids.prj.lodging.service.LodgingVO">
@@ -47,7 +43,6 @@
 		LODGING)+1,#{id},#{rcategory},#{rtype},#{rguest},#{rbed},#{rbath},#{raddress},#{rcontent},
 		#{fee},#{am1},#{am2},
 		#{am3},#{rphoto},default,#{rcheckin},#{rcheckout},#{rname}, #{rtel}
-
 		)
 	</insert>
 
@@ -57,30 +52,19 @@
 
 	</update>
 
-	<update id="LodgingUpdateInfo"
-		parameterType="co.kids.prj.lodging.service.LodgingVO">
-
-	</update>
-
 	<delete id="LodgingDelete">
 		DELETE FROM LODGING WHERE RNO = #{rno}
 	</delete>
 
 	<select id="LodgingSearchList"
 		parameterType="co.kids.prj.lodging.service.LodgingVO" resultType="co.kids.prj.lodging.service.LodgingVO">
-		SELECT * FROM LODGING WHERE RCHECKIN<![CDATA[>]]>
-		TO_DATE(#{rcheckin},'yyyy-mm-dd') AND RCHECKOUT <![CDATA[<]]>
-		TO_DATE(#{rcheckout},'yyyy-mm-dd') AND RGUEST<![CDATA[>=]]>#{rguest}
-		AND RCONTENT LIKE '%'||#{searchKey}||'%'
+		SELECT * FROM LODGING WHERE RCONTENT LIKE '%'||#{searchKey}||'%'
 		OR RNAME LIKE '%'||#{searchKey}||'%'
 	</select>
-
 
 	<select id="LodgingNum"
 		resultType="co.kids.prj.lodging.service.LodgingVO">
 		SELECT MAX(RNO)+1 AS RNO FROM LODGING
 	</select>
-
-
 
 </mapper>
