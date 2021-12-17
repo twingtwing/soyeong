@@ -50,4 +50,9 @@ public class MemberServiceImpl implements MemberService {
 		return map.changePw(vo);
 	}
 
+	@Override
+	public int joinSNS(MemberVO vo) {
+		return map.joinSNS(vo);
+	}
+
 }

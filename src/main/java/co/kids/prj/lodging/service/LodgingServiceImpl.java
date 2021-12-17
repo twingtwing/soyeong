@@ -53,5 +53,11 @@ public class LodgingServiceImpl implements LodgingService {
 		return map.LodgingSelectMyList(vo);
 	}
 
+	@Override
+	public List<LodgingVO> LodgingSearchList(LodgingVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
