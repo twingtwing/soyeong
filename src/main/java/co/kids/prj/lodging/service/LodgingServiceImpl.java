@@ -55,7 +55,9 @@ public class LodgingServiceImpl implements LodgingService {
 
 	@Override
 	public List<LodgingVO> LodgingSearchList(LodgingVO vo) {
+
 		return map.LodgingSearchList(vo);
+
 	}
 
 

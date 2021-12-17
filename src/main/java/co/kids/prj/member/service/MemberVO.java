@@ -13,6 +13,10 @@ public class MemberVO {
 	private String status;
 	private String name;
 	
+	private String naver;
+	private String kakao;
+	private String google;
+	
 	public String getId() {
 		return id;
 	}
@@ -61,6 +65,23 @@ public class MemberVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+	public String getNaver() {
+		return naver;
+	}
+	public void setNaver(String naver) {
+		this.naver = naver;
+	}
+	public String getKakao() {
+		return kakao;
+	}
+	public void setKakao(String kakao) {
+		this.kakao = kakao;
+	}
+	public String getGoogle() {
+		return google;
+	}
+	public void setGoogle(String google) {
+		this.google = google;
+	}
 	
 }

@@ -32,6 +32,8 @@
 		SELECT * FROM LODGING WHERE RNO = #{rno}
 	</select>
 	
+
+
 	<insert id="LodgingInsert"
 		parameterType="co.kids.prj.lodging.service.LodgingVO">
 		INSERT INTO
@@ -53,7 +55,7 @@
 	<delete id="LodgingDelete">
 		DELETE FROM LODGING WHERE RNO = #{rno}
 	</delete>
-	
+
 	<select id="LodgingSearchList"
 		parameterType="co.kids.prj.lodging.service.LodgingVO" resultType="co.kids.prj.lodging.service.LodgingVO">
 		SELECT * FROM LODGING WHERE RCONTENT LIKE '%'||#{searchKey}||'%'

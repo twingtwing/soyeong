@@ -90,8 +90,11 @@ public class MemberController {
 	
 	//새 비밀번호 처리
 	@PostMapping("/changePw.do")
+	@ResponseBody 
 	public String changePw(MemberVO vo) {
 		String result ="N";
+		int r = memberDao.changePw(vo);
+		if(r>0) {result ="Y";}
 		return result;
 	}
 
@@ -114,9 +117,10 @@ public class MemberController {
 
 	//회원정보 수정 처리
 	@PostMapping("/memberUpdate.do")
-	public String memberUpdate(MemberVO vo) {
+	public String memberUpdate(MemberVO vo, HttpSession session) {
 		//session name값 변경하기
-		memberDao.memberUpdate(vo);
+		int r = memberDao.memberUpdate(vo);
+		if(r>0) {session.setAttribute("name", vo.getName());}
 		return "redirect:home.do";
 	}
 

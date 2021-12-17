@@ -19,9 +19,8 @@
 	<insert id="memberInsert"
 		parameterType="co.kids.prj.member.service.MemberVO">
 		INSERT INTO
-		MEMBER(ID,PASSWORD,TEL,AUTHOR,GENDER,JOINDATE,STATUS,NAME) VALUES(
-		#{id},#{password},#{tel},default,#{gender},default,default,#{name}
-		)
+		MEMBER(ID,PASSWORD,TEL,AUTHOR,GENDER,JOINDATE,STATUS,NAME,NAVER) 
+		VALUES(#{id},#{password},#{tel},default,#{gender},default,default,#{name},#{naver})
 	</insert>
 	<update id="memberUpdate"
 		parameterType="co.kids.prj.member.service.MemberVO">
@@ -54,7 +53,17 @@
 	
 	<update id="changePw" parameterType="co.kids.prj.member.service.MemberVO">
 		UPDATE MEMBER 
-		SET PASSWORD = #{password},STATUS='U' 
+		SET PASSWORD = #{password}, STATUS='U' 
+		WHERE ID=#{id}
+	</update>
+	
+	<update id="joinSNS" parameterType="co.kids.prj.member.service.MemberVO">
+		UPDATE MEMBER 
+		<set>
+			<if test="naver != null">NAVER = #{naver}</if>
+			<if test="kakao != null">KAKAO = #{kakao}</if>
+			<if test="google != null">GOOGLE = #{google}</if>
+		</set>
 		WHERE ID=#{id}
 	</update>
 	
