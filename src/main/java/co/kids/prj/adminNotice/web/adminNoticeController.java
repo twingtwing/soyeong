@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -42,6 +44,7 @@ public class adminNoticeController {
 	}
 	
 	/* 관리자 페이지 공지사항 검색 */
+
 	@RequestMapping("/noticeSearch.do")
 	@ResponseBody
 	public List<NoticeVO> noticeSearch(NoticeVO vo) {
@@ -78,22 +81,16 @@ public class adminNoticeController {
 		return "admin/adminnotice/adminNoticeUpdate";
 	}
 
-	/* 관리자 페이지 공지사항 수정 */
+
+	/* 관리자 페이지 공지사항 수정 처리 */
 	@RequestMapping("/adminNoticeUpdateForm.do")
-	public String adminNoticeUpdate(NoticeVO vo, HttpSession session) {
-		System.out.println(vo.getBtitle());
-		System.out.println(vo.getBcontent());
-		
-		String id = (String) session.getAttribute("id");
-		vo.setId(id);
-		
+	@ResponseBody
+	public String adminNoticeUpdate(NoticeVO vo) throws Exception {
+		String result = "F";
 		int res = noticeDao.noticeUpdate(vo);
-		
-		if(res>0) {
-			return "redirect:adminNoticeRead.do?bno="+vo.getBno();
-		} else {
-			return "redirect:adminNoticeUpdateForm.do?bno="+vo.getBno();
-		}
+		if(res>0) {result = "Y";}
+		return result;
+
 
 	}
 
