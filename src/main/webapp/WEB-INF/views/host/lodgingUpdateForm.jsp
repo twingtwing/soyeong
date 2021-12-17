@@ -2,11 +2,79 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<script>
+$(function(){
+	var rno = $('#rno').val();
+	
+	$.ajax({
+		method : 'post',
+		url : "updataFormAjax.do",
+		data : {
+			rno : rno
+		}, 
+		success : function(data){
+			$.each(data, function(vo,  val){
+				if(vo == 'rcategory' && val == '한옥'){
+					$("#type1>option:eq(0)").prop("selected", true);
+				}
+				else if(vo == 'rcategory' && val == '호텔'){
+					$("#type1>option:eq(1)").prop("selected", true);
+				}
+				else if(vo == 'rcategory' && val == '게스트하우스'){
+					$("#type1>option:eq(2)").prop("selected", true);
+				}
+				
+				else if(vo == 'rtype' && val == '개인실'){
+					$("#type2>option:eq(0)").prop("selected", true);
+				}
+				else if(vo == 'rtype' && val == '다인실'){
+					$("#type2>option:eq(1)").prop("selected", true);
+				}
+				
+				else if(vo == 'rbed' && val == '1'){
+					$("#type2>option:eq(0)").prop("selected", true);
+				}
+				else if(vo == 'rbed' && val == '2'){
+					$("#type2>option:eq(1)").prop("selected", true);
+				}
+				
+				else if(vo == 'rbath' && val == '1'){
+					$("#type2>option:eq(0)").prop("selected", true);
+				}
+				else if(vo == 'rbath' && val == '2'){
+					$("#type2>option:eq(1)").prop("selected", true);
+				}
+				
+				
+				
+				else if(vo == 'am1' && val == 'Y'){
+					$("input:checkbox[id='am1']").prop("checked", true);
+				}
+				else if(vo == 'am2' && val == 'Y'){
+					$("input:checkbox[id='am2']").prop("checked", true);
+				}
+				else if(vo == 'am3' && val == 'Y'){
+					$("input:checkbox[id='am3']").prop("checked", true);
+				}
+			})
+		}
+	})
+	
+})
+</script>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
 <style>
+.nice-select{
+	display : none !important;
+}
+
+#type1,#type2,#bed,#bath {
+	display : block !important;
+}
+
 #lodgingInfoUpdateName {
 	font-weight: bolder;
 	padding: 40px;
@@ -69,16 +137,16 @@ form>input:hover {
 							<th style="padding: 20px">숙소유형</th>
 							<td>
 								<select name="type1" id="type1">
-									<option value="빌딩">빌딩</option>
-									<option value="아파트">아파트</option>
-									<option value="주택">주택</option>
+									<option id="house1" value="한옥">한옥</option>
+									<option id="house2" value="호텔">호텔</option>
+									<option id="house3" value="게스트하우스">게스트하우스</option>
 								</select>
 							</td>
 							<th style="padding: 20px">숙소종류</th>
 							<td>
 								<select name="type2" id="type2">
-									<option value="개인실">개인실</option>
-									<option value="다인실">다인실</option>
+									<option id="room1" value="개인실">개인실</option>
+									<option id="room2" value="다인실">다인실</option>
 								</select>
 							</td>
 						</tr>
@@ -145,9 +213,9 @@ form>input:hover {
 						<tr>
 							<th>편의시설</th>
 							<td colspan="3" style="text-align: left">
-									<label><input type="checkbox" id="am1" name="am" value="Y">&nbsp wifi</label>
-									<label><input type="checkbox" id="am2" name="am" value="Y">&nbsp 주방</label>
-									<label><input type="checkbox" id="am3" name="am" value="Y">&nbsp 편의점</label>
+									<label><input type="checkbox" id="am1" name="am1" value="Y">&nbsp wifi</label>
+									<label><input type="checkbox" id="am2" name="am2" value="Y">&nbsp 주방</label>
+									<label><input type="checkbox" id="am3" name="am3" value="Y">&nbsp 편의점</label>
 							</td>
 						</tr>
 						<tr>
@@ -163,26 +231,20 @@ form>input:hover {
 					<button type="button" id="btn1">저장</button>
 					&nbsp;&nbsp;&nbsp;
 					<button type="button" id="btn2" onclick="history.back()">수정취소</button>
+					<input type="hidden" id="rno" name="rno" value="${thislodge.rno }">
+					<input type="hidden" id="id" name="id" value="${thislodge.id }">
 				</div>
 			</form>
 		</div>
 	</div>
 
 <script>
-$('input:checkbox[name="am"]').each(function() {
-	if(${thislodge.am1} equal('Y')){
-	this.checked = true;
-	}
-
-	});
-
-
-$(function(){
-	$("#btn1").click(function(){
-		frm.action= "lodgingUpdate.do";
-		frm.submit();
-	});
-})
+	$(function(){
+		$("#btn1").click(function(){
+			frm.action= "lodgingUpdate.do";
+			frm.submit();
+		});
+	})
 
 
 

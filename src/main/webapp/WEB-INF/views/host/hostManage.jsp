@@ -189,15 +189,6 @@ button:hover {
 
 	<script>
 	
-
-
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

@@ -27,7 +27,6 @@ import co.kids.prj.lodging.service.LodgingVO;
 import co.kids.prj.lodgingPhoto.service.LodgingPhotoServiceImpl;
 import co.kids.prj.lodgingPhoto.service.LodgingPhotoVO;
 import co.kids.prj.review.service.ReviewServiceImpl;
-import co.kids.prj.review.service.ReviewVO;
 
 @Controller
 public class LodgingController {
@@ -169,12 +168,45 @@ public class LodgingController {
 		return "host/lodgingUpdateForm";
 	}
 	
+	@RequestMapping("updataFormAjax.do")
+	@ResponseBody
+	public LodgingVO updataFormAjax(LodgingVO vo, HttpServletRequest request) {
+		vo.setRno(Integer.parseInt(request.getParameter("rno")));
+		return lodgingDao.LodgingSelect(vo);
+	}
+	
 	@RequestMapping("lodgingDelete.do")
 	public String lodgingDelete(LodgingVO vo, HttpServletRequest request) {
 		vo.setRno(Integer.parseInt(request.getParameter("rno")));
 		int i = vo.getRno();
 		lodgingDao.LodgingDelete(i);
 		return "redirect:hostManage.do";
+	}
+	
+	@RequestMapping("lodgingUpdate.do")
+	public String lodgingUpdate(LodgingVO vo, HttpServletRequest request) {
+		vo.setRcategory(request.getParameter("type1"));
+		vo.setRtype(request.getParameter("type2"));
+		vo.setRname(request.getParameter("title"));
+		vo.setRguest(Integer.parseInt(request.getParameter("pnum")));
+		vo.setRcheckin(request.getParameter("checkin"));
+		vo.setRcheckout(request.getParameter("checkout"));
+		vo.setRbed(Integer.parseInt(request.getParameter("bed")));
+		vo.setRbath(Integer.parseInt(request.getParameter("bath")));
+		vo.setRtel(request.getParameter("tel"));
+		vo.setRaddress(request.getParameter("address"));
+		vo.setRcontent(request.getParameter("subject"));
+		vo.setFee(Integer.parseInt(request.getParameter("onedayfee")));
+		
+		vo.setAm1(request.getParameter("am1"));
+		vo.setAm2(request.getParameter("am2"));
+		vo.setAm3(request.getParameter("am3"));
+		vo.setRphoto(request.getParameter("image"));
+		vo.setRno(Integer.parseInt(request.getParameter("rno")));
+		
+		lodgingDao.LodgingUpdateInfo(vo);
+		
+		return "redirect:lodgingInfo.do";
 	}
 
 }
