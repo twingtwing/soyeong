@@ -47,16 +47,16 @@
 								<p>
 								<!-- fmt 사용해야할듯 -->
 									<span id="checkin">
-										${checkin}
+										${rcheckin}
 									</span> ~ 
 									<span id="checkout">
-										${checkout}
+										${rcheckout}
 									</span>
 								</p>
 							</div>
 							<div class="ml-1">
 								<h6 class="mb-0">체크인-체크아웃</h6>
-								<p>${rcheckin} – ${rcheckout}</p>
+								<p>${hotel.rcheckin} – ${hotel.rcheckout}</p>
 							</div>
 							<div class="ml-1">
 								<h6 class="mb-0">총 인원(${hotel.rguest}인실)</h6>
