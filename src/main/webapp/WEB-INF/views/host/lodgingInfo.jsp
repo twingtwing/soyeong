@@ -50,19 +50,18 @@ table th {
 	text-align: center;
 	padding: 10px;
 	font-weight: bold;
-	vertical-align: top;
 	color: #fff;
 	background: #231141;
 }
 
 table td {
 	padding: 10px;
-	vertical-align: top;
 	border-bottom: solid #ccc;
 	text-align:left;
+	margin: 0px;
 }
 
-form>input {
+form input {
 	border: 1px solid rgb(128, 128, 128);
 	border-radius: 10px;
 	background-color: white;
@@ -71,9 +70,27 @@ form>input {
 	margin-top: 15px;
 }
 
-form>input:hover {
+form input:hover {
 	background-color: rgb(128, 128, 128);
 	color: white;
+}
+.btns{
+	margin-bottom: 3rem;
+	display: flex;
+	justify-content: center;
+}
+.btns button{
+	margin:0.5rem;
+	padding: 0.5rem 1rem;
+	border-radius: 1rem;
+	cursor: pointer;
+	border: 1px solid white;
+	background-color: #F3C300;
+	font-weight: bold;
+}
+#btn2{
+	background-color: lightgray;
+
 }
 </style>
 </head>
@@ -151,12 +168,12 @@ form>input:hover {
 					</table>
 				</div>
 				<br> 
-				<div>
-					<div>
+
+					<div class="btns">
 						<button type="button" id="btn1">수정</button>
 						<button type="button" id="btn2">삭제</button>
 					</div>
-				</div>
+
 				<div>
 					<form id="nofrm" method="get">
 						<input type="hidden" id="rno" name="rno" value="${thislodge.rno }">

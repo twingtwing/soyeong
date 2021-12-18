@@ -55,10 +55,8 @@ th, td {
 	position: absolute;
 }
 
-#fullStar .fa-star{
-/*
+#halfStar .fa-star-half{
 	z-index: 1;
-*/
 }
 
 table {
@@ -143,7 +141,7 @@ table {
 				</table>
 				<div class="buttons" align="center">
 					<button id="letsGo">작성</button>
-					<button onclick="location.href='home.do'">취소</button>
+					<button onclick="location.href='myReserv.do'">취소</button>
 				</div>
 			</div>
 		</div>
@@ -174,6 +172,7 @@ table {
 				$('#fullStar>i')[i].classList.add('selected');
 			}
 			
+			console.log($('.selected').length)
 			
 			for(let i=0; i<$('.selected').length;i++){
 				$('#fullStar>i')[i].style.color='#f3c300';		

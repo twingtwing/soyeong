@@ -182,7 +182,7 @@
 							<c:forEach items="${cards }" var="reserv" varStatus="status">
 									<div class="card" style="width: 18rem;">
 										<div align="center" style="margin-top: 5px;">
-										<img alt="" src="http://localhost/prj/resources/img/${reserv.rphoto}">
+										<img alt="" src="${reserv.rphoto}">
 												<!-- 임시사진 경로 -->
 										</div>
 										<div class="card-body">
@@ -190,7 +190,7 @@
 											<p class="card-text">${reserv.rcontent }</p>
 
 											<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
-												data-checkin='${reserv.checkin }' data-checkout='${reserv.checkout }'
+												data-checkin='${reserv.rcheckin }' data-checkout='${reserv.rcheckout }'
 												data-adult='${reserv.bookadult }' data-kid='${reserv.bookkid }' data-pay='${reserv.fee }'
 												data-addr='${reserv.raddress }' data-request='${reserv.bookrequest }'
 												data-photo='${reserv.rphoto }' data-state='${reserv.ispaid }' data-bookno='${reserv.bookno}'

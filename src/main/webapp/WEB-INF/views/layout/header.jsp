@@ -158,7 +158,6 @@
 
 	<!-- login modal -->
 	<div align="center" id="loginModal">
-
 		<div id="box" class="pb-5">
 			<span class="close">&times;</span> <span>소영과 아이들에 오신 것을 환영합니다.</span>
 			<input type="text" placeholder="ID" id="id" name="id"> 
@@ -177,6 +176,8 @@
 			<button type="button">페이스북으로 로그인하기~여기부터는 api찾기</button>
 		</div>
 	</div>
+	
+	
 	
 	<script type="text/javascript">
 
@@ -210,6 +211,16 @@
 		})
 	}
 	
+	/* 
+	if($('#loginModal').css('display')=='block'){
+		$('#loginModal').on('keypress',(e)=>{			
+			if(e.keyCode==27){
+				$('.close')[0].click();
+			}			
+		})
+	}
+	*/
+	
 
 	// 비밀번호 찾기 클릭시
 	$('.findPw').click(()=>{
@@ -242,6 +253,8 @@
            	this.innerHTML = '<i class="far fa-eye-slash"></i>';
        	}
     });	
+	
+	
 </script>
 </body>
 </html>
