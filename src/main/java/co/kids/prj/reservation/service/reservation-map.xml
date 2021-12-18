@@ -18,7 +18,7 @@
 		ON B.RNO = L.RNO
 		WHERE B.ID = #{id}
 		<if test='ispaid eq "E"'>
-		AND CHECKOUT<![CDATA[<]]>SYSDATE
+		AND CHECKOUT<![CDATA[<]]>SYSDATE-1
         AND ISPAID = 'Y'
         AND BOOKCANCEL NOT IN('Y')
 		</if>

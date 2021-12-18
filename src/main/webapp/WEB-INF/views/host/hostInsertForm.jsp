@@ -14,7 +14,8 @@
 #type1,#type2,#bed,#bath {
 	display : block !important;
 }
-#hostFormName {
+
+#lodgingInfoUpdateName {
 	font-weight: bolder;
 	padding: 40px;
 	font-size: x-large;
@@ -26,13 +27,13 @@ table {
 	text-align: center;
 	line-height: 1.5;
 	margin: 20px 10px;
+	margin-top: 8rem;
 }
 
 table th {
 	text-align: center;
 	padding: 10px;
 	font-weight: bold;
-	vertical-align: top;
 	color: #fff;
 	background: #231141;
 }
@@ -43,18 +44,30 @@ table td {
 	border-bottom: solid #ccc;
 }
 
-form>input {
-	border: 1px solid rgb(128, 128, 128);
+form input, textarea, form select {
+	border: 1px solid #d9d9d9;
 	border-radius: 10px;
 	background-color: white;
 	color: rgb(128, 128, 128);
 	padding: 8px;
-	margin-top: 15px;
 }
 
-form>input:hover {
-	background-color: rgb(128, 128, 128);
+form input:hover, textarea:hover {
+	background-color: #d9d9d9;
 	color: white;
+}
+
+#btn1, #btn2 {
+	margin-bottom: 3rem;
+	padding: 0.5rem 1rem;
+	border-radius: 1rem;
+	cursor: pointer;
+	border: 1px solid white;
+	background-color: #F3C300;
+	font-weight: bold;
+}
+#btn2{
+	background-color: lightgray;
 }
 </style>
 
@@ -162,8 +175,8 @@ form>input:hover {
 						</tr>
 					</table>
 				</div>
-				<br> <input type="submit" value="저 장">&nbsp;&nbsp;&nbsp; 
-					<input type="reset" onclick="history.back()" value="취 소"> 
+				<br> <input type="submit" value="저 장" id="btn1">&nbsp;&nbsp;&nbsp; 
+					<input type="reset" onclick="history.back()" value="취 소" id="btn2"> 
 					<input type="hidden" id="rno" name="rno" value="${lodNum }">
 			</form>
 		</div>
