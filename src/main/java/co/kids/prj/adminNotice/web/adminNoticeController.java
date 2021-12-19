@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -45,9 +44,9 @@ public class adminNoticeController {
 	
 	/* 관리자 페이지 공지사항 검색 */
 
-	@RequestMapping("/noticeSearch.do")
+	@RequestMapping("/adminNoticeSearch.do")
 	@ResponseBody
-	public List<NoticeVO> noticeSearch(NoticeVO vo) {
+	public List<NoticeVO> adminNoticeSearch(NoticeVO vo) {
 		if(vo.getBtitle().length() == 0) {vo.setBtitle(null);}
 		return noticeDao.noticeSearch(vo);
 	}

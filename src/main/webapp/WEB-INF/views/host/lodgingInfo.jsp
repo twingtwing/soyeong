@@ -153,8 +153,9 @@ form>input:hover {
 				<br> 
 				<div>
 					<div>
-						<button type="button" id="btn1">수정</button>
-						<button type="button" id="btn2">삭제</button>
+						<input type="button" id="btn1" value="수정">
+						<input type="button" id="btn2" value="삭제">
+						<input type="reset" onclick="location.href='hostManage.do'" value="돌아가기"> 
 					</div>
 				</div>
 				<div>

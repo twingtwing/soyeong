@@ -218,12 +218,14 @@ form>input:hover {
 									<label><input type="checkbox" id="am3" name="am3" value="Y">&nbsp 편의점</label>
 							</td>
 						</tr>
+						<!-- 
 						<tr>
 							<th>숙소사진</th>
 							<td colspan="3" style="text-align: left">
 								<input type="file" multiple="multiple" id="image" name="image">
 							</td>
 						</tr>
+						 -->
 					</table>
 				</div>
 				<br> 
@@ -237,7 +239,7 @@ form>input:hover {
 			</form>
 		</div>
 	</div>
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 	$(function(){
 		$("#btn1").click(function(){
@@ -245,6 +247,23 @@ form>input:hover {
 			frm.submit();
 		});
 	})
+	
+	$(function(){
+		    $("#address").on("click", function(){ 
+		        new daum.Postcode({
+		            oncomplete: function(data) { 
+		            	 var roadAddr = data.roadAddress; 
+		                 var jibunAddr = data.jibunAddress; 
+		                 if(roadAddr !== ''){
+		                     $("#address").val(roadAddr);
+		                 } 
+		                 else if(jibunAddr !== ''){
+		                     $("#address").val(jibunAddr);
+		                 }
+		            }
+		        }).open();
+		    });
+		});
 
 
 

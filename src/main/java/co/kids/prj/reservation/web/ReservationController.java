@@ -89,4 +89,5 @@ public class ReservationController {
 		model.addAttribute("reservInfo", rDao.reservLodgSelect(vo));
 		return "reservation/myReservationDetail";
 	}	
+	
 }
