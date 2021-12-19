@@ -20,7 +20,7 @@
 		<if test='am1=="N" and am2=="N" and am3=="N"'>
 			AND RCATEGORY=RCATEGORY
 		</if>
-		AND RUSE NOT IN('N') ORDER BY RCHECKIN, RGUEST ASC
+		AND RUSE IN('Y') ORDER BY RCHECKIN, RGUEST ASC
 	</select>
 
 

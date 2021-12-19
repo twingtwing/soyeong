@@ -60,7 +60,7 @@ $(function(){
 		}
 	})
 	
-})
+}) 
 </script>
 <head>
 <meta charset="UTF-8">
@@ -87,13 +87,13 @@ table {
 	text-align: center;
 	line-height: 1.5;
 	margin: 20px 10px;
+	margin-top: 3rem;
 }
 
 table th {
 	text-align: center;
 	padding: 10px;
 	font-weight: bold;
-	vertical-align: top;
 	color: #fff;
 	background: #231141;
 }
@@ -104,19 +104,32 @@ table td {
 	border-bottom: solid #ccc;
 }
 
-form>input {
-	border: 1px solid rgb(128, 128, 128);
+form input, textarea, form select {
+	border: 1px solid #d9d9d9;
 	border-radius: 10px;
 	background-color: white;
 	color: rgb(128, 128, 128);
 	padding: 8px;
-	margin-top: 15px;
 }
 
-form>input:hover {
-	background-color: rgb(128, 128, 128);
+form input:hover, textarea:hover {
+	background-color: #d9d9d9;
 	color: white;
 }
+
+#btn1, #btn2 {
+	margin-bottom: 3rem;
+	padding: 0.5rem 1rem;
+	border-radius: 1rem;
+	cursor: pointer;
+	border: 1px solid white;
+	background-color: #F3C300;
+	font-weight: bold;
+}
+#btn2{
+	background-color: lightgray;
+}
+
 </style>
 </head>
 <body>

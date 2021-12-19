@@ -62,7 +62,7 @@
 						
 						<a href="#" class="btn theme_btn button_hover" id="myBook">내예약</a>
 						<a href="#" class="btn theme_btn button_hover">상세정보</a>
-						<a href="hostManage.do" class="btn theme_btn button_hover">호스트 숙소관리 test</a>
+						<a href="#" class="btn theme_btn button_hover" id="hostManage">호스트 숙소관리 test</a>
 					</div>
 					<div align="center">
 						<input type="text" id="selectKey">
@@ -93,10 +93,18 @@
 	<script>
 	$('#myBook').on('click',()=>{
 		if('${id}'==''){
-			window.alert('로그인이 필요합니다.');
+			$('#loginBtn').click();
 			return;
 		} else{
 			location.href='myReserv.do';						
+		}
+	})
+	$('#hostManage').on('click',()=>{
+		if('${id}'==''){
+			$('#loginBtn').click();
+			return;
+		} else {
+			location.href='hostManage.do';
 		}
 	})
 		

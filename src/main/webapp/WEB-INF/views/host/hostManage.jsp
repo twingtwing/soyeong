@@ -36,6 +36,7 @@
 	background-color: white;
 	display: inline-block;
 	margin: 20px 30px;
+	width: 18rem;
 }
 
 .card-text, .card-title {
@@ -96,9 +97,7 @@ button:hover {
 						<button type="button" id="btn3">체크아웃 예정</button>
 						<button type="button" id="btn4">취소 내역</button>
 						<c:if test="${not empty id }">
-							<div style="text-align: right;">
-								<button type="button" onclick="location.href='hostInsertForm.do'">숙소등록</button>
-							</div>
+						<button type="button" onclick="location.href='hostInsertForm.do'" style="float: right; background-color:#f3c300; font-weight: bold ">숙소등록</button>
 						</c:if>
 						
 					</div>
