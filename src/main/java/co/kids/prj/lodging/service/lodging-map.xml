@@ -23,12 +23,16 @@
 		AND RUSE IN('Y') ORDER BY RCHECKIN, RGUEST ASC
 	</select>
 
-	
-	<select id="LodgingSelectMyList" parameterType="co.kids.prj.lodging.service.LodgingVO" resultType="co.kids.prj.lodging.service.LodgingVO">
+
+	<select id="LodgingSelectMyList"
+		parameterType="co.kids.prj.lodging.service.LodgingVO"
+		resultType="co.kids.prj.lodging.service.LodgingVO">
 		SELECT * FROM LODGING WHERE ID = #{id}
 	</select>
-	
-	<select id="LodgingSelect" resultType="co.kids.prj.lodging.service.LodgingVO" parameterType="co.kids.prj.lodging.service.LodgingVO">
+
+	<select id="LodgingSelect"
+		resultType="co.kids.prj.lodging.service.LodgingVO"
+		parameterType="co.kids.prj.lodging.service.LodgingVO">
 		SELECT * FROM LODGING WHERE RNO = #{rno}
 	</select>
 
@@ -40,8 +44,32 @@
 		VALUES(
 		(SELECT MAX(RNO) FROM
 		LODGING)+1,#{id},#{rcategory},#{rtype},#{rguest},#{rbed},#{rbath},#{raddress},#{rcontent},
-		#{fee},#{am1},#{am2},
-		#{am3},#{rphoto},default,#{rcheckin},#{rcheckout},#{rname}, #{rtel}
+		#{fee}
+		<choose>
+			<when test='am1 != "Y"'>
+				,default
+			</when>
+			<when test='am1 == "Y"'>
+				,#{am1}
+			</when>
+		</choose>
+		<choose>
+			<when test='am2 != "Y"'>
+				,default
+			</when>
+			<when test='am2 == "Y"'>
+				,#{am2}
+			</when>
+		</choose>
+		<choose>
+			<when test='am3 != "Y"'>
+				,default
+			</when>
+			<when test='am3 == "Y"'>
+				,#{am3}
+			</when>
+		</choose>
+		,#{rphoto},default,#{rcheckin},#{rcheckout},#{rname}, #{rtel}
 		)
 	</insert>
 
@@ -55,36 +83,57 @@
 
 	<update id="LodgingUpdateInfo"
 		parameterType="co.kids.prj.lodging.service.LodgingVO">
-	update lodging set 
-	 rcategory = #{rcategory},
-	 rtype = #{rtype},
-	 rname = #{rname},
-	 rguest = #{rguest},
-	 rcheckin = #{rcheckin},
-	 rcheckout = #{rcheckout},
-	 rbed = #{rbed},
-	 rbath = #{rbath},
-	 rtel = #{rtel},
-	 raddress = #{raddress},
-	 rcontent = #{rcontent},
-	 fee = #{fee},
-	 am1 = #{am1},
-	 am2 = #{am2},
-	 am3 = #{am3}
-	 <if test="rphoto != null">
-	 ,rphoto = #{rphoto}
-	 </if>
-	 where rno = #{rno}
+		update lodging set
+		rcategory = #{rcategory},
+		rtype = #{rtype},
+		rname = #{rname},
+		rguest = #{rguest},
+		rcheckin = #{rcheckin},
+		rcheckout = #{rcheckout},
+		rbed = #{rbed},
+		rbath = #{rbath},
+		rtel = #{rtel},
+		raddress = #{raddress},
+		rcontent = #{rcontent},
+		fee = #{fee}
+		<choose>
+			<when test='am1 != "Y"'>
+				,am1 = default
+			</when>
+			<when test='am1 == "Y"'>
+				,am1 = #{am1}
+			</when>
+		</choose>
+		<choose>
+			<when test='am2 != "Y"'>
+				,am2 = default
+			</when>
+			<when test='am2 == "Y"'>
+				,am2 = #{am2}
+			</when>
+		</choose>
+		<choose>
+			<when test='am3 != "Y"'>
+				,am3 = default
+			</when>
+			<when test='am3 == "Y"'>
+				,am3 = #{am3}
+			</when>
+		</choose>
+		
+		where rno = #{rno}
 	</update>
 
 	<delete id="LodgingDelete">
 		DELETE FROM LODGING WHERE RNO = #{rno}
 	</delete>
-	
+
 
 	<select id="LodgingSearchList"
-		parameterType="co.kids.prj.lodging.service.LodgingVO" resultType="co.kids.prj.lodging.service.LodgingVO">
-		SELECT * FROM LODGING WHERE RCONTENT LIKE '%'||#{searchKey}||'%'
+		parameterType="co.kids.prj.lodging.service.LodgingVO"
+		resultType="co.kids.prj.lodging.service.LodgingVO">
+		SELECT * FROM LODGING WHERE RCONTENT LIKE
+		'%'||#{searchKey}||'%'
 		OR RNAME LIKE '%'||#{searchKey}||'%'
 	</select>
 

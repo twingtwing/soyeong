@@ -232,12 +232,9 @@ public class LodgingController {
 		vo.setAm1(request.getParameter("am1"));
 		vo.setAm2(request.getParameter("am2"));
 		vo.setAm3(request.getParameter("am3"));
-		vo.setRphoto(request.getParameter("image"));
 		vo.setRno(Integer.parseInt(request.getParameter("rno")));
-
 		lodgingDao.LodgingUpdateInfo(vo);
-		request.setAttribute("thislodge", lodgingDao.LodgingSelect(vo));
-		return "host/lodgingInfo";
+		return "forward:lodgingInfo.do";
 	}
 
 }

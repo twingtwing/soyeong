@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
 .nice-select{
 	display : none !important;
@@ -175,8 +176,10 @@ form input:hover, textarea:hover {
 						</tr>
 					</table>
 				</div>
-				<br> <input type="submit" value="저 장" id="btn1">&nbsp;&nbsp;&nbsp; 
-					<input type="reset" onclick="history.back()" value="취 소" id="btn2"> 
+				<br>
+					<input type="button" onclick="formSubmit()" value="저 장">
+					 &nbsp;&nbsp;&nbsp;
+					<input type="reset" onclick="history.back()" value="취 소"> 
 					<input type="hidden" id="rno" name="rno" value="${lodNum }">
 			</form>
 		</div>
@@ -221,6 +224,26 @@ form input:hover, textarea:hover {
 				alert('숫자만 입력가능합니다.');
 			}
 		});
+		
+		$(function(){
+		    $("#address").on("click", function(){ 
+		        new daum.Postcode({
+		            oncomplete: function(data) { 
+		            	 var roadAddr = data.roadAddress; 
+		                 var jibunAddr = data.jibunAddress; 
+		                 if(roadAddr !== ''){
+		                     $("#address").val(roadAddr);
+		                 } 
+		                 else if(jibunAddr !== ''){
+		                     $("#address").val(jibunAddr);
+		                 }
+		            }
+		        }).open();
+		    });
+		});
+		
+		
+		
 
 		var patt = new RegExp("[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}");
 		var res = patt.test($("#tel").val());
@@ -229,6 +252,51 @@ form input:hover, textarea:hover {
 			let inputValue = this.value; 
 			this.value = inputValue.replace(/[^0-9]/gi, '');
 		})
+		
+		function formSubmit(){
+			if($('#title').val().length==0){
+				alert('숙소이름을 입력해주세요');
+				$('#title').focus();
+				return false;
+			}
+			if($('#pnum').val().length==0){
+				alert('숙소인원을 입력해주세요');
+				$('#pnum').focus();
+				return false;
+			}
+			if($('#checkin').val().length==0){
+				alert('체크인 시간을 입력해주세요');
+				$('#checkin').focus();
+				return false;
+			}
+			if($('#checkout').val().length==0){
+				alert('체크아웃 시간을 입력해주세요');
+				$('#checkout').focus();
+				return false;
+			}
+			if($('#tel').val().length==0){
+				alert('숙소 전화번호를 입력해주세요');
+				$('#tel').focus();
+				return false;
+			}
+			if($('#address').val().length==0){
+				alert('숙소주소를 입력해주세요');
+				$('#address').focus();
+				return false;
+			}
+			if($('#subject').val().length==0){
+				alert('숙소설명을 입력해주세요');
+				$('#subject').focus();
+				return false;
+			}
+			if($('#onedayfee').val().length==0){
+				alert('1박요금을 입력해주세요');
+				$('#onedayfee').focus();
+				return false;
+			}
+			$('#frm').submit();
+			
+}
 	</script>
 
 </body>
