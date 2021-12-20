@@ -11,6 +11,14 @@
 		SELECT * FROM REPORT WHERE RPNO = #{rpno} AND ISCLEARED NOT IN('TRUE')
 	</select>
 	
+	<insert id="reportInsert" parameterType="co.kids.prj.report.service.ReportVO">
+		<selectKey keyProperty="rpno" resultType="int" order="BEFORE">
+			SELECT MAX(rpno) + 1 AS rpno FROM report
+		</selectKey>
+		INSERT INTO report 
+		VALUES(#{rpno}, #{rptype}, #{rptitle}, #{rpcontent}, sysdate, 'FALSE', #{reporter}, #{blackuser})
+	</insert>
+	
 	<update id="reportClear" parameterType="Integer">
 		UPDATE REPORT SET ISCLEARED = 'TRUE' WHERE RPNO = #{rpno}
 	</update>

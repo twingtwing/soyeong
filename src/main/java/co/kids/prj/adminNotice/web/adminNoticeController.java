@@ -10,6 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -59,10 +63,11 @@ public class adminNoticeController {
 
 	/* 관리자 페이지 공지사항 등록 처리 */
 	@RequestMapping("/adminNoticeFormInsert.do")
-	public String adminNoticeFormInsert(NoticeVO vo, HttpSession session) {
+	public String adminNoticeFormInsert(NoticeVO vo, @RequestParam("name") String name, HttpSession session) {
 		
 		String id = (String) session.getAttribute("id");
 		vo.setId(id);
+		vo.setName(name);
 		
 		int res = noticeDao.noticeInsert(vo);
 		
