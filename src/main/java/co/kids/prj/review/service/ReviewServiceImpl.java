@@ -25,6 +25,11 @@ public class ReviewServiceImpl implements ReviewService {
 	public ReviewVO reviewCheckDup(ReviewVO vo) {
 		return map.reviewCheckDup(vo);
 	}
-	
+
+	@Override
+	public ReviewVO totalReview(String id) {
+		return map.totalReview(id);
+	}
+
 
 }

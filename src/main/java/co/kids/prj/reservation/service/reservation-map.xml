@@ -17,16 +17,17 @@
 		LEFT OUTER JOIN LODGING L
 		ON B.RNO = L.RNO
 		WHERE B.ID = #{id}
+		<if test='ispaid == "A"'>
+		AND TO_DATE(B.CHECKOUT,'YYYY/MM/DD') <![CDATA[>]]> TO_DATE(SYSDATE,'YYYY/MM/DD') 
+		AND B.BOOKCANCEL NOT IN('Y')
+		</if>
 		<if test='ispaid eq "E"'>
-		AND CHECKOUT<![CDATA[<]]>SYSDATE
+		AND TO_DATE(B.CHECKOUT,'YYYY/MM/DD')<![CDATA[<]]>TO_DATE(SYSDATE,'YYYY/MM/DD')
         AND ISPAID = 'Y'
         AND BOOKCANCEL NOT IN('Y')
 		</if>
 		<if test='ispaid eq "X"'>
 		AND BOOKCANCEL = 'Y'
-		</if>
-		<if test='ispaid==null'>
-		AND BOOKCANCEL NOT IN('Y')
 		</if>
 		ORDER BY ISPAID ASC, RCHECKIN DESC
 	</select>
@@ -42,7 +43,7 @@
 		INSERT INTO
 		BOOKING(BOOKNO,RNO,ID,BOOKDATE,CHECKIN,CHECKOUT,BOOKADULT,BOOKKID,ISPAID,BOOKCANCEL,BOOKREFUND,BOOKREQUEST)
 		VALUES((SELECT MAX(BOOKNO) FROM
-		BOOKING)+1,#{rno},#{id},DEFAULT,#{checkin},#{checkout},#{bookadult},#{bookkid},DEFAULT,DEFAULT,null,#{bookrequest}
+		BOOKING)+1,#{rno},#{id},DEFAULT,TO_DATE(#{checkin},'yyyy-mm-dd'),TO_DATE(#{checkout},'yyyy-mm-dd'),#{bookadult},#{bookkid},DEFAULT,DEFAULT,null,#{bookrequest}
 		)
 	</insert>
 
@@ -55,5 +56,32 @@
 		LEFT OUTER JOIN LODGING L
 		ON B.RNO = L.RNO
 		WHERE B.ID = #{id} AND BOOKNO = #{bookno}
+	</select>
+	
+	<select id="hostSortList" parameterType="co.kids.prj.reservation.service.ReservLodVO" resultType="co.kids.prj.reservation.service.ReservLodVO">
+	SELECT * FROM LODGING L
+        LEFT OUTER JOIN BOOKING B
+        ON L.RNO = B.RNO
+		WHERE L.ID = #{id}
+		<if test='ruse eq "A"'>
+		AND L.RUSE = 'Y'
+		</if>
+		<if test='ruse eq "B"'>		
+		AND TO_DATE(B.CHECKIN,'YYYY/MM/DD')  <![CDATA[>]]> TO_DATE(SYSDATE,'YYYY/MM/DD')  
+		AND TO_DATE(B.CHECKIN,'YYYY/MM/DD') <![CDATA[>]]> TO_DATE(SYSDATE,'YYYY/MM/DD')  
+		AND B.ISPAID = 'Y'
+        AND B.BOOKCANCEL = 'N'
+        AND L.RUSE = 'N'
+		</if>
+		<if test='ruse eq "C"'>
+		AND TO_DATE(B.CHECKIN,'YYYY/MM/DD') <![CDATA[<]]> TO_DATE(SYSDATE,'YYYY/MM/DD')  
+        AND B.ISPAID = 'Y'
+        AND B.BOOKCANCEL = 'N'
+        AND RUSE = 'N'
+		</if>
+		<if test='ruse eq "D"'>
+		AND B.BOOKCANCEL = 'Y'
+		</if>
+		ORDER BY B.CHECKIN
 	</select>
 </mapper>

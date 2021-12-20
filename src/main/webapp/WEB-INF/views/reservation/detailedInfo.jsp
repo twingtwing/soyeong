@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,7 +117,6 @@
 																<i class="fa fa-calendar" aria-hidden="true"></i>
 															</span>
 														</div>
-														<!-- 여기는 date타입으로 들어가는거라서 시간도 선택할수있게 바꾸면 좋겠어요 -->
 													</div>
 												</div>
 											</div>
@@ -238,8 +238,12 @@
 	<!--================ About History Area  =================-->
 	<section class="about_history_area section_gap">
 		<div class="container" align="center">
-			<img src="#" />
-			<div align="center">${hotelDetail.rphoto}</div>
+			<div style="display: flex; flex-direction: column; align-items: center;">
+			<img alt="" src="${hotelDetail.rphoto}">
+			<c:forEach items="${imgs}" var="img">
+				<img alt="" src="${img.pfile}">
+			</c:forEach>
+			</div>
 		</div>
 	</section>
 
@@ -275,6 +279,9 @@
 			<div class="section_title text-center">
 				<h3 class="title_color">후기 / 별점</h3>
 			</div>
+			<c:if test="${not empty avg}">
+			<h4 style="text-align: center">${avg}</h4>
+			</c:if>
 			<div class="testimonial_slider owl-carousel">
 				<c:forEach items="${reviews}" var="review">
 				<div class="media testimonial_item">
@@ -311,9 +318,7 @@
 		
 	})();
 	
-	
-	
-	
+
 	let makeStar = function(rvstar){
 		rvstar = Number(rvstar)
 		let fullstar = Math.floor(rvstar);

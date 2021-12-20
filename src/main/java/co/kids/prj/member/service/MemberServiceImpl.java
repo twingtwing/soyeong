@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import co.kids.prj.reservation.service.ReservationVO;
+
 @Repository("memberDao")
 public class MemberServiceImpl implements MemberService {
 	@Autowired
@@ -53,6 +55,16 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int joinSNS(MemberVO vo) {
 		return map.joinSNS(vo);
+	}
+
+	@Override
+	public List<ReservationVO> memberSales(ReservationVO vo) {
+		return map.memberSales(vo);
+	}
+
+	@Override
+	public int changeRefund(ReservationVO vo) {
+		return map.changeRefund(vo);
 	}
 
 }

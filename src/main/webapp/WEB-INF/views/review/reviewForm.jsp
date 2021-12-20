@@ -11,6 +11,7 @@ textarea {
 	border: 1px white solid;
 	width: 100%;
 	height: 180px;
+	padding: 1rem;
 }
 
 th, td {
@@ -55,10 +56,8 @@ th, td {
 	position: absolute;
 }
 
-#fullStar .fa-star{
-/*
+#halfStar .fa-star-half{
 	z-index: 1;
-*/
 }
 
 table {
@@ -105,9 +104,9 @@ table {
 	<div id="all">
 		<div id="infoBox">
 			<h4>${reservInfo.rname}</h4>
-			<img src="http://localhost/prj/resources/img/${reservInfo.rphoto}">
+			<img src="${reservInfo.rphoto}">
 			<span>${reservInfo.rcategory}-${reservInfo.rtype}(${reservInfo.rguest}인실)</span>
-			<span>${reservInfo.rtel}</span> <span>${reservInfo.raddress}</span> <span>${reservInfo.rcontent}</span>
+			<span>연락처: ${reservInfo.rtel}</span> <span>${reservInfo.raddress}</span><br><br><span>${reservInfo.rcontent}</span>
 		</div>
 		<div>
 			<div id="write">
@@ -143,7 +142,7 @@ table {
 				</table>
 				<div class="buttons" align="center">
 					<button id="letsGo">작성</button>
-					<button onclick="location.href='home.do'">취소</button>
+					<button onclick="location.href='myReserv.do'">취소</button>
 				</div>
 			</div>
 		</div>
@@ -174,6 +173,7 @@ table {
 				$('#fullStar>i')[i].classList.add('selected');
 			}
 			
+			console.log($('.selected').length)
 			
 			for(let i=0; i<$('.selected').length;i++){
 				$('#fullStar>i')[i].style.color='#f3c300';		

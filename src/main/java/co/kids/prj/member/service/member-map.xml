@@ -19,8 +19,8 @@
 	<insert id="memberInsert"
 		parameterType="co.kids.prj.member.service.MemberVO">
 		INSERT INTO
-		MEMBER(ID,PASSWORD,TEL,AUTHOR,GENDER,JOINDATE,STATUS,NAME,NAVER) 
-		VALUES(#{id},#{password},#{tel},default,#{gender},default,default,#{name},#{naver})
+		MEMBER(ID,PASSWORD,TEL,AUTHOR,GENDER,JOINDATE,STATUS,NAME,NAVER,KAKAO) 
+		VALUES(#{id},#{password},#{tel},default,#{gender},default,default,#{name},#{naver},#{kakao})
 	</insert>
 	<update id="memberUpdate"
 		parameterType="co.kids.prj.member.service.MemberVO">
@@ -32,7 +32,8 @@
 	<update id="memberDelete"
 		parameterType="co.kids.prj.member.service.MemberVO">
 		UPDATE MEMBER SET
-		STATUS = 'D' WHERE ID = #{id} AND PASSWORD = #{password}
+		STATUS = 'D', NAVER = '', KAKAO = '' 
+		WHERE ID = #{id} AND PASSWORD = #{password}
 	</update>
 	
 	<update id="memberAuthorUpdate" parameterType="co.kids.prj.member.service.MemberVO">
@@ -62,9 +63,36 @@
 		<set>
 			<if test="naver != null">NAVER = #{naver}</if>
 			<if test="kakao != null">KAKAO = #{kakao}</if>
-			<if test="google != null">GOOGLE = #{google}</if>
 		</set>
 		WHERE ID=#{id}
 	</update>
+	
+	<select id="memberSales" parameterType="co.kids.prj.reservation.service.ReservationVO" resultType="co.kids.prj.reservation.service.ReservationVO">
+	SELECT B.*, L.FEE*(B.CHECKOUT-B.CHECKIN) AS FEE, L.RNAME ,M.NAME
+	FROM BOOKING B
+	INNER JOIN LODGING L ON B.RNO = L.RNO
+	INNER JOIN MEMBER M ON B.ID = M.ID
+	WHERE L.ID = #{id}
+	<if test="startDate != null"><![CDATA[ AND B.BOOKDATE > TO_DATE(#{startDate}, 'YYYY-MM-DD' )]]></if>
+	<if test="endDate != null"><![CDATA[ AND B.BOOKDATE <  TO_DATE(#{endDate}, 'YYYY-MM-DD' ) ]]></if>
+	ORDER BY B.BOOKDATE, L.RNAME
+	</select>
+	
+	<update id="changeRefund" parameterType="co.kids.prj.reservation.service.ReservationVO">
+	UPDATE BOOKING
+	SET BOOKREFUND = #{bookrefund}
+	WHERE BOOKNO = #{bookno }
+	</update>
+
+	<select id="totalHost">
+	SELECT COUNT(B.*), SUM(L.FEE*(B.CHECKOUT-B.CHECKIN) AS FEE), COUNT(R.*), SUM(R.RVSTAR)
+	FROM LODGING L
+	INNER JOIN BOOKING B ON L.RNO = B.RNO 
+	INNER JOIN REVIEW R ON L.RNO = R.RNO
+	WHERE L.ID = #{id}
+	AND SDATE BETWEEN '2020-11-01' AND '2021-11-30'
+	GROUP BY TO_CHAR(SDATE, 'YYYY-MM')
+	ORDER BY B.BOOKDATE, L.RNAME
+	</select>
 	
 </mapper>

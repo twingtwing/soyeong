@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
 	<!--================Banner Area =================-->
@@ -45,7 +45,6 @@
 							<div class="ml-1">
 								<h6 class="mb-0">날짜</h6>
 								<p>
-								<!-- fmt 사용해야할듯 -->
 									<span id="checkin">
 										${rcheckin}
 									</span> ~ 
@@ -56,7 +55,7 @@
 							</div>
 							<div class="ml-1">
 								<h6 class="mb-0">체크인-체크아웃</h6>
-								<p>${hotel.rcheckin} – ${hotel.rcheckout}</p>
+								<p>체크인 ${hotel.rcheckin}시 – 체크아웃 ${hotel.rcheckout}시</p>
 							</div>
 							<div class="ml-1">
 								<h6 class="mb-0">총 인원(${hotel.rguest}인실)</h6>
@@ -124,9 +123,11 @@
 								<div class="d-flex justify-content-between mt-3">
 									<p class="font-weight-bold">합계</p>
 									<p>₩ <fmt:formatNumber>${total}</fmt:formatNumber> 원</p>
+									<input type="hidden" id="total" value="${total }">
 								</div>
 								<a href="#" class="book_now_btn button_hover mt-2"> <strong data-id="${id}">예약하기</strong>
 								</a>
+								<button type="button" id="paybtn" onclick="creditCard()">결제</button>
 							</div>
 						</div>
 					</div>
@@ -138,31 +139,14 @@
 
 		<input type="hidden" name="rno" value="${hotel.rno}">
 		<input type="hidden" name="id" value="${id}">
-		<input type="hidden" name="checkin" value="${checkin}">
-		<input type="hidden" name="checkout" value="${checkout}">
+		<input type="hidden" name="checkin" value="${rcheckin}">
+		<input type="hidden" name="checkout" value="${rcheckout}">
 		<input type="hidden" name="bookadult" value="${bookadult}">
 		<input type="hidden" name="bookkid" value="${bookkid}">
 		<input type="hidden" name="bookrequest" value="">
 		</form>
 	<!--================ body Area  =================-->
 	<script type="text/javascript">
-		/*
-		let checkin = new Date($('#checkin').text());
-		let checkout = new Date($('#checkout').text());
-		// checkin, checkout nan뜨는거 고쳐오겠습니다 ,,
-		$('#checkin').text(
-				checkin.getFullYear() + '년 ' + parseInt(checkin.getMonth() + 1)
-						+ '월 ' + checkin.getDate() + '일');
-		$('#checkout').text(
-				checkout.getFullYear() + '년 '
-						+ parseInt(checkout.getMonth() + 1) + '월 '
-						+ checkout.getDate() + '일');
-		
-		$('#refundTime').text((checkout.getMonth()+1)+'월 '+(checkout.getDate()-3)+'일 오후 03시')
-		*/
-		
-		
-		
 		// 버튼 클릭시
 		$('.book_now_btn').first().on('click',(e)=>{
 			if(!$('#primary-checkbox').is(':checked')){
@@ -176,7 +160,7 @@
 				location.href='home.do';
 				return;
 			} 
-			creditCard()
+			creditCard();
 			
 			$('#frm').submit();
 			window.alert('예약이 완료되었습니다. 마이페이지에서 결제를 진행해주세요.');
@@ -184,17 +168,18 @@
 		
 		
 		//결제페이지
-	var IMP = window.IMP;
-	IMP.init("imp47910912");
+		var IMP = window.IMP;
+		IMP.init("imp47910912");
 		function creditCard(){
 			 IMP.request_pay({
 				   pg : 'html5_inicis', // 결제방식
 			       pay_method : 'card',	// 결제 수단
 			       merchant_uid : 'merchant_' + new Date().getTime(),
-			       name : '주문명: 결제 테스트',	// order 테이블에 들어갈 주문명 혹은 주문 번호
+			       name : '결제 테스트용',	// order 테이블에 들어갈 주문명 혹은 주문 번호
 			       amount : '100',	// 결제 금액
-			       buyer_email : 'email',	// 구매자 email
-			       buyer_name :  'name',	// 구매자 이름
+			       //amount : $('#total').val(),
+			       buyer_email : 'shade12@naver.com',	// 구매자 email
+			       buyer_name :  '소영과아이들',	// 구매자 이름
 			       buyer_tel :  'tel',	// 구매자 전화번호
 			       buyer_addr :  'address',	// 구매자 주소
 			       buyer_postcode :  'postcode',	// 구매자 우편번호
@@ -206,13 +191,18 @@
 //						msg += '상점 거래ID : ' + rsp.merchant_uid;
 //						msg += '결제 금액 : ' + rsp.paid_amount;
 //						msg += '카드 승인번호 : ' + rsp.apply_num;
+						console.log('성공');
 						alert('msg');
 					} else { // 실패시
 						var msg = '결제에 실패하였습니다.';
 						msg += '에러내용 : ' + rsp.error_msg;
+						console.log('실패');
 					}
+			 
 			 });
-	}
+		}
+		
+		
 		
 		
 	</script>
