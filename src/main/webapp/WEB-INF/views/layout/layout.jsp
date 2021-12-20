@@ -24,7 +24,7 @@
 	<!-- main css -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/responsive.css">
-    
+    <link rel="icon" type="image/png" sizes="16x16" href="resources/admin/images/favicon.ico">
 	<style type="text/css">
 		.active-Q,.active-btn-Pay{
             font-weight: bold;
