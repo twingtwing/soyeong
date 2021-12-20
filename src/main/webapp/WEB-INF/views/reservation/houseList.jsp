@@ -91,6 +91,11 @@ footer {
 	color:white;
 	transition : all 0.3s;
 }
+.rphoto>img{
+	width: 300px;
+	float: right;
+	margin-left: 2rem;
+}
 </style>
 </head>
 <body>
@@ -113,20 +118,21 @@ footer {
 		<div class="container-fluid">
 			<div class="row" id="row">
 				<div class="col-md-6 d_flex align-items-center" id="houseList">
+				<h2 style="text-align: center;">${msg}</h2>
 					<c:forEach items="${lists}" var="list">
 						<div>
 						<div class="about_content">
 						<div class="hotelInfo">
 							<h2 class="title title_color" style="margin-top:1.5rem;" data-rno="${list.rno}">${list.rname}</h2>
-							<p>${list.rcontent}</p>
+							<p class="rcontent">${list.rcontent}</p>
 							<span class="rguest">${list.rguest}</span>
 							<span class="fee">${list.fee}</span>
 							<span class="rcheckin">${list.rcheckin}</span>
 							<span class="rcheckout">${list.rcheckout}</span>
 							<span class="rcategory">${list.rcategory}</span>
 						</div>
-							<div>
-							<img alt="" src="http://localhost/prj/resources/img/${list.rphoto}">
+							<div class="rphoto">
+							<img alt="" src="${list.rphoto}">
 							</div>
 						</div>
 						</div>
@@ -147,6 +153,15 @@ footer {
 
 
 	<script>
+	let shorten = function(){
+		for(let i=0; i<$('.rcontent').length;i++){
+			if($('.rcontent')[i].textContent.length>250){
+				$('.rcontent')[i].textContent = $('.rcontent')[i].textContent.substring(0,250)+'...';
+			}
+		}
+	}
+	shorten();
+	
 	$('#houseList').on('click','.hotelInfo .title',(e)=>{
 		detailedInfo(e.target.getAttribute('data-rno'));		
 	})
@@ -182,16 +197,7 @@ footer {
 		
 		
 		
-		// ajax에 실어보낼 데이터. 전역변수여야 작동함
-	 	let date = new Date($('.rcheckin').first().text());
-	 	date.setDate(date.getDate()-1);
-	 	date = date.toISOString().substring(0,10);
-		
-	 	let endDate = new Date($('.rcheckout').first().text());
-	 	endDate.setDate(endDate.getDate()+1);
-	 	endDate = endDate.toISOString().substring(0,10);
-	 	 	
-	 	
+		// ajax에 실어보낼 데이터. 전역변수여야 작동함	 	
 	 	let checkDiff = function(elements){
 	 		let arr = [];
 	 		for(let e of elements){
@@ -234,8 +240,6 @@ footer {
  		// 태그별 ajax 호출 함수
 		let sortByTag = function(am1, am2, am3){		
 			let data = {
-				rcheckin : date,
-				rcheckout : endDate,
 				rguest : guest,
 				rcategory : category,
 				am1 : am1,
@@ -258,17 +262,11 @@ footer {
  		let changeList = function(result){
  			$('#houseList').children().remove();
 			for(let hotel of result){
-				let a = $('<a>');
-				a.addClass('button_hover');
-				a.addClass('theme_btn_two');
-				a.text('빠른 비용계산\n');
-				a.attr('href','#');
-				a.append($('<span>').attr('class','rguest').text(hotel.rguest));
 				$('#houseList').append($('<div>').append($('<div>').attr('class','about_content')
-												.append($('<div>').attr('class','hotelInfo')
-												.append($('<h2>').attr('class','title title_color').attr('data-rno',hotel.rno).css('margin-top','1.5rem').text(hotel.rname),$('<p>').text(hotel.rcontent),
-												a,$('<span>').attr('class','fee').text(hotel.fee),$('<span>').attr('class','checkin').text(hotel.rcheckin),$('<span>').attr('class','checkout').text(hotel.rcheckout)
-												),$('<div>').text(hotel.rphoto))))
+														.append($('<div>').attr('class','hotelInfo')
+																.append($('<h2>').attr('class','title title_color').attr('data-rno',hotel.rno).css('margin-top','1.5rem').text(hotel.rname),$('<p>').text(hotel.rcontent),
+															),
+														$('<div>').append($('<img>').attr('src',hotel.rphoto)))))
 			}
 
  		}

@@ -142,9 +142,9 @@
 								</c:if>
 								<c:if test="${not empty id}">
 									<li class="nav-item"><a class="nav-link"
-										href="memberProfile.do">상세 정보</a></li>
+										href="memberProfile.do">내 정보</a></li>
 									<li class="nav-item"><a class="nav-link"
-										href="#">나의 예약 정보</a></li>
+										href="myReserv.do">나의 예약 정보</a></li>
 									<li class="nav-item"><a class="nav-link" href="logout.do"
 										onclick="kakaoLogout();">로그아웃</a></li>
 								</c:if>
@@ -158,7 +158,6 @@
 
 	<!-- login modal -->
 	<div align="center" id="loginModal">
-
 		<div id="box" class="pb-5">
 			<span class="close">&times;</span> <span>소영과 아이들에 오신 것을 환영합니다.</span>
 			<input type="text" placeholder="ID" id="id" name="id"> 
@@ -176,6 +175,8 @@
       		</a>
 		</div>
 	</div>
+	
+	
 	
 	<script type="text/javascript">
 
@@ -208,6 +209,16 @@
 			}
 		})
 	}
+	
+	/* 
+	if($('#loginModal').css('display')=='block'){
+		$('#loginModal').on('keypress',(e)=>{			
+			if(e.keyCode==27){
+				$('.close')[0].click();
+			}			
+		})
+	}
+	*/
 	
 
 	// 비밀번호 찾기 클릭시

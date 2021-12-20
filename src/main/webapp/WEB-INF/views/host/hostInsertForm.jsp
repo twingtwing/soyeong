@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
 .nice-select{
 	display : none !important;
@@ -14,7 +15,8 @@
 #type1,#type2,#bed,#bath {
 	display : block !important;
 }
-#hostFormName {
+
+#lodgingInfoUpdateName {
 	font-weight: bolder;
 	padding: 40px;
 	font-size: x-large;
@@ -26,13 +28,13 @@ table {
 	text-align: center;
 	line-height: 1.5;
 	margin: 20px 10px;
+	margin-top: 8rem;
 }
 
 table th {
 	text-align: center;
 	padding: 10px;
 	font-weight: bold;
-	vertical-align: top;
 	color: #fff;
 	background: #231141;
 }
@@ -43,18 +45,30 @@ table td {
 	border-bottom: solid #ccc;
 }
 
-form>input {
-	border: 1px solid rgb(128, 128, 128);
+form input, textarea, form select {
+	border: 1px solid #d9d9d9;
 	border-radius: 10px;
 	background-color: white;
 	color: rgb(128, 128, 128);
 	padding: 8px;
-	margin-top: 15px;
 }
 
-form>input:hover {
-	background-color: rgb(128, 128, 128);
+form input:hover, textarea:hover {
+	background-color: #d9d9d9;
 	color: white;
+}
+
+#btn1, #btn2 {
+	margin-bottom: 3rem;
+	padding: 0.5rem 1rem;
+	border-radius: 1rem;
+	cursor: pointer;
+	border: 1px solid white;
+	background-color: #F3C300;
+	font-weight: bold;
+}
+#btn2{
+	background-color: lightgray;
 }
 </style>
 
@@ -162,8 +176,10 @@ form>input:hover {
 						</tr>
 					</table>
 				</div>
-				<br> <input type="submit" value="저 장">&nbsp;&nbsp;&nbsp; 
-					<input type="reset" onclick="history.back()" value="취 소"> 
+				<br>
+					<input type="button" onclick="formSubmit()" value="저 장" id="btn1">
+					 &nbsp;&nbsp;&nbsp;
+					<input type="reset" onclick="history.back()" value="취 소" id="btn2"> 
 					<input type="hidden" id="rno" name="rno" value="${lodNum }">
 			</form>
 		</div>
@@ -208,6 +224,28 @@ form>input:hover {
 				alert('숫자만 입력가능합니다.');
 			}
 		});
+		
+		
+		
+		$(function(){
+		    $("#address").on("click", function(){ 
+		        new daum.Postcode({
+		            oncomplete: function(data) { 
+		            	 var roadAddr = data.roadAddress; 
+		                 var jibunAddr = data.jibunAddress; 
+		                 if(roadAddr !== ''){
+		                     $("#address").val(roadAddr);
+		                 } 
+		                 else if(jibunAddr !== ''){
+		                     $("#address").val(jibunAddr);
+		                 }
+		            }
+		        }).open();
+		    });
+		});
+		
+		
+		
 
 		var patt = new RegExp("[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}");
 		var res = patt.test($("#tel").val());
@@ -216,6 +254,56 @@ form>input:hover {
 			let inputValue = this.value; 
 			this.value = inputValue.replace(/[^0-9]/gi, '');
 		})
+		
+		function formSubmit(){
+			if($('#title').val().length==0){
+				alert('숙소이름을 입력해주세요');
+				$('#title').focus();
+				return false;
+			}
+			if($('#pnum').val().length==0){
+				alert('숙소인원을 입력해주세요');
+				$('#pnum').focus();
+				return false;
+			}
+			if($('#checkin').val().length==0){
+				alert('체크인 시간을 입력해주세요');
+				$('#checkin').focus();
+				return false;
+			}
+			if($('#checkout').val().length==0){
+				alert('체크아웃 시간을 입력해주세요');
+				$('#checkout').focus();
+				return false;
+			}
+			if($('#tel').val().length==0){
+				alert('숙소 전화번호를 입력해주세요');
+				$('#tel').focus();
+				return false;
+			}
+			if($('#address').val().length==0){
+				alert('숙소주소를 입력해주세요');
+				$('#address').focus();
+				return false;
+			}
+			if($('#subject').val().length==0){
+				alert('숙소설명을 입력해주세요');
+				$('#subject').focus();
+				return false;
+			}
+			if($('#onedayfee').val().length==0){
+				alert('1박요금을 입력해주세요');
+				$('#onedayfee').focus();
+				return false;
+			}
+			if($('textarea').first().val().length>4000){
+				window.alert('4천자 이내로 작성해주세요.');
+				return;
+			}
+			$('textarea').first().val($('textarea').first().val().replace(/(?:\r\n|\r|\n)/g, '<br>'))
+			$('#frm').submit();
+			
+}
 	</script>
 
 </body>

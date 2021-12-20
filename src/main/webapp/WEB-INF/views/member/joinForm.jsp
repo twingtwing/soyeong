@@ -7,13 +7,13 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<style>
-		#id,
+		#joinId,
 		.password,
 		#tel,
 		#name {
 			width: 20rem;
 			padding: 0.3rem;
-			border: 1px solid #04091e;
+			border: 1px solid #DBDBDB;
 			border-radius: 5px;
 		}
 
@@ -21,7 +21,6 @@
 			padding: 3rem;
 			margin: 3rem;
 			width: 50rem;
-			background-color: #ededed;
 		}
 
 		#name {
@@ -45,16 +44,27 @@
 		}
 
 		button {
-			background-color: #04091e;
-			color: lightgray;
-			border: #04091e 1px solid;
+			background-color: #f3c300;
+			color: black;
+			border: #f3c300 1px solid;
 			border-radius: 5px;
 			font-size: 0.7rem;
 			font-weight: bolder;
-			padding: 5px;
+			padding: 5px 0.5rem;
 		}
+
 		div>label, #btn,#idChk{
 			cursor: pointer;
+		}
+		#btn{
+			padding: 5px 1.5rem;
+			font-weight: bold;
+		}
+		#btn:hover{
+			background-color: #0069D9;
+			color: white;
+			border: 1px solid #0069D9;
+			transition : all 0.3s;
 		}
 	</style>
 </head>

@@ -46,7 +46,7 @@ public class adminNoticeController {
 
 	@RequestMapping("/adminNoticeSearch.do")
 	@ResponseBody
-	public List<NoticeVO> noticeSearch(NoticeVO vo) {
+	public List<NoticeVO> adminNoticeSearch(NoticeVO vo) {
 		if(vo.getBtitle().length() == 0) {vo.setBtitle(null);}
 		return noticeDao.noticeSearch(vo);
 	}

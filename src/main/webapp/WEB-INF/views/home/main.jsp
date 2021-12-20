@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,7 +63,9 @@
 						
 						<a href="#" class="btn theme_btn button_hover" id="myBook">내예약</a>
 						<a href="#" class="btn theme_btn button_hover">상세정보</a>
-						<a href="hostManage.do" class="btn theme_btn button_hover">호스트 숙소관리 test</a>
+						<c:if test="${author eq 'HOST'}">
+						<a href="#" class="btn theme_btn button_hover" id="hostManage">숙소관리(호스트 전용)</a>
+						</c:if>
 					</div>
 					<div align="center">
 						<input type="text" id="selectKey">
@@ -93,10 +96,18 @@
 	<script>
 	$('#myBook').on('click',()=>{
 		if('${id}'==''){
-			window.alert('로그인이 필요합니다.');
+			$('#loginBtn').click();
 			return;
 		} else{
-			location.href='myReserv.do';						
+			location.href='myReserv.do?ispaid=A';						
+		}
+	})
+	$('#hostManage').on('click',()=>{
+		if('${id}'==''){
+			$('#loginBtn').click();
+			return;
+		} else {
+			location.href='hostManage.do?ruse=A';
 		}
 	})
 		

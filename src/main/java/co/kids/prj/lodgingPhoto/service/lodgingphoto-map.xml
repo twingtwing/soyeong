@@ -5,8 +5,8 @@
 		SELECT * FROM IMG
 	</select>
 	
-	<select id="selectPhoto">
-	
+	<select id="selectPhoto" parameterType="co.kids.prj.lodgingPhoto.service.LodgingPhotoVO" resultType="co.kids.prj.lodgingPhoto.service.LodgingPhotoVO">
+		SELECT * FROM IMG WHERE RNO = #{rno}
 	</select>
 	
 	<insert id="insertPhoto" parameterType="co.kids.prj.lodgingPhoto.service.LodgingPhotoVO">

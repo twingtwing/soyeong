@@ -17,7 +17,7 @@
             	<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
 				<div class="container">
 					<div class="banner_content text-center">
-						<h2>Relax Your Mind</h2>
+						<h2>내 정보</h2>
 					</div>
 				</div>
             </div>
