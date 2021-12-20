@@ -16,6 +16,12 @@ public class ReservationVO {
 	private String bookrefund;
 	private String bookrequest;
 	
+	private int fee;
+	private String name;
+	private String rname;
+	private String startDate;
+	private String endDate;
+	
 	public String getBookrequest() {
 		return bookrequest;
 	}
@@ -95,5 +101,37 @@ public class ReservationVO {
 	public void setBookrefund(String bookrefund) {
 		this.bookrefund = bookrefund;
 	}
+	public int getFee() {
+		return fee;
+	}
+	public void setFee(int fee) {
+		this.fee = fee;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getRname() {
+		return rname;
+	}
+	public void setRname(String rname) {
+		this.rname = rname;
+	}
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+	
+	
 	
 }

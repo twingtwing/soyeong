@@ -73,19 +73,27 @@
                             <th class="p-4 align-middle">가입날짜</th>
                             <td class="align-middle">${member.joinDate }</td>
                         </tr>
+                        <c:if test="${not empty member.kakao or not empty member.naver}">
                         <tr>
                             <th class="p-4 align-middle">SNS 연동</th>
                             <td class="align-middle" colspan="2">
-                            <div class="d-flex justify-content-center">
-                            	<c:if test="${member.naver eq 'Y'}">
-                            		<div class="row">
-                            			<img alt="naver" src="resources/img/naverLogo.png" height ="30">
-                            			<h6 class="text-muted ml-2 mt-1">네이버 연동</h6>
-                            		</div>
-                            	</c:if>
-                            </div>
+                            	<div class="d-flex justify-content-around">
+                            			<c:if test="${member.naver eq 'Y'}">
+                            				<div class="row">
+                            					<img alt="naver" src="resources/img/naverLogo.png" height ="30">
+                            					<h6 class="text-muted ml-2 mt-1">네이버 연동</h6>
+                            				</div>
+                            			</c:if>
+                            			<c:if test="${member.kakao eq 'Y'}">
+                            				<div class="row">
+                            					<img alt="naver" src="resources/img/kakaoLogo.png" height ="30">
+                            					<h6 class="text-muted ml-2 mt-1">카카오 연동</h6>
+                            				</div>
+                            			</c:if>
+                            	</div>
                             </td>
                         </tr>
+                        </c:if>
                     </table>
                 </div>
                 <div class="row d-flex justify-content-around">
