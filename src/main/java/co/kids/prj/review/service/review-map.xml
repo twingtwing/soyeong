@@ -8,8 +8,7 @@
 	</select>
 	<insert id="reviewInsert" parameterType="co.kids.prj.review.service.ReviewVO">
 		INSERT INTO REVIEW VALUES(
-		(SELECT MAX(RVNO) FROM REVIEW)+1,#{rno},#{id},#{rvstar},#{rvcontent}
-		)
+		(SELECT MAX(RVNO) FROM REVIEW)+1,#{rno},#{id},#{rvstar},#{rvcontent},SYSDATE)
 	</insert>
 
 <select id="reviewCheckDup" resultType="co.kids.prj.review.service.ReviewVO" parameterType="co.kids.prj.review.service.ReviewVO">

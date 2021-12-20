@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -187,11 +188,10 @@
 	<!--================ About History Area  =================-->
 	<section class="about_history_area section_gap">
 		<div class="container" align="center">
-			<img src="#" />
 			<div style="display: flex; flex-direction: column; align-items: center;">
 			<img alt="" src="${hotelDetail.rphoto}">
 			<c:forEach items="${imgs}" var="img">
-				<img alt="" src="${img}">
+				<img alt="" src="${img.pfile}">
 			</c:forEach>
 			</div>
 		</div>

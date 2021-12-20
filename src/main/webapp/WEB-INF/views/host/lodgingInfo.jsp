@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,10 +89,25 @@ form input:hover {
 	background-color: #F3C300;
 	font-weight: bold;
 }
-#btn2{
-	background-color: lightgray;
 
+#btn1, #btn2, #btn3,.state1, .state2{
+	margin-bottom: 3rem;
+	padding: 0.5rem 1rem;
+	border-radius: 1rem;
+	cursor: pointer;
+	border: 1px solid white;
+	background-color: #F3C300;
+	font-weight: bold;
 }
+
+#btn3, #btn2{
+	background-color: lightgray;
+}
+.state1, .state2{
+	background-color: #77C5FD;
+	color:white;
+}
+
 </style>
 </head>
 <body>
@@ -143,25 +159,25 @@ form input:hover {
 						</tr>
 						<tr>
 							<th>1박요금</th>
-							<td colspan="3">${thislodge.fee}</td>
+							<td colspan="3"><fmt:formatNumber>${thislodge.fee}</fmt:formatNumber>원</td>
 						</tr>
 						<tr>
 							<th>편의시설</th>
 							<td colspan="3">
 								<c:if test="${thislodge.am1 == 'Y'}">
-									wifi
+									wifi 
 								</c:if>
 								<c:if test="${thislodge.am2 == 'Y'}">
-									주방
+									주방 
 								</c:if>
 								<c:if test="${thislodge.am3 == 'Y'}">
-									편의점
+									편의점 
 								</c:if>
 							</td>
 						</tr>
 						<tr>
 							<th>숙소사진</th>
-							<td colspan="3">${thislodge.rphoto}
+							<td colspan="3">
 								<img alt="" src="${thislodge.rphoto}">
 							</td>
 						</tr>
@@ -172,8 +188,14 @@ form input:hover {
 				<div>
 					<div>
 						<input type="button" id="btn1" value="수정">
+						<c:if test="${thislodge.ruse eq 'Y'}">
+						<input type="button" value="현재 사용 전 / 상태변경" class="state1" style="background-color: darkred;">
+						</c:if>
+						<c:if test="${thislodge.ruse eq 'N'}">
+						<input type="button" value="현재 사용중 / 상태변경" class="state2">
+						</c:if>
 						<input type="button" id="btn2" value="삭제">
-						<input type="reset" onclick="location.href='hostManage.do'" value="돌아가기"> 
+						<input type="reset" onclick="location.href='hostManage.do'" value="돌아가기" id="btn3"> 
 					</div>
 
 				<div>
@@ -181,6 +203,36 @@ form input:hover {
 						<input type="hidden" id="rno" name="rno" value="${thislodge.rno }">
 					</form>
 				</div>
-		</div>
+		</div></div>
+		<script type="text/javascript">
+			$('.state1').on('click',()=>{
+				let param = {rno:${thislodge.rno },ruse:'N'};
+				console.log(param)
+				updateState('updateState.do',param);
+			})
+			$('.state2').on('click',()=>{
+				let param = {rno:${thislodge.rno },ruse:'Y'};
+				console.log(param)
+				updateState('updateState.do',param);
+			})
+			
+			let updateState = function(action, param){
+				$.ajax({
+					url : action,
+					method : 'post',
+					data : param,
+					dataType : 'text'
+				})
+				.done((response)=>{
+					console.log(response);
+					if(response=='ok'){
+						window.alert('변경이 완료되었습니다.');
+						location.href='hostManage.do?ruse=A';
+					}else{
+						window.alert('알 수 없는 에러가 발생하였습니다. 관리자에게 문의주세요.');
+					}
+				})
+			}
+		</script>
 </body>
 </html>

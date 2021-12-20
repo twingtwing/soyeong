@@ -256,7 +256,12 @@ form input:hover, textarea:hover {
 <script>
 	$(function(){
 		$("#btn1").click(function(){
+			if($('textarea').first().val().length>4000){
+				window.alert('4천자 이내로 작성해주세요.');
+				return;
+			}
 			frm.action= "lodgingUpdate.do";
+			$('textarea').first().val($('textarea').first().val().replace(/(?:\r\n|\r|\n)/g, '<br>'));
 			frm.submit();
 		});
 	})
@@ -320,7 +325,7 @@ form input:hover, textarea:hover {
 				alert('숫자만 입력가능합니다.');
 			}
 		});
-
+		
 		var patt = new RegExp("[0-9]{2,3}[0-9]{3,4}[0-9]{3,4}");
 		var res = patt.test($("#tel").val());
 		

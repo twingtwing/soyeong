@@ -45,7 +45,6 @@
 							<div class="ml-1">
 								<h6 class="mb-0">날짜</h6>
 								<p>
-								<!-- fmt 사용해야할듯 -->
 									<span id="checkin">
 										${rcheckin}
 									</span> ~ 
@@ -56,7 +55,7 @@
 							</div>
 							<div class="ml-1">
 								<h6 class="mb-0">체크인-체크아웃</h6>
-								<p>${hotel.rcheckin} – ${hotel.rcheckout}</p>
+								<p>체크인 ${hotel.rcheckin}시 – 체크아웃 ${hotel.rcheckout}시</p>
 							</div>
 							<div class="ml-1">
 								<h6 class="mb-0">총 인원(${hotel.rguest}인실)</h6>
@@ -140,28 +139,14 @@
 
 		<input type="hidden" name="rno" value="${hotel.rno}">
 		<input type="hidden" name="id" value="${id}">
-		<input type="hidden" name="checkin" value="${checkin}">
-		<input type="hidden" name="checkout" value="${checkout}">
+		<input type="hidden" name="checkin" value="${rcheckin}">
+		<input type="hidden" name="checkout" value="${rcheckout}">
 		<input type="hidden" name="bookadult" value="${bookadult}">
 		<input type="hidden" name="bookkid" value="${bookkid}">
 		<input type="hidden" name="bookrequest" value="">
 		</form>
 	<!--================ body Area  =================-->
 	<script type="text/javascript">
-		/*
-		let checkin = new Date($('#checkin').text());
-		let checkout = new Date($('#checkout').text());
-		// checkin, checkout nan뜨는거 고쳐오겠습니다 ,,
-		$('#checkin').text(
-				checkin.getFullYear() + '년 ' + parseInt(checkin.getMonth() + 1)
-						+ '월 ' + checkin.getDate() + '일');
-		$('#checkout').text(
-				checkout.getFullYear() + '년 '
-						+ parseInt(checkout.getMonth() + 1) + '월 '
-						+ checkout.getDate() + '일');
-		
-		$('#refundTime').text((checkout.getMonth()+1)+'월 '+(checkout.getDate()-3)+'일 오후 03시')
-		*/
 		// 버튼 클릭시
 		$('.book_now_btn').first().on('click',(e)=>{
 			if(!$('#primary-checkbox').is(':checked')){

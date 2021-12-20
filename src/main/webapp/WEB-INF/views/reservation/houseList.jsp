@@ -91,6 +91,11 @@ footer {
 	color:white;
 	transition : all 0.3s;
 }
+.rphoto>img{
+	width: 300px;
+	float: right;
+	margin-left: 2rem;
+}
 </style>
 </head>
 <body>
@@ -113,19 +118,20 @@ footer {
 		<div class="container-fluid">
 			<div class="row" id="row">
 				<div class="col-md-6 d_flex align-items-center" id="houseList">
+				<h2 style="text-align: center;">${msg}</h2>
 					<c:forEach items="${lists}" var="list">
 						<div>
 						<div class="about_content">
 						<div class="hotelInfo">
 							<h2 class="title title_color" style="margin-top:1.5rem;" data-rno="${list.rno}">${list.rname}</h2>
-							<p>${list.rcontent}</p>
+							<p class="rcontent">${list.rcontent}</p>
 							<span class="rguest">${list.rguest}</span>
 							<span class="fee">${list.fee}</span>
 							<span class="rcheckin">${list.rcheckin}</span>
 							<span class="rcheckout">${list.rcheckout}</span>
 							<span class="rcategory">${list.rcategory}</span>
 						</div>
-							<div>
+							<div class="rphoto">
 							<img alt="" src="${list.rphoto}">
 							</div>
 						</div>
@@ -147,6 +153,15 @@ footer {
 
 
 	<script>
+	let shorten = function(){
+		for(let i=0; i<$('.rcontent').length;i++){
+			if($('.rcontent')[i].textContent.length>250){
+				$('.rcontent')[i].textContent = $('.rcontent')[i].textContent.substring(0,250)+'...';
+			}
+		}
+	}
+	shorten();
+	
 	$('#houseList').on('click','.hotelInfo .title',(e)=>{
 		detailedInfo(e.target.getAttribute('data-rno'));		
 	})
