@@ -59,9 +59,6 @@
 						<p>
 							저희 소영과 아이들은<br>최고의 서비스를 자랑합니다.
 						</p>
-						
-						<a href="#" class="btn theme_btn button_hover" id="myBook">내예약</a>
-						<a href="#" class="btn theme_btn button_hover">상세정보</a>
 						<a href="#" class="btn theme_btn button_hover" id="hostManage">호스트 숙소관리 test</a>
 					</div>
 					<div align="center">
@@ -91,14 +88,6 @@
 
 
 	<script>
-	$('#myBook').on('click',()=>{
-		if('${id}'==''){
-			$('#loginBtn').click();
-			return;
-		} else{
-			location.href='myReserv.do';						
-		}
-	})
 	$('#hostManage').on('click',()=>{
 		if('${id}'==''){
 			$('#loginBtn').click();

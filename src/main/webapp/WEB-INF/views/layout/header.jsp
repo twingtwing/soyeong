@@ -115,13 +115,14 @@
 						<li class="nav-item"><a class="nav-link"
 							href="question.do">고객센터</a></li>
 						<!-- 로그인 되어 있을시 -->
+						<c:if test="${author eq 'USER' }">
+							<li class="nav-item"><a class="nav-link" href="myReserv.do">내 예약정보</a></li>
+						</c:if>
 						<c:if test="${author eq 'USER'}">
-							<li class="nav-item"><a class="nav-link" href="memberAuthor.do">호스트
-									신청</a></li>
+							<li class="nav-item"><a class="nav-link" href="memberAuthor.do">호스트 신청</a></li>
 						</c:if>
 						<c:if test="${author eq 'ADMIN'}">
-							<li class="nav-item"><a class="nav-link" href="admin.do">관리자
-									모드</a></li>
+							<li class="nav-item"><a class="nav-link" href="admin.do">관리자 모드</a></li>
 						</c:if>
 						<li class="nav-item submenu dropdown">
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
