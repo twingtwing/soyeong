@@ -11,6 +11,7 @@ textarea {
 	border: 1px white solid;
 	width: 100%;
 	height: 180px;
+	padding: 1rem;
 }
 
 th, td {
@@ -103,9 +104,9 @@ table {
 	<div id="all">
 		<div id="infoBox">
 			<h4>${reservInfo.rname}</h4>
-			<img src="http://localhost/prj/resources/img/${reservInfo.rphoto}">
+			<img src="${reservInfo.rphoto}">
 			<span>${reservInfo.rcategory}-${reservInfo.rtype}(${reservInfo.rguest}인실)</span>
-			<span>${reservInfo.rtel}</span> <span>${reservInfo.raddress}</span> <span>${reservInfo.rcontent}</span>
+			<span>연락처: ${reservInfo.rtel}</span> <span>${reservInfo.raddress}</span><br><br><span>${reservInfo.rcontent}</span>
 		</div>
 		<div>
 			<div id="write">

@@ -27,7 +27,7 @@
 	<select id="LodgingSelectMyList"
 		parameterType="co.kids.prj.lodging.service.LodgingVO"
 		resultType="co.kids.prj.lodging.service.LodgingVO">
-		SELECT * FROM LODGING WHERE ID = #{id}
+		SELECT * FROM LODGING WHERE ID = #{id} ORDER BY RNO DESC
 	</select>
 
 	<select id="LodgingSelect"
@@ -77,7 +77,6 @@
 	<update id="LodgingUpdateState"
 		parameterType="co.kids.prj.lodging.service.LodgingVO">
 		UPDATE LODGING SET RUSE = #{ruse} WHERE RNO = #{rno}
-
 	</update>
 
 
@@ -132,9 +131,10 @@
 	<select id="LodgingSearchList"
 		parameterType="co.kids.prj.lodging.service.LodgingVO"
 		resultType="co.kids.prj.lodging.service.LodgingVO">
-		SELECT * FROM LODGING WHERE RCONTENT LIKE
-		'%'||#{searchKey}||'%'
-		OR RNAME LIKE '%'||#{searchKey}||'%'
+	SELECT * FROM LODGING
+	WHERE RUSE = 'Y'
+	AND (RCONTENT LIKE '%'||#{searchKey}||'%' OR RNAME LIKE
+	'%'||#{searchKey}||'%')
 	</select>
 
 	<select id="LodgingNum"

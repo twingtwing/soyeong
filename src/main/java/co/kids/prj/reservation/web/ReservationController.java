@@ -37,10 +37,9 @@ public class ReservationController {
 		session = request.getSession();
 		vo.setId((String) session.getAttribute("id"));
 		if(vo.getIspaid()==null) {
-			request.setAttribute("cards", rDao.reservSelectList(vo));						
-		} else {
-			request.setAttribute("cards", rDao.reservSortList(vo));
-		}		
+			vo.setIspaid("A");
+		}
+		request.setAttribute("cards", rDao.reservSortList(vo));	
 		return "reservation/myReservation";
 	}
 

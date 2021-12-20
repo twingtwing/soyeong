@@ -177,9 +177,9 @@ form input:hover, textarea:hover {
 					</table>
 				</div>
 				<br>
-					<input type="button" onclick="formSubmit()" value="저 장">
+					<input type="button" onclick="formSubmit()" value="저 장" id="btn1">
 					 &nbsp;&nbsp;&nbsp;
-					<input type="reset" onclick="history.back()" value="취 소"> 
+					<input type="reset" onclick="history.back()" value="취 소" id="btn2"> 
 					<input type="hidden" id="rno" name="rno" value="${lodNum }">
 			</form>
 		</div>
@@ -224,6 +224,8 @@ form input:hover, textarea:hover {
 				alert('숫자만 입력가능합니다.');
 			}
 		});
+		
+		
 		
 		$(function(){
 		    $("#address").on("click", function(){ 
@@ -294,6 +296,11 @@ form input:hover, textarea:hover {
 				$('#onedayfee').focus();
 				return false;
 			}
+			if($('textarea').first().val().length>4000){
+				window.alert('4천자 이내로 작성해주세요.');
+				return;
+			}
+			$('textarea').first().val($('textarea').first().val().replace(/(?:\r\n|\r|\n)/g, '<br>'))
 			$('#frm').submit();
 			
 }

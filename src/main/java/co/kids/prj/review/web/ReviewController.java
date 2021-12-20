@@ -23,6 +23,7 @@ public class ReviewController {
 
 	@GetMapping("/reviewForm.do")
 	public String reviewForm(Model model,ReservLodVO vo) {
+		vo.getBookno();
 		model.addAttribute("reservInfo",rservDao.reservLodgSelect(vo));
 		return "review/reviewForm";
 	}

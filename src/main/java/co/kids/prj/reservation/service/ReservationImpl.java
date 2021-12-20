@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import co.kids.prj.lodging.service.LodgingVO;
+
 @Repository("rDao")
 public class ReservationImpl implements ReservationService {
 	
@@ -49,6 +51,13 @@ public class ReservationImpl implements ReservationService {
 	@Override
 	public ReservLodVO reservLodgSelect(ReservLodVO vo) {
 		return map.reservLodgSelect(vo);
+	}
+
+
+	@Override
+	public List<ReservLodVO> hostSortList(ReservLodVO vo) {
+		
+		return map.hostSortList(vo);
 	}
 
 

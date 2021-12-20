@@ -128,7 +128,8 @@ button {
 }
 
 .bookImg img {
-	
+	width: 40rem;
+	margin-bottom: 2rem;
 }
 </style>
 <script src="https://kit.fontawesome.com/00b1224df3.js"
@@ -171,11 +172,9 @@ button {
 			</div>
 		</div>
 		<div class="bookImg">
-			<img alt=""
-				src="<%=request.getSession().getServletContext().getContextPath() %>/${reservInfo.rphoto}">
-				<img alt="" src="http://localhost/prj/resources/img/${reservInfo.rphoto}">
-				<!-- 임시사진? -->
-			(대충 방 사진)
+			<img alt="" src="${reservInfo.rphoto}">
+			<h3>${reservInfo.rname}</h3>
+			<div>연락처: ${reservInfo.rtel }</div>
 			<div id="cancel">
 				<span>취소 진행사항</span><br>
 				<div class="state">
