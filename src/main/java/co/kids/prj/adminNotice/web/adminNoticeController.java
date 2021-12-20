@@ -45,9 +45,9 @@ public class adminNoticeController {
 	
 	/* 관리자 페이지 공지사항 검색 */
 
-	@RequestMapping("/noticeSearch.do")
+	@RequestMapping("/adminNoticeSearch.do")
 	@ResponseBody
-	public List<NoticeVO> noticeSearch(NoticeVO vo) {
+	public List<NoticeVO> adminNoticeSearch(NoticeVO vo) {
 		if(vo.getBtitle().length() == 0) {vo.setBtitle(null);}
 		return noticeDao.noticeSearch(vo);
 	}
@@ -59,19 +59,14 @@ public class adminNoticeController {
 	}
 
 	/* 관리자 페이지 공지사항 등록 처리 */
-	@RequestMapping("/adminNoticeFormInsert.do")
-	public String adminNoticeFormInsert(NoticeVO vo, HttpSession session) {
-		
+	@RequestMapping("adminNoticeFormInsert.do")
+	@ResponseBody
+	public void adminNoticeFormInsert(NoticeVO vo, HttpSession session) {
 		String id = (String) session.getAttribute("id");
 		vo.setId(id);
 		
-		int res = noticeDao.noticeInsert(vo);
+		noticeDao.noticeInsert(vo);
 		
-		if(res>0) {
-			return "redirect:adminNoticeList.do";
-		} else {
-			return "redirect:adminNoticeForm.do";
-		}
 	}
 	
 	/* 관리자 페이지 공지사항 수정 폼으로 이동 */

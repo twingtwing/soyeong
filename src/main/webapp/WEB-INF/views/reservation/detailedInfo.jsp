@@ -1,3 +1,5 @@
+detailedInfo 백업
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -170,9 +172,59 @@
 												<div class="w-100"></div>
 											</div>
 											<div class="col-md-12" id="reportButton">
-												<a href="#" class="genric-btn danger circle">신고하기</a> 
+												<button type="button" id="openModalBtn" class="genric-btn danger circle">신고하기</button> 
 												<!-- 신고 insert 페이지로 이동 -->
-
+												<!-- 신고 insert modal 시작 -->
+												    <div class="modal" id="reportModal" tabindex="-1" role="dialog">
+												        <div class="modal-dialog" role="document">
+												            <div class="modal-content">
+												                <div class="comment-form">
+												                    <h4>신고하기</h4>
+												                    <form id="rpfrm">
+												                        <div class="form-group">
+												                            <input type="text" class="form-control" id="rptitle" name="rptitle" placeholder="제목을 입력하세요"
+												                                onfocus="this.placeholder = ''" onblur="this.placeholder = '제목을 입력하세요'" required="">   
+												                        </div>
+												                        <div class="form-group">
+												                            <div class="default-select" id="default-select">
+												                                <select style="display: none;" id="rptype" name="rptype">
+												                                    <option value="안전">안전 문제</option>
+												                                    <option value="금전">금전</option>
+												                                    <option value="불법 운영">불법 운영</option>
+												                                </select>
+												                                <div class="nice-select" tabindex="0">
+												                                    <span class="current">신고 사유 선택</span>
+												                                    <ul class="list">
+												                                        <li data-value="안전" class="option selected">안전 문제</li>
+												                                        <li data-value="금전" class="option">금전 문제</li>
+												                                        <li data-value="불법 운영" class="option">불법 운영</li>
+												                                    </ul>
+												                                </div>
+												                            </div>
+												                        </div>
+												                        <div class="form-group">
+												                            <textarea class="form-control mb-10" rows="5" id="rpcontent" name="rpcontent" placeholder="내용을 입력하세요"
+												                                onblur="this.placeholder = '내용을 입력하세요'"
+												                                required="required"></textarea>
+												                        </div>
+												                        <div class="row justify-content-between">
+												                            <div class="row md-3 m-2">
+												                                <button id="reportsave" type="submit" class="primary-btn button_hover">Save</button>
+												                            </div>
+												                            <div class="row md-3 m-2">
+												                                <button type="button" id="closeModalBtn" class="primary-btn button_hover">Close</button>
+												                            </div>
+												                        </div>
+												                        <div>
+												                        	<input type="hidden" name="blackuser" value="${hotelDetail.id}">
+												                        	<input type="hidden" id="reporter" name="reporter" value="${id}">
+												                        </div>
+												                    </form>
+												                </div>
+												            </div>
+												        </div>
+												    </div>
+												    <!-- 신고 insert 모달 끝 -->
 											</div>
 										</div>
 									</div>
@@ -362,6 +414,33 @@
 				map : map
 			});
 		}
+	
+		// 모달 버튼에 이벤트
+	    $('#openModalBtn').on('click', function(){
+	    	$('#reportModal').modal('show');
+	    });
+	
+	    // 모달 안의 취소 버튼
+	    $('#closeModalBtn').on('click', function(){
+	    	$('#reportModal').modal('hide');
+	    });
+	    
+	    
+	    $("#reportsave").click(function(){
+	    	event.stopPropagation();
+            event.preventDefault();
+            $.ajax({
+            	url : 'reportInsert.do',
+            	type : 'post',
+            	data : $('#rpfrm').serialize(),
+            	success : function(){
+            		alert("신고가 완료되었습니다.");
+            		$('#reportModal').modal('hide');
+            	}
+            })
+	    });
+	    
+	    
 	</script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgRPuOyu6ap_iXZxFMQ4R_6XSShKgRuuQ&callback=myMap"></script>
