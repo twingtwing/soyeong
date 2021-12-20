@@ -88,5 +88,6 @@ public class ReservationController {
 		vo.setId((String) request.getSession().getAttribute("id"));
 		model.addAttribute("reservInfo", rDao.reservLodgSelect(vo));
 		return "reservation/myReservationDetail";
-	}	
+	}
+	
 }

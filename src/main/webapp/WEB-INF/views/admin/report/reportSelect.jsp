@@ -71,7 +71,7 @@ div>button{
 				</div>
 				<div>
 					<button class="clear">처리완료</button>
-					<button class="hold">보류</button>
+					<button class="hold" onclick="location.href='reportPage.do'">보류</button>
 				</div>
 			
     </div>

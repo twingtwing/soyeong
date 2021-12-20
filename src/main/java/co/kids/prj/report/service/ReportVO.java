@@ -61,4 +61,6 @@ public class ReportVO {
 		this.blackuser = blackuser;
 	}
 	
+	
+	
 }
