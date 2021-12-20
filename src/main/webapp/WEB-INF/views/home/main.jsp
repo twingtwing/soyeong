@@ -59,8 +59,7 @@
 						<h2>소영과 아이들</h2>
 						<p>
 							저희 소영과 아이들은<br>최고의 서비스를 자랑합니다.
-						</p>
-						
+            </p>			
 						<a href="#" class="btn theme_btn button_hover" id="myBook">내예약</a>
 						<a href="#" class="btn theme_btn button_hover">상세정보</a>
 						<c:if test="${author eq 'HOST'}">

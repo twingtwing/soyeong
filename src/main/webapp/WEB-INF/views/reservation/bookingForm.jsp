@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
 	<!--================Banner Area =================-->
@@ -146,6 +145,7 @@
 		<input type="hidden" name="bookrequest" value="">
 		</form>
 	<!--================ body Area  =================-->
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<script type="text/javascript">
 		// 버튼 클릭시
 		$('.book_now_btn').first().on('click',(e)=>{
@@ -162,15 +162,13 @@
 			} 
 			creditCard();
 			
-			$('#frm').submit();
-			window.alert('예약이 완료되었습니다. 마이페이지에서 결제를 진행해주세요.');
-		})
+		});
 		
 		
 		//결제페이지
-		var IMP = window.IMP;
-		IMP.init("imp47910912");
 		function creditCard(){
+			var IMP = window.IMP;
+			IMP.init('imp47910912');
 			 IMP.request_pay({
 				   pg : 'html5_inicis', // 결제방식
 			       pay_method : 'card',	// 결제 수단
@@ -192,11 +190,13 @@
 //						msg += '결제 금액 : ' + rsp.paid_amount;
 //						msg += '카드 승인번호 : ' + rsp.apply_num;
 						console.log('성공');
-						alert('msg');
+						window.alert(msg);
+						$('#frm').submit();
 					} else { // 실패시
 						var msg = '결제에 실패하였습니다.';
 						msg += '에러내용 : ' + rsp.error_msg;
 						console.log('실패');
+						window.alert(msg);
 					}
 			 
 			 });
