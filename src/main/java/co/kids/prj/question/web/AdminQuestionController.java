@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.tika.Tika;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -148,10 +149,16 @@ public class AdminQuestionController {
 	public void questionDownload(@Param("qPFile") String qPFile,HttpServletResponse response) {
 		String filePath = saveDir + qPFile;
 		
-		String contentType = "image/jpg";
-		
 		File file = new File(filePath);
 		
+		Tika tika = new Tika();
+		String contentType = null;
+		try {
+			contentType = tika.detect(file);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
 		long fileLength = file.length();
 		
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + qPFile + "\";");

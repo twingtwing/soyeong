@@ -1,5 +1,6 @@
 package co.kids.prj.member.web;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -16,15 +17,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import co.kids.prj.member.service.MemberServiceImpl;
 import co.kids.prj.member.service.MemberVO;
+import co.kids.prj.reservation.service.ReservationVO;
+import co.kids.prj.review.service.ReviewService;
+import co.kids.prj.sales.service.SalesService;
+import co.kids.prj.sales.service.SalesVO;
+import co.kids.prj.sns.service.KakaoLoginService;
 
 @Controller
 public class MemberController {
 	@Autowired private MemberServiceImpl memberDao;
+	@Autowired private SalesService salesDao;
+	@Autowired private ReviewService reviewDao;
 
 	@Autowired private JavaMailSender mailSender;
+	
+	@Autowired private KakaoLoginService kakaoLoginService;
 
 	//회원가입폼 이동
 	@GetMapping("joinForm.do")
@@ -98,7 +110,7 @@ public class MemberController {
 		return result;
 	}
 
-	//회원가입 처리
+	//회원가입 처리 + 로그인 처리
 	@PostMapping("/join.do")
 	public String join(MemberVO vo, HttpSession session) {
 		vo.getGender();
@@ -127,6 +139,12 @@ public class MemberController {
 	//로그아웃
 	@GetMapping("/logout.do")
 	public String logout(HttpSession session) {
+		//카카오 로그아웃 처리
+		if((String)session.getAttribute("access_token") != null) {
+			kakaoLoginService.getLogout((String)session.getAttribute("access_token"));
+		}
+		//네이버 로그아웃 처리..?
+
 		session.invalidate();
 		return "redirect:home.do";
 	}
@@ -219,9 +237,34 @@ public class MemberController {
 
 	//host 상세페이지
 	@GetMapping("/memberSales.do")
-	public String memberSales() {
-		//??
+	public String memberSales(HttpSession session,Model model,ReservationVO rvo, SalesVO svo) {
+		ObjectMapper ob = new ObjectMapper();
+		rvo.setId((String) session.getAttribute("id"));
+		svo.setSid((String) session.getAttribute("id"));
+		model.addAttribute("sales",memberDao.memberSales(rvo));
+		model.addAttribute("review",reviewDao.totalReview((String) session.getAttribute("id")));
+		try {
+			model.addAttribute("total", ob.writeValueAsString(salesDao.totalSales(svo)));
+		} catch (JsonProcessingException e) {
+			model.addAttribute("total", "");
+		}
 		return "member/memberSales";
+	}
+	
+	@GetMapping("/dataSales.do")
+	@ResponseBody
+	public List<ReservationVO> dataSales(HttpSession session,ReservationVO vo) {
+		vo.setId((String) session.getAttribute("id"));
+		return memberDao.memberSales(vo);
+	}
+	
+	@GetMapping("/changeRefund.do")
+	@ResponseBody
+	public String changeRefund(ReservationVO vo) {
+		String result = "N";
+		int r = memberDao.changeRefund(vo);
+		if(r>0) {result = "Y";}
+		return result;
 	}
 
 }

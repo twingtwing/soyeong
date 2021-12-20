@@ -85,7 +85,7 @@
 	display: inline-block;
 	position: absolute;
 	margin-left: 350px;
-	margin-top: -200px;
+	margin-top: -143px;
 	cursor: pointer;
 }
 </style>
@@ -173,7 +173,6 @@
       		<a href="${naverUrl }" id="naverLogin">
       			<img alt="naver_login" src="resources/img/naverLogin.png" height ="50">
       		</a>
-			<button type="button">페이스북으로 로그인하기~여기부터는 api찾기</button>
 		</div>
 	</div>
 	
@@ -253,7 +252,6 @@
            	this.innerHTML = '<i class="far fa-eye-slash"></i>';
        	}
     });	
-	
 	
 </script>
 </body>

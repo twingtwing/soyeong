@@ -6,6 +6,9 @@ public class ReviewVO {
 	private String id;
 	private double rvstar;
 	private String rvcontent;
+	
+	private String count;
+	
 	public int getRvno() {
 		return rvno;
 	}
@@ -36,5 +39,13 @@ public class ReviewVO {
 	public void setRvcontent(String rvcontent) {
 		this.rvcontent = rvcontent;
 	}
+	public String getCount() {
+		return count;
+	}
+	public void setCount(String count) {
+		this.count = count;
+	}
+	
+	
 	
 }

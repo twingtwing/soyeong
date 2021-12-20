@@ -2,6 +2,8 @@ package co.kids.prj.member.service;
 
 import java.util.List;
 
+import co.kids.prj.reservation.service.ReservationVO;
+
 public interface MemberMapper {
 	List<MemberVO> memberSelectList();
 	MemberVO memberSelect(MemberVO vo);
@@ -13,4 +15,8 @@ public interface MemberMapper {
 	int changePw(MemberVO vo);
 	
 	int joinSNS(MemberVO vo);
+	
+	//매출관리
+	List<ReservationVO> memberSales(ReservationVO vo);
+	int changeRefund(ReservationVO vo);
 }
