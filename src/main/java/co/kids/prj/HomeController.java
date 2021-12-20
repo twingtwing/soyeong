@@ -17,6 +17,7 @@ public class HomeController {
 		//naver api url
 		String naverAuthUrl = naverLoginVO.getAuthorizationUrl(session);
 		session.setAttribute("naverUrl", naverAuthUrl);
+		
 		return "home/main";
 	}
 	

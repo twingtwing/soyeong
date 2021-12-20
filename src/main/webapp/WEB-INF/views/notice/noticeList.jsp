@@ -40,14 +40,13 @@
  // 검색
     createNotice(JSON.parse('${notices}'));
 
-
 	function createNotice(dataNotice) {
 		let div = document.getElementById('noticeTable');
 		if(div.children.length!=0){
 			div.children[0].remove();
 		}
 
-	    const admingrid = new tui.Grid({
+	    const noticegrid = new tui.Grid({
 	        el: div,
 	        data: dataNotice,
 	        scrollX: false,
@@ -74,59 +73,15 @@
 	            }
 	        ]
 	    });
-	
+
 	 	// 셀 클릭했을 때 글 상세 조회 페이지로 이동
-	    admingrid.on('click', function(event){
+	    noticegrid.on('click', function(event){
 	    	let no = dataNotice[event.rowKey].bno;
 	    	location.href = "noticeRead.do?bno="+dataNotice[event.rowKey].bno;
 	    });
 	
 	    // 표 테마
 	    tui.Grid.applyTheme('clean');
-
-
-	function createNotice(dataNotice) {
-		let div = document.getElementById('noticeTable');
-		if(div.children.length!=0){
-			div.children[0].remove();
-	}
-
-    const admingrid = new tui.Grid({
-        el: div,
-        data: dataNotice,
-        scrollX: false,
-        scrollY: false,
-        minBodyHeight: 30,
-        rowHeaders: [{type: 'rowNum', align : 'center', valign : 'middle'}],
-        pageOptions: {
-            useClient: true,
-            perPage: 5
-        },
-        pagination: true,
-        columns: [
-            {
-                header: '제목',
-                name: 'btitle'
-            },
-            {
-                header: '작성일자',
-                name: 'bdate'
-            },
-            {
-                header: '작성자',
-                name: 'id'
-            }
-        ]
-    });
-
- 	// 셀 클릭했을 때 글 상세 조회 페이지로 이동
-    admingrid.on('click', function(event){
-    	let no = dataNotice[event.rowKey].bno;
-    	location.href = "noticeRead.do?bno="+dataNotice[event.rowKey].bno;
-    });
-
-    // 표 테마
-    tui.Grid.applyTheme('clean');
 	}
 
 	document.getElementById('nsearch').addEventListener('click', function(){

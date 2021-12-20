@@ -17,11 +17,7 @@ public class LodgingPhotoServiceImpl implements LodgingPhotoService {
 		return map.selectListPhoto();
 	}
 
-	@Override
-	public LodgingPhotoVO selectPhoto(LodgingPhotoVO vo) {
-		// TODO Auto-generated method stub
-		return map.selectPhoto(vo);
-	}
+
 
 	@Override
 	public int insertPhoto(LodgingPhotoVO vo) {
@@ -39,6 +35,14 @@ public class LodgingPhotoServiceImpl implements LodgingPhotoService {
 	public int deletePhoto(LodgingPhotoVO vo) {
 		// TODO Auto-generated method stub
 		return map.deletePhoto(vo);
+	}
+
+
+
+	@Override
+	public List<LodgingPhotoVO> selectPhoto(LodgingPhotoVO vo) {
+		
+		return map.selectPhoto(vo);
 	}
 
 }

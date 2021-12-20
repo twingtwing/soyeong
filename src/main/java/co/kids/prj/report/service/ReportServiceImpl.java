@@ -31,4 +31,9 @@ public class ReportServiceImpl implements ReportService {
 		return map.reportSearch(vo);
 	}
 
+	@Override
+	public int reportInsert(ReportVO vo) {
+		return map.reportInsert(vo);
+	}
+
 }

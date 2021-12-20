@@ -26,6 +26,8 @@ import co.kids.prj.lodging.service.LodgingServiceImpl;
 import co.kids.prj.lodging.service.LodgingVO;
 import co.kids.prj.lodgingPhoto.service.LodgingPhotoServiceImpl;
 import co.kids.prj.lodgingPhoto.service.LodgingPhotoVO;
+import co.kids.prj.reservation.service.ReservLodVO;
+import co.kids.prj.reservation.service.ReservationImpl;
 import co.kids.prj.review.service.ReviewServiceImpl;
 import co.kids.prj.review.service.ReviewVO;
 
@@ -37,15 +39,11 @@ public class LodgingController {
 	private LodgingPhotoServiceImpl lodPhotoDao;
 	@Autowired
 	private ReviewServiceImpl reviewDao;
+	@Autowired
+	private ReservationImpl reservDao;
 
 	@Autowired
 	private String saveDir;
-
-	@PostMapping("/quickBook.do")
-	public String quickBook(LodgingVO vo, Model model) {
-		model.addAttribute("lists", lodgingDao.LodgingSelectList(vo));
-		return "reservation/houseList";
-	}
 
 	@PostMapping("/hotelSort.do")
 	@ResponseBody
@@ -59,10 +57,17 @@ public class LodgingController {
 	}
 
 	@RequestMapping("hostManage.do")
-	public String hostManage(LodgingVO vo, Model model, HttpSession session, HttpServletRequest request) {
+	public String hostManage(ReservLodVO vo, Model model, HttpSession session, HttpServletRequest request) {
 		session = request.getSession();
 		vo.setId((String) session.getAttribute("id"));
-		model.addAttribute("lodges", lodgingDao.LodgingSelectMyList(vo));
+		if (vo.getRuse() == null) {
+			LodgingVO lodvo = new LodgingVO();
+			lodvo.setId(vo.getId());
+			lodvo.setRuse("A");
+			model.addAttribute("lodges", lodgingDao.LodgingSelectMyList(lodvo));
+		} else {
+			model.addAttribute("lodges", reservDao.hostSortList(vo));
+		}
 		return "host/hostManage";
 	}
 
@@ -115,9 +120,9 @@ public class LodgingController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			lodPhotoDao.insertPhoto(pvo); // error
+			lodPhotoDao.insertPhoto(pvo);
 			if (i == 0) {
-				vo.setRphoto(safeFile);
+				vo.setRphoto("/upload/" + safeFile.substring(saveDir.length()));
 			}
 		}
 
@@ -142,13 +147,16 @@ public class LodgingController {
 		vo.getSearchKey();
 		vo.getRcheckout();
 		List<LodgingVO> lists = lodgingDao.LodgingSearchList(vo);
-		model.addAttribute("lists", lists);
+		if (lists.size() < 1) {
+			model.addAttribute("msg", "검색 결과가 없습니다.");
+		} else {
+			model.addAttribute("lists", lists);
+		}
 		/*
-		 * for (LodgingVO list : lists) {
-		 * File file = new File(list.getRphoto()); byte[] buffer = new byte[1024]; int length = 0; try {
-		 * BufferedInputStream ins = new BufferedInputStream(new FileInputStream(file));
-		 * BufferedOutputStream outs = new
-		 * BufferedOutputStream(response.getOutputStream()); while ((length =
+		 * for (LodgingVO list : lists) { File file = new File(list.getRphoto()); byte[]
+		 * buffer = new byte[1024]; int length = 0; try { BufferedInputStream ins = new
+		 * BufferedInputStream(new FileInputStream(file)); BufferedOutputStream outs =
+		 * new BufferedOutputStream(response.getOutputStream()); while ((length =
 		 * ins.read(buffer)) != -1) { outs.write(buffer,0,length); } outs.flush();
 		 * ins.close(); } catch (Exception e) { e.printStackTrace(); } }
 		 */
@@ -168,10 +176,10 @@ public class LodgingController {
 				sum = sum + star.getRvstar();
 			}
 		}
-		if(sum / list.size()>0) {
+		if (sum / list.size() > 0) {
 			double avg = sum / list.size();
-			avg = Math.round(avg*100)/100.0;
-			model.addAttribute("avg", avg+" / 점");			
+			avg = Math.round(avg * 100) / 100.0;
+			model.addAttribute("avg", avg + " / 점");
 		} else {
 			model.addAttribute("avg", "아직 후기가 없어요 !");
 		}
@@ -232,6 +240,16 @@ public class LodgingController {
 		vo.setRno(Integer.parseInt(request.getParameter("rno")));
 		lodgingDao.LodgingUpdateInfo(vo);
 		return "forward:lodgingInfo.do";
+	}
+
+	@PostMapping("/updateState.do")
+	@ResponseBody
+	public String updateState(LodgingVO vo) {
+		if (lodgingDao.LodgingUpdateState(vo) != 0) {
+			return "ok";
+		} else {
+			return "ng";
+		}
 	}
 
 }

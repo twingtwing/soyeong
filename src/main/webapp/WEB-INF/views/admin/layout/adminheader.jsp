@@ -12,7 +12,7 @@
             Nav header start
         ***********************************-->
 	<div class="nav-header">
-		<div class="brand-logo">
+		<div class="brand-logo" style="background-color:#231141">
 			<a href="admin.do"> <b class="logo-abbr"><img
 					src="resources/img/Logo_white.png" alt=""> </b> <span
 				class="logo-compact"><img
