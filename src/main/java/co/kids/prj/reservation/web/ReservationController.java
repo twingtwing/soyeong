@@ -62,9 +62,9 @@ public class ReservationController {
 		model.addAttribute("hotel", lodgingVO);
 		int fee = lodgingVO.getFee();
 		model.addAttribute("price",fee*day);
-		model.addAttribute("serviceFee", (int)(fee*0.1));
-		model.addAttribute("serviceTax",(int)(fee*0.01));
-		model.addAttribute("total", (int)(fee*day+fee*0.1+fee*0.01));
+		model.addAttribute("serviceFee", (int)(fee*day*0.1));
+		model.addAttribute("serviceTax",(int)(fee*day*0.01));
+		model.addAttribute("total", (int)(fee*day+fee*day*0.1+fee*day*0.01));
 		model.addAttribute("rcheckin",request.getParameter("rcheckin"));
 		model.addAttribute("rcheckout",request.getParameter("rcheckout"));
 		model.addAttribute("bookkid",request.getParameter("bookkid"));
