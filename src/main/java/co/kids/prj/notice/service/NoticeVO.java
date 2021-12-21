@@ -14,7 +14,6 @@ public class NoticeVO {
 	private String bstatus;
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date blastdate;
-	private String name;
 	
 	public int getBno() {
 		return bno;
@@ -57,12 +56,6 @@ public class NoticeVO {
 	}
 	public void setBlastdate(Date blastdate) {
 		this.blastdate = blastdate;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	
 	

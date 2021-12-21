@@ -69,7 +69,6 @@ public class adminNoticeController {
 
 		String id = (String) session.getAttribute("id");
 		vo.setId(id);
-		vo.setName(name);
 		
 		noticeDao.noticeInsert(vo);
 		
