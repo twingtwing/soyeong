@@ -413,26 +413,26 @@
 	})
 	
 	
-		// google map
-		function myMap() {
-			var mapOptions = {
-				center : new google.maps.LatLng(35.869103, 128.593390),
-				zoom : 17,
-				mapTypeControl : false
-			};
-			var yedam = {
-				lat : 35.869103,
-				lng : 128.593390
-			};
-
-			var map = new google.maps.Map(document.getElementById("googleMap"),
-					mapOptions);
-
-			var marker = new google.maps.Marker({
-				position : yedam,
-				map : map
-			});
-		}
+	// google map
+      function myMap() {
+         var map = new google.maps.Map(document.getElementById('googleMap'))
+         var geocoder = new google.maps.Geocoder();
+         function geocodeAddress(geocoder, resultMap){
+            var address = document.getElementById('mapAddress').value;
+            geocoder.geocode({'address':address}, function(result, status){
+               if(status === 'OK'){
+                  resultMap.setCenter(result[0].geometry.location);
+                  resultMap.setZoom(17);
+                  var marker = new google.maps.Marker({
+                     map:resultMap,
+                     position:result[0].geometry.location
+                  })
+               }
+            })
+         }
+         geocodeAddress(geocoder, map);
+         
+      }
 	
 		// 모달 버튼에 이벤트
 	    $('#openModalBtn').on('click', function(){
