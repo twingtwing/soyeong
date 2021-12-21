@@ -95,10 +95,7 @@
 				<input type="password" placeholder="Password 확인" name="password2" class="password"><br>
 				<div class="ng">
 					<input type="text" placeholder="이름" id="name" value="${member.name }" name="name" readonly="readonly">
-					<input type="radio" value="M" name="gender" checked="checked">남성
-					<input type="radio" value="F" name="gender">여성
-					<input type="text" style="width: 4rem;" value="${member.gender }" name="gender" readonly="readonly">
-					<!--  집에가서 고칠게요~~ -->
+					<input type="text" style="width: 4rem;border: 1px solid white;"value="${member.gender }" name="gender" readonly="readonly">					
 				</div><br>
 				<input type="text" name="tel" id="tel" placeholder="tel" <c:if test="${ not empty member.tel }">value="${member.tel }" readonly="readonly"</c:if>><br>
 				<div style="display: flex; align-items: center;">
