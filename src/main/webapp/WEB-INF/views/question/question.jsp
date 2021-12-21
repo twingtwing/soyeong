@@ -16,7 +16,7 @@
 				data-stellar-vertical-offset="0" data-background=""></div>
 			<div class="container">
 				<div class="banner_content text-center">
-					<h2>Relax Your Mind</h2>
+					<h2>고객센터</h2>
 				</div>
 			</div>
 		</div>
@@ -33,11 +33,11 @@
 			</div>
 			<div
 				class="row mb-4 border border-right-0 border-top-0 border-left-0">
-				<div class="btn-Q active-Q ml-3 mr-3">
+				<div class="btn-Q active-Q ml-3 mr-3" style="cursor: pointer;">
 					<h5>Q n A</h5>
 				</div>
 				<c:if test="${not empty id}">
-					<div class="btn-Q ml-3">
+					<div class="btn-Q ml-3" style="cursor: pointer;">
 						<h5>고객의 소리</h5>
 					</div>
 				</c:if>

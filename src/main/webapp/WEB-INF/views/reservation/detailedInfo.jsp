@@ -1,5 +1,3 @@
-detailedInfo 백업
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -10,7 +8,6 @@ detailedInfo 백업
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="resources/css/bootstrap.css">
 <link rel="stylesheet" href="resources/vendors/linericon/style.css">
 <link rel="stylesheet" href="resources/css/font-awesome.min.css">
@@ -53,6 +50,12 @@ detailedInfo 백업
 .dataWrapper div {
 	margin: 0.5rem;
 }
+#letsgo{
+	background-color: #77c5fd;
+}
+#letsgo:hover{
+	background-color: #3ea1e8;
+}
 </style>
 </head>
 <body>
@@ -80,7 +83,7 @@ detailedInfo 백업
 					<div class="about_content ">
 						<h2 class="title title_color">${hotelDetail.rname}</h2>
 						<p>${hotelDetail.raddress}</p>
-						<a href="#" class="button_hover theme_btn_two">비용 계산하기</a>
+						<a href="#" class="button_hover theme_btn_two">비용 다시 계산하기</a>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -89,13 +92,14 @@ detailedInfo 백업
 					<!--================Booking Tabel Area =================-->
 					<div class="hotel_booking_area position">
 						<div class="container">
-							<h3 style="text-align: center;">지금 바로 예약하기</h3>
+							<h3 style="text-align: center;">바로 예약하기</h3>
 							<div class="hotel_booking_table">
 								<div class="w-100"></div>
 								<div class="col-md-11">
 									<div class="boking_table">
 										<div class="row">
 											<div class="col-md-6">
+																					
 												<div class="book_tabel_item">
 													<div class="form-group">
 														<div class='input-group date' id='datetimepicker-in'>
@@ -300,11 +304,12 @@ detailedInfo 백업
 		</div>
 	</section>
 	<form action="bookingForm.do" id="frm">
-		<input type="hidden" value="${hotelDetail.rno}" name="rno"> <input
-			type="hidden" name="rcheckin" id="cki"> <input type="hidden"
-			name="rcheckout" id="cko"> <input type="hidden"
-			name="bookkid" id="bkid"> <input type="hidden"
-			name="bookadult" id="badult"> <input type="hidden" name="day">
+		<input type="hidden" value="${hotelDetail.rno}" name="rno">
+		<input type="hidden" name="rcheckin" id="cki">
+		<input type="hidden" name="rcheckout" id="cko">
+		<input type="hidden" name="bookkid" id="bkid">
+		<input type="hidden" name="bookadult" id="badult">
+		<input type="hidden" name="day">
 	</form>
 
 
@@ -358,6 +363,10 @@ detailedInfo 백업
 			window.alert('날짜를 지정해주세요.');
 			return;
 		}
+		if(new Date($('#rcheckin').val())>new Date($('#rcheckout').val())){
+			window.alert('날짜를 다시 확인해주시기 바랍니다.');
+			return;
+		}
 		if($('.wide:nth-child(2n-1)').first().val()=='Adult'||$('.wide:nth-child(2n-1)').last().val()=='Child'){
 			window.alert('인원수를 지정해주세요.');
 			return;
@@ -372,9 +381,9 @@ detailedInfo 백업
 		let checkout = new Date($('#rcheckout').val());
 		let day = parseInt(+(checkout.getTime()-checkin.getTime())/(1000*3600*24));
 		$('#houseRentAll').text(day+'박 '+(one*day)+'원');
-		$('#serviceFee').text('수수료 '+parseInt(one*0.1)+'원');
-		$('#serviceTax').text('부가세 '+parseInt(one*0.01)+'원');
-		total = one*day+parseInt(one*0.1)+parseInt(one*0.01);
+		$('#serviceFee').text('수수료 '+parseInt(one*day*0.1)+'원');
+		$('#serviceTax').text('부가세 '+parseInt(one*day*0.01)+'원');
+		total = parseInt(one*day*(1+0.1+0.01));
 		$('#totalPrice').text('총액 '+total+'원'); 
 		$('#totalPrice').css('color','#F3C300');
 		$('#totalPrice').css('font-weight','bolder');
@@ -387,38 +396,43 @@ detailedInfo 백업
 		$('#frm>#cko').val($('#rcheckout').val());
 		$('#frm>#badult').val($('.wide:nth-child(2n-1)').first().val());
 		$('#frm>#bkid').val($('.wide:nth-child(2n-1)').last().val());
+		$('.book_now_btn').first().text('예약하기').attr('id','letsgo');
 	})
 	
 	$('.book_now_btn').first().on('click',(e)=>{
-		if($('#totalPrice').text().length>1){
-			frm.submit();											
-		} else{
-			window.alert('좌측의 버튼을 통해 비용을 먼저 계산해주세요.');
-			return;
-		}
+		$('.theme_btn_two').click();
+		$('#letsgo').on('click',()=>{
+			frm.submit();
+		})
+		$('#rcheckin').on('change',(e)=>{
+			window.alert('날짜를 변경할 경우, 좌측의 버튼을 통해\n비용을 다시 계산해주시기 바랍니다.')
+		})
+		$('#rcheckout').on('change',(e)=>{
+			window.alert('날짜를 변경할 경우, 좌측의 버튼을 통해\n비용을 다시 계산해주시기 바랍니다.')
+		})
 	})
 	
 	
-		// google map
-		function myMap() {
-			var mapOptions = {
-				center : new google.maps.LatLng(35.869103, 128.593390),
-				zoom : 17,
-				mapTypeControl : false
-			};
-			var yedam = {
-				lat : 35.869103,
-				lng : 128.593390
-			};
-
-			var map = new google.maps.Map(document.getElementById("googleMap"),
-					mapOptions);
-
-			var marker = new google.maps.Marker({
-				position : yedam,
-				map : map
-			});
-		}
+	// google map
+      function myMap() {
+         var map = new google.maps.Map(document.getElementById('googleMap'))
+         var geocoder = new google.maps.Geocoder();
+         function geocodeAddress(geocoder, resultMap){
+            var address = document.getElementById('mapAddress').value;
+            geocoder.geocode({'address':address}, function(result, status){
+               if(status === 'OK'){
+                  resultMap.setCenter(result[0].geometry.location);
+                  resultMap.setZoom(17);
+                  var marker = new google.maps.Marker({
+                     map:resultMap,
+                     position:result[0].geometry.location
+                  })
+               }
+            })
+         }
+         geocodeAddress(geocoder, map);
+         
+      }
 	
 		// 모달 버튼에 이벤트
 	    $('#openModalBtn').on('click', function(){

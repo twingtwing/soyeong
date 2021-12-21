@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -131,6 +132,15 @@ button {
 	width: 40rem;
 	margin-bottom: 2rem;
 }
+#cancelBtn{
+margin-top: 3rem;
+background: gray;
+border : 1px solid gray;
+}
+#cancelBtn:hover{
+	background-color: darkred;
+	
+}
 </style>
 <script src="https://kit.fontawesome.com/00b1224df3.js"
 	crossorigin="anonymous"></script>
@@ -165,10 +175,22 @@ button {
 				<button>메시지 보내기</button>
 			</div>
 			<div class="bookDetails">
-				<span>예약 세부정보</span> <span>게스트</span> <span>성인
-					${reservInfo.bookadult}명</span> <span>예약번호</span> <span>${reservInfo.bookno}</span>
-				<span>환불정책</span> <span>${reservInfo.bookrefund}</span> <span>찾아오시는
-					길</span> <span>${reservInfo.raddress}</span> <span>결제정보</span> <span>응?</span>
+				<span>예약 세부정보</span>
+				<span>체크인 - 체크아웃</span>
+				<span>${reservInfo.checkin} ${reservInfo.rcheckin}시<br> - ${reservInfo.checkout} ${reservInfo.rcheckout}시</span>
+				<span>게스트</span>
+				<span>성인 ${reservInfo.bookadult}명</span>
+				<span>예약번호</span>
+				<span>${reservInfo.bookno}번</span>
+				<span>환불정책</span>
+				<span>${reservInfo.bookrefund}</span>
+				<span>찾아오시는 길</span> 
+				<span>${reservInfo.raddress}</span> 
+				<span>결제정보</span> 
+				<span>대충 가격..${reservInfo.fee}원에 계산..</span>
+				<c:if test="${reservInfo.bookcancel eq 'N'}">
+					<button id="cancelBtn">취소하기</button>
+				</c:if>
 			</div>
 		</div>
 		<div class="bookImg">
@@ -189,6 +211,11 @@ button {
 		</div>
 	</div>
 	<script type="text/javascript">
+		if(new Date('${reservInfo.checkout}')<new Date()){
+			$('#cancelBtn').remove();
+		}
+	
+	
 		let bookcancel = '${reservInfo.bookcancel}';
 		if (bookcancel == 'N') {
 			$('#cancel').children().remove();
@@ -198,8 +225,49 @@ button {
 					'성인 ${reservInfo.bookadult}명\n아동 ${reservInfo.bookkid}명');
 		}
 		if ('${reservInfo.bookrefund}' == '') {
-			$('.bookDetails>span:nth-child(7)').text('소영과 아이들의 내규에 따름');
+			$('.bookDetails>span:nth-child(9)').text('소영과 아이들의 내규에 따름');
 		}
+		
+		$('#cancelBtn').on('click',(e)=>{
+			if(window.confirm('정말로 취소하시겠습니까?\n 취소 시 수수료를 제외한 만큼의 금액만 환불됩니다.')){
+				canceling('${reservInfo.bookno}','${id}');			
+			}
+		})
+		
+		let addBar = function(){
+			$('#cancel').children().css('display','block');
+			$('#cancel').append($('<span>').html('취소 진행사항<br>'),
+								$('<div>').addClass('state').append($('<span>').text('요청'),$('<span>').text('지급'),$('<span>').text('처리')),
+								$('<div>').addClass('refundBar').append('<span>'),
+								$('<div>').attr('align','right').append($('<button>').text('메시지'),$('<button>').text('취소'))
+									)
+			$('#cancelBtn').css('display','none');
+		}
+		
+		
+		let canceling = function(bookno, id){
+			$.ajax({
+				url: 'cancelReserv.do',
+				method : 'post',
+				data : {bookno : bookno, id:id},
+				dataType : 'text'
+			})
+			.done((response)=>{
+				console.log(response)
+				if(response=='ok'){
+					window.alert('취소가 정상적으로 완료되었습니다.');
+					addBar();
+					return;
+				} else{
+					window.alert('에러가 발생하였습니다. \n관리자에게 문의하세요.');
+				}
+			})
+			.fail((error)=>{
+				window.alert('에러가 발생하였습니다.\n관리자에게 문의하세요.')
+			})
+		}
+		
+	
 	</script>
 </body>
 

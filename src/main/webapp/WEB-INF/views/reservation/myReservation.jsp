@@ -189,11 +189,12 @@
 											<p class="card-text">${reserv.rcontent }</p>
 
 											<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
-												data-checkin='${reserv.rcheckin }' data-checkout='${reserv.rcheckout }'
+												data-rcheckin='${reserv.rcheckin }' data-rcheckout='${reserv.rcheckout }'
 												data-adult='${reserv.bookadult }' data-kid='${reserv.bookkid }' data-pay='${reserv.fee }'
 												data-addr='${reserv.raddress }' data-request='${reserv.bookrequest }'
 												data-photo='${reserv.rphoto }' data-state='${reserv.ispaid }' data-bookno='${reserv.bookno}'
-												data-cancel='${reserv.bookcancel}' data-rno='${reserv.rno}'>예약
+												data-cancel='${reserv.bookcancel}' data-rno='${reserv.rno}'
+												data-checkin='${reserv.checkin}' data-checkout='${reserv.checkout}'>예약
 												상세 정보>
 											</a>
 										</div>
@@ -220,6 +221,12 @@
 				<div class="modal-body">
 					<h3>예약 정보 확인</h3>
 					<table class="table">
+						<tr>
+							<th>체크인 날짜</th>
+							<td id="ckin"></td>
+							<th>체크아웃 날짜</th>
+							<td id="ckout"></td>
+						</tr>
 						<tr>
 							<th>체크인 가능시간</th>
 							<td id="mdCheckin"></td>
@@ -272,14 +279,22 @@
 	<!--================Banner Area =================-->
 
 	<script>
-	let shorten = function(){
-		for(let i=0; i<$('.card-text').length;i++){
-			if($('.card-text')[i].textContent.length>100){
-				$('.card-text')[i].textContent = $('.card-text')[i].textContent.substring(0,100)+'...';
+	let shorten = function(elements, l){
+		for(let i=0; i<elements.length;i++){
+			if(elements[i].textContent.length>l){
+				elements[i].textContent = elements[i].textContent.substring(0,l)+'...';
 			}
 		}
 	}
-	shorten();
+	shorten($('.card-title'),16);
+	shorten($('.card-text'),100);
+	/*
+	for(let i=0; i<$('.card-text').length;i++){
+		if($('.card-text')[i].textContent.length>100){
+			$('.card-text')[i].textContent = $('.card-text')[i].textContent.substring(0,100)+'...';
+		}
+	}
+	*/
 	
 	
 	
@@ -315,8 +330,8 @@
 
 
 		$('#exampleModalCenter').on('show.bs.modal', function (e) {
-			var checkin = $(e.relatedTarget).data('checkin');
-			var checkout = $(e.relatedTarget).data('checkout');
+			var rcheckin = $(e.relatedTarget).data('rcheckin');
+			var rcheckout = $(e.relatedTarget).data('rcheckout');
 			var adult = $(e.relatedTarget).data('adult');
 			var kid = $(e.relatedTarget).data('kid');
 			var pay = $(e.relatedTarget).data('pay');
@@ -325,9 +340,13 @@
 			var photo = $(e.relatedTarget).data('photo');
 			let bookno = $(e.relatedTarget).data('bookno');
 			let rno = +$(e.relatedTarget).data('rno');
+			let checkin = $(e.relatedTarget).data('checkin');
+			let checkout = $(e.relatedTarget).data('checkout');
 			
-			$('#mdCheckin').html(checkin + '시');
-			$('#mdCheckout').html(checkout + '시');
+			$('#ckin').text(checkin);
+			$('#ckout').text(checkout);
+			$('#mdCheckin').html(rcheckin + '시');
+			$('#mdCheckout').html(rcheckout + '시');
 			$('#mdCnum').html('어른 : ' + adult + '명, 아이 : ' + kid + '명');
 			$('#mdPay').html(pay + '원');
 			$('#mdRequest').html(request);

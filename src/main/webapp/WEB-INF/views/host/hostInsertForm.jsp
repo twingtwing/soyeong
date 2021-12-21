@@ -296,8 +296,8 @@ form input:hover, textarea:hover {
 				$('#onedayfee').focus();
 				return false;
 			}
-			if($('textarea').first().val().length>4000){
-				window.alert('4천자 이내로 작성해주세요.');
+			if($('textarea').first().val().length>2000){
+				window.alert('2천자 이내로 작성해주세요.');
 				return;
 			}
 			$('textarea').first().val($('textarea').first().val().replace(/(?:\r\n|\r|\n)/g, '<br>'))

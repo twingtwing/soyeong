@@ -20,7 +20,9 @@
 		<if test='am1=="N" and am2=="N" and am3=="N"'>
 			AND RCATEGORY=RCATEGORY
 		</if>
-		AND RUSE IN('Y') ORDER BY RCHECKIN, RGUEST ASC
+		AND (RCONTENT LIKE '%'||#{searchKey}||'%' OR RNAME LIKE
+		'%'||#{searchKey}||'%')
+		AND RUSE ='Y' ORDER BY RNAME
 	</select>
 
 
@@ -135,6 +137,7 @@
 	WHERE RUSE = 'Y'
 	AND (RCONTENT LIKE '%'||#{searchKey}||'%' OR RNAME LIKE
 	'%'||#{searchKey}||'%')
+	ORDER BY RNAME
 	</select>
 
 	<select id="LodgingNum"

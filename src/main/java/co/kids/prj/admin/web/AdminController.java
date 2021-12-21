@@ -50,8 +50,6 @@ public class AdminController {
 	@RequestMapping("ajaxMonthlyChart.do")
 	@ResponseBody
 	public List<AdminVO> ajaxMonthlyChart() {
-		System.out.println("=====");
-		System.out.println(adminDao.monthSelect());
 		List<AdminVO> monthselect = adminDao.monthSelect();
 		
 		return monthselect;
