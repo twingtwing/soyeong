@@ -14,6 +14,20 @@
 </head>
 <body>
 
+		<!--================ start Banner Area =================-->
+	<section class="banner_area">
+		<div class="booking_table d_flex align-items-center">
+			<div class="overlay bg-parallax" data-stellar-ratio="0.9"
+				data-stellar-vertical-offset="0" data-background=""></div>
+			<div class="container">
+				<div class="banner_content text-center">
+					<h2>공지사항</h2>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================ Banner Area =================-->
+
 	<!--================Banner Area =================-->
 
     <section class="section_gap">

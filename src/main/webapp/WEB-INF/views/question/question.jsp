@@ -34,7 +34,7 @@
 			<div
 				class="row mb-4 border border-right-0 border-top-0 border-left-0">
 				<div class="btn-Q active-Q ml-3 mr-3" style="cursor: pointer;">
-					<h5>Q n A</h5>
+					<h5>Q &amp; A</h5>
 				</div>
 				<c:if test="${not empty id}">
 					<div class="btn-Q ml-3" style="cursor: pointer;">

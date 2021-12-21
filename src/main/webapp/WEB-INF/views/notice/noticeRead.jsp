@@ -9,6 +9,20 @@
 </head>
 <body>
 
+	<!--================ start Banner Area =================-->
+	<section class="banner_area">
+		<div class="booking_table d_flex align-items-center">
+			<div class="overlay bg-parallax" data-stellar-ratio="0.9"
+				data-stellar-vertical-offset="0" data-background=""></div>
+			<div class="container">
+				<div class="banner_content text-center">
+					<h2>공지사항</h2>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================ Banner Area =================-->
+
 <!--================Banner Area =================-->
 
     <!-- 시작 -->
@@ -16,44 +30,15 @@
         <div class="section_gap">
             <div class="container" style="width: 70%;">
                 <div class="section-top-border">
-	                <form id="noticeReadForm" name="noticeReadForm" method="post">
-	                    <h3 class="mb-30 title_color">${notice.btitle }</h3>
-	                
-	                    <div class="col-lg-12">
-	                        <h6 class="typo-list row m-2 d-flex justify-content-end">작성자 : ${notice.id }&nbsp; &nbsp; &nbsp; 작성일 : ${notice.bdate }</h6>
-	                        <blockquote class="generic-blockquote">
-	                            ${notice.bcontent }
-	                        </blockquote>
-	                    </div>
-	                    <!-- <div class="row m-2 d-flex justify-content-end">
-	                        <button class="genric-btn primary small font-weight-bold m-2" onclick="fn_update()">수정</button>
-	                        <button class="genric-btn primary small font-weight-bold m-2" onclick="fn_delete()">삭제</button>
-	                    </div> -->
-	                </form>
+	            	<h3 class="mb-30 title_color ml-3">${notice.btitle }</h3>
+	                <div class="col-lg-12">
+	                	<h6 class="typo-list row m-2 d-flex justify-content-end">작성자 : ${notice.id }&nbsp; &nbsp; &nbsp; 작성일 : ${notice.bdate }</h6>
+	                    <blockquote class="generic-blockquote">${notice.bcontent }</blockquote>
+	               </div>
                 </div>    
             </div>
         </div>    
     </div>
-    
-    <script>
-	  //수정
-	    function fn_update(){
-	        
-	        var form = document.getElementById("noticeReadForm");
-	        
-	        form.action = "<c:url value='/notice/noticeUpdate.do'/>";
-	        form.submit();
-	    }
-	  
-	  //삭제
-	  function fn_delete(){
-		  
-		  var form = document.getElementById("noticeReadForm");
-		  
-		  form.action = "<c:url value='admin/adminnotice/adminNoticeDelete.do'/>";
-		  form.submit();
-	  }
-    </script>
 
 </body>
 </html>
