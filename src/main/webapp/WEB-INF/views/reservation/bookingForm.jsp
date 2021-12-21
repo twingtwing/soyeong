@@ -145,7 +145,7 @@
 			
 			if($('.book_now_btn>strong')[0].dataset.id==''){
 				window.alert('로그인을 해주세요.');
-				location.href='home.do';
+				$('#loginBtn').click();
 				return;
 			} 
 			creditCard();

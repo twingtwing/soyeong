@@ -273,6 +273,7 @@
 					<div id="mapWrapper">
 						<div id="googleMap" style="overflow: auto"></div>
 					</div>
+					<input type="hidden" id="mapAddress" value="${hotelDetail.raddress}">
 				</div>
 			</div>
 		</div>
@@ -363,10 +364,6 @@
 			window.alert('날짜를 지정해주세요.');
 			return;
 		}
-		if(new Date($('#rcheckin').val())>new Date($('#rcheckout').val())){
-			window.alert('날짜를 다시 확인해주시기 바랍니다.');
-			return;
-		}
 		if($('.wide:nth-child(2n-1)').first().val()=='Adult'||$('.wide:nth-child(2n-1)').last().val()=='Child'){
 			window.alert('인원수를 지정해주세요.');
 			return;
@@ -405,10 +402,12 @@
 			frm.submit();
 		})
 		$('#rcheckin').on('change',(e)=>{
-			window.alert('날짜를 변경할 경우, 좌측의 버튼을 통해\n비용을 다시 계산해주시기 바랍니다.')
+			window.alert('날짜를 변경할 경우, 좌측의 버튼을 통해\n비용을 다시 계산해주시기 바랍니다.');
+			return;
 		})
 		$('#rcheckout').on('change',(e)=>{
 			window.alert('날짜를 변경할 경우, 좌측의 버튼을 통해\n비용을 다시 계산해주시기 바랍니다.')
+			return;
 		})
 	})
 	

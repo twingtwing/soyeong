@@ -249,10 +249,6 @@
 							<th>위치</th>
 							<td colspan=3 id="mdAddr">위치 DATA</td>
 						</tr>
-						<tr>
-							<th>결제 상태</th>
-							<td colspan=3 id="state"></td>
-						</tr>
 					</table>
 
 				</div>
@@ -288,18 +284,8 @@
 	}
 	shorten($('.card-title'),16);
 	shorten($('.card-text'),100);
-	/*
-	for(let i=0; i<$('.card-text').length;i++){
-		if($('.card-text')[i].textContent.length>100){
-			$('.card-text')[i].textContent = $('.card-text')[i].textContent.substring(0,100)+'...';
-		}
-	}
-	*/
-	
-	
-	
+		
 	$('.navbar')[0].style.width='100%';
-	
 	
 		$('.dt')[0].addEventListener('click', (e) => {
 			let bookno = +$('.dt')[0].dataset.no;
@@ -354,12 +340,6 @@
 				$('#mdRequest').text('없음');
 			}
 			$('#mdAddr').html(addr);
-			//결제여부
-			if (e.relatedTarget.dataset.state=='Y') {
-				$('#state').text('결제완료').css('color', 'green').css('font-weight', 'bold');
-			} else {
-				$('#state').text('결제 전').css('color', 'darkred').css('font-weight', 'bold');
-			}
 			//취소여부
 			if(e.relatedTarget.dataset.cancel=='Y'){
 				$('#state').text('취소 처리됨').css('color', 'darkgray').css('font-weight', 'bold');
