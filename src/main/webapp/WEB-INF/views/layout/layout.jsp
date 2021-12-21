@@ -24,7 +24,7 @@
 	<!-- main css -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/responsive.css">
-    
+    <link rel="icon" type="image/png" sizes="16x16" href="resources/admin/images/favicon.ico">
 	<style type="text/css">
 		.active-Q,.active-btn-Pay{
             font-weight: bold;
@@ -37,6 +37,11 @@
 
 	<script src="resources/js/jquery-3.2.1.min.js"></script>
 
+	<!-- chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="resources/js/chart.js"></script>
+
+	<script src="resources/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
 </head>
 
 <body>
@@ -49,7 +54,6 @@
 	<script src="resources/vendors/owl-carousel/owl.carousel.min.js"></script>
 	<script src="resources/js/jquery.ajaxchimp.min.js"></script>
 	<script src="resources/js/mail-script.js"></script>
-	<script src="resources/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
 	<script src="resources/vendors/nice-select/js/jquery.nice-select.js"></script>
 	<script src="resources/js/mail-script.js"></script>
 	<script src="resources/js/stellar.js"></script>
@@ -59,7 +63,7 @@
 	<!-- validation -->
 	<script src="resources/js/jquery.form.js"></script>
 	<script src="resources/js/jquery.validate.min.js"></script>
-
 	
+
 </body>
 </html>

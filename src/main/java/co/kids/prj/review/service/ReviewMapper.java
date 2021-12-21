@@ -6,4 +6,5 @@ public interface ReviewMapper {
 	List<ReviewVO> reviewSelectList(int rno);
 	int reviewInsert(ReviewVO vo);
 	ReviewVO reviewCheckDup(ReviewVO vo);
+	ReviewVO totalReview(String id);
 }

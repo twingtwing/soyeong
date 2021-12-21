@@ -99,7 +99,7 @@
 	document.getElementById('searchNotice').addEventListener('click', function(){
 		let t = document.getElementById('btitle').value;
 		
-		let path = 'noticeSearch.do?btitle='+t;
+		let path = 'adminNoticeSearch.do?btitle='+t;
 		
 		fetch(path)
 		

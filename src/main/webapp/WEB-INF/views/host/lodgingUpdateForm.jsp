@@ -60,7 +60,7 @@ $(function(){
 		}
 	})
 	
-})
+}) 
 </script>
 <head>
 <meta charset="UTF-8">
@@ -87,13 +87,13 @@ table {
 	text-align: center;
 	line-height: 1.5;
 	margin: 20px 10px;
+	margin-top: 3rem;
 }
 
 table th {
 	text-align: center;
 	padding: 10px;
 	font-weight: bold;
-	vertical-align: top;
 	color: #fff;
 	background: #231141;
 }
@@ -104,19 +104,32 @@ table td {
 	border-bottom: solid #ccc;
 }
 
-form>input {
-	border: 1px solid rgb(128, 128, 128);
+form input, textarea, form select {
+	border: 1px solid #d9d9d9;
 	border-radius: 10px;
 	background-color: white;
 	color: rgb(128, 128, 128);
 	padding: 8px;
-	margin-top: 15px;
 }
 
-form>input:hover {
-	background-color: rgb(128, 128, 128);
+form input:hover, textarea:hover {
+	background-color: #d9d9d9;
 	color: white;
 }
+
+#btn1, #btn2 {
+	margin-bottom: 3rem;
+	padding: 0.5rem 1rem;
+	border-radius: 1rem;
+	cursor: pointer;
+	border: 1px solid white;
+	background-color: #F3C300;
+	font-weight: bold;
+}
+#btn2{
+	background-color: lightgray;
+}
+
 </style>
 </head>
 <body>
@@ -218,12 +231,14 @@ form>input:hover {
 									<label><input type="checkbox" id="am3" name="am3" value="Y">&nbsp 편의점</label>
 							</td>
 						</tr>
+						<!-- 
 						<tr>
 							<th>숙소사진</th>
 							<td colspan="3" style="text-align: left">
 								<input type="file" multiple="multiple" id="image" name="image">
 							</td>
 						</tr>
+						 -->
 					</table>
 				</div>
 				<br> 
@@ -237,14 +252,36 @@ form>input:hover {
 			</form>
 		</div>
 	</div>
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 	$(function(){
 		$("#btn1").click(function(){
+			if($('textarea').first().val().length>4000){
+				window.alert('4천자 이내로 작성해주세요.');
+				return;
+			}
 			frm.action= "lodgingUpdate.do";
+			$('textarea').first().val($('textarea').first().val().replace(/(?:\r\n|\r|\n)/g, '<br>'));
 			frm.submit();
 		});
 	})
+	
+	$(function(){
+		    $("#address").on("click", function(){ 
+		        new daum.Postcode({
+		            oncomplete: function(data) { 
+		            	 var roadAddr = data.roadAddress; 
+		                 var jibunAddr = data.jibunAddress; 
+		                 if(roadAddr !== ''){
+		                     $("#address").val(roadAddr);
+		                 } 
+		                 else if(jibunAddr !== ''){
+		                     $("#address").val(jibunAddr);
+		                 }
+		            }
+		        }).open();
+		    });
+		});
 
 
 
@@ -288,7 +325,7 @@ form>input:hover {
 				alert('숫자만 입력가능합니다.');
 			}
 		});
-
+		
 		var patt = new RegExp("[0-9]{2,3}[0-9]{3,4}[0-9]{3,4}");
 		var res = patt.test($("#tel").val());
 		

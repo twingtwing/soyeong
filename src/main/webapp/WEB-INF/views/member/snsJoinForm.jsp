@@ -82,14 +82,16 @@ div>label, #btn {
 						type="text" style="width: 4rem;" value="${member.gender }"
 						name="gender" readonly="readonly">
 				</div>
-				<br> <input type="text" name="tel" value="${member.tel }"
-					id="tel"><br>
+				<br> <input type="text" name="tel" id="tel" placeholder="tel" <c:if test="${ not empty member.tel }">value="${member.tel }" readonly="readonly"</c:if>><br>
 				<div style="display: flex; align-items: center;">
 					<label><input type="checkbox" class="law">&nbsp;
 						이용약관 확인</label>
 				</div>
 				<c:if test="${not empty member.naver }">
 					<input type="hidden" value="Y" name="naver">
+				</c:if>
+				<c:if test="${not empty member.kakao }">
+					<input type="hidden" value="Y" name="kakao">
 				</c:if>
 				<button type="button" id="btn" style="margin-top: 3rem;">회원가입</button>
 			</form>
@@ -105,6 +107,11 @@ div>label, #btn {
 			
 			if(document.getElementsByClassName('password')[0].value==''){
 				window.alert('비밀번호은 필수 입력 값입니다.');
+				return;
+			}
+			
+			if(document.getElementsByClassName('tel').value==''){
+				window.alert('전화번호는 필수 입력 값입니다.');
 				return;
 			}
 			

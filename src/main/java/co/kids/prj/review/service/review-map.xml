@@ -8,11 +8,19 @@
 	</select>
 	<insert id="reviewInsert" parameterType="co.kids.prj.review.service.ReviewVO">
 		INSERT INTO REVIEW VALUES(
-		(SELECT MAX(RVNO) FROM REVIEW)+1,#{rno},#{id},#{rvstar},#{rvcontent}
-		)
+		(SELECT MAX(RVNO) FROM REVIEW)+1,#{rno},#{id},#{rvstar},#{rvcontent},SYSDATE)
 	</insert>
 
-<select id="reviewCheckDup" resultType="co.kids.prj.review.service.ReviewVO" parameterType="co.kids.prj.review.service.ReviewVO">
+	<select id="reviewCheckDup" resultType="co.kids.prj.review.service.ReviewVO" parameterType="co.kids.prj.review.service.ReviewVO">
 	SELECT * FROM REVIEW WHERE RNO =#{rno} AND ID=#{id}
-</select>
+	</select>
+	
+	<select id="totalReview" resultType="co.kids.prj.review.service.ReviewVO">
+	SELECT COUNT(*) AS COUNT, SUM(RVSTAR)/COUNT(*) AS RVSTAR
+	FROM LODGING L
+	INNER JOIN REVIEW R ON L.RNO = R.RNO
+	WHERE L.ID = #{id}
+	AND RVDATE BETWEEN '2020-11-01' AND '2021-11-30'
+	GROUP BY TO_CHAR(RVDATE, 'YYYY-MM')
+	</select>
 </mapper>

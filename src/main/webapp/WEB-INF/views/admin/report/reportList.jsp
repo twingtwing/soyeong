@@ -72,7 +72,7 @@ h3 {
 				<button id="rsearch">검색</button>
 			</div>
 			<div align="center">
-				<div id="grid"></div>
+				<div id="gridReport"></div>
 			</div>
 		</div>
 	</div>
@@ -96,13 +96,13 @@ h3 {
 					val.iscleared='처리 전';
 				}
 			})
-			grid.resetData(response);
+			gridR.resetData(response);
 		})
 	})();
 	
 	
-	const grid = new tui.Grid({
-	     el : document.getElementById('grid'),
+	const gridR = new tui.Grid({
+	     el : document.getElementById('gridReport'),
 	     scrollX : false,
 	     scrollY : false,
 	     pageOptions: {
@@ -133,18 +133,17 @@ h3 {
 	  });
 	  
 	
-	$('#grid').on('click',(event)=>{
+	$('#gridReport').on('click',(event)=>{
 			let rpno = event.target.parentNode.parentNode.firstChild.textContent;
 			let state = event.target.parentNode.parentNode.lastChild.textContent;
 			console.log(event.target.parentNode.parentNode)
-			if(state == '처리완료'){
+			if(state != '처리완료'){
 				/*
-				색깔 초록색으로 바꾸고, 나중에 클릭못하게 막아버리기.
+				클릭못하게 막음
 				*/
-				$("tr").attr("disabled", true);
-			}
 			$('#rpno').val(rpno);
 			$('#frm').submit();
+			}
 		})
 		
 		tui.Grid.applyTheme('clean');

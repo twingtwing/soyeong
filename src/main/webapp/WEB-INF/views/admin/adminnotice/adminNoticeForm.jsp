@@ -28,7 +28,8 @@
 						<form id="noticeForm" name="noticeForm">
 							<input type="text" id="btitle" name="btitle" class="form-control input-default my-3"
 								placeholder="제목을 입력하세요">
-							<input class="form-control input-default my-3" type="text" name="id" value="${id}" readonly="readonly">
+							<input class="form-control input-default my-3" type="hidden" name="id" value="${id}" readonly="readonly">
+							<input class="form-control input-default my-3" type="hidden" name="name" value="${name}">
 							<textarea id="bcontent" name="bcontent" class="form-control h-150px" rows="6" placeholder="내용을 입력해주세요"></textarea>
 							<div class="row justify-content-end">
 								<input type="submit" id="nsubmit" class="btn mb-1 btn-primary m-2" value="완료">

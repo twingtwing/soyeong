@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.kids.prj.sales.service.SalesMapper">
+	
+	<select id="totalSales" resultType="co.kids.prj.sales.service.SalesVO">
+	SELECT SUM(SALES) AS SALES, COUNT(*) AS COUNT, TO_CHAR(SDATE,'YYYY-MM') AS SDATE
+	FROM SALES
+	WHERE SID = #{sid}
+	AND SDATE BETWEEN '2020-12-01' AND '2021-11-30'
+	GROUP BY TO_CHAR(SDATE, 'YYYY-MM')
+	ORDER BY 2
+	</select>
+
+</mapper>

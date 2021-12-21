@@ -85,7 +85,7 @@
 	display: inline-block;
 	position: absolute;
 	margin-left: 350px;
-	margin-top: -200px;
+	margin-top: -143px;
 	cursor: pointer;
 }
 </style>
@@ -115,13 +115,14 @@
 						<li class="nav-item"><a class="nav-link"
 							href="question.do">고객센터</a></li>
 						<!-- 로그인 되어 있을시 -->
+						<c:if test="${author eq 'USER' }">
+							<li class="nav-item"><a class="nav-link" href="myReserv.do">내 예약정보</a></li>
+						</c:if>
 						<c:if test="${author eq 'USER'}">
-							<li class="nav-item"><a class="nav-link" href="memberAuthor.do">호스트
-									신청</a></li>
+							<li class="nav-item"><a class="nav-link" href="memberAuthor.do">호스트 신청</a></li>
 						</c:if>
 						<c:if test="${author eq 'ADMIN'}">
-							<li class="nav-item"><a class="nav-link" href="admin.do">관리자
-									모드</a></li>
+							<li class="nav-item"><a class="nav-link" href="admin.do">관리자 모드</a></li>
 						</c:if>
 						<li class="nav-item submenu dropdown">
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
@@ -142,9 +143,9 @@
 								</c:if>
 								<c:if test="${not empty id}">
 									<li class="nav-item"><a class="nav-link"
-										href="memberProfile.do">상세 정보</a></li>
+										href="memberProfile.do">내 정보</a></li>
 									<li class="nav-item"><a class="nav-link"
-										href="#">나의 예약 정보</a></li>
+										href="myReserv.do">나의 예약 정보</a></li>
 									<li class="nav-item"><a class="nav-link" href="logout.do"
 										onclick="kakaoLogout();">로그아웃</a></li>
 								</c:if>
@@ -158,7 +159,6 @@
 
 	<!-- login modal -->
 	<div align="center" id="loginModal">
-
 		<div id="box" class="pb-5">
 			<span class="close">&times;</span> <span>소영과 아이들에 오신 것을 환영합니다.</span>
 			<input type="text" placeholder="ID" id="id" name="id"> 
@@ -174,9 +174,10 @@
       		<a href="${naverUrl }" id="naverLogin">
       			<img alt="naver_login" src="resources/img/naverLogin.png" height ="50">
       		</a>
-			<button type="button">페이스북으로 로그인하기~여기부터는 api찾기</button>
 		</div>
 	</div>
+	
+	
 	
 	<script type="text/javascript">
 
@@ -210,6 +211,16 @@
 		})
 	}
 	
+	/* 
+	if($('#loginModal').css('display')=='block'){
+		$('#loginModal').on('keypress',(e)=>{			
+			if(e.keyCode==27){
+				$('.close')[0].click();
+			}			
+		})
+	}
+	*/
+	
 
 	// 비밀번호 찾기 클릭시
 	$('.findPw').click(()=>{
@@ -242,6 +253,7 @@
            	this.innerHTML = '<i class="far fa-eye-slash"></i>';
        	}
     });	
+	
 </script>
 </body>
 </html>

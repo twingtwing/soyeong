@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 	<title><tiles:getAsString name="title" /></title>
 	<!-- Favicon icon -->
-	<link rel="icon" type="image/png" sizes="16x16" href="resources/admin/images/favicon.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="resources/admin/images/favicon.ico">
 	<!-- Pignose Calender -->
 	<link href="resources/admin/plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
 	<!-- Chartist -->
@@ -27,7 +27,9 @@
     <script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
     
     <script src="resources/js/jquery-3.2.1.min.js"></script>
-    
+    <style type="text/css">
+
+    </style>
 </head>
 
 <body>

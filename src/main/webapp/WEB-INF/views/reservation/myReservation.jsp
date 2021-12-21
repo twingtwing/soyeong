@@ -24,9 +24,9 @@
 			padding-top: 35px;
 			text-align: left;
 			overflow: auto;
-			height: 550px;
 			margin: 0px;
-			width: 987px;
+			width: 100%;
+
 		}
 
 		.card-body {
@@ -117,12 +117,6 @@
 			text-align: center;
 			margin-bottom: 30px;
 		}
-
-		.container {
-			display: flex;
-			justify-content: center;
-		}
-
 		.carousel-item.active,
 		.carousel-item-next,
 		.carousel-item-prev {
@@ -153,7 +147,13 @@
 			color:white;
 			background-color: #007BFF;
 		}
-	</style>
+.card-img-top{
+	height: 190px;
+}
+.card-text{
+	height: 120px;
+}
+</style>
 </head>
 
 <body>
@@ -178,19 +178,18 @@
 					<div id="scroll">
 					<div class="cardWrapper" id="reservation">
 						<div class="carousel-item active">
-							<div style="display: flex;">
+							<div style="display: flex; margin-bottom: 3rem;">
 							<c:forEach items="${cards }" var="reserv" varStatus="status">
 									<div class="card" style="width: 18rem;">
 										<div align="center" style="margin-top: 5px;">
-										<img alt="" src="http://localhost/prj/resources/img/${reserv.rphoto}">
-												<!-- 임시사진 경로 -->
+										<img alt="" src="${reserv.rphoto}" class="card-img-top">
 										</div>
 										<div class="card-body">
 											<h5 class="card-title">${reserv.rname }</h5>
 											<p class="card-text">${reserv.rcontent }</p>
 
 											<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
-												data-checkin='${reserv.checkin }' data-checkout='${reserv.checkout }'
+												data-checkin='${reserv.rcheckin }' data-checkout='${reserv.rcheckout }'
 												data-adult='${reserv.bookadult }' data-kid='${reserv.bookkid }' data-pay='${reserv.fee }'
 												data-addr='${reserv.raddress }' data-request='${reserv.bookrequest }'
 												data-photo='${reserv.rphoto }' data-state='${reserv.ispaid }' data-bookno='${reserv.bookno}'
@@ -204,7 +203,6 @@
 						</div>
 					</div>
 					</div>
-					<!-- 예약된 여행 -->
 				</div>
 			</div>
 		</div>
@@ -267,13 +265,27 @@
 		<input type="hidden" name="ispaid">
 	</form>
 	
-	<form action="reviewForm.do">
+	<form action="reviewForm.do" id="chkRv">
 		<input type="hidden" name="bookno">
 		<input type="hidden" name="id" value="${id}">
 	</form>
 	<!--================Banner Area =================-->
 
 	<script>
+	let shorten = function(){
+		for(let i=0; i<$('.card-text').length;i++){
+			if($('.card-text')[i].textContent.length>100){
+				$('.card-text')[i].textContent = $('.card-text')[i].textContent.substring(0,100)+'...';
+			}
+		}
+	}
+	shorten();
+	
+	
+	
+	$('.navbar')[0].style.width='100%';
+	
+	
 		$('.dt')[0].addEventListener('click', (e) => {
 			let bookno = +$('.dt')[0].dataset.no;
 			$('#frm>input').val(bookno)
@@ -282,7 +294,7 @@
 
 		// 현재 예약중
 		$('#btn1').on('click', (e) => {
-			$('#sortFrm>input').val(null);
+			$('#sortFrm>input').val('A');
 			$('#sortFrm').submit();
 		})
 
@@ -352,11 +364,14 @@
 			})
 			.done((result)=>{
 				if(result=='ok'){
-					$('.reviewBtn').on('click',()=>$('form')[2].submit());
+					$('.reviewBtn').on('click',()=>$('#chkRv').submit());
 				} else{
 					$('.reviewBtn').css('display','none');
 					return;
 				}
+			})
+			.fail((error)=>{
+				console.log(error)
 			})
 		}
 	</script>
