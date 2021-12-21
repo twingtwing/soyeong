@@ -86,6 +86,9 @@ display : none !important;
                                     <div class="card-body">
                                         <canvas id="adminChart" width="500" height="250"></canvas>
                                     </div>
+                                    <div class="card-body">
+                                        <canvas id="admin-chart" width="500" height="250"></canvas>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -180,25 +183,119 @@ display : none !important;
         		method:'GET',
         		url:'ajaxMonthlyChart.do',
         		success:function(data){
-        			console.log(data[0]);
-        			console.log(data[0].monthdate == '2021');
+        			var thisJan = 0;
+        			var thisFeb = 0;
+        			var thisMar = 0;
+        			var thisApr = 0;
+        			var thisMay = 0;
+        			var thisJun = 0;
+        			var thisJul = 0;
+        			var thisAug = 0;
+        			var thisSep = 0;
+        			var thisOct = 0;
+        			var thisNov = 0;
+        			var thisDec = 0;
+        			for(var i=0; i<data.length; i++){
+        				if(data[i].monthdate == "2021-01"){
+        					thisJan = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2021-02"){
+        					thisFeb = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2021-03"){
+        					thisMar = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2021-04"){
+        					thisApr = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2021-05"){
+        					thisMay = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2021-06"){
+        					thisJun = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2021-07"){
+        					thisJul = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2021-08"){
+        					thisAug = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2021-09"){
+        					thisNov = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2021-10"){
+        					thisOct = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2021-11"){
+        					thisNov = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2021-12"){
+        					thisDec = data[i].monthsales;
+        				}
+        			}
+        			
+        			var lastJan = 0;
+        			var lastFeb = 0;
+        			var lastMar = 0;
+        			var lastApr = 0;
+        			var lastMay = 0;
+        			var lastJun = 0;
+        			var lastJul = 0;
+        			var lastAug = 0;
+        			var lastSep = 0;
+        			var lastOct = 0;
+        			var lastNov = 0;
+        			var lastDec = 0;
+        			for(var i=0; i<data.length; i++){
+        				if(data[i].monthdate == "2020-01"){
+        					lastJan = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2020-02"){
+        					lastFeb = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2020-03"){
+        					lastMar = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2020-04"){
+        					lastApr = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2020-05"){
+        					lastMay = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2020-06"){
+        					lastJun = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2020-07"){
+        					lastJul = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2020-08"){
+        					lastAug = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2020-09"){
+        					lastNov = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2020-10"){
+        					lastOct = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2020-11"){
+        					lastNov = data[i].monthsales;
+        				}
+        				if(data[i].monthdate == "2020-12"){
+        					lastDec = data[i].monthsales;
+        				}
+        			}
         			
         			var ctx = $('#adminChart');
                 	var chartData = {
                 			labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                 			datasets:[{
-                				data:[{
-//                					if(data[0].monthdate == '2021-09'){
-//                						data[0].monthsales
-//                					}
-                					
-                				}],
+                				data:[thisJan, thisFeb, thisMar, thisApr, thisMay, thisJun, thisJul, thisAug, thisSep, thisOct, thisNov, thisDec],
                 				label:'올해',
                 				borderColor : 'red',
                 				borderWidth: 2,
                 				pointBackgroundColor : 'black'
                 			},{
-                			data:[600,500,400,300,200,100,0,100,200,300,400,500],
+                			data:[lastJan, lastFeb, lastMar, lastApr, lastMay, lastJun, lastJul, lastAug, lastSep, lastOct, lastNov, lastDec],
                 			label:'작년',
             				borderColor : 'blue',
             				borderWidth: 2,
