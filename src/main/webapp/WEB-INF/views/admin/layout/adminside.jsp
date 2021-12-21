@@ -14,17 +14,16 @@
 		<div class="nk-nav-scroll">
 			<ul class="metismenu" id="menu">
 				<li class="nav-label">
-				<span style="text-align: center; margin:2rem;">관리자님(${id}),<br>환영합니다!</span>
+					<i class="fas fa-crown text-warning"></i>
+					관리자님, 환영합니다!<br>(${id})
 				</li>
 			
-				<li class="nav-label">Dashboard</li>
 				<li><a class="has-arrow" href="javascript:void()"
-					aria-expanded="false"> <i class="icon-speedometer menu-icon"></i><span
-						class="nav-text">대시보드</span>
+					aria-expanded="false"> <i class="icon-grid menu-icon"></i><span
+						class="nav-text">Dashboard</span>
 				</a>
 					<ul aria-expanded="false">
-						<li><a href="home.do">홈페이지로</a></li>
-						<li><a href="reportPage.do">신고 내역</a></li>
+						<li><a href="admin.do">MAIN PAGE</a></li>
 					</ul>
 				</li>
 				<li class="nav-label">Management</li>
@@ -44,7 +43,10 @@
 				<i class="icon-note menu-icon"></i><span
 						class="nav-text">공지사항 관리</span>
 				</a></li>
-
+				<li><a href="reportPage.do"> 
+				<i class="icon-dislike menu-icon"></i><span
+						class="nav-text">신고 내역</span>
+				</a></li>
 				
 			</ul>
 		</div>

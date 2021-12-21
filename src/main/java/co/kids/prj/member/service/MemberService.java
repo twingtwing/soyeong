@@ -20,4 +20,6 @@ public interface MemberService {
 	//매출관리
 	List<ReservationVO> memberSales(ReservationVO vo);
 	int changeRefund(ReservationVO vo);
+	
+	List<MemberVO> totalHost(MemberVO vo);
 }

@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.contentBox {
+	height : 40vh;
+}
+</style>
 </head>
 <body>
 
@@ -28,14 +33,18 @@
 						<div class="card-body">
 							<div class="read-content">
 								<div class="media">
-									<div class="media-body mt-3">
-										<h5 class="m-b-3 text-primary"><strong>질문</strong></h5>
-										<h5 class="m-b-3 text-primary">${QnA.fTitle }</h5>
-										<h6 class="text-muted">${QnA.fCategory }</h6>
+									<div class="media-body d-flex justify-content-between mt-3">
+										<div>
+											<h5 class="m-b-3"><strong>질문</strong></h5>
+											<h5 class="m-b-3 text-warning">${QnA.fTitle }</h5>
+										</div>
+										<div class="d-flex align-items-end">
+											<h6 class="text-muted">${QnA.fCategory }</h6>
+										</div>
 									</div>
 								</div>
 								<hr>
-								<div class="mt-5">
+								<div class="contentBox mt-5">
 									<h5 class="mb-3"><strong>답변</strong></h5>
 									<h5 class="text-muted">${QnA.fAnswer }</h5>
 								</div>

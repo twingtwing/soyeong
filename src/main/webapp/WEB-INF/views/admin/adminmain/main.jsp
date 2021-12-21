@@ -25,7 +25,7 @@ display : none !important;
                                     <h2 class="text-white" id="users"></h2>
                                     <p class="yearAgo"></p>
                                 </div>
-                                
+                                <span class="float-right display-5 opacity-5"><i class="fas fa-concierge-bell"></i></span>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@ display : none !important;
                                     <h2 class="text-white" id="sales"></h2>
                                     <p class="yearAgo"></p>
                                 </div>
-                                
+                                <span class="float-right display-5 opacity-5"><i class="fas fa-money-bill-alt"></i></span>
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@ display : none !important;
                                     <h2 class="text-white" id="reservs"></h2>
                                     <p class="yearAgo"></p>
                                 </div>
-                               
+                               <span class="float-right display-5 opacity-5"><i class="fas fa-users"></i></span>
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@ display : none !important;
                                     <h2 class="text-white" id="reviews"></h2>
                                     <p class="yearAgo"></p>
                                 </div>
-                                
+                                <span class="float-right display-5 opacity-5"><i class="fas fa-heart"></i></span>
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@ display : none !important;
                                 <div class="card">
                                     <div class="card-body pb-0 d-flex justify-content-between">
                                         <div class="ml-2">
-                                            <h3 class="mb-1 mt-2">Sales</h3>
+                                            <h3 class="mb-1 mt-2 text-warning">Sales</h3>
                                             <p class="card-text">Total Earnings of this Year</p>
                                             <h2 class="gradient-3-text m-0" id="chartSales"></h2>
                                         </div>
@@ -98,7 +98,7 @@ display : none !important;
                         <div class="card">
                             <div class="card-body pb-0 d-flex justify-content-between">
                                 <div class="ml-2">
-                                    <h3 class="mb-1 mt-2">Host top 10</h3>
+                                    <h3 class="mb-1 mt-2 text-warning">Host top 10</h3>
                                     <p class="card-text">The 10 best hosts of this Year</p>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@ display : none !important;
                                                 <tr>
                                                     <th>순위</th>
                                                     <th>아이디</th>
-                                                    <th>성별</th>
+                                                    <th><i class="fas fa-venus-mars text-success mr-2"></i>성별</th>
                                                     <th>숙소 갯수</th>
                                                     <th>가입 날짜</th>
                                                 </tr>
@@ -149,8 +149,8 @@ display : none !important;
         		success:function(data){
         			$('#users').html(data[0]);
         			$('#reservs').html(data[1]);
-        			$('#sales').html(data[2]);
-        			$('#chartSales').html('>>' + data[2]+'원');
+        			$('#sales').html('￦ '+data[2].toLocaleString('ko-KR'));
+        			$('#chartSales').html('￦ ' + data[2].toLocaleString('ko-KR')+'원');
         			$('#reviews').html(data[3]);
         		}
         	});
@@ -176,48 +176,197 @@ display : none !important;
         });
         
         $(function ajaxMonthlyChart(){
-        	$.ajax({
-        		method:'GET',
-        		url:'ajaxMonthlyChart.do',
-        		success:function(data){
-        			console.log(data[0]);
-        			console.log(data[0].monthdate == '2021');
-        			
-        			var ctx = $('#adminChart');
-                	var chartData = {
-                			labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                			datasets:[{
-                				data:[{
-//                					if(data[0].monthdate == '2021-09'){
-//                						data[0].monthsales
-//                					}
-                					
-                				}],
-                				label:'올해',
-                				borderColor : 'red',
-                				borderWidth: 2,
-                				pointBackgroundColor : 'black'
-                			},{
-                			data:[600,500,400,300,200,100,0,100,200,300,400,500],
-                			label:'작년',
-            				borderColor : 'blue',
-            				borderWidth: 2,
-            				pointBackgroundColor : 'black'
-                			}]
-                	}
-                	var adminChart = new Chart(ctx,{
-                		type: 'line',
-                		data: chartData,
-                		option:{
-                			legend:{
-                				display:false
-                			}
-                		}
-                	});
-        		}
-        	});
-        	
-        });
+            $.ajax({
+               method:'GET',
+               url:'ajaxMonthlyChart.do',
+               success:function(data){
+                  var thisJan = 0;
+                  var thisFeb = 0;
+                  var thisMar = 0;
+                  var thisApr = 0;
+                  var thisMay = 0;
+                  var thisJun = 0;
+                  var thisJul = 0;
+                  var thisAug = 0;
+                  var thisSep = 0;
+                  var thisOct = 0;
+                  var thisNov = 0;
+                  var thisDec = 0;
+                  for(var i=0; i<data.length; i++){
+                     if(data[i].monthdate == "2021-01"){
+                        thisJan = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2021-02"){
+                        thisFeb = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2021-03"){
+                        thisMar = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2021-04"){
+                        thisApr = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2021-05"){
+                        thisMay = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2021-06"){
+                        thisJun = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2021-07"){
+                        thisJul = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2021-08"){
+                        thisAug = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2021-09"){
+                        thisNov = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2021-10"){
+                        thisOct = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2021-11"){
+                        thisNov = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2021-12"){
+                        thisDec = data[i].monthsales;
+                     }
+                  }
+                  
+                  var lastJan = 0;
+                  var lastFeb = 0;
+                  var lastMar = 0;
+                  var lastApr = 0;
+                  var lastMay = 0;
+                  var lastJun = 0;
+                  var lastJul = 0;
+                  var lastAug = 0;
+                  var lastSep = 0;
+                  var lastOct = 0;
+                  var lastNov = 0;
+                  var lastDec = 0;
+                  for(var i=0; i<data.length; i++){
+                     if(data[i].monthdate == "2020-01"){
+                        lastJan = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2020-02"){
+                        lastFeb = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2020-03"){
+                        lastMar = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2020-04"){
+                        lastApr = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2020-05"){
+                        lastMay = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2020-06"){
+                        lastJun = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2020-07"){
+                        lastJul = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2020-08"){
+                        lastAug = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2020-09"){
+                        lastNov = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2020-10"){
+                        lastOct = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2020-11"){
+                        lastNov = data[i].monthsales;
+                     }
+                     if(data[i].monthdate == "2020-12"){
+                        lastDec = data[i].monthsales;
+                     }
+                  }
+                  
+                  var ctx = $('#adminChart');
+                    var chartData = {
+                          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                          datasets:[{
+                             data:[thisJan, thisFeb, thisMar, thisApr, thisMay, thisJun, thisJul, thisAug, thisSep, thisOct, thisNov, thisDec],
+                             label:'올해',
+                             backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                             borderColor: 'red',
+                             borderWidth: 0.5,
+                             pointStyle: 'circle',
+                             pointRadius: 5,
+                             pointBorderColor: 'transparent',
+                             pointBackgroundColor: 'red',
+                          },
+                          {
+                          	data:[lastJan, lastFeb, lastMar, lastApr, lastMay, lastJun, lastJul, lastAug, lastSep, lastOct, lastNov, lastDec],
+                          	label:'작년',
+                          	backgroundColor: 'rgba(0, 0, 255, 0.2)',
+                            borderColor: 'blue',
+                            borderWidth: 0.5,
+                            pointStyle: 'circle',
+                            pointRadius: 5,
+                            pointBorderColor: 'transparent',
+                            pointBackgroundColor: 'blue',
+                          }]
+                    }
+                    
+                    var adminChart = new Chart(ctx,{
+                       type: 'line',
+                       data: chartData,
+                       options: {
+                           responsive: true,
+                           tooltips: {
+                               mode: 'index',
+                               titleFontSize: 12,
+                               titleFontColor: '#000',
+                               bodyFontColor: '#000',
+                               backgroundColor: '#fff',
+                               titleFontFamily: 'Montserrat',
+                               bodyFontFamily: 'Montserrat',
+                               cornerRadius: 3,
+                               intersect: false,
+                           },
+                           legend: {
+                               position: 'top',
+                               labels: {
+                                   usePointStyle: true,
+                                   fontFamily: 'Montserrat',
+                               },
+
+
+                           },
+                           scales: {
+                               xAxes: [{
+                                   display: true,
+                                   gridLines: {
+                                       display: false,
+                                       drawBorder: false
+                                   }
+                               }],
+                               yAxes: [{
+                                   display: true,
+                                   gridLines: {
+                                       display: false,
+                                       drawBorder: false
+                                   },
+                                   ticks: {
+                                       beginAtZero:true
+                                   },
+                                   afterTickToLabelConversion : function(q){
+                                       for(var tick in q.ticks){
+                                         q.ticks[tick] += ' 원';
+                                       }
+                                   }
+                               }]
+                           },
+                           title: {
+                               display: false,
+                           }
+                       }
+                    });
+               }
+            });
+            
+         });
         		
         </script>
 </body>

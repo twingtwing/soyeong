@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,17 +27,22 @@
 						<div class="row d-flex justify-content-between">
 							<div class="col-6 d-flex align-items-end">
 								<div class="row">
-									<h3 class="d-inline mt-1 mb-2">User Detail</h3>
+									<h3 class="d-inline mt-1 mb-2 text-warning">User Detail</h3>
 								</div>
 							</div>
-							<div class="col-6 d-flex justify-content-end">'
+							<div class="col-6 d-flex justify-content-end">
+								'
 								<div class="row">
-								<select id="selectAuthor" name="selectAuthor" class="form-control" style="width: 95px; height : 40px;">
-									<option value="USER">USER</option>
-									<option value="HOST">HOST</option>
-									<option value="ADMIN">ADMIN</option>
-								</select>
-								<button id="authorChange" type="button" class="btn btn-outline-dark" style="height : 40px;">으로 권한 수정</button>
+									<select id="selectAuthor" name="selectAuthor"
+										class="form-control" style="width: 95px; height: 40px;">
+										<option value="USER">USER</option>
+										<option value="HOST">HOST</option>
+										<option value="ADMIN">ADMIN</option>
+										<option value="BAN">BAN</option>
+									</select>
+									<button id="authorChange" type="button"
+										class="btn btn-outline-dark" style="height: 40px;">으로
+										권한 수정</button>
 								</div>
 							</div>
 						</div>
@@ -74,6 +79,27 @@
 									<th class="p-4 align-middle">가입날짜</th>
 									<td class="align-middle">${member.joinDate }</td>
 								</tr>
+								<c:if test="${not empty member.kakao or not empty member.naver}">
+									<tr>
+										<th class="p-4 align-middle">SNS 연동</th>
+										<td class="align-middle" colspan="2">
+											<div class="d-flex justify-content-around">
+												<c:if test="${member.naver eq 'Y'}">
+													<div class="row">
+														<img alt="naver" src="resources/img/naverLogo.png" height="30">
+														<h6 class="text-muted ml-2 mt-1">네이버 연동</h6>
+													</div>
+												</c:if>
+												<c:if test="${member.kakao eq 'Y'}">
+													<div class="row">
+														<img alt="naver" src="resources/img/kakaoLogo.png" height="30">
+														<h6 class="text-muted ml-2 mt-1">카카오 연동</h6>
+													</div>
+												</c:if>
+											</div>
+										</td>
+									</tr>
+								</c:if>
 							</table>
 						</div>
 					</div>

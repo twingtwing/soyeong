@@ -15,7 +15,10 @@ public class MemberVO {
 	
 	private String naver;
 	private String kakao;
-	private String google;
+	
+	private String count;
+	private int fee;
+	private String mdate;
 	
 	public String getId() {
 		return id;
@@ -77,11 +80,24 @@ public class MemberVO {
 	public void setKakao(String kakao) {
 		this.kakao = kakao;
 	}
-	public String getGoogle() {
-		return google;
+	public String getCount() {
+		return count;
 	}
-	public void setGoogle(String google) {
-		this.google = google;
+	public void setCount(String count) {
+		this.count = count;
 	}
+	public int getFee() {
+		return fee;
+	}
+	public void setFee(int fee) {
+		this.fee = fee;
+	}
+	public String getMdate() {
+		return mdate;
+	}
+	public void setMdate(String mdate) {
+		this.mdate = mdate;
+	}
+	
 	
 }

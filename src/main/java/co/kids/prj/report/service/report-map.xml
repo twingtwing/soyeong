@@ -8,7 +8,11 @@
 	
 	<select id="reportSelect" parameterType="Integer"
 		resultType="co.kids.prj.report.service.ReportVO">
-		SELECT * FROM REPORT WHERE RPNO = #{rpno} AND ISCLEARED NOT IN('TRUE')
+		SELECT R.* , M.AUTHOR
+		FROM REPORT R
+		INNER JOIN MEMBER M 
+		ON R.BLACKUSER = M.ID
+		WHERE RPNO = #{rpno} AND ISCLEARED NOT IN('TRUE')
 	</select>
 	
 	<insert id="reportInsert" parameterType="co.kids.prj.report.service.ReportVO">
@@ -31,4 +35,13 @@
 			<if test="rptitle != null">RPTITLE LIKE '%' || #{rptitle} || '%'</if>
 		</where>
 	</select>
+	
+	<!-- 신고 횟수 -->
+	<select id="reportCount" parameterType="co.kids.prj.report.service.ReportVO" resultType="int">
+		SELECT COUNT(*)
+		FROM REPORT 
+		WHERE BLACKUSER = #{blackuser}
+		AND ISCLEARED NOT IN('TRUE')
+	</select>
+	
 </mapper>
