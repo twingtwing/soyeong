@@ -12,7 +12,7 @@
 	
 	<insert id="noticeInsert" parameterType="co.kids.prj.notice.service.NoticeVO">
 		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
-			SELECT MAX(BNO) + 1 AS BNO FROM NOTICE
+			SELECT NVL(MAX(BNO), 0)+1 AS BNO FROM NOTICE
 		</selectKey>
 		INSERT INTO NOTICE 
 		VALUES(#{bno}, #{id}, #{btitle}, #{bcontent}, sysdate, 'C', sysdate)

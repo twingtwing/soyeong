@@ -311,6 +311,7 @@
 		<input type="hidden" name="bookadult" id="badult">
 		<input type="hidden" name="day">
 	</form>
+	<input type="hidden" id="mapAddress" value="${hotelDetail.raddress}">
 
 
 	<!--================ Testimonial Area  =================-->
