@@ -17,7 +17,7 @@
 	
 	<insert id="reportInsert" parameterType="co.kids.prj.report.service.ReportVO">
 		<selectKey keyProperty="rpno" resultType="int" order="BEFORE">
-			SELECT MAX(rpno) + 1 AS rpno FROM report
+			SELECT NVL(MAX(RPNO), 0)+1 AS RPNO FROM REPORT
 		</selectKey>
 		INSERT INTO report 
 		VALUES(#{rpno}, #{rptype}, #{rptitle}, #{rpcontent}, sysdate, 'FALSE', #{reporter}, #{blackuser})

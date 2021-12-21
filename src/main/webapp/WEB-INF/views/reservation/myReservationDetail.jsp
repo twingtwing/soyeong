@@ -254,6 +254,7 @@ border : 1px solid gray;
 		}
 		
 		
+		
 		let canceling = function(bookno, id){
 			$.ajax({
 				url: 'cancelReserv.do',
