@@ -528,12 +528,12 @@
 			monthChart.push(monthNames[(new Date().getMonth() + i) % 12]);
 			let flag = false;
 			for(var sale of salesHost){
-				if((new Date().getMonth() + i)%12 == (Number((sale.sdate).substring(5,7))-1)){
-					salesData.push(Math.round(sale.sales/10000));
+				if((new Date().getMonth() + i)%12 == (Number((sale.mdate).substring(5,7))-1)){
+					salesData.push(Math.round(sale.fee/10000));
 					flag = true;
 					if(new Date().getMonth() === 11){
 						salesCount.innerHTML = sale.count + ' 개';
-						salesMoney.innerHTML = '₩ ' + sale.sales.toLocaleString('ko-KR');
+						salesMoney.innerHTML = '₩ ' + sale.fee.toLocaleString('ko-KR');
 					}
 				}
 			}

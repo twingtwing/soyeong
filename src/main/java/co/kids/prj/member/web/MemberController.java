@@ -237,14 +237,14 @@ public class MemberController {
 
 	//host 상세페이지
 	@GetMapping("/memberSales.do")
-	public String memberSales(HttpSession session,Model model,ReservationVO rvo, SalesVO svo) {
+	public String memberSales(HttpSession session,Model model,ReservationVO rvo,MemberVO vo) {
 		ObjectMapper ob = new ObjectMapper();
 		rvo.setId((String) session.getAttribute("id"));
-		svo.setSid((String) session.getAttribute("id"));
+		vo.setId((String) session.getAttribute("id"));
 		model.addAttribute("sales",memberDao.memberSales(rvo));
 		model.addAttribute("review",reviewDao.totalReview((String) session.getAttribute("id")));
 		try {
-			model.addAttribute("total", ob.writeValueAsString(salesDao.totalSales(svo)));
+			model.addAttribute("total", ob.writeValueAsString(memberDao.totalHost(vo)));
 		} catch (JsonProcessingException e) {
 			model.addAttribute("total", "");
 		}

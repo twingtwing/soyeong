@@ -16,7 +16,7 @@
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="home.do">Main</a></li>
 					<li class="breadcrumb-item"><a
-						href="adminNoticeList.do">Notice</a></li>
+						href="adminNoticeList.do">Notice Management</a></li>
 						<li class="breadcrumb-item"><a
 						href="javascript:void(0)">Notice Update</a></li>
 				</ol>
@@ -27,7 +27,7 @@
 			<div class="col-12">
 				<div class="card">
 					<div class="card-body">
-						<h3 class="card-title text-info">Notice Update</h3>
+						<h3 class="card-title text-warning ml-1">Notice Update</h3>
 						<input type="text" id="btitle" name="btitle"
 							class="form-control input-default my-3" value="${notice.btitle }">
 						<input class="form-control input-default my-3" type="text" name="id" value="${notice.id}" readonly="readonly">
@@ -35,7 +35,7 @@
 						<textarea class="form-control h-150px" rows="6" id="bcontent"
 							name="bcontent">${notice.bcontent }</textarea>
 						<div class="row justify-content-end">
-							<input type="button" id="bSubmit" class="btn mb-1 btn-outline-info m-3" value="완료">
+							<input type="button" id="bSubmit" class="btn btn-rounded btn-outline-dark mb-1 m-3" value="완료">
 						</div>
 					</div>
 				</div>

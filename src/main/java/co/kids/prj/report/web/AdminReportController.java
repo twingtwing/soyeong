@@ -62,4 +62,11 @@ public class AdminReportController {
 		reportDao.reportClear(rpno);
 		return "ok";
 	}
+	
+	//신고횟수
+	@GetMapping("/reportCount.do")
+	@ResponseBody
+	public int reportCount(ReportVO vo) {
+		return reportDao.reportCount(vo);
+	}
 }

@@ -84,15 +84,14 @@
 	WHERE BOOKNO = #{bookno }
 	</update>
 
-	<select id="totalHost">
-	SELECT COUNT(B.*), SUM(L.FEE*(B.CHECKOUT-B.CHECKIN) AS FEE), COUNT(R.*), SUM(R.RVSTAR)
+	<select id="totalHost" parameterType="co.kids.prj.member.service.MemberVO" resultType="co.kids.prj.member.service.MemberVO">
+	SELECT COUNT(*) AS COUNT, SUM(L.FEE*(B.CHECKOUT-B.CHECKIN)) AS FEE, TO_CHAR(b.bookdate,'YYYY-MM') AS MDATE
 	FROM LODGING L
 	INNER JOIN BOOKING B ON L.RNO = B.RNO 
-	INNER JOIN REVIEW R ON L.RNO = R.RNO
 	WHERE L.ID = #{id}
-	AND SDATE BETWEEN '2020-11-01' AND '2021-11-30'
-	GROUP BY TO_CHAR(SDATE, 'YYYY-MM')
-	ORDER BY B.BOOKDATE, L.RNAME
+	AND b.bookdate BETWEEN '2020-11-01' AND '2021-11-30'
+	GROUP BY TO_CHAR(b.bookdate, 'YYYY-MM')
+	ORDER BY 3
 	</select>
 	
 </mapper>

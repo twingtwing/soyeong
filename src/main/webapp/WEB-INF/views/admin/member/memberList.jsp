@@ -34,7 +34,7 @@ table {
 					<div class="row">
 						<div class="card">
 							<div class="card-body pl-5 pr-5">
-								<h4 class="d-inline">User Management</h4>
+								<h4 class="d-inline text-warning">User Management</h4>
 								<p class="text-muted">회원들을 관리하는 페이지 입니다.</p>
 								<p class="text-muted">User management page</p>
 							</div>
@@ -65,6 +65,7 @@ table {
 												<option value="USER">USER</option>
 												<option value="HOST">HOST</option>
 												<option value="ADMIN">ADMIN</option>
+												<option value="BAN">BAN</option>
 											</select>
 										</div>
 										<input type="text" id="inputM" name="inputM"
@@ -81,7 +82,7 @@ table {
 					<div class="card">
 						<div class="card-body">
 							<div class="row ml-2 mb-2">
-								<h3 class="d-inline mt-1 mb-2">User List</h3>
+								<h3 class="d-inline mt-1 mb-2 text-warning">User List</h3>
 							</div>
 							<div class="active-member">
 								<div id="member-table" class="table-responsive" style="display: inline;"></div>

@@ -7,12 +7,7 @@
 <meta charset="UTF-8">
 <title>REPORT</title>
 <style type="text/css">
-.search {
-	display: flex;
-	justify-content: right;
-}
-
-#grid {
+#gridReport {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -24,26 +19,8 @@ td {
 	text-align: center;
 }
 
-.search, h3, #grid {
+h3, #gridReport {
 	width: 65vw;
-}
-
-.search>input, .search>button {
-	padding: 5px 10px;
-	margin: 5px;
-	border-radius: 5px;
-	background-color: white;
-	border: 1px solid lightgray;
-}
-
-.search>input {
-	width: 15rem;
-}
-
-.search>button:hover {
-	background-color: #F3F3F9;
-	cursor: pointer;
-	color: black;
 }
 
 h3 {
@@ -51,35 +28,77 @@ h3 {
 	margin: 2rem;
 }
 
-#grid td {
+#gridReport td {
 	cursor: pointer;
 }
+
+#gridReport div.tui-grid-cell-content {
+	text-align: center;
+}
+
 </style>
-<link rel="stylesheet"
-	href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
-<link rel="stylesheet"
-	href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
-<script
-	src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
-<script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
 </head>
 <body>
-	<div align="center">
-		<div id="all">
-			<h3>신고내역</h3>
-			<div class="search">
-				<input type="search" id="rptitle" name="rptitle" placeholder="내용을 입력해주세요.">
-				<button id="rsearch">검색</button>
-			</div>
-			<div align="center">
-				<div id="gridReport"></div>
+	<div class="content-body">
+		<div class="row page-titles mx-0">
+			<div class="col p-md-0">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="admin.do">Main</a></li>
+					<li class="breadcrumb-item active"><a href="reportPage.do">Report Management</a></li>
+				</ol>
 			</div>
 		</div>
+		<div class="container-fluid">
+			<div class="row mb-3 ml-4 mr-4 d-flex justify-content-between">
+				<div>
+					<div class="row">
+						<div class="card">
+							<div class="card-body pl-5 pr-5">
+								<h4 class="d-inline text-warning">Report Management</h4>
+								<p class="text-muted">신고내역을 관리하는 페이지 입니다.</p>
+								<p class="text-muted">Report management page</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="d-flex align-items-end justify-content-end">
+					<div class="row">
+						<div class="card">
+							<div class="card-body p-3">
+								<div class="input-group icons">
+									<div class="input-group icons">
+										<div class="input-group-prepend">
+											<span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="rsearch">
+												<i class="mdi mdi-magnify"></i>
+											</span>
+										</div>
+										<input type="text" id="rptitle" name="rptitle" class="form-control" placeholder="Enter User ..">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<h3 class="d-inline mt-1 mb-3 text-warning">Report List</h3>
+						</div>
+						<div >
+							<div id="gridReport" class="table-responsive" style="display: inline;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<form action="reportSelect.do" id="frm">
+			<input type="hidden" id="rpno" name="rpno">
+		</form>
 	</div>
-
-	<form action="reportSelect.do" id="frm">
-		<input type="hidden" id="rpno" name="rpno">
-	</form>
 
 
 	<script type="text/javascript">
@@ -100,6 +119,34 @@ h3 {
 		})
 	})();
 	
+	$('#rsearch').on('click',function(){
+		let input = $('#rptitle').val();
+		console.log(input);
+		$.ajax({
+			url : 'reportSearch.do',
+			type : 'get',
+			dataType : 'json',
+			data : 'rptitle='+input
+		})
+		.done(data=>{
+			data.forEach((val,ind)=>{
+				val.rpdate = new Date(val.rpdate).toISOString().substring(0, 10);
+				if(val.iscleared=='TRUE'){
+					val.iscleared='처리완료';
+				}else{
+					val.iscleared='처리 전';
+				}
+			})
+			console.log(data);
+			gridR.resetData(data);
+		}) 
+	});
+	
+	$('#rptitle').on('keypress',function(){
+		if(event.keyCode === 13){
+			$('#rsearch').click();
+		}
+	})
 	
 	const gridR = new tui.Grid({
 	     el : document.getElementById('gridReport'),
@@ -136,17 +183,17 @@ h3 {
 	$('#gridReport').on('click',(event)=>{
 			let rpno = event.target.parentNode.parentNode.firstChild.textContent;
 			let state = event.target.parentNode.parentNode.lastChild.textContent;
-			console.log(event.target.parentNode.parentNode)
-			if(state != '처리완료'){
-				/*
-				클릭못하게 막음
-				*/
-			$('#rpno').val(rpno);
-			$('#frm').submit();
+			console.log(event.target.parentNode.parentNode.nodeName)
+			//잘못눌렀을때 오류방지
+			if(event.target.parentNode.parentNode.nodeName === 'TR'){
+				if(state != '처리완료'){
+					$('#rpno').val(rpno);
+					$('#frm').submit();
+				}
 			}
 		})
 		
-		tui.Grid.applyTheme('clean');
+	tui.Grid.applyTheme('clean');
 		
 	</script>
 </body>

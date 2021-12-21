@@ -12,6 +12,9 @@ public class ReportVO {
 	private String iscleared;
 	private String reporter;
 	private String blackuser;
+	
+	private String author;
+	
 	public int getRpno() {
 		return rpno;
 	}
@@ -59,6 +62,12 @@ public class ReportVO {
 	}
 	public void setBlackuser(String blackuser) {
 		this.blackuser = blackuser;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 	
 	

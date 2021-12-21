@@ -67,4 +67,9 @@ public class MemberServiceImpl implements MemberService {
 		return map.changeRefund(vo);
 	}
 
+	@Override
+	public List<MemberVO> totalHost(MemberVO vo) {
+		return map.totalHost(vo);
+	}
+
 }

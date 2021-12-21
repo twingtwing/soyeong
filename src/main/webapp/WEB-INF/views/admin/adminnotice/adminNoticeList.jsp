@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#admintable div.tui-grid-cell-content {
+	text-align: center;
+}
+</style>
 </head>
 <body>
 
@@ -13,35 +18,68 @@
 		<div class="row page-titles mx-0">
 			<div class="col p-md-0">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+					<li class="breadcrumb-item"><a href="admin.do">Main</a></li>
 					<li class="breadcrumb-item active"><a
-						href="javascript:void(0)">Home</a></li>
+						href="adminNoticeList.do">Notice Management</a></li>
 				</ol>
 			</div>
 		</div>
 		<!-- row -->
 
 		<div class="container-fluid">
-			<div class="col-12">
-				<div class="card">
-					<div class="card-body">
-						<h2>공지사항</h2>
-						<div class="row m-2 justify-content-end">
-							<input type="text" id="btitle" name="btitle" 
-								class="form-control w-25">
-							<button type="button" class="btn btn-dark" id="searchNotice">search</button>
+			<div class="row mb-3 ml-4 mr-4 d-flex justify-content-between">
+				<div>
+					<div class="row">
+						<div class="card">
+							<div class="card-body pl-5 pr-5">
+								<h4 class="d-inline text-warning">Notice Management</h4>
+								<p class="text-muted">공지사항을 관리하는 페이지 입니다.</p>
+								<p class="text-muted">Notice management page</p>
+							</div>
 						</div>
-						<div id="admintable" class="m-5"></div>
+					</div>
+				</div>
+				<div class="d-flex align-items-end justify-content-end">
+					<div class="row">
+						<div class="card">
+							<div class="card-body p-3">
+								<div class="input-group icons">
+									<div class="input-group icons">
+										<div class="input-group-prepend">
+											<span
+												class="input-group-text bg-transparent border-0 pr-2 pr-sm-3"
+												id="searchNotice"> <i class="mdi mdi-magnify"></i>
+											</span>
+										</div>
+											<input type="text" id="btitle" name="btitle"
+												class="form-control w-25" placeholder="제목 검색...">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-body">
+							<div class="row ml-2 mb-2">
+								<h3 class="d-inline mt-1 mb-2 text-warning">Notice List</h3>
+							</div>
+							<div class="active-member">
+								<div id="admintable" class="table-responsive"
+									style="display: inline;"></div>
+							</div>
 						<div class="row justify-content-end">
-							<button type="button" class="btn mb-1 btn-primary"
+							<button type="button" class="btn btn-rounded btn-outline-dark mb-1 mr-3"
 								onclick="location.href = 'adminNoticeForm.do' ">글쓰기</button>
+						</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-
 		<!-- #/ container -->
 	</div>
 

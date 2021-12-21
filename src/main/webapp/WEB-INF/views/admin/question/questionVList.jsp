@@ -34,7 +34,7 @@
 					<div class="row">
 						<div class="card">
 							<div class="card-body pl-5 pr-5">
-								<h4 class="d-inline">Customer Service</h4>
+								<h4 class="d-inline text-warning">Customer Service</h4>
 								<p class="text-muted">고객과 관련된 서비스를 관리하는 페이지 입니다.</p>
 								<p class="text-muted">The Voice of Customer page</p>
 							</div>
@@ -77,9 +77,9 @@
 				<div class="card col-12">
 					<div class="card-body">
 						<div class="card-title pb-2 pt-1">
-							<h4>The Sound of Customers</h4>
+							<h3 class="text-warning ml-2">The Sound of Customers</h3>
 						</div>
-						<div id="cs-table-SC" class="table-responsive"></div>
+						<div id="cs-table-SC" class="table-responsive" style="display: inline;"></div>
 					</div>
 				</div>
 			</div>
@@ -98,6 +98,11 @@
 			for (var i = 0; i < dataSC.length; i++) {
 				if (dataSC[i].qFile != undefined) {
 					dataSC[i].qFile = '<i class="fa fa-download mb-2"></i>';
+				}
+				if(dataSC[i].qProcess === 'Y'){
+					dataSC[i].qProcess = '처리완료';
+				}else {
+					dataSC[i].qProcess = '미 처리';
 				}
 			}
 

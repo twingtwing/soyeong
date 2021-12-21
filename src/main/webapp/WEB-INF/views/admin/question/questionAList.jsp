@@ -30,7 +30,7 @@
 					<div class="row">
 						<div class="card">
 							<div class="card-body pl-5 pr-5">
-								<h4 class="d-inline">Customer Service</h4>
+								<h4 class="d-inline text-warning">Customer Service</h4>
 								<p class="text-muted">고객과 관련된 서비스를 관리하는 페이지 입니다.</p>
 								<p class="text-muted">Q &amp; A management page</p>
 							</div>
@@ -73,9 +73,9 @@
 				<div class="card col-12">
 					<div class="card-body">
 						<div class="card-title pb-2 pt-1">
-							<h4>Q n A</h4>
+							<h3 class="text-warning ml-2">Q n A</h3>
 						</div>
-						<div id="cs-table-Q" class="table-responsive"></div>
+						<div id="cs-table-Q" class="table-responsive" style="display: inline;"></div>
 						<div class="row d-flex justify-content-end">
 							<a href="qeustionAInsert.do"
 								class="btn btn-rounded btn-outline-dark mb-1 mr-3">글쓰기</a>
