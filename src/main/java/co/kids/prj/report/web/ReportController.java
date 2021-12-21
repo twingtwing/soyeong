@@ -24,6 +24,4 @@ public class ReportController {
 		
 		reportDao.reportInsert(vo);		
 	}
-	
-
 }

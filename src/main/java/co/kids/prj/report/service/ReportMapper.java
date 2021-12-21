@@ -9,3 +9,4 @@ public interface ReportMapper {
 	List<ReportVO> reportSearch(ReportVO vo);
 	int reportInsert(ReportVO vo);
 }
+
