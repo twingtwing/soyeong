@@ -46,6 +46,4 @@ public class ReviewVO {
 		this.count = count;
 	}
 	
-	
-	
 }

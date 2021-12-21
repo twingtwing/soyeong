@@ -144,13 +144,12 @@ public class LodgingController {
 
 	@PostMapping("/houseList.do")
 	public String houseList(LodgingVO vo, Model model, HttpServletResponse response) {
-		vo.getSearchKey();
-		vo.getRcheckout();
 		List<LodgingVO> lists = lodgingDao.LodgingSearchList(vo);
 		if (lists.size() < 1) {
 			model.addAttribute("msg", "검색 결과가 없습니다.");
 		} else {
 			model.addAttribute("lists", lists);
+			model.addAttribute("searchKey",vo.getSearchKey());
 		}
 		/*
 		 * for (LodgingVO list : lists) { File file = new File(list.getRphoto()); byte[]

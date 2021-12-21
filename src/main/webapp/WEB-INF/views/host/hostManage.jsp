@@ -177,14 +177,15 @@ button:hover {
 
 
 	<script>
-	let shorten = function(){
-		for(let i=0; i<$('.card-text').length;i++){
-			if($('.card-text')[i].textContent.length>100){
-				$('.card-text')[i].textContent = $('.card-text')[i].textContent.substring(0,100)+'...';
+	let shorten = function(elements, l){
+		for(let i=0; i<elements.length;i++){
+			if(elements[i].textContent.length>l){
+				elements[i].textContent = elements[i].textContent.substring(0,l)+'...';
 			}
 		}
 	}
-	shorten();
+	shorten($('.card-title'),15);
+	shorten($('.card-text'),100);
 	
 	
 	

@@ -8,4 +8,6 @@ public interface ReportService {
 	int reportClear(int rpno);
 	List<ReportVO> reportSearch(ReportVO vo);
 	int reportInsert(ReportVO vo);
+	
+	int reportCount(ReportVO vo);
 }

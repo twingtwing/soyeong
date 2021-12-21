@@ -14,7 +14,7 @@
 			<div class="col p-md-0">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="admin.do">Main</a></li>
-					<li class="breadcrumb-item"><a href="adminQuestion.do">Customer
+					<li class="breadcrumb-item"><a href="questionAList.do">Customer
 							Service</a></li>
 					<li class="breadcrumb-item active">Q n A</li>
 				</ol>
@@ -29,7 +29,7 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="card-title ml-3">
-									<h3 class="gradient-3-text">Q &amp; A UPDATE</h3>
+									<h3 class="text-warning">Q &amp; A UPDATE</h3>
 								</div>
 							</div>
 							<div class="basic-form">

@@ -67,17 +67,6 @@
 									onblur="this.placeholder = '내용을 입력해주세요'"></textarea>
 							</div>
 						</div>
-						
-						<!-- 
-						<hr class="border-warning my-1">
-						<div class="mt-4 mb-4 ml-1">
-							<h4 class="text-dark mb-3">결제 수단</h4>
-							<p><button>카카오 페이</button></p>
-							<p><button>네이버 페이</button></p>
-							<p><button>무통장 입금</button></p>
-							<p><button onclick="creditCard()">신용카드</button></p>
-						</div>
-						 -->
 						 
 						<hr class="border-warning my-1">
 						<div class="mt-4 mb-4 ml-1">
@@ -126,7 +115,6 @@
 								</div>
 								<a href="#" class="book_now_btn button_hover mt-2"> <strong data-id="${id}">예약하기</strong>
 								</a>
-								<button type="button" id="paybtn" onclick="creditCard()">결제</button>
 							</div>
 						</div>
 					</div>
