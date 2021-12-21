@@ -86,9 +86,6 @@ display : none !important;
                                     <div class="card-body">
                                         <canvas id="adminChart" width="500" height="250"></canvas>
                                     </div>
-                                    <div class="card-body">
-                                        <canvas id="admin-chart" width="500" height="250"></canvas>
-                                    </div>
                                 </div>
                             </div>
                         </div>
