@@ -3,7 +3,6 @@
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -95,9 +94,9 @@
 }
 
 .refundBar {
-	background-color: lightgray;
-	padding: 1rem;
-	border: 1px solid lightgray;
+	background-color: #eae0b9;
+	height: 2rem;
+	border: 1px solid #eae0b9;
 	border-radius: 10rem;
 	width: 35vw;
 }
@@ -177,17 +176,17 @@ border : 1px solid gray;
 			<div class="bookDetails">
 				<span>예약 세부정보</span>
 				<span>체크인 - 체크아웃</span>
-				<span>${reservInfo.checkin} ${reservInfo.rcheckin}시<br> - ${reservInfo.checkout} ${reservInfo.rcheckout}시</span>
+				<span>${reservInfo.checkin} &nbsp;&nbsp;${reservInfo.rcheckin}시<br> - ${reservInfo.checkout} &nbsp;&nbsp;${reservInfo.rcheckout}시</span>
 				<span>게스트</span>
 				<span>성인 ${reservInfo.bookadult}명</span>
 				<span>예약번호</span>
 				<span>${reservInfo.bookno}번</span>
 				<span>환불정책</span>
-				<span>${reservInfo.bookrefund}</span>
+				<span>소영과 아이들의 내규에 따름</span>
 				<span>찾아오시는 길</span> 
 				<span>${reservInfo.raddress}</span> 
-				<span>결제정보</span> 
-				<span>대충 가격..${reservInfo.fee}원에 계산..</span>
+				<span>결제 금액</span> 
+				<span id="cost">${reservInfo.fee}</span>
 				<c:if test="${reservInfo.bookcancel eq 'N'}">
 					<button id="cancelBtn">취소하기</button>
 				</c:if>
@@ -214,20 +213,30 @@ border : 1px solid gray;
 		if(new Date('${reservInfo.checkout}')<new Date()){
 			$('#cancelBtn').remove();
 		}
-	
-	
+
+		
+		let checkin = new Date('${reservInfo.checkin}');
+		let checkout = new Date('${reservInfo.checkout}');
+		let one = ${reservInfo.fee};
+		let day = parseInt(+(checkout.getTime()-checkin.getTime())/(1000*3600*24));
+		$('#cost').text('₩ '+parseInt(one*day*(1+0.1+0.01))+' 원');
+		
+		if('${reservInfo.bookrefund}'=='Y'){
+			$('.refundBar').css('backgroundColor','#77c5fd').css('border','#77c5fd 1px solid');
+			$('.state').children().last().text('처리완료').css('font-weight','bold').css('color','darkred');
+		} else{
+			$('.state').children().first().css('font-weight','bold').css('color','darkred');
+		}
+
 		let bookcancel = '${reservInfo.bookcancel}';
 		if (bookcancel == 'N') {
 			$('#cancel').children().remove();
 		}
 		if ('${reservInfo.bookkid}' != '0') {
-			$('.bookDetails>span:nth-child(3)').text(
+			$('.bookDetails>span:nth-child(5)').text(
 					'성인 ${reservInfo.bookadult}명\n아동 ${reservInfo.bookkid}명');
 		}
-		if ('${reservInfo.bookrefund}' == '') {
-			$('.bookDetails>span:nth-child(9)').text('소영과 아이들의 내규에 따름');
-		}
-		
+
 		$('#cancelBtn').on('click',(e)=>{
 			if(window.confirm('정말로 취소하시겠습니까?\n 취소 시 수수료를 제외한 만큼의 금액만 환불됩니다.')){
 				canceling('${reservInfo.bookno}','${id}');			

@@ -178,7 +178,7 @@ public class LodgingController {
 		if (sum / list.size() > 0) {
 			double avg = sum / list.size();
 			avg = Math.round(avg * 100) / 100.0;
-			model.addAttribute("avg", avg + " / 점");
+			model.addAttribute("avg", avg + " / 5 점");
 		} else {
 			model.addAttribute("avg", "아직 후기가 없어요 !");
 		}

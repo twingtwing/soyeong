@@ -7,45 +7,65 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-#id, .password, #tel, #name {
-	width: 20rem;
-	padding: 0.3rem;
-	border: 1px solid #04091e;
-	border-radius: 5px;
-}
+#joinId,
+		.password,
+		#tel,
+		#name {
+			width: 20rem;
+			padding: 0.3rem;
+			border: 1px solid #DBDBDB;
+			border-radius: 5px;
+		}
 
-#joinBox {
-	padding: 3rem;
-	margin: 3rem;
-	width: 50rem;
-	background-color: #ededed;
-}
+		#joinBox {
+			padding: 3rem;
+			margin: 3rem;
+			width: 50rem;
+		}
 
-#name {
-	width: 12rem;
-}
+		#name {
+			width: 12rem;
+		}
 
-form {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	justify-content: space-evenly;
-	padding-top: 3rem;
-}
+		form {
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			justify-content: space-evenly;
+			padding-top: 3rem;
+		}
 
-button {
-	background-color: #04091e;
-	color: lightgray;
-	border: #04091e 1px solid;
-	border-radius: 5px;
-	font-size: 0.7rem;
-	font-weight: bolder;
-	padding: 5px;
-}
+		.ng {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			justify-content: space-between;
+			width: 20rem;
+		}
 
-div>label, #btn {
-	cursor: pointer;
-}
+		button {
+			background-color: #f3c300;
+			color: black;
+			border: #f3c300 1px solid;
+			border-radius: 5px;
+			font-size: 0.7rem;
+			font-weight: bolder;
+			padding: 5px 0.5rem;
+		}
+
+		div>label, #btn,#idChk{
+			cursor: pointer;
+		}
+		#btn{
+			padding: 5px 1.5rem;
+			font-weight: bold;
+		}
+		#btn:hover{
+			background-color: #0069D9;
+			color: white;
+			border: 1px solid #0069D9;
+			transition : all 0.3s;
+		}
 </style>
 </head>
 
@@ -66,23 +86,21 @@ div>label, #btn {
 	<div align="center">
 		<div id="joinBox">
 			<form action="join.do" method="post" id="frm">
-				<div
-					style="display: flex; align-items: center; width: 20rem; justify-content: space-between;">
-					<input type="text" name="id" id="joinId" style="width: 20rem;"
-						value="${member.id }" readonly="readonly">
+				<div style="display: flex; align-items: center; width: 20rem; justify-content: space-between;">
+					<input type="text" placeholder="ID" name="id" id="joinId" style="width: 15rem;" value="${member.id }" readonly="readonly">
+					<button type="button" style="position: relative; right:0px;" id="idChk">중복확인</button>
 				</div>
-				<br> <input type="password" placeholder="Password"
-					name="password" class="password"><br> <input
-					type="password" placeholder="Password 확인" name="password2"
-					class="password"><br>
-				<div
-					style="display: flex; align-items: center; width: 20rem; justify-content: space-between;">
-					<input type="text" style="width: 15rem;" id="name"
-						value="${member.name }" name="name" readonly="readonly"> <input
-						type="text" style="width: 4rem;" value="${member.gender }"
-						name="gender" readonly="readonly">
-				</div>
-				<br> <input type="text" name="tel" id="tel" placeholder="tel" <c:if test="${ not empty member.tel }">value="${member.tel }" readonly="readonly"</c:if>><br>
+				<br>
+				<input type="password" placeholder="Password" name="password" class="password"><br>
+				<input type="password" placeholder="Password 확인" name="password2" class="password"><br>
+				<div class="ng">
+					<input type="text" placeholder="이름" id="name" value="${member.name }" name="name" readonly="readonly">
+					<input type="radio" value="M" name="gender" checked="checked">남성
+					<input type="radio" value="F" name="gender">여성
+					<input type="text" style="width: 4rem;" value="${member.gender }" name="gender" readonly="readonly">
+					<!--  집에가서 고칠게요~~ -->
+				</div><br>
+				<input type="text" name="tel" id="tel" placeholder="tel" <c:if test="${ not empty member.tel }">value="${member.tel }" readonly="readonly"</c:if>><br>
 				<div style="display: flex; align-items: center;">
 					<label><input type="checkbox" class="law">&nbsp;
 						이용약관 확인</label>
@@ -93,10 +111,11 @@ div>label, #btn {
 				<c:if test="${not empty member.kakao }">
 					<input type="hidden" value="Y" name="kakao">
 				</c:if>
-				<button type="button" id="btn" style="margin-top: 3rem;">회원가입</button>
+				<button type="button" id="btn" style="margin-top:3rem;">회원가입</button>
 			</form>
 		</div>
 	</div>
+	
 	<script type="text/javascript">
 		function join(){
 			let pw = document.getElementsByClassName('password');

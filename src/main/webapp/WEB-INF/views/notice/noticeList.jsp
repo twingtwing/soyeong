@@ -24,7 +24,7 @@
             <div class="row m-2 d-flex justify-content-end">
                 <input type="text" id="btitle" name="btitle" 
                 	class="form-control w-25" >
-                <button class="genric-btn primary small font-weight-bold" id="nsearch">Search</button>
+                <button class="genric-btn primary small font-weight-bold" id="nsearch" style="margin-left:1rem;">Search</button>
             </div>
             <div id="noticeTable"></div>
             <br>
