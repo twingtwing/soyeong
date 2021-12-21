@@ -187,11 +187,12 @@
 												                    <form id="rpfrm">
 												                        <div class="form-group">
 												                            <input type="text" class="form-control" id="rptitle" name="rptitle" placeholder="제목을 입력하세요"
-												                                onfocus="this.placeholder = ''" onblur="this.placeholder = '제목을 입력하세요'" required="">   
+												                                onfocus="this.placeholder = ''" onblur="this.placeholder = '제목을 입력하세요'" required="required">   
 												                        </div>
 												                        <div class="form-group">
 												                            <div class="default-select" id="default-select">
-												                                <select style="display: none;" id="rptype" name="rptype">
+												                                <select style="display: none;" id="rptype" name="rptype" required="required">
+												                                	<option value="">신고 사유 선택</option>
 												                                    <option value="안전">안전 문제</option>
 												                                    <option value="금전">금전</option>
 												                                    <option value="불법 운영">불법 운영</option>
@@ -199,7 +200,8 @@
 												                                <div class="nice-select" tabindex="0">
 												                                    <span class="current">신고 사유 선택</span>
 												                                    <ul class="list">
-												                                        <li data-value="안전" class="option selected">안전 문제</li>
+												                                    	<li data-value="" class="option selected">신고 사유 선택</li>
+												                                        <li data-value="안전" class="option">안전 문제</li>
 												                                        <li data-value="금전" class="option">금전 문제</li>
 												                                        <li data-value="불법 운영" class="option">불법 운영</li>
 												                                    </ul>
@@ -448,6 +450,9 @@
 	    $("#reportsave").click(function(){
 	    	event.stopPropagation();
             event.preventDefault();
+            if($('#rptitle').val().length==0){alert("제목을 입력하세요"); $('#rptitle').focus(); return false; }
+            if($('#rpcontent').val().length==0){alert("내용을 입력하세요"); $('#rpcontent').focus(); return false; }
+            if($('#rptype').val()==""){alert("신고 사유를 선택하세요."); $('#rptype').focus(); return false; }
             $.ajax({
             	url : 'reportInsert.do',
             	type : 'post',
@@ -456,7 +461,8 @@
             		alert("신고가 완료되었습니다.");
             		$('#reportModal').modal('hide');
             	}
-            })
+            }) 
+            
 	    });
 	    
 	    
