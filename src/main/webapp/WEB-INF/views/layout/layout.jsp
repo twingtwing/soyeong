@@ -34,7 +34,6 @@
             border-bottom: 3px solid #f3c300;
         }
 	</style>
-
 	<script src="https://kit.fontawesome.com/00b1224df3.js"	crossorigin="anonymous"></script>
 
 	<script src="resources/js/jquery-3.2.1.min.js"></script>

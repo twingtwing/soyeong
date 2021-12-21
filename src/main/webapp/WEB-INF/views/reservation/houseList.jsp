@@ -123,7 +123,7 @@ footer {
 						<div>
 						<div class="about_content">
 						<div class="hotelInfo">
-							<h2 class="title title_color" style="margin-top:1.5rem;" data-rno="${list.rno}">${list.rname}</h2>
+							<h2 class="title title_color" style="margin-top:1.5rem;" data-rno="${list.rno}">${list.rname}<span>야점..야점이오</span></h2>
 							<p class="rcontent">${list.rcontent}</p>
 							<span class="rguest">${list.rguest}</span>
 							<span class="fee">${list.fee}</span>
@@ -244,7 +244,8 @@ footer {
 				rcategory : category,
 				am1 : am1,
 				am2 : am2,
-				am3 : am3 
+				am3 : am3,
+				searchKey : '${searchKey}'
 			}
 			$.ajax({
 				url : 'hotelSort.do',
@@ -264,11 +265,11 @@ footer {
 			for(let hotel of result){
 				$('#houseList').append($('<div>').append($('<div>').attr('class','about_content')
 														.append($('<div>').attr('class','hotelInfo')
-																.append($('<h2>').attr('class','title title_color').attr('data-rno',hotel.rno).css('margin-top','1.5rem').text(hotel.rname),$('<p>').text(hotel.rcontent),
+																.append($('<h2>').attr('class','title title_color').attr('data-rno',hotel.rno).css('margin-top','1.5rem').text(hotel.rname),$('<p>').attr('class','rcontent').html(hotel.rcontent),
 															),
-														$('<div>').append($('<img>').attr('src',hotel.rphoto)))))
+														$('<div>').attr('class','rphoto').append($('<img>').attr('src',hotel.rphoto)))))
 			}
-
+			shorten();
  		}
 			
 	

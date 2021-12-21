@@ -211,6 +211,11 @@ border : 1px solid gray;
 		</div>
 	</div>
 	<script type="text/javascript">
+		if(new Date('${reservInfo.checkout}')<new Date()){
+			$('#cancelBtn').remove();
+		}
+	
+	
 		let bookcancel = '${reservInfo.bookcancel}';
 		if (bookcancel == 'N') {
 			$('#cancel').children().remove();
