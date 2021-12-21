@@ -20,11 +20,11 @@ $(document).ready(function(){
         //접기 펼치기
         //다른곳에도 collapse 사용하면 변수명 변경해야함
         $('.collapse.collapse-Q:not(.collapse-remove)').on("show.bs.collapse", function () {
-            $('a[href="#' + $(this).attr('id') + '"]').html('<i class="fas fa-chevron-down"></i>');
+            $('a[href="#' + $(this).attr('id') + '"]:not(.notcol)').html('<i class="fas fa-chevron-down"></i>');
         });
 
         $('.collapse.collapse-Q:not(.collapse-remove)').on("hide.bs.collapse", function () {
-            $('a[href="#' + $(this).attr('id') + '"]').html('<i class="fas fa-chevron-up"></i>');
+            $('a[href="#' + $(this).attr('id') + '"]:not(.notcol)').html('<i class="fas fa-chevron-up"></i>');
         });
 
         //더보기 접기 펼치기

@@ -57,7 +57,8 @@
 												<table class="w-100">
 													<tr>
 														<td class="text-center text-warning" width="5%"><strong>Q</strong></td>
-														<td class="pl-3 font-weight-bold" width="89%">[${QnAs.get(i).fCategory }] ${QnAs.get(i).fTitle }</td>
+														<td class="pl-3 font-weight-bold" width="89%">
+														<a class="text-dark notcol" href="#collapse-Q-${i}" data-toggle="collapse">[${QnAs.get(i).fCategory }] ${QnAs.get(i).fTitle }</a></td>
 														<td class="text-center" width="5%">
 															<a class="text-dark" href="#collapse-Q-${i}" data-toggle="collapse"><i class="fas fa-chevron-up"></i></a>
 														</td>
@@ -85,8 +86,8 @@
 												<table class="w-100">
 													<tr>
 														<td class="text-center text-warning" width="5%"><strong>Q</strong></td>
-														<td class="pl-3 font-weight-bold" width="89%">[${QnAs.get(i).fCategory}]
-															${QnAs.get(i).fTitle }</td>
+														<td class="pl-3 font-weight-bold" width="89%">
+														<a class="text-dark notcol" href="#collapse-Q-${i}" data-toggle="collapse">[${QnAs.get(i).fCategory }] ${QnAs.get(i).fTitle }</a></td>
 														<td class="text-center" width="5%"><a
 															class="text-dark" href="#collapse-Q-${i}"
 															data-toggle="collapse"><i class="fas fa-chevron-up"></i></a>
@@ -115,8 +116,8 @@
 												<table class="w-100">
 													<tr>
 														<td class="text-center text-warning" width="5%"><strong>Q</strong></td>
-														<td class="pl-3 font-weight-bold" width="89%">[${QnAs.get(i).fCategory}]
-															${QnAs.get(i).fTitle }</td>
+														<td class="pl-3 font-weight-bold" width="89%">
+														<a class="text-dark notcol" href="#collapse-Q-${i}" data-toggle="collapse">[${QnAs.get(i).fCategory }] ${QnAs.get(i).fTitle }</a></td>
 														<td class="text-center" width="5%"><a
 															class="text-dark" href="#collapse-Q-${i}"
 															data-toggle="collapse"><i class="fas fa-chevron-up"></i></a>
@@ -192,8 +193,6 @@
 							</div>
 						</div>
 						<div class="col-md-12 d-flex justify-content-center mt-4">
-							<!-- primary or warning 정해야함 -->
-							<!-- 또한 각 페이지 색깔 일치 시켜야함 -->
 							<input type="submit" id="submit-Q" class="btn theme_btn button_hover" value="Submit">
 						</div>
 					</div>
