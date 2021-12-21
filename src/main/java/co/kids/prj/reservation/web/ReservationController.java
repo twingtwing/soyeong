@@ -89,5 +89,15 @@ public class ReservationController {
 		return "reservation/myReservationDetail";
 	}
 
+	@PostMapping("/cancelReserv.do")
+	@ResponseBody
+	public String cancelReserv(ReservationVO vo) {
+		if(rDao.reservDelete(vo)!=0) {
+			return "ok";
+		} else {
+			return "ng";
+		}
+		
+	}
 	
 }

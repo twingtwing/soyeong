@@ -47,9 +47,9 @@
 		)
 	</insert>
 
-	<delete id="reservDelete">
-
-	</delete>
+	<update id="reservDelete" parameterType="co.kids.prj.reservation.service.ReservationVO">
+		UPDATE BOOKING SET BOOKCANCEL = 'Y' where bookno = #{bookno} AND ID = #{id}
+	</update>
 
 	<select id="reservLodgSelect" parameterType="co.kids.prj.reservation.service.ReservLodVO" resultType="co.kids.prj.reservation.service.ReservLodVO">
 		SELECT * FROM BOOKING B
