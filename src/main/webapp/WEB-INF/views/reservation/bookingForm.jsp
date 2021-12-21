@@ -126,7 +126,6 @@
 								</div>
 								<a href="#" class="book_now_btn button_hover mt-2"> <strong data-id="${id}">예약하기</strong>
 								</a>
-								<button type="button" id="paybtn" onclick="creditCard()">결제</button>
 							</div>
 						</div>
 					</div>

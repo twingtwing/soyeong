@@ -1,5 +1,3 @@
-detailedInfo 백업
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -10,7 +8,6 @@ detailedInfo 백업
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="resources/css/bootstrap.css">
 <link rel="stylesheet" href="resources/vendors/linericon/style.css">
 <link rel="stylesheet" href="resources/css/font-awesome.min.css">
@@ -96,6 +93,7 @@ detailedInfo 백업
 									<div class="boking_table">
 										<div class="row">
 											<div class="col-md-6">
+																					
 												<div class="book_tabel_item">
 													<div class="form-group">
 														<div class='input-group date' id='datetimepicker-in'>

@@ -116,7 +116,7 @@
 							href="question.do">고객센터</a></li>
 						<!-- 로그인 되어 있을시 -->
 						<c:if test="${author eq 'USER' }">
-							<li class="nav-item"><a class="nav-link" href="myReserv.do">내 예약정보</a></li>
+							<li class="nav-item"><a class="nav-link" href="myReserv.do?ispaid=A">내 예약정보</a></li>
 						</c:if>
 						<c:if test="${author eq 'USER'}">
 							<li class="nav-item"><a class="nav-link" href="memberAuthor.do">호스트 신청</a></li>
@@ -145,7 +145,9 @@
 									<li class="nav-item"><a class="nav-link"
 										href="memberProfile.do">내 정보</a></li>
 									<li class="nav-item"><a class="nav-link"
-										href="myReserv.do">나의 예약 정보</a></li>
+										href="myReserv.do?ispaid=A">나의 예약 정보</a></li>
+									<li class="nav-item"><a class="nav-link"
+										href="hostManage.do">호스팅 관리</a></li>
 									<li class="nav-item"><a class="nav-link" href="logout.do"
 										onclick="kakaoLogout();">로그아웃</a></li>
 								</c:if>
