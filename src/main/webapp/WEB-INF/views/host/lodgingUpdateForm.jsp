@@ -254,6 +254,9 @@ form input:hover, textarea:hover {
 	</div>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+	$('#subject').val($('#subject').val().replace(/<br>/gi,'\n'));
+	
+
 	$(function(){
 		$("#btn1").click(function(){
 			if($('textarea').first().val().length>4000){
@@ -261,7 +264,7 @@ form input:hover, textarea:hover {
 				return;
 			}
 			frm.action= "lodgingUpdate.do";
-			$('textarea').first().val($('textarea').first().val().replace(/(?:\r\n|\r|\n)/g, '<br>'));
+			$('#subject').val($('#subject').val().replace(/(?:\r\n|\r|\n)/g, '<br>'));
 			frm.submit();
 		});
 	})

@@ -1,10 +1,12 @@
 package co.kids.prj.sales.service;
 
+import java.sql.Date;
+
 public class SalesVO {
 	private int sno;
 	private String sid;
 	private int sales;
-	private String sdate;
+	private Date sdate;
 	private String count;
 	
 	public int getSno() {
@@ -25,10 +27,10 @@ public class SalesVO {
 	public void setSales(int sales) {
 		this.sales = sales;
 	}
-	public String getSdate() {
+	public Date getSdate() {
 		return sdate;
 	}
-	public void setSdate(String sdate) {
+	public void setSdate(Date sdate) {
 		this.sdate = sdate;
 	}
 	public String getCount() {

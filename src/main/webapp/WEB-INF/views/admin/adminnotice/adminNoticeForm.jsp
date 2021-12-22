@@ -69,9 +69,11 @@
 
 	<script>
 	
+	
 	$('#nsubmit').on('click',function(){
 		event.stopPropagation();
         event.preventDefault();
+		$('#bcontent').val($('#bcontent').val().replace(/(?:\r\n|\r|\n)/g, '<br>'));
 		$.ajax({
 			url:'adminNoticeFormInsert.do',
 			data: $('#noticeForm').serialize(),

@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<!--================Banner Area =================-->
 	<section class="banner_area">
 		<div class="booking_table d_flex align-items-center">
@@ -123,7 +124,8 @@
 		</div>
 	</section>
 		<form action="booking.do" method="post" id="frm">
-
+		<input type="hidden" id="servicesale" name="servicesale" value="${serviceFee }">
+		<input type="hidden" name="sid" value="${hotel.id }">
 		<input type="hidden" name="rno" value="${hotel.rno}">
 		<input type="hidden" name="id" value="${id}">
 		<input type="hidden" name="checkin" value="${rcheckin}">
@@ -136,20 +138,20 @@
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<script type="text/javascript">
 		// 버튼 클릭시
+		console.log('${rcheckin}')
 		$('.book_now_btn').first().on('click',(e)=>{
 			if(!$('#primary-checkbox').is(':checked')){
 				window.alert('소영과 아이들의 환불정책에 동의해주시기 바랍니다.');
 				return;
 			} 
 			$('#frm>input').last().val($('.single-textarea').val());
-			
 			if($('.book_now_btn>strong')[0].dataset.id==''){
 				window.alert('로그인을 해주세요.');
 				$('#loginBtn').click();
 				return;
 			} 
-			creditCard();
-			
+			//creditCard();
+			$('#frm').submit();
 		});
 		
 		

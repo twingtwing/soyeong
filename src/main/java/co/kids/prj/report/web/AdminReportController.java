@@ -52,6 +52,7 @@ public class AdminReportController {
 	@GetMapping("/reportSelect.do")
 	public String reportSelect(ReportVO vo, @RequestParam(value = "rpno") int rpno, Model model) {
 		vo = reportDao.reportSelect(rpno);
+		System.out.println(vo.getRptitle()+vo.getRpcontent());
 		model.addAttribute("report", vo);
 		return "admin/report/reportSelect";
 	}

@@ -77,7 +77,6 @@ $(document).ready(function(){
 					formData.append('qTitle',$('#qTitle').val());
 					formData.append('qAnswer',$('#qAnswer').val());
 					formData.append('qEmail',$('#qEmail').val());
-					
                     $.ajax({
                         url: form.action,
 						processData: false,

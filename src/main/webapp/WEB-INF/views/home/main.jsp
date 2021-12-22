@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,7 +104,7 @@
                                 <a href="detailedInfo.do?rno=${room.rno }" class="btn theme_btn button_hover">Book Now</a>
                             </div>
                             <a href="#"><h4 class="sec_h4">${room.rname }</h4></a>
-                            <h5>${room.fee }<small>/night</small></h5>
+                            <h5>₩ <fmt:formatNumber>${room.fee }</fmt:formatNumber><small>/night</small></h5>
                         </div>
                     </div>
                 	</c:forEach>

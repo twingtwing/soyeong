@@ -1,5 +1,6 @@
 package co.kids.prj;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -28,12 +29,12 @@ public class HomeController {
 		vo.setSearchKey("");
 		vo.setRcategory("A");
 		vo.setRguest(0);
+		vo.setRuse("Y");
 		List<LodgingVO> list = lodgingDao.LodgingSelectList(vo);
-		System.out.println(list);
 		if(list.size() < 8) {
 			model.addAttribute("list", list);
-		}else {
-			for (int i = 8; i < list.size(); i++) {
+		} else {
+			for (int i = 7; i < list.size(); i++) {
 				list.remove(i);
 			}
 			model.addAttribute("list", list);

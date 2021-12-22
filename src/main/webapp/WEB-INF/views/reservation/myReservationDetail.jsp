@@ -212,9 +212,7 @@ border : 1px solid gray;
 	<script type="text/javascript">
 		if(new Date('${reservInfo.checkout}')<new Date()){
 			$('#cancelBtn').remove();
-		}
-
-		
+		}		
 		let checkin = new Date('${reservInfo.checkin}');
 		let checkout = new Date('${reservInfo.checkout}');
 		let one = ${reservInfo.fee};

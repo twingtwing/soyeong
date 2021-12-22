@@ -320,7 +320,7 @@
 			var rcheckout = $(e.relatedTarget).data('rcheckout');
 			var adult = $(e.relatedTarget).data('adult');
 			var kid = $(e.relatedTarget).data('kid');
-			var pay = $(e.relatedTarget).data('pay');
+			var pay = +$(e.relatedTarget).data('pay');
 			var addr = $(e.relatedTarget).data('addr');
 			var request = $(e.relatedTarget).data('request');
 			var photo = $(e.relatedTarget).data('photo');
@@ -329,12 +329,13 @@
 			let checkin = $(e.relatedTarget).data('checkin');
 			let checkout = $(e.relatedTarget).data('checkout');
 			
+			let day = parseInt(+(new Date(checkout).getTime()-new Date(checkin).getTime())/(1000*3600*24));
 			$('#ckin').text(checkin);
 			$('#ckout').text(checkout);
 			$('#mdCheckin').html(rcheckin + '시');
 			$('#mdCheckout').html(rcheckout + '시');
 			$('#mdCnum').html('어른 : ' + adult + '명, 아이 : ' + kid + '명');
-			$('#mdPay').html(pay + '원');
+			$('#mdPay').text('₩ '+parseInt(pay*day*(1+0.1+0.01))+' 원');
 			$('#mdRequest').html(request);
 			if (request == '') {
 				$('#mdRequest').text('없음');
