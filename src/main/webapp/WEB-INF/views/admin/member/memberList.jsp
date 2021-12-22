@@ -103,6 +103,14 @@ table {
 				div.children[0].remove();
 			}
 			
+			for(var ary of dataM){
+				if(ary.status === 'C'){
+					ary.status = '신규'
+				}else if(ary.status === 'U'){
+					ary.status = '수정'
+				}
+			}
+			
 		    const gridMember = new tui.Grid({
 		        el : div,
 		        data : dataM,

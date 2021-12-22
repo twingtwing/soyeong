@@ -144,10 +144,12 @@
 								<c:if test="${not empty id}">
 									<li class="nav-item"><a class="nav-link"
 										href="memberProfile.do">내 정보</a></li>
+									<c:if test="${author ne 'BAN'}">
 									<li class="nav-item"><a class="nav-link"
 										href="myReserv.do?ispaid=A">나의 예약 정보</a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="hostManage.do">호스팅 관리</a></li>
+									</c:if>
 									<li class="nav-item"><a class="nav-link" href="logout.do"
 										onclick="kakaoLogout();">로그아웃</a></li>
 								</c:if>
@@ -212,17 +214,15 @@
 			}
 		})
 	}
-	
-	/* 
+/* 	
 	if($('#loginModal').css('display')=='block'){
 		$('#loginModal').on('keypress',(e)=>{			
 			if(e.keyCode==27){
-				$('.close')[0].click();
+				console.log()
+				$('.close').click();
 			}			
 		})
-	}
-	*/
-	
+	} */
 
 	// 비밀번호 찾기 클릭시
 	$('.findPw').click(()=>{

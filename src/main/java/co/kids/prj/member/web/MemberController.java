@@ -24,14 +24,11 @@ import co.kids.prj.member.service.MemberServiceImpl;
 import co.kids.prj.member.service.MemberVO;
 import co.kids.prj.reservation.service.ReservationVO;
 import co.kids.prj.review.service.ReviewService;
-import co.kids.prj.sales.service.SalesService;
-import co.kids.prj.sales.service.SalesVO;
 import co.kids.prj.sns.service.KakaoLoginService;
 
 @Controller
 public class MemberController {
 	@Autowired private MemberServiceImpl memberDao;
-	@Autowired private SalesService salesDao;
 	@Autowired private ReviewService reviewDao;
 
 	@Autowired private JavaMailSender mailSender;

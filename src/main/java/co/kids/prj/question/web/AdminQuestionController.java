@@ -6,11 +6,15 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.tika.Tika;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +33,8 @@ import co.kids.prj.question.service.QuestionVVO;
 public class AdminQuestionController {
 	@Autowired private QuestionAService questionADao;
 	@Autowired private QuestionVService questionVDao;
+	
+	@Autowired private JavaMailSender mailSender;
 	
 	@Autowired private String saveDir;
 	
@@ -142,6 +148,38 @@ public class AdminQuestionController {
 		int r = questionVDao.questionChangeProcess(qNo);
 		if(r == 0) {result = "F";}
 		return result;
+	}
+	
+	//이메일 페이지 이동
+	@GetMapping("/questionVEmail.do")
+	public String questionVEmail(Model model, @Param("email") String email, @Param("qNo") int qNo) {
+		model.addAttribute("email",email);
+		model.addAttribute("qNo",qNo);
+		return "admin/question/questionVEmail";
+	}
+	
+	//이메일 처리
+	@PostMapping("/questionVSend.do")
+	@ResponseBody
+	public String questionVSend(@Param("email") String email,@Param("title") String title,@Param("content") String content) {
+		String fromEamil = "soyoungbnb@gmail.com";
+
+		MimeMessage mail = mailSender.createMimeMessage();
+		MimeMessageHelper mailHelper = new MimeMessageHelper(mail,"UTF-8");
+		
+		try {
+			mailHelper.setFrom(fromEamil);
+			mailHelper.setTo(email);
+			mailHelper.setSubject(title);
+			mailHelper.setText(content,true);//true는 html을 사용한다는 의미 -> img도 보낼수 있음
+			
+			mailSender.send(mail);
+			
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
+		return "Y";
 	}
 	
 	//파일 다운로드

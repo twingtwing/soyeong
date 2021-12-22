@@ -11,41 +11,45 @@
     <link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
     <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
     <script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
+    <style type="text/css">
+    #noticeTable div.tui-grid-cell-content {
+		text-align: center;
+	}
+    </style>
 </head>
 <body>
 
-		<!--================ start Banner Area =================-->
-	<section class="banner_area">
-		<div class="booking_table d_flex align-items-center">
-			<div class="overlay bg-parallax" data-stellar-ratio="0.9"
-				data-stellar-vertical-offset="0" data-background=""></div>
-			<div class="container">
-				<div class="banner_content text-center">
-					<h2>공지사항</h2>
-				</div>
-			</div>
-		</div>
-	</section>
+	<!--================ start Banner Area =================-->
+	<section class="breadcrumb_area">
+            <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
+            <div class="container">
+                <div class="page-cover text-center">
+                    <h2 class="page-cover-tittle">공지사항</h2>
+                </div>
+            </div>
+        </section>
 	<!--================ Banner Area =================-->
 
 	<!--================Banner Area =================-->
 
     <section class="section_gap">
         <div class="container">
-
-            <h3>공지사항</h3>
-            <br>
-            <div class="row m-2 d-flex justify-content-end">
+        	<div class="row mb-30">
+                <a href="javascript:history.back()" class="genric-btn warning-border circle arrow pl-4"><span class="lnr lnr-arrow-left mr-2 ml-0 pl-0"></span>Prev</a>
+            </div>
+			<div class="section_title text-center">
+				<h2 class="title_color">
+					<strong>공지사항</strong>
+				</h2>
+			</div>
+            <div class="row m-2 mt-4 d-flex justify-content-end">
                 <input type="text" id="btitle" name="btitle" 
                 	class="form-control w-25" >
-                <button class="genric-btn primary small font-weight-bold" id="nsearch" style="margin-left:1rem;">Search</button>
+                <button class="genric-btn primary small font-weight-bold" id="nsearch" style="margin-left:0.5rem;">Search</button>
             </div>
-            <div id="noticeTable"></div>
-            <br>
-
-            <!-- <div class="form-row float-right">
-                <button type="button" class="genric-btn primary" onclick = "location.href = 'noticeForm.do' ">글쓰기</button>
-            </div> -->
+            <div>
+            	<div id="noticeTable"></div>
+            </div>
         </div>
     </section>
     
@@ -69,7 +73,7 @@
 	        rowHeaders: [{type: 'rowNum', align : 'center', valign : 'middle'}],
 	        pageOptions: {
 	            useClient: true,
-	            perPage: 5
+	            perPage: 10
 	        },
 	        pagination: true,
 	        columns: [
@@ -79,12 +83,16 @@
 	            },
 	            {
 	                header: '작성일자',
-	                name: 'bdate'
-	            },
+	                name: 'bdate',
+	                width : 'auto',
+		            minWidth :150
+		         }, 
 	            {
 	                header: '작성자',
-	                name: 'id'
-	            }
+	                name: 'id',
+	                width : 'auto',
+		            minWidth :150
+		         }
 	        ]
 	    });
 
