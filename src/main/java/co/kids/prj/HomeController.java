@@ -29,11 +29,10 @@ public class HomeController {
 		vo.setRcategory("A");
 		vo.setRguest(0);
 		List<LodgingVO> list = lodgingDao.LodgingSelectList(vo);
-		System.out.println(list);
 		if(list.size() < 8) {
 			model.addAttribute("list", list);
 		}else {
-			for (int i = 8; i < list.size(); i++) {
+			for (int i = list.size()-1; i > 7; i--) {
 				list.remove(i);
 			}
 			model.addAttribute("list", list);
