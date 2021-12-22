@@ -196,6 +196,7 @@
 												                                    <option value="안전">안전 문제</option>
 												                                    <option value="금전">금전</option>
 												                                    <option value="불법 운영">불법 운영</option>
+												                                    <option value="기타">기타</option>
 												                                </select>
 												                                <div class="nice-select" tabindex="0">
 												                                    <span class="current">신고 사유 선택</span>
@@ -204,6 +205,7 @@
 												                                        <li data-value="안전" class="option">안전 문제</li>
 												                                        <li data-value="금전" class="option">금전 문제</li>
 												                                        <li data-value="불법 운영" class="option">불법 운영</li>
+												                                        <li data-value="기타" class="option">기타</li>
 												                                    </ul>
 												                                </div>
 												                            </div>
