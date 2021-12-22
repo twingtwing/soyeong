@@ -387,6 +387,10 @@
 			window.alert($('#rguest').text()+'인을 초과할 수 없는 방입니다.');
 			return;
 		}
+		if(new Date($('#rcheckin').val())<=new Date() || new Date($('#rcheckout').val())<new Date()){
+			window.alert('날짜를 확인해주세요.');
+			return;	
+		}
 		let one = parseInt('${hotelDetail.fee}');
 		let checkin = new Date($('#rcheckin').val());
 		let checkout = new Date($('#rcheckout').val());
@@ -411,10 +415,6 @@
 	})
 	
 	$('.book_now_btn').first().on('click',(e)=>{
-		if(new Date($('#rcheckin').val())<=new Date() || new Date($('#rcheckout').val())<new Date()){
-			window.alert('날짜를 확인해주세요.');
-			return;	
-		}
 		$('.theme_btn_two').click();
 		$('#letsgo').on('click',()=>{
 			frm.submit();

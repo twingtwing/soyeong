@@ -42,7 +42,7 @@
 		INSERT INTO
 		BOOKING(BOOKNO,RNO,ID,BOOKDATE,CHECKIN,CHECKOUT,BOOKADULT,BOOKKID,ISPAID,BOOKCANCEL,BOOKREFUND,BOOKREQUEST)
 		VALUES((SELECT MAX(BOOKNO) FROM
-		BOOKING)+1,#{rno},#{id},DEFAULT,#{checkin},#{checkout},#{bookadult},#{bookkid},DEFAULT,DEFAULT,null,#{bookrequest}
+		BOOKING)+1,#{rno},#{id},DEFAULT,#{checkin},#{checkout},#{bookadult},#{bookkid},'Y',DEFAULT,null,#{bookrequest}
 		)
 	</insert>
 
@@ -68,15 +68,13 @@
 		<if test='ruse eq "B"'>		
 		AND TO_DATE(B.CHECKIN,'YYYY/MM/DD')  <![CDATA[>]]> TO_DATE(SYSDATE,'YYYY/MM/DD')  
 		AND TO_DATE(B.CHECKIN,'YYYY/MM/DD') <![CDATA[>]]> TO_DATE(SYSDATE,'YYYY/MM/DD')  
-		AND B.ISPAID = 'Y'
         AND B.BOOKCANCEL = 'N'
         AND L.RUSE = 'N'
 		</if>
 		<if test='ruse eq "C"'>
 		AND TO_DATE(B.CHECKIN,'YYYY/MM/DD') <![CDATA[<]]> TO_DATE(SYSDATE,'YYYY/MM/DD')  
-        AND B.ISPAID = 'Y'
         AND B.BOOKCANCEL = 'N'
-        AND RUSE = 'N'
+        AND L.RUSE = 'N'
 		</if>
 		<if test='ruse eq "D"'>
 		AND B.BOOKCANCEL = 'Y'
