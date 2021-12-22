@@ -132,7 +132,7 @@ body,h2,h6{
                     </div>
                     <div class="col-md-6 text-center">
                         <img src="resources/image/instagram/img1.jpg" class="img-responsive" width="510" height="420" alt="">
-                        <div class="carousel-caption ml-5 pl-4 pb-0">
+                        <div class="carousel-caption ml-3 pb-0">
                         	<h4 class="mb-0 ml-5"><i class="fas fa-crown text-warning" aria-hidden="true"></i></h4>
                         	<h3>CEO 오재준</h3>
                         </div>
@@ -162,8 +162,6 @@ body,h2,h6{
                                 <h6>soyoungbnb@gmain.com</h6>
                                 <p>Send us your query anytime!</p>
                             </div>
-                            <a href="#"><h4 class="sec_h4">${room.rname }</h4></a>
-                            <h5>₩ <fmt:formatNumber>${room.fee }</fmt:formatNumber><small>/night</small></h5>
                         </div>
                     </div>
                     <div class="col-md-7">
