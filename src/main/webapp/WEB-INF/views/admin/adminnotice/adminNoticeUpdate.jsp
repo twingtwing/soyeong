@@ -14,11 +14,11 @@
 		<div class="row page-titles mx-0">
 			<div class="col p-md-0">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="home.do">Main</a></li>
+					<li class="breadcrumb-item"><a href="home.do">홈</a></li>
 					<li class="breadcrumb-item"><a
-						href="adminNoticeList.do">Notice Management</a></li>
+						href="adminNoticeList.do">공지 관리</a></li>
 						<li class="breadcrumb-item"><a
-						href="javascript:void(0)">Notice Update</a></li>
+						href="javascript:void(0)">공지 수정</a></li>
 				</ol>
 			</div>
 		</div>
@@ -27,7 +27,9 @@
 			<div class="col-12">
 				<div class="card">
 					<div class="card-body">
-						<h3 class="card-title text-warning ml-1">Notice Update</h3>
+						<div class="card-title">
+							<h3 class="text-warning ml-1">Notice Update</h3>
+						</div>
 						<input type="text" id="btitle" name="btitle"
 							class="form-control input-default my-3" value="${notice.btitle }">
 						<input class="form-control input-default my-3" type="text" name="id" value="${notice.id}" readonly="readonly">

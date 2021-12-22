@@ -12,10 +12,9 @@
 		<div class="row page-titles mx-0">
 			<div class="col p-md-0">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="admin.do">Main</a></li>
-					<li class="breadcrumb-item"><a href="adminMemberList.do">User
-							Management</a></li>
-					<li class="breadcrumb-item active">User Detail</li>
+					<li class="breadcrumb-item"><a href="admin.do">홈</a></li>
+					<li class="breadcrumb-item"><a href="adminMemberList.do">유저 관리</a></li>
+					<li class="breadcrumb-item active">유저 상세 페이지</li>
 				</ol>
 			</div>
 		</div>
@@ -63,7 +62,12 @@
 								<tr>
 									<th class="align-middle" rowspan="2">전화번호 / 성별</th>
 									<th class="p-4 align-middle">전화번호</th>
-									<td class="align-middle">${member.tel }</td>
+									<c:if test="${not empty member.tel }">
+                            			<td class="align-middle">${member.tel }</td>
+                            		</c:if>
+                            		<c:if test="${empty member.tel }">
+                            			<td class="align-middle">없음</td>
+                            		</c:if>
 								</tr>
 								<tr>
 									<th class="p-4 align-middle">성별</th>

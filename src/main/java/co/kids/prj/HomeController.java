@@ -33,8 +33,8 @@ public class HomeController {
 		List<LodgingVO> list = lodgingDao.LodgingSelectList(vo);
 		if(list.size() < 8) {
 			model.addAttribute("list", list);
-		} else {
-			for (int i = 7; i < list.size(); i++) {
+		}else {
+			for (int i = list.size()-1; i > 7; i--) {
 				list.remove(i);
 			}
 			model.addAttribute("list", list);

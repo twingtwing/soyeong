@@ -47,8 +47,8 @@ h3 {
 		<div class="row page-titles mx-0">
 			<div class="col p-md-0">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="admin.do">Main</a></li>
-					<li class="breadcrumb-item active"><a href="reportPage.do">Report Management</a></li>
+					<li class="breadcrumb-item"><a href="admin.do">홈</a></li>
+					<li class="breadcrumb-item active"><a href="reportPage.do">신고 관리</a></li>
 				</ol>
 			</div>
 		</div>
@@ -57,10 +57,10 @@ h3 {
 				<div>
 					<div class="row">
 						<div class="card">
-							<div class="card-body pl-5 pr-5">
-								<h4 class="d-inline text-warning">Report Management</h4>
-								<p class="text-muted">신고내역을 관리하는 페이지 입니다.</p>
-								<p class="text-muted">Report management page</p>
+							<div class="card-body pl-5 pr-5 mt-2">
+								<h4 class="d-inline text-warning font-weight-bold">신고 관리</h4>
+								<p class="text-muted">신고를 관리하는 페이지 입니다.</p>
+								<p class="text-muted">신고 관리 페이지</p>
 							</div>
 						</div>
 					</div>

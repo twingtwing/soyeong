@@ -13,10 +13,9 @@
 		<div class="row page-titles mx-0">
 			<div class="col p-md-0">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="admin.do">Main</a></li>
-					<li class="breadcrumb-item"><a href="adminNoticeList.do">Notice
-							Management</a></li>
-					<li class="breadcrumb-item active">Notice Form</li>
+					<li class="breadcrumb-item"><a href="admin.do">홈</a></li>
+					<li class="breadcrumb-item"><a href="adminNoticeList.do">공지 관리</a></li>
+					<li class="breadcrumb-item active">공지 등록</li>
 				</ol>
 			</div>
 		</div>

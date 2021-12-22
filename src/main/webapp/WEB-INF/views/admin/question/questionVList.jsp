@@ -22,9 +22,8 @@
 		<div class="row page-titles mx-0">
 			<div class="col p-md-0">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="admin.do">Main</a></li>
-					<li class="breadcrumb-item active"><a href="questionVList.do">The
-							Sound of Customers</a></li>
+					<li class="breadcrumb-item"><a href="admin.do">홈</a></li>
+					<li class="breadcrumb-item active"><a href="questionVList.do">고객의 소리</a></li>
 				</ol>
 			</div>
 		</div>
@@ -36,10 +35,10 @@
 				<div>
 					<div class="row">
 						<div class="card">
-							<div class="card-body pl-5 pr-5">
-								<h4 class="d-inline text-warning">Customer Service</h4>
+							<div class="card-body pl-5 pr-5 mt-2">
+								<h4 class="d-inline text-warning font-weight-bold">고객 서비스</h4>
 								<p class="text-muted">고객과 관련된 서비스를 관리하는 페이지 입니다.</p>
-								<p class="text-muted">The Voice of Customer page</p>
+								<p class="text-muted">고객의 소리 관리 페이지</p>
 							</div>
 						</div>
 					</div>

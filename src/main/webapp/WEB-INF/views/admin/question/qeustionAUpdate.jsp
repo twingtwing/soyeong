@@ -14,9 +14,8 @@
 			<div class="col p-md-0">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="admin.do">Main</a></li>
-					<li class="breadcrumb-item"><a href="questionAList.do">Customer
-							Service</a></li>
-					<li class="breadcrumb-item active">Q n A</li>
+					<li class="breadcrumb-item"><a href="questionAList.do">Q &amp; A</a></li>
+					<li class="breadcrumb-item active">Q &amp; A 수정</li>
 				</ol>
 			</div>
 		</div>

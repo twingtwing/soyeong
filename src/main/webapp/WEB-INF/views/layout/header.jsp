@@ -7,6 +7,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+@font-face {
+   font-family: 'WandohopeB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/WandohopeB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.breadcrumb_area h2, .section_title>h2 {
+   font-family: 'WandohopeB' !important;
+}
+
 #loginModal {
 	display: none;
 	position: fixed; /* Stay in place */
@@ -115,9 +125,6 @@
 						<li class="nav-item"><a class="nav-link"
 							href="question.do">고객센터</a></li>
 						<!-- 로그인 되어 있을시 -->
-						<c:if test="${author eq 'USER' }">
-							<li class="nav-item"><a class="nav-link" href="myReserv.do?ispaid=A">내 예약정보</a></li>
-						</c:if>
 						<c:if test="${author eq 'USER'}">
 							<li class="nav-item"><a class="nav-link" href="memberAuthor.do">호스트 신청</a></li>
 						</c:if>
@@ -147,6 +154,8 @@
 									<c:if test="${author ne 'BAN'}">
 									<li class="nav-item"><a class="nav-link"
 										href="myReserv.do?ispaid=A">나의 예약 정보</a></li>
+									</c:if>
+									<c:if test="${author eq 'HOST'}">
 									<li class="nav-item"><a class="nav-link"
 										href="hostManage.do">호스팅 관리</a></li>
 									</c:if>

@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import co.kids.prj.question.service.QuestionAService;
 import co.kids.prj.question.service.QuestionAVO;
@@ -116,12 +118,8 @@ public class AdminQuestionController {
 	//고객의 소리 리스트
 	@GetMapping("/questionVList.do")
 	public String questionVList(Model model) {
-		ObjectMapper ob = new ObjectMapper();
-		try {
-			model.addAttribute("voices", ob.writeValueAsString(questionVDao.questionVList()));
-		} catch (JsonProcessingException e) {
-			model.addAttribute("voices", "");
-		}
+		Gson gson = new GsonBuilder().create();	
+		model.addAttribute("voices",gson.toJson(questionVDao.questionVList()));
 		return "admin/question/questionVList";
 	}
 	

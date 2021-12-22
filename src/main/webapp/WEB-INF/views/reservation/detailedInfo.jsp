@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,10 +50,12 @@
 .dataWrapper div {
 	margin: 0.5rem;
 }
-#letsgo{
+
+#letsgo {
 	background-color: #77c5fd;
 }
-#letsgo:hover{
+
+#letsgo:hover {
 	background-color: #3ea1e8;
 }
 </style>
@@ -95,11 +97,10 @@
 							<h3 style="text-align: center;">바로 예약하기</h3>
 							<div class="hotel_booking_table">
 								<div class="w-100"></div>
-								<div class="col-md-11">
+								<div class="col-md-11 mt-2">
 									<div class="boking_table">
 										<div class="row">
 											<div class="col-md-6">
-																					
 												<div class="book_tabel_item">
 													<div class="form-group">
 														<div class='input-group date' id='datetimepicker-in'>
@@ -110,7 +111,6 @@
 															</span>
 														</div>
 													</div>
-
 												</div>
 											</div>
 											<div class="col-md-6">
@@ -163,94 +163,106 @@
 											</div>
 											<div class="dataWrapper">
 												<div class="w-100"></div>
-												<div class="col-md-12" id="houseRent">1박
-													${hotelDetail.fee}원</div>
-												<div class="w-100"></div>
-												<div class="col-md-12" id="houseRentAll"></div>
-												<div class="w-100"></div>
-												<div class="col-md-12" id="serviceFee"></div>
-												<div class="w-100"></div>
-												<div class="col-md-12" id="serviceTax"></div>
-												<div class="w-100"></div>
+												<div class="col-md-12 d-flex justify-content-between m-0 mt-3">
+													<div class="mb-0 mt-0">
+														<h5>1박</h5> 
+													</div>
+													<div class="mb-0 mt-0">
+														<h5 id="houseRent"><fmt:formatNumber>${hotelDetail.fee}</fmt:formatNumber>원</h5> 
+													</div>
+												</div>
+												<div class="col-md-12 d-flex justify-content-between m-0" id="houseRentAll"></div>
+												<div class="col-md-12 d-flex justify-content-between m-0" id="serviceFee"></div>
+												<div class="col-md-12 d-flex justify-content-between m-0" id="serviceTax"></div>
 												<div class="col-md-12" id="totalPrice"></div>
 												<div class="w-100"></div>
-											</div>
-											<div class="col-md-12" id="reportButton">
-												<button type="button" id="openModalBtn" class="genric-btn danger circle">신고하기</button> 
-												<!-- 신고 insert 페이지로 이동 -->
-												<!-- 신고 insert modal 시작 -->
-												    <div class="modal" id="reportModal" tabindex="-1" role="dialog">
-												        <div class="modal-dialog" role="document">
-												            <div class="modal-content">
-												                <div class="comment-form">
-												                    <h4>신고하기</h4>
-												                    <form id="rpfrm">
-												                        <div class="form-group">
-												                            <input type="text" class="form-control" id="rptitle" name="rptitle" placeholder="제목을 입력하세요"
-												                                onfocus="this.placeholder = ''" onblur="this.placeholder = '제목을 입력하세요'" required="required">   
-												                        </div>
-												                        <div class="form-group">
-												                            <div class="default-select" id="default-select">
-												                                <select style="display: none;" id="rptype" name="rptype" required="required">
-												                                	<option value="">신고 사유 선택</option>
-												                                    <option value="안전">안전 문제</option>
-												                                    <option value="금전">금전</option>
-												                                    <option value="불법 운영">불법 운영</option>
-												                                </select>
-												                                <div class="nice-select" tabindex="0">
-												                                    <span class="current">신고 사유 선택</span>
-												                                    <ul class="list">
-												                                    	<li data-value="" class="option selected">신고 사유 선택</li>
-												                                        <li data-value="안전" class="option">안전 문제</li>
-												                                        <li data-value="금전" class="option">금전 문제</li>
-												                                        <li data-value="불법 운영" class="option">불법 운영</li>
-												                                    </ul>
-												                                </div>
-												                            </div>
-												                        </div>
-												                        <div class="form-group">
-												                            <textarea class="form-control mb-10" rows="5" id="rpcontent" name="rpcontent" placeholder="내용을 입력하세요"
-												                                onblur="this.placeholder = '내용을 입력하세요'"
-												                                required="required"></textarea>
-												                        </div>
-												                        <div class="row justify-content-between">
-												                            <div class="row md-3 m-2">
-												                                <button id="reportsave" type="submit" class="primary-btn button_hover">Save</button>
-												                            </div>
-												                            <div class="row md-3 m-2">
-												                                <button type="button" id="closeModalBtn" class="primary-btn button_hover">Close</button>
-												                            </div>
-												                        </div>
-												                        <div>
-												                        	<input type="hidden" name="blackuser" value="${hotelDetail.id}">
-												                        	<input type="hidden" id="reporter" name="reporter" value="${id}">
-												                        </div>
-												                    </form>
-												                </div>
-												            </div>
-												        </div>
-												    </div>
-												    <!-- 신고 insert 모달 끝 -->
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+							<div class="col-md-12 mt-2" id="reportButton">
+								<c:if test="${not empty id }">
+									<a href="javascript:void(0)" id="openModalBtn" class="text-danger">신고하기</a>
+								</c:if>
+								<!-- 신고 insert 페이지로 이동 -->
+								<!-- 신고 insert modal 시작 -->
+								<div class="modal" id="reportModal" tabindex="-1" role="dialog">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="comment-form">
+												<h4>신고하기</h4>
+												<form id="rpfrm">
+													<div class="form-group">
+														<input type="text" class="form-control" id="rptitle"
+															name="rptitle" placeholder="제목을 입력하세요"
+															onfocus="this.placeholder = ''"
+															onblur="this.placeholder = '제목을 입력하세요'"
+															required="required">
+													</div>
+													<div class="form-group">
+														<div class="default-select" id="default-select">
+															<select style="display: none;" id="rptype" name="rptype"
+																required="required">
+																<option value="">신고 사유 선택</option>
+																<option value="안전">안전 문제</option>
+																<option value="금전">금전</option>
+																<option value="불법 운영">불법 운영</option>
+															</select>
+															<div class="nice-select" tabindex="0">
+																<span class="current">신고 사유 선택</span>
+																<ul class="list">
+																	<li data-value="" class="option selected">신고 사유 선택</li>
+																	<li data-value="안전" class="option">안전 문제</li>
+																	<li data-value="금전" class="option">금전 문제</li>
+																	<li data-value="불법 운영" class="option">불법 운영</li>
+																</ul>
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<textarea class="form-control mb-10" rows="5"
+															id="rpcontent" name="rpcontent" placeholder="내용을 입력하세요"
+															onblur="this.placeholder = '내용을 입력하세요'"
+															required="required"></textarea>
+													</div>
+													<div class="row justify-content-between">
+														<div class="row md-3 m-2">
+															<button id="reportsave" type="submit"
+																class="primary-btn button_hover">Save</button>
+														</div>
+														<div class="row md-3 m-2">
+															<button type="button" id="closeModalBtn"
+																class="primary-btn button_hover">Close</button>
+														</div>
+													</div>
+													<div>
+														<input type="hidden" name="blackuser"
+															value="${hotelDetail.id}"> <input type="hidden"
+															id="reporter" name="reporter" value="${id}">
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- 신고 insert 모달 끝 -->
+							</div>
 						</div>
+						<!--================Booking Tabel Area  =================-->
 					</div>
-					<!--================Booking Tabel Area  =================-->
 				</div>
 			</div>
-		</div>
 	</section>
 	<!--================ About History Area  =================-->
-	<section class="about_history_area section_gap">
+	<section class="about_history_area">
 		<div class="container" align="center">
-			<div style="display: flex; flex-direction: column; align-items: center;">
-			<img alt="" src="${hotelDetail.rphoto}">
-			<c:forEach items="${imgs}" var="img">
-				<img alt="" src="${img.pfile}">
-			</c:forEach>
+			<div
+				style="display: flex; flex-direction: column; align-items: center;">
+				<img alt="" src="${hotelDetail.rphoto}">
+				<c:forEach items="${imgs}" var="img">
+					<img alt="" src="${img.pfile}">
+				</c:forEach>
 			</div>
 		</div>
 	</section>
@@ -275,7 +287,8 @@
 					<div id="mapWrapper">
 						<div id="googleMap" style="overflow: auto"></div>
 					</div>
-					<input type="hidden" id="mapAddress" value="${hotelDetail.raddress}">
+					<input type="hidden" id="mapAddress"
+						value="${hotelDetail.raddress}">
 				</div>
 			</div>
 		</div>
@@ -286,20 +299,20 @@
 	<section class="testimonial_area section_gap">
 		<div class="container">
 			<div class="section_title text-center">
-				<h3 class="title_color">후기 / 별점</h3>
+				<h3 class="title_color">후기 [ 별점 <i class="fas fa-star text-warning"></i> ]</h3>
 			</div>
 			<c:if test="${not empty avg}">
-			<h4 style="text-align: center">${avg}</h4>
+				<h4 style="text-align: center">${avg}</h4>
 			</c:if>
 			<div class="testimonial_slider owl-carousel">
 				<c:forEach items="${reviews}" var="review">
-				<div class="media testimonial_item">
-					<img class="rounded-circle" src="image/testtimonial-1.jpg" alt="">
-					<div class="media-body" data-star="${review.rvstar}">
-						<p>${review.rvcontent}</p>
-						<a href="#"><h4 class="sec_h4">${review.id}</h4></a>
+					<div class="media testimonial_item">
+						<img class="rounded-circle" src="image/testtimonial-1.jpg" alt="">
+						<div class="media-body" data-star="${review.rvstar}">
+							<p>${review.rvcontent}</p>
+							<a href="#"><h4 class="sec_h4">${review.id}</h4></a>
+						</div>
 					</div>
-				</div>
 				</c:forEach>
 
 
@@ -307,12 +320,11 @@
 		</div>
 	</section>
 	<form action="bookingForm.do" id="frm">
-		<input type="hidden" value="${hotelDetail.rno}" name="rno">
-		<input type="hidden" name="rcheckin" id="cki">
-		<input type="hidden" name="rcheckout" id="cko">
-		<input type="hidden" name="bookkid" id="bkid">
-		<input type="hidden" name="bookadult" id="badult">
-		<input type="hidden" name="day">
+		<input type="hidden" value="${hotelDetail.rno}" name="rno"> <input
+			type="hidden" name="rcheckin" id="cki"> <input type="hidden"
+			name="rcheckout" id="cko"> <input type="hidden"
+			name="bookkid" id="bkid"> <input type="hidden"
+			name="bookadult" id="badult"> <input type="hidden" name="day">
 	</form>
 	<input type="hidden" id="mapAddress" value="${hotelDetail.raddress}">
 
@@ -326,7 +338,6 @@
 				$('.tag_cloud_widget>span')[i].style.backgroundColor = 'gray';
 			}
 		}
-		
 	})();
 	
 
@@ -376,15 +387,15 @@
 			window.alert($('#rguest').text()+'인을 초과할 수 없는 방입니다.');
 			return;
 		}
-		let one = parseInt($('#houseRent').text().substring(3));
+		let one = parseInt('${hotelDetail.fee}');
 		let checkin = new Date($('#rcheckin').val());
 		let checkout = new Date($('#rcheckout').val());
 		let day = parseInt(+(checkout.getTime()-checkin.getTime())/(1000*3600*24));
-		$('#houseRentAll').text(day+'박 '+(one*day)+'원');
-		$('#serviceFee').text('수수료 '+parseInt(one*day*0.1)+'원');
-		$('#serviceTax').text('부가세 '+parseInt(one*day*0.01)+'원');
+		$('#houseRentAll').html('<div><h5 class="mb-0 mt-0">'+day+'박</h5></div>'+'<div><h5 class="mb-0 mt-0">'+(one*day).toLocaleString('ko-KR')+'원</h5></div>');
+		$('#serviceFee').html('<div><h5 class="mb-0 mt-0">수수료</h5></div>'+'<div><h5 class="mb-0 mt-0 text-danger">- '+parseInt(one*day*0.1).toLocaleString('ko-KR')+'원</h5></div>');
+		$('#serviceTax').html('<div><h5 class="mb-0 mt-0">부가세</h5></div>'+'<div><h5 class="mb-0 mt-0 text-danger">- '+parseInt(one*day*0.01).toLocaleString('ko-KR')+'원</h5></div>');
 		total = parseInt(one*day*(1+0.1+0.01));
-		$('#totalPrice').text('총액 '+total+'원'); 
+		$('#totalPrice').text('총액 '+total.toLocaleString('ko-KR')+'원'); 
 		$('#totalPrice').css('color','#F3C300');
 		$('#totalPrice').css('font-weight','bolder');
 		$('#totalPrice').css('font-size','1.3rem');
