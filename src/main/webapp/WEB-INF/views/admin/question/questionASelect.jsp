@@ -19,8 +19,8 @@
 			<div class="col p-md-0">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="admin.do">Main</a></li>
-					<li class="breadcrumb-item active"><a href="questionAList.do">Q &amp; A</a></li>
-					<li class="breadcrumb-item active">Q n A Detail page</li>
+					<li class="breadcrumb-item"><a href="questionAList.do">Q &amp; A</a></li>
+					<li class="breadcrumb-item active">Q &amp; A 상세</li>
 				</ol>
 			</div>
 		</div>

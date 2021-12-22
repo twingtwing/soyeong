@@ -20,11 +20,11 @@
             <div class="row page-titles mx-0">
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="home.do">Main</a></li>
+                        <li class="breadcrumb-item"><a href="home.do">홈</a></li>
 					<li class="breadcrumb-item"><a
-						href="adminNoticeList.do">Notice Management</a></li>
+						href="adminNoticeList.do">공지 관리</a></li>
 						<li class="breadcrumb-item"><a
-						href="javascript:void(0)">Notice Detail</a></li>
+						href="javascript:void(0)">공지 상세</a></li>
                     </ol>
                 </div>
             </div>

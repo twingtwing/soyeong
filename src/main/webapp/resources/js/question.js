@@ -73,10 +73,18 @@ $(document).ready(function(){
 					}else{
 						formData = new FormData();
 					}
-					formData.append('qCategory',$('#qCategory').val());
-					formData.append('qTitle',$('#qTitle').val());
-					formData.append('qAnswer',$('#qAnswer').val());
-					formData.append('qEmail',$('#qEmail').val());
+					if(!formData.has('qCategory')){
+						formData.append('qCategory',$('#qCategory').val());
+					}
+					if(!formData.has('qTitle')){
+						formData.append('qTitle',$('#qTitle').val());
+					}
+					if(!formData.has('qAnswer')){
+						formData.append('qAnswer',$('#qAnswer').val());
+					}
+					if(!formData.has('qEmail')){
+						formData.append('qEmail',$('#qEmail').val());
+					}
 					
                     $.ajax({
                         url: form.action,
@@ -88,9 +96,7 @@ $(document).ready(function(){
                         success: function(result) {
 							if(result.trim() === 'Y'){
 								$('#frm-Q').find(':input').not(':first').not(':last').val('');
-    	                        $('#frm-Q :input').attr('disabled', 'disabled');
         	                    $('#frm-Q').fadeTo("slow", 1, function () {
-            	                    $(this).find(':input').attr('disabled', 'disabled');
                 	                $(this).find('label').css('cursor', 'default');
                     	            $('#success').fadeIn()
                         	        $('.modal').modal('hide');

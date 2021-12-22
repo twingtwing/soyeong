@@ -11,11 +11,10 @@
 		<div class="row page-titles mx-0">
 			<div class="col p-md-0">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="admin.do">Main</a></li>
-					<li class="breadcrumb-item"><a href="questionVList.do">The
-							Sound of Customers</a></li>
-					<li class="breadcrumb-item">Customer Voice</li>
-					<li class="breadcrumb-item active">Email Send</li>
+					<li class="breadcrumb-item"><a href="admin.do">홈</a></li>
+                    <li class="breadcrumb-item"><a href="questionVList.do">고객의 소리</a></li>
+					<li class="breadcrumb-item"><a href="questionVSelect.do?qNo=${qNo }">고객의 소리 상세</a></li>
+					<li class="breadcrumb-item active">고객의 소리 이메일</li>
 				</ol>
 			</div>
 		</div>

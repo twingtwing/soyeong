@@ -19,10 +19,9 @@
 		<div class="row page-titles mx-0">
 			<div class="col p-md-0">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="admin.do">Main</a></li>
-					<li class="breadcrumb-item"><a href="reportPage.do">Report
-							Management</a></li>
-					<li class="breadcrumb-item active">Report Detail</li>
+					<li class="breadcrumb-item"><a href="admin.do">홈</a></li>
+					<li class="breadcrumb-item"><a href="reportPage.do">신고 관리</a></li>
+					<li class="breadcrumb-item active">신고 상세</li>
 				</ol>
 			</div>
 		</div>

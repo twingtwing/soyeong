@@ -12,7 +12,7 @@
 	<!-- 마이 페이지 -->
 	
 	<!--================Banner Area =================-->
-        <section class="breadcrumb_area">
+    <section class="breadcrumb_area">
 
         <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""
             style="transform: translateY(0px);"><img src="resources/img/banner_bg.jpg"></div>
@@ -58,7 +58,12 @@
                         <tr>
                             <th class="align-middle" rowspan="2">전화번호 / 성별</th>
                             <th class="p-4 align-middle" >전화번호</th>
-                            <td class="align-middle">${member.tel }</td>
+                            <c:if test="${not empty member.tel }">
+                            	<td class="align-middle">${member.tel }</td>
+                            </c:if>
+                            <c:if test="${empty member.tel }">
+                            	<td class="align-middle">없음</td>
+                            </c:if>
                         </tr>
                         <tr>
                             <th class="p-4 align-middle">성별</th>

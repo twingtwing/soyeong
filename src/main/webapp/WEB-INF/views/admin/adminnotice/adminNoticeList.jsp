@@ -18,9 +18,9 @@
 		<div class="row page-titles mx-0">
 			<div class="col p-md-0">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="admin.do">Main</a></li>
+					<li class="breadcrumb-item"><a href="admin.do">홈</a></li>
 					<li class="breadcrumb-item active"><a
-						href="adminNoticeList.do">Notice Management</a></li>
+						href="adminNoticeList.do">공지 관리</a></li>
 				</ol>
 			</div>
 		</div>
@@ -31,10 +31,10 @@
 				<div>
 					<div class="row">
 						<div class="card">
-							<div class="card-body pl-5 pr-5">
-								<h4 class="d-inline text-warning">Notice Management</h4>
+							<div class="card-body pl-5 pr-5 mt-2">
+								<h4 class="d-inline text-warning font-weight-bold">공지사항 관리</h4>
 								<p class="text-muted">공지사항을 관리하는 페이지 입니다.</p>
-								<p class="text-muted">Notice management page</p>
+								<p class="text-muted">공지 관리 페이지</p>
 							</div>
 						</div>
 					</div>
@@ -105,22 +105,26 @@
         rowHeaders: [{type: 'rowNum', align : 'center', valign : 'middle'}],
         pageOptions: {
             useClient: true,
-            perPage: 5
+            perPage: 10
         },
         pagination: true,
         columns: [
-            {
+        	{
                 header: '제목',
                 name: 'btitle'
             },
             {
                 header: '작성일자',
-                name: 'bdate'
-            },
+                name: 'bdate',
+                width : 'auto',
+	            minWidth :150
+	         }, 
             {
                 header: '작성자',
-                name: 'id'
-            }
+                name: 'id',
+                width : 'auto',
+	            minWidth :150
+	         }
         ]
     });
 
