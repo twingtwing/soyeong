@@ -218,7 +218,7 @@ display : none !important;
                         thisAug = data[i].monthsales;
                      }
                      if(data[i].monthdate == "2021-09"){
-                        thisNov = data[i].monthsales;
+                    	thisSep = data[i].monthsales;
                      }
                      if(data[i].monthdate == "2021-10"){
                         thisOct = data[i].monthsales;
@@ -269,7 +269,7 @@ display : none !important;
                         lastAug = data[i].monthsales;
                      }
                      if(data[i].monthdate == "2020-09"){
-                        lastNov = data[i].monthsales;
+                        lastSep = data[i].monthsales;
                      }
                      if(data[i].monthdate == "2020-10"){
                         lastOct = data[i].monthsales;
