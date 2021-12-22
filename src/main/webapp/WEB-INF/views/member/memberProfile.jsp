@@ -12,16 +12,16 @@
 	<!-- 마이 페이지 -->
 	
 	<!--================Banner Area =================-->
-    <section class="banner_area">
-            <div class="booking_table d_flex align-items-center">
-            	<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
-				<div class="container">
-					<div class="banner_content text-center">
-						<h2>내 정보</h2>
-					</div>
-				</div>
+        <section class="breadcrumb_area">
+
+        <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""
+            style="transform: translateY(0px);"><img src="resources/img/banner_bg.jpg"></div>
+        <div class="container">
+            <div class="page-cover text-center">
+                <h2 class="page-cover-tittle">내 정보</h2>
             </div>
-        </section>
+        </div>
+    </section>
     <!--================Banner Area =================-->
         
     <!--================ start body Area =================-->
@@ -34,7 +34,7 @@
                     <h2 class="title_color"><strong>Hello,&nbsp;&nbsp;My Page</strong></h2>
                 </div>
                 <div class="row d-flex justify-content-between mb-20">
-                    <div class="row ml-3">
+                    <div class="row ml-3"> 
                         <h3 class="mb-0"><i class="fas fa-user-circle text-warning"></i> <b>${name}</b>님 어서오세요!!</h3>
                     </div>
                     <!-- host여야 입장가능 -->
@@ -56,7 +56,7 @@
                             <td class="align-middle" colspan="2">${name}</td>
                         </tr>
                         <tr>
-                            <th class="align-middle" rowspan="2">전화번호/성별</th>
+                            <th class="align-middle" rowspan="2">전화번호 / 성별</th>
                             <th class="p-4 align-middle" >전화번호</th>
                             <td class="align-middle">${member.tel }</td>
                         </tr>
@@ -65,7 +65,7 @@
                             <td class="align-middle">${member.gender }</td>
                         </tr>
                         <tr>
-                            <th class="align-middle" rowspan="2">권한/가입날짜</th>
+                            <th class="align-middle" rowspan="2">권한 / 가입날짜</th>
                             <th class="p-4 align-middle">권한</th>
                             <td class="align-middle">${author}</td>
                         </tr>

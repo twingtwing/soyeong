@@ -11,23 +11,23 @@
 <body>
 
 	<!--================ start Banner Area =================-->
-	<section class="banner_area">
-		<div class="booking_table d_flex align-items-center">
-			<div class="overlay bg-parallax" data-stellar-ratio="0.9"
-				data-stellar-vertical-offset="0" data-background=""></div>
-			<div class="container">
-				<div class="banner_content text-center">
-					<h2>고객센터</h2>
-				</div>
-			</div>
-		</div>
-	</section>
+	<section class="breadcrumb_area blog_banner_two">
+            <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background="" style="transform: translateY(-0.0397725px);"></div>
+            <div class="container">
+                <div class="page-cover text-center">
+                    <h2 class="page-cover-tittle f_48">고객센터</h2>
+                </div>
+            </div>
+        </section>
 	<!--================ Banner Area =================-->
 
 	<!--================ start body Area =================-->
 	<section class="section_gap">
 		<div class="container">
-			<div class="section_title mb-4 ml-2">
+			<div class="row mb-30">
+                    <a href="javascript:history.back()" class="genric-btn warning-border circle arrow pl-4"><span class="lnr lnr-arrow-left mr-2 ml-0 pl-0"></span>Prev</a>
+           	</div>
+			<div class="section_title text-center">
 				<h2 class="title_color">
 					<strong>고객센터</strong>
 				</h2>
@@ -185,7 +185,7 @@
 						</div>
 						<div class="form-row col-md-12 mb-4">
 							<div class="form-group col-md-3">
-								<h6><i class="fa fa-paperclip"></i>첨부파일</h6>
+								<h6><i class="fa fa-paperclip mr-2"></i>첨부파일</h6>
 								<input type="file" id="fileQ" name="fileQ" class="form-control-file">
 							</div>
 							<div class="form-group col-md-9">

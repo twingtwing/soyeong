@@ -4,8 +4,7 @@
 
 	<insert id="questionVInsert" parameterType="co.kids.prj.question.service.QuestionVVO">
 		<selectKey keyProperty="qNo" resultType="int" order="BEFORE">
-			SELECT MAX(QNO)+1 
-			FROM QUERY
+			SELECT NVL(MAX(QNO), 0)+1 AS QNO FROM QUERY
 		</selectKey>
 		INSERT INTO QUERY(QNO,ID,QTITLE,QANSWER,QEMAIL,QFILE,QPFILE,QCATEGORY,QPROCESS)
 		VALUES(#{qNo},#{Id},#{qTitle},#{qAnswer},#{qEmail},#{qFile},#{qPFile},#{qCategory},default)

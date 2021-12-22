@@ -31,7 +31,6 @@
 								</div>
 							</div>
 							<div class="col-6 d-flex justify-content-end">
-								'
 								<div class="row">
 									<select id="selectAuthor" name="selectAuthor"
 										class="form-control" style="width: 95px; height: 40px;">

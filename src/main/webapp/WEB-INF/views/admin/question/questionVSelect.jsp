@@ -21,7 +21,7 @@
 			<div class="col p-md-0">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="admin.do">Main</a></li>
-                    <li class="breadcrumb-item active"><a href="questionVList.do">The Sound of Customers</a></li>
+                    <li class="breadcrumb-item"><a href="questionVList.do">The Sound of Customers</a></li>
 					<li class="breadcrumb-item active">Customer Voice</li>
 				</ol>
 			</div>
@@ -41,7 +41,10 @@
 										<div class="d-flex justify-content-between mt-3">
                                             <p class="mb-0">${voice.qCategory }</p>
                                             <c:if test="${voice.qProcess eq 'N'}">
-                                        		<a href="#" id="processChange" class="text-warning">처리 상태 변경</a>
+                                            	<div>
+                                        		<a href="#" id="processChange" class="text-warning mr-2">처리 상태 변경</a>
+                                        		<a href="questionVEmail.do?email=${voice.qEmail }&qNo=${voice.qNo }" class="text-warning mr-2">이메일 처리</a>
+                                            	</div>
                                             </c:if>
                                             <c:if test="${voice.qProcess eq 'Y'}">
                                         		<p class="mb-0 text-warning">처리 완료</p>
@@ -52,8 +55,8 @@
 								<hr>
 								<div class="contentBox mt-4 mb-4 pt-3 pb-2">
 									<h5 class="mb-3">${voice.qAnswer}</h5>
-									<p class="pt-3">${voice.name }님의 응답 이메일 : ${voice.qEmail }</p>
 								</div>
+								<p class="pt-3">${voice.name }님의 응답 이메일 : ${voice.qEmail }</p>
 								<hr>
 								<div class="row mt-4 pt-1 ml-1">
 									<c:if test="${not empty voice.qFile}">

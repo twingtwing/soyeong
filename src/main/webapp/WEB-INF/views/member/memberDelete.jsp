@@ -18,17 +18,16 @@
 <body>
 
 	<!--================Banner Area =================-->
-	<section class="banner_area">
-		<div class="booking_table d_flex align-items-center">
-			<div class="overlay bg-parallax" data-stellar-ratio="0.9"
-				data-stellar-vertical-offset="0" data-background=""></div>
-			<div class="container">
-				<div class="banner_content text-center">
-					<h2>Relax Your Mind</h2>
-				</div>
-			</div>
-		</div>
-	</section>
+	<section class="breadcrumb_area">
+
+        <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""
+            style="transform: translateY(0px);"><img src="resources/img/banner_bg.jpg"></div>
+        <div class="container">
+            <div class="page-cover text-center">
+                <h2 class="page-cover-tittle">회원 탈퇴</h2>
+            </div>
+        </div>
+    </section>
 	<!--================Banner Area =================-->
 
 	<!--================ start body Area =================-->
@@ -51,8 +50,8 @@
                             </div>
                             <div class="row w-100 mt-3">
                                 <div class="card border-danger w-100">
-                                    <div class="card-body pl-5 pr-5 mt-4 mb-4">
-                                        <h5 class="card-title mb-3">${name}님의 아이디 ${id}</h5>
+                                    <div class="card-body pl-5 pr-5 mt-3 mb-4">
+                                        <h5 class="card-title text-center mb-3">${name}님의 아이디 <br> ${id}</h5>
                                         <!-- 중복 id걸려서 값을 제대로 안가져옴 그래서 일부러 id값을 passwrod를 안함 -->
                                         <input class="w-100 mb-3" type="password" name="pwInput" id="pwInput" required="required" placeholder="Enter password..">
                                         <div id="pwShow-D">

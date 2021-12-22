@@ -13,7 +13,7 @@
 			<div class="row">
 				<div class="col-lg-4  col-md-6 col-sm-6">
 					<div class="single-footer-widget">
-						<h6 class="footer_title">About SYSBNB</h6>
+						<h6 class="footer_title">About SYBNB</h6>
 						<p>Our company aims to feel the atmosphere of the travel
 							destination even more. To this end, we are supporting one-on-one
 							accommodation with locals. In addition, we continue to strive to
@@ -39,23 +39,19 @@
 				<div class="col-lg-4 col-md-6 col-sm-6">
 					<div class="single-footer-widget">
 						<h6 class="footer_title">Privacy Notice</h6>
-						<p>Our SYSBNB does not delete the information when withdrawing
+						<p>Our SYBNB does not delete the information when withdrawing
 							and has it for the rest of its life. Please consider this when
 							signing up as a member.</p>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="single-footer-widget instafeed">
-						<h6 class="footer_title">SYSBNB TEAM</h6>
+						<h6 class="footer_title">SYBNB TEAM</h6>
 						<ul class="list_style instafeed d-flex flex-wrap">
-							<li><img src="resources/image/instagram/Image-01.jpg" alt=""></li>
-							<li><img src="resources/image/instagram/Image-02.jpg" alt=""></li>
-							<li><img src="resources/image/instagram/Image-03.jpg" alt=""></li>
-							<li><img src="resources/image/instagram/Image-04.jpg" alt=""></li>
-							<li><img src="resources/image/instagram/Image-05.jpg" alt=""></li>
-							<li><img src="resources/image/instagram/Image-06.jpg" alt=""></li>
-							<li><img src="resources/image/instagram/Image-07.jpg" alt=""></li>
-							<li><img src="resources/image/instagram/Image-08.jpg" alt=""></li>
+							<li><img src="resources/image/instagram/img1.jpg" width="58" height="58" alt=""></li>
+							<li><img src="resources/image/instagram/img2.jpg" width="58" height="58" alt=""></li>
+							<li><img src="resources/image/instagram/img3.jpg" width="58" height="58" alt=""></li>
+							<li><img src="resources/image/instagram/img4.jpg" width="58" height="58" alt=""></li>
 						</ul>
 					</div>
 				</div>
