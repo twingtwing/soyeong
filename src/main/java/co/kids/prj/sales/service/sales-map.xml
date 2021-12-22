@@ -10,5 +10,7 @@
 	GROUP BY TO_CHAR(SDATE, 'YYYY-MM')
 	ORDER BY 2
 	</select>
-
+<insert id="insertSales" parameterType="co.kids.prj.sales.service.SalesVO">
+		INSERT INTO SALES(SNO, SID, SALES, SDATE) VALUES((SELECT NVL(MAX(SNO), 0)+1 AS SNO FROM SALES), #{sid}, #{sales}, sysdate)
+	</insert>
 </mapper>

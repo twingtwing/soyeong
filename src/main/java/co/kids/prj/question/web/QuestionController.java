@@ -22,59 +22,67 @@ import co.kids.prj.question.service.QuestionVVO;
 
 @Controller
 public class QuestionController {
-	@Autowired private QuestionAService questionADao;
-	@Autowired private QuestionVService questionVDao;
-	
-	@Autowired private String saveDir;
-	
-	//FaQ list 가지고 오는 동시에 페이지 이동
+	@Autowired
+	private QuestionAService questionADao;
+	@Autowired
+	private QuestionVService questionVDao;
+
+	@Autowired
+	private String saveDir;
+
+	// FaQ list 가지고 오는 동시에 페이지 이동
 	@GetMapping("/question.do")
 	public String question(Model model) {
 		List<QuestionAVO> list = questionADao.questionAList();
-		model.addAttribute("QnAs",list);
-		model.addAttribute("size",Math.floor(list.size()/10));
-		model.addAttribute("extra",list.size()%10);
+		model.addAttribute("QnAs", list);
+		model.addAttribute("size", Math.floor(list.size() / 10));
+		model.addAttribute("extra", list.size() % 10);
 		return "question/question";
 	}
-	
-	//고객의 소리 투고
+
+	// 고객의 소리 투고
 	@PostMapping("/ajaxQuestion.do")
 	@ResponseBody
-	public String  userQuestion(QuestionVVO vo, MultipartFile fileQ,HttpSession session){
-		
-		//작성자
-		vo.setId((String)session.getAttribute("id"));
-		
+	public String userQuestion(QuestionVVO vo, MultipartFile fileQ, HttpSession session) {
+
+		// 작성자
+		vo.setId((String) session.getAttribute("id"));
+
 		String result = "Y";
-	
-		if(fileQ != null) {
-			//파일
+
+		if (fileQ != null) {
+			// 파일
 			String fileName = fileQ.getOriginalFilename();
 			int comma = fileName.lastIndexOf(".");
-			String pFileName = fileName.substring(0, comma) +"_Q_"+ UUID.randomUUID().toString()+fileName.substring(comma);
-			
-			File target = new File(saveDir,pFileName);
-			
+			String pFileName = fileName.substring(0, comma) + "_Q_" + UUID.randomUUID().toString()
+					+ fileName.substring(comma);
+
+			File target = new File(saveDir, pFileName);
+
 			vo.setqFile(fileName);
 			vo.setqPFile(pFileName);
-			
-			//파일 저장
-			if(! new File(saveDir).exists()) {
+
+			// 파일 저장
+			if (!new File(saveDir).exists()) {
 				new File(saveDir).mkdir();
 			}
-			
-			//파일 복사 
+
+			// 파일 복사
 			try {
 				FileCopyUtils.copy(fileQ.getBytes(), target);
 				int r = questionVDao.questionVInsert(vo);
-				if(r == 0) { result = "N"; }
+				if (r == 0) {
+					result = "N";
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
-			} 
-			
-		}else {//{resu}
+			}
+
+		} else {// {resu}
 			int r = questionVDao.questionVInsert(vo);
-			if(r == 0) { result = "N"; }
+			if (r == 0) {
+				result = "N";
+			}
 		}
 
 		return result;

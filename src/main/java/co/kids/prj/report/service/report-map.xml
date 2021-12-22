@@ -8,10 +8,7 @@
 	
 	<select id="reportSelect" parameterType="Integer"
 		resultType="co.kids.prj.report.service.ReportVO">
-		SELECT R.* , M.AUTHOR
-		FROM REPORT R
-		INNER JOIN MEMBER M 
-		ON R.BLACKUSER = M.ID
+		SELECT * FROM REPORT
 		WHERE RPNO = #{rpno} AND ISCLEARED NOT IN('TRUE')
 	</select>
 	

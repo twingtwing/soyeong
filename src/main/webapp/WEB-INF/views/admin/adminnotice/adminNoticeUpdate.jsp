@@ -46,13 +46,14 @@
 
 
 	<script type="text/javascript">
+	$('#bcontent').val($('#bcontent').val().replace(/<br>/gi,'\n'));
 	
 	/* ajax를 사용한 수정처리 */
 	$('#bSubmit').on('click',function(){
 		console.log('hi');
 		var data = {
 			btitle : $('#btitle').val(),
-			bcontent : $('#bcontent').val(),
+			bcontent : $('#bcontent').val().replace(/(?:\r\n|\r|\n)/g, '<br>'),
 			bno :"${notice.bno }"
 		};
 	

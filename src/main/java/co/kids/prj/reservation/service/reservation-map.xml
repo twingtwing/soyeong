@@ -23,13 +23,12 @@
 		</if>
 		<if test='ispaid eq "E"'>
 		AND TO_DATE(B.CHECKOUT,'YYYY/MM/DD')<![CDATA[<]]>TO_DATE(SYSDATE,'YYYY/MM/DD')
-        AND ISPAID = 'Y'
         AND BOOKCANCEL NOT IN('Y')
 		</if>
 		<if test='ispaid eq "X"'>
 		AND BOOKCANCEL = 'Y'
 		</if>
-		ORDER BY ISPAID ASC, RCHECKIN DESC
+		ORDER BY TO_DATE(CHECKIN,'yy-mm-dd') DESC
 	</select>
 
 
@@ -43,7 +42,7 @@
 		INSERT INTO
 		BOOKING(BOOKNO,RNO,ID,BOOKDATE,CHECKIN,CHECKOUT,BOOKADULT,BOOKKID,ISPAID,BOOKCANCEL,BOOKREFUND,BOOKREQUEST)
 		VALUES((SELECT MAX(BOOKNO) FROM
-		BOOKING)+1,#{rno},#{id},DEFAULT,TO_DATE(#{checkin},'yyyy-mm-dd'),TO_DATE(#{checkout},'yyyy-mm-dd'),#{bookadult},#{bookkid},DEFAULT,DEFAULT,null,#{bookrequest}
+		BOOKING)+1,#{rno},#{id},DEFAULT,#{checkin},#{checkout},#{bookadult},#{bookkid},DEFAULT,DEFAULT,null,#{bookrequest}
 		)
 	</insert>
 

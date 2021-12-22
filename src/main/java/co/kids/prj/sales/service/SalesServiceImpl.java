@@ -14,4 +14,10 @@ public class SalesServiceImpl implements SalesService{
 		return map.totalSales(vo);
 	}
 
+	@Override
+	public int insertSales(SalesVO vo) {
+		
+		return map.insertSales(vo);
+	}
+
 }

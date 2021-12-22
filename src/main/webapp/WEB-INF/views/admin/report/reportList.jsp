@@ -35,6 +35,10 @@ h3 {
 #gridReport div.tui-grid-cell-content {
 	text-align: center;
 }
+.col-lg-12 .card{
+	margin:30px;
+	margin-top: 0px;
+}
 
 </style>
 </head>
@@ -72,7 +76,7 @@ h3 {
 												<i class="mdi mdi-magnify"></i>
 											</span>
 										</div>
-										<input type="text" id="rptitle" name="rptitle" class="form-control" placeholder="Enter User ..">
+										<input type="text" id="rptitle" name="rptitle" class="form-control" placeholder="제목으로 검색">
 									</div>
 								</div>
 							</div>
@@ -167,6 +171,9 @@ h3 {
 	        header : '신고사유',
 	        name : 'rptype'
 	     }, {
+	    	header: '제목',
+	    	name: 'rptitle'
+	     },{
 	        header : '신고된 유저',
 	        name : 'blackuser'
 	     }, {
@@ -184,13 +191,8 @@ h3 {
 			let rpno = event.target.parentNode.parentNode.firstChild.textContent;
 			let state = event.target.parentNode.parentNode.lastChild.textContent;
 			console.log(event.target.parentNode.parentNode.nodeName)
-			//잘못눌렀을때 오류방지
-			if(event.target.parentNode.parentNode.nodeName === 'TR'){
-				if(state != '처리완료'){
-					$('#rpno').val(rpno);
-					$('#frm').submit();
-				}
-			}
+			$('#rpno').val(rpno);
+			$('#frm').submit();
 		})
 		
 	tui.Grid.applyTheme('clean');

@@ -24,6 +24,8 @@ import co.kids.prj.lodging.service.LodgingVO;
 import co.kids.prj.reservation.service.ReservationVO;
 import co.kids.prj.review.service.ReviewServiceImpl;
 import co.kids.prj.review.service.ReviewVO;
+import co.kids.prj.sales.service.SalesServiceImpl;
+import co.kids.prj.sales.service.SalesVO;
 
 @Controller
 public class ReservationController {
@@ -31,6 +33,7 @@ public class ReservationController {
 	private LodgingServiceImpl lodgingDao;
 	@Autowired
 	private ReservationImpl rDao;
+	@Autowired SalesServiceImpl salesDao;
 	
 	@RequestMapping("myReserv.do")
 	public String myReserv(HttpServletRequest request, HttpSession session, ReservLodVO vo) {
@@ -72,15 +75,21 @@ public class ReservationController {
 		return "reservation/bookingForm";
 	}
 
-	@PostMapping("/booking.do")
-	public String booking(ReservationVO vo) {
+	@RequestMapping("booking.do")
+	public String booking(ReservationVO vo, SalesVO svo, HttpServletRequest request) {
+		System.out.println("============");
 		rDao.reservInsert(vo);
 		LodgingVO lodgingVO = new LodgingVO();
 		lodgingVO.setRno(vo.getRno());
 		lodgingVO.setRuse("N");
-		lodgingDao.LodgingUpdateState(lodgingVO); 
+		lodgingDao.LodgingUpdateState(lodgingVO);
+		System.out.println(request.getParameter("servicesale"));
+		svo.setSid(request.getParameter("sid"));
+		svo.setSales(Integer.parseInt(request.getParameter("servicesale")));
+		salesDao.insertSales(svo);
 		return "redirect:myReserv.do";
 	}
+
 	
 	@PostMapping("/myReservDetail.do")
 	public String myReservDetail(ReservLodVO vo, Model model,HttpServletRequest request) {
@@ -99,5 +108,7 @@ public class ReservationController {
 		}
 		
 	}
+	
+	
 	
 }

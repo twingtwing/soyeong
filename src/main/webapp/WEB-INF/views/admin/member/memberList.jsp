@@ -14,6 +14,9 @@ table {
 #member-table div.tui-grid-cell-content {
 	text-align: center;
 }
+	td{
+	cursor: pointer;
+}
 </style>
 </head>
 

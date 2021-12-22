@@ -4,4 +4,5 @@ import java.util.List;
 
 public interface SalesService {
 	List<SalesVO> totalSales(SalesVO vo);
+	int insertSales(SalesVO vo);
 }
