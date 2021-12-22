@@ -411,6 +411,10 @@
 	})
 	
 	$('.book_now_btn').first().on('click',(e)=>{
+		if(new Date($('#rcheckin').val())<=new Date() || new Date($('#rcheckout').val())<new Date()){
+			window.alert('날짜를 확인해주세요.');
+			return;	
+		}
 		$('.theme_btn_two').click();
 		$('#letsgo').on('click',()=>{
 			frm.submit();

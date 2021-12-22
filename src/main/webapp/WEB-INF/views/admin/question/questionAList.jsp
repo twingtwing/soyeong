@@ -92,7 +92,7 @@
 
 	<script type="text/javascript">
 		createQnA(JSON.parse('${QnAs}'));
-	
+		
 		function createQnA(dataQnA){
 			let div = document.getElementById('cs-table-Q');
 			if(div.children.length!=0){

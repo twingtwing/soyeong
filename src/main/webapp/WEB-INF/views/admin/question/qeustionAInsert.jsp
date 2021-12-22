@@ -76,6 +76,8 @@
             </div>
             <!-- #/ container -->
         </div>
-
+<script type="text/javascript">
+$('textarea').attr('spellcheck','false');
+</script>
 </body>
 </html>
