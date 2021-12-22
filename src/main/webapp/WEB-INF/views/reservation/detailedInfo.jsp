@@ -392,8 +392,8 @@
 		let checkout = new Date($('#rcheckout').val());
 		let day = parseInt(+(checkout.getTime()-checkin.getTime())/(1000*3600*24));
 		$('#houseRentAll').html('<div><h5 class="mb-0 mt-0">'+day+'박</h5></div>'+'<div><h5 class="mb-0 mt-0">'+(one*day).toLocaleString('ko-KR')+'원</h5></div>');
-		$('#serviceFee').html('<div><h5 class="mb-0 mt-0">수수료</h5></div>'+'<div><h5 class="mb-0 mt-0 text-danger">- '+parseInt(one*day*0.1).toLocaleString('ko-KR')+'원</h5></div>');
-		$('#serviceTax').html('<div><h5 class="mb-0 mt-0">부가세</h5></div>'+'<div><h5 class="mb-0 mt-0 text-danger">- '+parseInt(one*day*0.01).toLocaleString('ko-KR')+'원</h5></div>');
+		$('#serviceFee').html('<div><h5 class="mb-0 mt-0">수수료</h5></div>'+'<div><h5 class="mb-0 mt-0 text-danger">+ '+parseInt(one*day*0.1).toLocaleString('ko-KR')+'원</h5></div>');
+		$('#serviceTax').html('<div><h5 class="mb-0 mt-0">부가세</h5></div>'+'<div><h5 class="mb-0 mt-0 text-danger">+ '+parseInt(one*day*0.01).toLocaleString('ko-KR')+'원</h5></div>');
 		total = parseInt(one*day*(1+0.1+0.01));
 		$('#totalPrice').text('총액 '+total.toLocaleString('ko-KR')+'원'); 
 		$('#totalPrice').css('color','#F3C300');
@@ -411,6 +411,10 @@
 	})
 	
 	$('.book_now_btn').first().on('click',(e)=>{
+		if(new Date($('#rcheckin').val())<=new Date() || new Date($('#rcheckout').val())<new Date()){
+			window.alert('날짜를 확인해주세요.');
+			return;	
+		}
 		$('.theme_btn_two').click();
 		$('#letsgo').on('click',()=>{
 			frm.submit();

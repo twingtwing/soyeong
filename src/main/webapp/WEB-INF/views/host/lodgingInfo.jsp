@@ -70,6 +70,9 @@ form input {
 	padding: 8px;
 	margin-top: 15px;
 }
+table img{
+	width: 50rem;
+}
 
 form input:hover {
 	background-color: rgb(128, 128, 128);

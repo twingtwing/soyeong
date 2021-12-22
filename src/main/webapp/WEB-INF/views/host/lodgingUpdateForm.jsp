@@ -255,6 +255,7 @@ form input:hover, textarea:hover {
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 	$('#subject').val($('#subject').val().replace(/<br>/gi,'\n'));
+	$('textarea').attr('spellcheck','false');
 	
 
 	$(function(){

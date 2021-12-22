@@ -185,6 +185,7 @@ form input:hover, textarea:hover {
 		</div>
 	</div>
 	<script>
+	$('textarea').attr('spellcheck','false');
 		$('#pnum').on('keyup', function() {
 			if (/\D/.test(this.value)) {
 				this.value = this.value.replace(/\D/g, '')

@@ -85,6 +85,7 @@
 	</div>
 	<!-- #/ container -->
 	<script type="text/javascript">
+	$('textarea').attr('spellcheck','false');
 		document.querySelector('#fCategory > option[value = "${QnA.fCategory }"]').setAttribute('selected','selected');
 	</script>
 </body>
