@@ -91,7 +91,7 @@ public class SNSController {
 		loginUrl.append("https://kauth.kakao.com/oauth/authorize?client_id=");
 		loginUrl.append("0bc9a42bdb4d7b26534db62b84cc84ed");
 		loginUrl.append("&redirect_uri=");
-		loginUrl.append("http://localhost:80/prj/kakaoLogin.do");
+		loginUrl.append("http://192.168.0.4/prj/kakaoLogin.do");
 		loginUrl.append("&response_type=code");
 		return "redirect:"+loginUrl.toString();
 	}

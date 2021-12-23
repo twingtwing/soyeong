@@ -20,7 +20,7 @@ public class NaverLoginService {
 	private final static String CLIENT_ID = "sGR0PsxsZX9HvEHJXI5V";
 	private final static String CLIENT_SECRET = "dwHaxLbKmG";
 	
-	private final static String REDIRECT_URI = "http://localhost:80/prj/naverLogin.do";
+	private final static String REDIRECT_URI = "http://192.168.0.4/prj/naverLogin.do";
 	private final static String SESSION_STATE = "oauth_state";
 	private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";
 	
