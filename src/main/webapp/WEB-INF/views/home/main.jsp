@@ -110,7 +110,7 @@ body,h2,h6{
 									<a href="detailedInfo.do?rno=${room.rno }" class="btn theme_btn button_hover">Book Now</a>
 								</div>
 								<a href="#"><h4 class="sec_h4">${room.rname }</h4></a>
-								<h5>${room.fee }<small>/night</small>
+								<h5><fmt:formatNumber>${room.fee }</fmt:formatNumber><small>/night</small>
 								</h5>
 							</div>
 						</div>
