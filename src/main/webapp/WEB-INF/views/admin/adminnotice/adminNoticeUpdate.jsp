@@ -34,7 +34,7 @@
 							class="form-control input-default my-3" value="${notice.btitle }">
 						<input class="form-control input-default my-3" type="text" name="id" value="${notice.id}" readonly="readonly">
 						<textarea class="form-control h-150px" rows="6" id="bcontent"
-							name="bcontent">${notice.bcontent }</textarea>
+							name="bcontent" spellcheck="false">${notice.bcontent }</textarea>
 						<div class="row justify-content-end">
 							<input type="button" id="bSubmit" class="btn btn-rounded btn-outline-dark mb-1 m-3" value="완료">
 						</div>

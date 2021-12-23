@@ -139,7 +139,7 @@ body,h2,h6{
                     </div>
                 </div>
                 <div class="text-center">
-                    <h2 class="title_color"><strong>Our Componey Location</strong></h2>
+                    <h2 class="title_color"><strong>Our Company Location</strong></h2>
                 </div>
 				<div id="mapWrapper">
 					<div id="googleMap" style="overflow: auto" class="w-100"></div>
