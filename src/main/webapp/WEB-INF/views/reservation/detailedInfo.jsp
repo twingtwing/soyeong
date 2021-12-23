@@ -119,6 +119,7 @@
 														<div class='input-group date' id='datetimepicker-out'>
 															<input type='text' class="form-control"
 																placeholder="Check out" id="rcheckout"
+																required="required" autocomplete="off"/> <span class="input-group-addon">
 																required="required"  autocomplete = "off"/><span class="input-group-addon">
 																<i class="fa fa-calendar" aria-hidden="true"></i>
 															</span>

@@ -20,10 +20,10 @@
 			
 				<li><a class="has-arrow" href="javascript:void()"
 					aria-expanded="false"> <i class="icon-grid menu-icon"></i><span
-						class="nav-text">Dashboard</span>
+						class="nav-text">home</span>
 				</a>
 					<ul aria-expanded="false">
-						<li><a href="admin.do">MAIN PAGE</a></li>
+						<li><a href="admin.do">메인 페이지</a></li>
 					</ul>
 				</li>
 				<li class="nav-label">Management</li>
