@@ -29,6 +29,7 @@ th, td {
 
 #infoBox img {
 	margin: 1rem;
+	width: 50rem;
 }
 
 #starsBox {

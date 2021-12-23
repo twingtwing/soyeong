@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.ml-5{
+cursor: pointer;
+}
+</style>
 </head>
 <body>
 	<!-- 마이페이지에서 호스트 매출관리 -->
@@ -17,7 +22,7 @@
 				data-stellar-vertical-offset="0" data-background=""></div>
 			<div class="container">
 				<div class="banner_content text-center">
-					<h2>Relax Your Mind</h2>
+					<h2>결제 및 환불 관리</h2>
 				</div>
 			</div>
 		</div>
@@ -34,18 +39,20 @@
 			</div>
 			<div class="section_title text-center">
 				<h2 class="title_color">
-					<strong>결제 및 환불 처리</strong>
+					<strong>결제 및 환불</strong>
 				</h2>
 			</div>
 			<!-- 모두 첨에는 기본으로 1개월 가져옴 -->
 			<div
 				class="btn-Pay row mb-4 border border-right-0 border-top-0 border-left-0">
-				<div class="active-btn-Pay ml-4">
+				<div class="active-btn-Pay ml-4" style="cursor: pointer;">
 					<h5>대금 수령 완료</h5>
 				</div>
+				<!-- 
 				<div class="ml-5">
 					<h5>수령 예정</h5>
 				</div>
+				 -->
 				<div class="ml-5">
 					<h5>환불 요청</h5>
 				</div>
@@ -121,7 +128,7 @@
 						</table>
 					</div>
 				</div>
-				<!-- 수령 예정 div -->
+				<!--  수령 예정 div
 				<div class="d-none">
 					<div class="row pt-2">
 						<div class="col-md-12 d-flex justify-content-between">
@@ -160,7 +167,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- 구매 확정여부 없어지면 없애기 -->
+					<!-- 구매 확정여부 없어지면 없애기
 					<div class="row mt-4 pt-4">
 						<table class="table text-center">
 							<thead>
@@ -188,6 +195,7 @@
 						</table>
 					</div>
 				</div>
+				-->
 				<!-- 환불 요청 div -->
 				<div class="d-none">
 					<div class="row pt-2">

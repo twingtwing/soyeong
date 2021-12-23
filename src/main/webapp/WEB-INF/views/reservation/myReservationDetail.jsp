@@ -162,7 +162,7 @@ border : 1px solid gray;
 
 
 
-	<button type="button" onclick="location.href='home.do'" class="back">
+	<button type="button" onclick="location.href='myReserv.do?ispaid=A'" class="back">
 		 &lt; PREV
 	</button>
 	<div id="all">
@@ -275,7 +275,6 @@ border : 1px solid gray;
 			})
 		}
 		
-	
 	</script>
 </body>
 
