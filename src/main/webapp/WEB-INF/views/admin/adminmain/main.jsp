@@ -99,7 +99,7 @@ display : none !important;
                             <div class="card-body pb-0 d-flex justify-content-between">
                                 <div class="ml-2">
                                     <h3 class="mb-1 mt-2 text-warning">Host top 10</h3>
-                                    <p class="card-text">The 10 best hosts of this Year</p>
+                                    <p class="card-text">The 10 best hosts</p>
                                 </div>
                             </div>
                             <div class="card-body">

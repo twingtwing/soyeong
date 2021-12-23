@@ -72,7 +72,7 @@
                         <tr>
                             <th class="align-middle" rowspan="2">권한 / 가입날짜</th>
                             <th class="p-4 align-middle">권한</th>
-                            <td class="align-middle">${author}</td>
+                            <td class="align-middle">${member.author}</td>
                         </tr>
                         <tr>
                             <th class="p-4 align-middle">가입날짜</th>
