@@ -43,7 +43,7 @@
                                         <label class="col-lg-4 col-form-label" for="bcontent">내용 <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-12">
-											<textarea id="bcontent" name="bcontent" class="form-control h-150px" rows="6" placeholder="내용을 입력해주세요"></textarea>
+											<textarea id="bcontent" name="bcontent" class="form-control h-150px" rows="6" placeholder="내용을 입력해주세요" spellcheck="false"></textarea>
                                     	</div>
                                     </div>
 									<div class="row justify-content-end mr-1 mt-4">

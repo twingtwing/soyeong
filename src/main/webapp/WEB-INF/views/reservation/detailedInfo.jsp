@@ -22,6 +22,7 @@
 <!-- main css -->
 <link rel="stylesheet" href="resources/css/style.css">
 <link rel="stylesheet" href="resources/css/responsive.css">
+<script src="resources/js/fontawesome.js" crossorigin="anonymous"></script>
 <style>
 #mapWrapper {
 	text-align: center;
