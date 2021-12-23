@@ -150,8 +150,8 @@
 				$('#loginBtn').click();
 				return;
 			} 
-			//creditCard();
-			$('#frm').submit();
+			creditCard();
+			//$('#frm').submit();
 		});
 		
 		
