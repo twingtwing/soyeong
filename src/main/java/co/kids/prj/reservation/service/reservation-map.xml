@@ -18,8 +18,9 @@
 		ON B.RNO = L.RNO
 		WHERE B.ID = #{id}
 		<if test='ispaid == "A"'>
-		AND TO_DATE(B.CHECKOUT,'YYYY/MM/DD') <![CDATA[>]]> TO_DATE(SYSDATE,'YYYY/MM/DD') 
+		AND TO_DATE(CHECKOUT,'YYYY/MM/DD') <![CDATA[>=]]> TO_DATE(SYSDATE,'YYYY/MM/DD')-1
 		AND B.BOOKCANCEL NOT IN('Y')
+		AND RUSE = 'N'
 		</if>
 		<if test='ispaid eq "E"'>
 		AND TO_DATE(B.CHECKOUT,'YYYY/MM/DD')<![CDATA[<]]>TO_DATE(SYSDATE,'YYYY/MM/DD')
@@ -58,7 +59,7 @@
 	</select>
 	
 	<select id="hostSortList" parameterType="co.kids.prj.reservation.service.ReservLodVO" resultType="co.kids.prj.reservation.service.ReservLodVO">
-	SELECT * FROM LODGING L
+	SELECT DISTINCT * FROM LODGING L
         LEFT OUTER JOIN BOOKING B
         ON L.RNO = B.RNO
 		WHERE L.ID = #{id}
@@ -72,7 +73,7 @@
         AND L.RUSE = 'N'
 		</if>
 		<if test='ruse eq "C"'>
-		AND TO_DATE(B.CHECKIN,'YYYY/MM/DD') <![CDATA[<]]> TO_DATE(SYSDATE,'YYYY/MM/DD')  
+		AND TO_DATE(B.CHECKOUT,'YYYY/MM/DD') <![CDATA[>=]]> TO_DATE(SYSDATE,'YYYY/MM/DD')-1
         AND B.BOOKCANCEL = 'N'
         AND L.RUSE = 'N'
 		</if>

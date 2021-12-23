@@ -105,7 +105,7 @@
 													<div class="form-group">
 														<div class='input-group date' id='datetimepicker-in'>
 															<input type='text' class="form-control"
-																placeholder="Check in" id="rcheckin" required="required" autocomplete="off"/>
+																placeholder="Check in" id="rcheckin" required="required" autocomplete = "off"/>
 															<span class="input-group-addon"> <i
 																class="fa fa-calendar" aria-hidden="true"></i>
 															</span>
@@ -120,6 +120,7 @@
 															<input type='text' class="form-control"
 																placeholder="Check out" id="rcheckout"
 																required="required" autocomplete="off"/> <span class="input-group-addon">
+																required="required"  autocomplete = "off"/><span class="input-group-addon">
 																<i class="fa fa-calendar" aria-hidden="true"></i>
 															</span>
 														</div>
