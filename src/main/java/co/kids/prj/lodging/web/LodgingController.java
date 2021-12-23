@@ -112,7 +112,9 @@ public class LodgingController {
 			pvo.setPfile(safeFile);
 			pvo.setRno(Integer.parseInt(request.getParameter("rno")));
 			pvo.setId(request.getParameter("id"));
-
+			
+			// 다중이미지를 위해 잠시 넣은거임 빼도됨
+			pvo.setPfile("/upload/" + safeFile.substring(saveDir.length()));
 			try {
 				fileList.get(i).transferTo(new File(safeFile));
 			} catch (IllegalStateException e) {

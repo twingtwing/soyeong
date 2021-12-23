@@ -59,6 +59,9 @@
 #letsgo:hover {
 	background-color: #3ea1e8;
 }
+#imgs img{
+	width: 55rem;
+}
 </style>
 </head>
 <body>
@@ -106,7 +109,7 @@
 													<div class="form-group">
 														<div class='input-group date' id='datetimepicker-in'>
 															<input type='text' class="form-control"
-																placeholder="Check in" id="rcheckin" required="required" autocomplete = "off"/>
+																placeholder="Check in" id="rcheckin" required="required" autocomplete="off"/>
 															<span class="input-group-addon"> <i
 																class="fa fa-calendar" aria-hidden="true"></i>
 															</span>
@@ -120,8 +123,7 @@
 														<div class='input-group date' id='datetimepicker-out'>
 															<input type='text' class="form-control"
 																placeholder="Check out" id="rcheckout"
-																required="required" autocomplete="off"/> <span class="input-group-addon">
-																required="required"  autocomplete = "off"/><span class="input-group-addon">
+																required="required" autocomplete="off"/><span class="input-group-addon">
 																<i class="fa fa-calendar" aria-hidden="true"></i>
 															</span>
 														</div>
@@ -259,9 +261,10 @@
 	<!--================ About History Area  =================-->
 	<section class="about_history_area">
 		<div class="container" align="center">
-			<div
-				style="display: flex; flex-direction: column; align-items: center;">
-				<img alt="" src="${hotelDetail.rphoto}">
+			<div style="display: flex; flex-direction: column; align-items: center;" id="imgs">
+				<img alt="" src="${hotelDetail.rphoto}"><br>
+				<h5 style="text-align: center;">${hotelDetail.rname}</h5>
+				<br><br><br>
 				<c:forEach items="${imgs}" var="img">
 					<img alt="" src="${img.pfile}">
 				</c:forEach>

@@ -120,7 +120,7 @@
     		.then(response => response.text())
     		.then(data => {
     			if(data.trim() ==='Y'){
-    				alert('호스트가 되셨습니다. \n축화드립니다.');
+    				alert('호스트가 되셨습니다. \n축하드립니다.');
     				location.href="home.do";
     			}else if(data.trim()==='N'){
     				alert('권한 수정 중에 오류가 발생하였습니다.');
