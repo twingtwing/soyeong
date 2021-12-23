@@ -46,13 +46,8 @@ cursor: pointer;
 			<div
 				class="btn-Pay row mb-4 border border-right-0 border-top-0 border-left-0">
 				<div class="active-btn-Pay ml-4" style="cursor: pointer;">
-					<h5>대금 수령 완료</h5>
+					<h5>예약 완료</h5>
 				</div>
-				<!-- 
-				<div class="ml-5">
-					<h5>수령 예정</h5>
-				</div>
-				 -->
 				<div class="ml-5">
 					<h5>환불 요청</h5>
 				</div>
@@ -128,74 +123,6 @@ cursor: pointer;
 						</table>
 					</div>
 				</div>
-				<!--  수령 예정 div
-				<div class="d-none">
-					<div class="row pt-2">
-						<div class="col-md-12 d-flex justify-content-between">
-							<div class="btn-Pay-date">
-								<button type="button" class="genric-btn default" value="1">1 개월</button>
-								<button type="button" class="genric-btn default" value="2">3 개월</button>
-								<button type="button" class="genric-btn default" value="all">전체</button>
-								<button type="button" class="genric-btn default">직접 설정</button>
-							</div>
-							<div>
-								<button type="button" class="btn-Pay-ajax genric-btn warning">확인</button>
-							</div>
-						</div>
-						<div class="pay-date-detail d-print-block col-md-12 d-flex justify-content-center mt-3">
-							<div class="col-md-10 border border-warning mt-3 pt-3 pb-1">
-								<div class="book_tabel_item d-flex justify-content-around">
-									<div class="form-group mr-3">
-										<div class='input-group date datetimepicker-pay-start'>
-											<h5 class="pt-2 pl-2 pr-3">start :</h5>
-											<input type='text' class="form-control"
-												placeholder="Start Date" /> <span class="input-group-addon">
-												<i class="fa fa-calendar" aria-hidden="true"></i>
-											</span>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class='input-group date datetimepicker-pay-end'>
-											<h5 class="pt-2 pl-2 pr-3">end :</h5>
-											<input type='text' class="form-control"
-												placeholder="End Date" /> <span class="input-group-addon">
-												<i class="fa fa-calendar" aria-hidden="true"></i>
-											</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- 구매 확정여부 없어지면 없애기
-					<div class="row mt-4 pt-4">
-						<table class="table text-center">
-							<thead>
-								<tr>
-									<th>예약 날짜</th>
-									<th>대금</th>
-									<th>예약자</th>
-									<th>체크인 - 체크아웃</th>
-									<th>숙소</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${sales}" var="sale">
-									<c:if test="${sale.ispaid eq 'N' and sale.bookcancel eq 'N'}">
-										<tr>
-											<td>${sale.bookdate }</td>
-											<td>${sale.fee }</td>
-											<td>${sale.name }</td>
-											<td>${sale.checkin } - ${sale.checkout }</td>
-											<td>${sale.rname }</td>
-										</tr>
-									</c:if>
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				-->
 				<!-- 환불 요청 div -->
 				<div class="d-none">
 					<div class="row pt-2">
@@ -301,7 +228,7 @@ cursor: pointer;
 											<span class="display-4"> <i
 												class="fas fa-dollar-sign text-warning" aria-hidden="true"></i>
 											</span>
-											<h4 class="mt-4">전체 총 수입</h4>
+											<h4 class="mt-4">작월 총 수입</h4>
 											<h3 class="text-warning mt-4 mb-4" id="salesMoney"></h3>
 										</div>
 									</div>
@@ -314,7 +241,7 @@ cursor: pointer;
 											<span class="display-4"> <i
 												class="fas fa-book-reader text-warning" aria-hidden="true"></i>
 											</span>
-											<h4 class="mt-4">전체 예약수</h4>
+											<h4 class="mt-4">작월 예약수</h4>
 											<h3 class="text-warning mt-4 mb-4" id="salesCount"></h3>
 										</div>
 									</div>
@@ -327,7 +254,7 @@ cursor: pointer;
 											<span class="display-4"> <i
 												class="fas fa-heart text-warning" aria-hidden="true"></i>
 											</span>
-											<h4 class="mt-4">전체 평점</h4>
+											<h4 class="mt-4">작월 전체 평점</h4>
 											<h3 class="text-warning mt-4 mb-4" id="reviewStar"></h3>
 										</div>
 									</div>
@@ -340,8 +267,11 @@ cursor: pointer;
 											<span class="display-4"> <i
 												class="fas fa-retweet text-warning" aria-hidden="true"></i>
 											</span>
-											<h4 class="mt-4" id="reviewCount">전체 후기수</h4>
-											<h3 class="text-warning mt-4 mb-4">${review.count} 개</h3>
+											<h4 class="mt-4" id="reviewCount">작월 전체 후기수</h4>
+											<h3 class="text-warning mt-4 mb-4">
+												<c:if test="${empty review.count}">없음</c:if>
+												<c:if test="${not empty review.count}">${review.count} 개</c:if>
+											</h3>
 										</div>
 									</div>
 								</div>
@@ -551,18 +481,22 @@ cursor: pointer;
 			}
 		}
 		let starCount = '${review.rvstar}';
-		let starFloor = Math.floor(starCount);
-		let starCeil = Math.ceil(starCount);
-		for (var i = 1; i <= starFloor; i++) {
-			$('#reviewStar').append($('<i>').addClass('fas fa-star'));
-		}
+		if(starCount === ''){
+			$('#reviewStar').text('없음');
+		}else{
+			let starFloor = Math.floor(starCount);
+			let starCeil = Math.ceil(starCount);
+			for (var i = 1; i <= starFloor; i++) {
+				$('#reviewStar').append($('<i>').addClass('fas fa-star'));
+			}
 		
-		if((starFloor + starCeil) != 5 ){
-			$('#reviewStar').append($('<i>').addClass('fas fa-star-half-alt'));
-		}
+			if((starFloor + starCeil) != 5 ){
+				$('#reviewStar').append($('<i>').addClass('fas fa-star-half-alt'));
+			}
 		
-		for (var i = starCeil; i < 5; i++) {
-			$('#reviewStar').append($('<i>').addClass('far fa-star'));
+			for (var i = starCeil; i < 5; i++) {
+				$('#reviewStar').append($('<i>').addClass('far fa-star'));
+			}
 		}
 		
 		var lineChart = new Chart(lineId, {
