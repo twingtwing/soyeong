@@ -18,7 +18,7 @@
 	<!-- Custom Stylesheet -->
 	<link href="resources/admin/css/style.css" rel="stylesheet">
 
-	<script src="https://kit.fontawesome.com/00b1224df3.js"	crossorigin="anonymous"></script>
+	<script src="resources/js/fontawesome.js" crossorigin="anonymous"></script>
 
    <!-- toast.ui -->
     <link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
