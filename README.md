@@ -49,7 +49,7 @@
 
 ![Controller](https://user-images.githubusercontent.com/86578586/226790346-3ad9d92e-5484-4356-b895-38ffb611e1ae.png)
 
-- **다중 파일 저장** : Controller에서는 요청을 화면단에서 넘어온 요청을 받고, Service 계층에 로직 처리를 위임합니다.
+- **다중 파일 저장** : 다중 파일을 저장하기 위해 MultipartFile 매개변수를 이용하여 저장하였습니다.
 
 - **요청처리** : Controller에서는 요청을 화면단에서 넘어온 요청을 받고, Service 계층에 로직 처리를 위임합니다.
 
@@ -57,9 +57,7 @@
 
 ![Mapper](https://user-images.githubusercontent.com/86578586/226791023-bbe116e4-94d4-4725-8953-de700dd4a72a.png)
 
-- **컨텐츠 저장** :pushpin: [코드 확인]()
-  - URL 유효성 체크와 이미지, 제목 파싱이 끝난 컨텐츠는 DB에 저장합니다.
-  - 저장된 컨텐츠는 다시 Repository - Service - Controller를 거쳐 화면단에 송출됩니다.
+- **숙소 저장** : 유효성 체크 후에 저장된 데이터는 다시 Repository - Service - Controller를 거쳐 화면단에 송출됩니다.
 
 </div>
 </details> 
