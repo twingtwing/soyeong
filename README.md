@@ -53,9 +53,9 @@
 
 - **요청처리** : Controller에서는 요청을 화면단에서 넘어온 요청을 받고, Service 계층에 로직 처리를 위임합니다.
 
-### 4.4. Mapper
+### 4.4. Mapper :pushpin: [코드 확인](https://github.com/twingtwing/soyeong/blob/master/src/main/java/co/kids/prj/lodging/service/lodging-map.xml)
 
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_repo.png)
+![Mapper](https://user-images.githubusercontent.com/86578586/226791023-bbe116e4-94d4-4725-8953-de700dd4a72a.png)
 
 - **컨텐츠 저장** :pushpin: [코드 확인]()
   - URL 유효성 체크와 이미지, 제목 파싱이 끝난 컨텐츠는 DB에 저장합니다.
