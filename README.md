@@ -20,6 +20,7 @@
 #### `Front-end`
   - Javascript
   - jQuery
+  - JSP
   - Bootstrap 4
 
 </br>
